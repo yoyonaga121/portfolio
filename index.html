@@ -1,0 +1,4674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张晓曦 | AI Visual Designer Portfolio</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+<style>
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0a0f;
+  color: #e8e8f0;
+  line-height: 1.7;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+}
+
+/* 卡片悬停上移效果 */
+.tilt-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.reveal.visible.tilt-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--gold-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+video { display: block; }
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --bg-card-2: #1c1c28;
+  --gold: #c9a96e;
+  --gold-light: #e0c98f;
+  --gold-dim: rgba(201, 169, 110, 0.12);
+  --gold-border: rgba(201, 169, 110, 0.35);
+  --text-primary: #f0f0f5;
+  --text-secondary: #9a9aa8;
+  --text-muted: #5a5a6a;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-light: rgba(255, 255, 255, 0.12);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a2a38; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ===== 3D Particle Canvas ===== */
+#particleCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* ===== Navigation ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 22px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(10, 10, 15, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 56px;
+}
+.nav-logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.nav-links { display: flex; gap: 40px; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  position: relative;
+  transition: color 0.3s ease;
+  letter-spacing: 1px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-menu-btn {
+  display: none;
+  background: none; border: none;
+  cursor: pointer; padding: 8px;
+}
+.nav-menu-btn span {
+  display: block; width: 24px; height: 2px;
+  background: #fff; margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 48px 80px;
+  z-index: 1;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg video, .hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,169,110,0.06) 0%, transparent 60%),
+    linear-gradient(to bottom, rgba(10,10,15,0.35) 0%, rgba(10,10,15,0.25) 40%, rgba(10,10,15,0.92) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-play-btn {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: rgba(201,169,110,0.12);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  margin-bottom: 36px;
+  transition: all 0.3s ease;
+}
+.hero-play-btn:hover {
+  background: var(--gold);
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(201,169,110,0.4);
+}
+.hero-play-btn svg {
+  width: 26px; height: 26px;
+  fill: var(--gold);
+  margin-left: 4px;
+  transition: fill 0.3s ease;
+}
+.hero-play-btn:hover svg { fill: #0a0a0f; }
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+.hero-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 3px;
+  margin-bottom: 44px;
+  font-weight: 600;
+}
+.hero-subtitle strong { color: var(--gold); font-weight: 700; }
+.hero-cta { display: flex; gap: 18px; }
+.btn-gold,
+.btn-outline-light {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 38px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 2px; cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-gold:hover,
+.btn-outline-light:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+.btn-gold:focus,
+.btn-gold.active,
+.btn-outline-light:focus,
+.btn-outline-light.active {
+  background: var(--gold);
+  color: #0a0a0f;
+  border-color: var(--gold);
+  box-shadow: 0 4px 24px rgba(201,169,110,0.3);
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  color: var(--text-muted);
+  font-size: 10px; letter-spacing: 3px;
+  animation: bounce 2s ease-in-out infinite;
+}
+.hero-scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  position: relative;
+  width: 100%; overflow: hidden;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(201,169,110,0.02);
+  z-index: 1;
+}
+.marquee-track {
+  display: flex; gap: 0;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+.marquee-item {
+  display: flex; align-items: center;
+  font-size: 12px; font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  padding: 0 24px;
+}
+.marquee-item .en { color: var(--text-secondary); font-weight: 500; margin-right: 10px; }
+.marquee-item .cn { color: var(--text-muted); }
+.marquee-item .dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 24px;
+  opacity: 0.5;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===== Section Common ===== */
+.section {
+  padding: 110px 56px;
+  position: relative;
+  z-index: 1;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-label {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: 2px;
+}
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+.section-divider {
+  width: 50px; height: 1px;
+  background: var(--gold);
+  margin: 18px auto 0;
+}
+
+/* ===== About ===== */
+.about { background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.02), transparent); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 64px;
+  max-width: 1080px;
+  margin: 0 auto;
+  align-items: start;
+}
+.about-avatar {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 1px solid var(--border);
+}
+.about-avatar img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+.about-content h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.about-content .role {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.about-content p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 2;
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin: 28px 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.stat-item {
+  text-align: center;
+  padding: 22px 10px;
+  background: var(--bg-card);
+}
+.stat-number {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.skill-tag {
+  padding: 5px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+.skill-tag:hover {
+  border-color: var(--gold-border);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+/* ===== Portfolio Filter ===== */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 70px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.filter-btn {
+  padding: 9px 22px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+.filter-btn:hover {
+  border-color: var(--gold-border);
+  color: var(--text-primary);
+}
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0f;
+  font-weight: 600;
+}
+
+/* ===== Project Block Common ===== */
+.project-block {
+  margin-bottom: 60px;
+  position: relative;
+}
+.project-block:last-child { margin-bottom: 0; }
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.project-num {
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.project-num .total { color: var(--text-muted); }
+.project-en-title {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.project-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.project-desc-right {
+  max-width: 320px;
+  text-align: right;
+}
+.project-desc-right p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* ===== Project 01: Brand Intro ===== */
+.brand-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.brand-intro-text .featured-label {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.brand-intro-text h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+}
+.brand-intro-text .en-name {
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+.brand-intro-text .slogan {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+.brand-intro-text p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 2;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+.brand-intro-image {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  background: var(--bg-card);
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-intro-image video {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+}
+.brand-play-btn {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: rgba(10,10,15,0.6);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+.brand-play-btn:hover {
+  background: var(--gold);
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(201,169,110,0.5);
+}
+.brand-play-btn svg {
+  width: 20px; height: 20px;
+  fill: var(--gold);
+  transition: fill 0.3s ease;
+}
+.brand-play-btn:hover svg { fill: #0a0a0f; }
+
+/* ===== Middle Transition ===== */
+.middle-transition {
+  text-align: center;
+  padding: 50px 0 50px;
+}
+.middle-transition h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+.middle-transition h2 .gold { color: var(--gold); }
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.category-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.category-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gold-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.category-card-img {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  position: relative;
+}
+.category-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, opacity 0.3s ease;
+}
+.category-card-img video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.category-card.has-video:hover .category-card-img img {
+  opacity: 0;
+}
+.category-card.has-video:hover .category-card-img video {
+  opacity: 1;
+}
+.category-card:hover .category-card-img img { transform: scale(1.08); }
+.category-card-info { padding: 20px; }
+.category-card-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.category-card-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ===== Project 02: VI Manual ===== */
+.vi-manual-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.vi-main-image {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  cursor: zoom-in;
+}
+.vi-main-image img {
+  width: 100%;
+  flex: 1;
+  object-fit: contain;
+  background: rgba(201, 169, 110, 0.1);
+  transition: opacity 0.35s ease;
+  min-height: 0;
+}
+.vi-image-label {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+  flex-shrink: 0;
+}
+.vi-zoom-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: var(--gold);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+.vi-main-image:hover .vi-zoom-hint {
+  opacity: 1;
+}
+.vi-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.vi-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.vi-lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: opacity 0.25s ease;
+}
+.vi-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.vi-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.vi-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+.vi-lightbox-nav:hover {
+  background: rgba(201,169,110,0.25);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+.vi-lightbox-prev {
+  left: 32px;
+}
+.vi-lightbox-next {
+  right: 32px;
+}
+.vi-lightbox-counter {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  letter-spacing: 2px;
+  z-index: 10000;
+  font-weight: 300;
+}
+.vi-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vi-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: translateX(40px);
+}
+.vi-feature-card.animate {
+  animation: viCardSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.vi-feature-card.animate:nth-child(1) { animation-delay: 0.08s; }
+.vi-feature-card.animate:nth-child(2) { animation-delay: 0.16s; }
+.vi-feature-card.animate:nth-child(3) { animation-delay: 0.24s; }
+.vi-feature-card.animate:nth-child(4) { animation-delay: 0.32s; }
+.vi-feature-card.animate:nth-child(5) { animation-delay: 0.40s; }
+.vi-feature-card.animate:nth-child(6) { animation-delay: 0.48s; }
+@keyframes viCardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.vi-feature-card.vi-card-shown {
+  opacity: 1;
+  transform: translateX(0);
+}
+.vi-feature-card:hover {
+  border-color: var(--gold-border);
+  border-left: 3px solid var(--gold);
+  background: var(--bg-card-2);
+  transform: translateX(-12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 25px rgba(201,169,110,0.15);
+}
+.vi-feature-card:hover .vi-feature-icon {
+  background: var(--gold);
+  transform: scale(1.1);
+}
+.vi-feature-card:hover .vi-feature-icon svg {
+  stroke: #0a0a0f;
+}
+.vi-feature-card:hover .vi-feature-text h4 {
+  color: var(--gold);
+}
+.vi-feature-icon {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  background: var(--gold-dim);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.35s ease;
+}
+.vi-feature-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 0.35s ease;
+}
+.vi-feature-text h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.vi-feature-text p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.view-more-wrap {
+  text-align: right;
+  margin-top: 28px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-view-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 24px;
+  background: var(--gold);
+  color: #0a0a0f;
+  border: none; border-radius: 2px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-view-more:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+/* ===== Project 03: Offline Materials ===== */
+.offline-carousel {
+  position: relative;
+  margin-bottom: 28px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 50px;
+}
+.coverflow-carousel {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+.coverflow-item {
+  position: absolute;
+  width: 480px;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border: 1px solid var(--border);
+}
+.coverflow-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.coverflow-item.active {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,110,0.15);
+}
+.offline-zoom-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: var(--gold);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+.coverflow-item.active:hover .offline-zoom-hint {
+  opacity: 1;
+}
+.offline-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.offline-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.offline-lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: opacity 0.25s ease;
+}
+.offline-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.offline-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.offline-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+.offline-lightbox-nav:hover {
+  background: rgba(201,169,110,0.25);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+.offline-lightbox-prev {
+  left: 32px;
+}
+.offline-lightbox-next {
+  right: 32px;
+}
+.offline-lightbox-counter {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  z-index: 10000;
+  letter-spacing: 1px;
+}
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(10,10,15,0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+.carousel-nav:hover {
+  background: var(--gold);
+  color: #0a0a0f;
+  border-color: var(--gold);
+}
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+  z-index: 5;
+}
+.carousel-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.carousel-dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 4px;
+}
+.offline-sub-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.offline-sub-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.offline-sub-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.offline-sub-card .play-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  aspect-ratio: 16/9;
+  background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.offline-sub-card .play-overlay .play-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+}
+.offline-sub-card .play-overlay .play-icon svg {
+  width: 18px; height: 18px;
+  fill: #0a0a0f;
+  margin-left: 3px;
+}
+.product-zoom-hint {
+  position: absolute;
+  top: calc(50% - 30px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: var(--gold);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+.product-zoom-card:hover .product-zoom-hint {
+  opacity: 1;
+}
+.product-demo-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  background: #000;
+  transition: filter 0.3s ease;
+}
+/* 悬停时增加亮度 */
+.video-card:hover .product-demo-video {
+  filter: brightness(1.1);
+}
+/* 悬停时去掉黑色蒙版 */
+.video-card:hover .play-overlay {
+  background: transparent;
+}
+.video-card .play-overlay {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.video-card.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.product-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.product-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.product-lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.product-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.product-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.video-fullscreen-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 6;
+  backdrop-filter: blur(4px);
+}
+.video-fullscreen-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.video-card.playing:hover .video-fullscreen-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.video-fullscreen-btn:hover {
+  background: rgba(201,169,110,0.8);
+  border-color: var(--gold);
+  color: #0a0a0f;
+}
+.motion-expand-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 6;
+  backdrop-filter: blur(4px);
+}
+.motion-expand-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.motion-hero-video.playing .motion-expand-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.motion-expand-btn:hover {
+  background: rgba(201,169,110,0.8);
+  border-color: var(--gold);
+  color: #0a0a0f;
+}
+.video-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.video-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.video-lightbox-video {
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.video-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.video-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.offline-sub-info { padding: 18px 20px; }
+.offline-sub-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.offline-sub-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ===== Project 04: Digital ===== */
+.digital-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.digital-left {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  aspect-ratio: 1376 / 4368;
+  height: auto;
+  width: 100%;
+}
+.digital-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+  display: block;
+}
+.digital-right {
+  position: relative;
+  height: auto;
+  min-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.digital-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px; height: 44px;
+  background: rgba(10,10,15,0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  line-height: 1;
+  padding: 0;
+}
+.digital-nav-up {
+  top: 12px;
+}
+.digital-nav-down {
+  bottom: 12px;
+}
+.digital-nav:hover:not(:disabled) {
+  background: var(--gold);
+  color: #0a0a0f;
+  border-color: var(--gold);
+}
+.digital-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.digital-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transform: rotate(90deg) translateY(-2px);
+  transform-origin: center center;
+  line-height: 1;
+  font-size: 20px;
+}
+.digital-left, .digital-list-item {
+  position: relative;
+  cursor: pointer;
+}
+.digital-zoom-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: var(--gold);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+.digital-left:hover .digital-zoom-label,
+.digital-list-item:hover .digital-zoom-label {
+  opacity: 1;
+}
+
+/* ===== Digital Lightbox ===== */
+.digital-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.digital-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.digital-lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: opacity 0.25s ease;
+}
+.digital-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.digital-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.digital-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+.digital-lightbox-nav:hover {
+  background: rgba(201,169,110,0.25);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+.digital-lightbox-prev {
+  left: 32px;
+}
+.digital-lightbox-next {
+  right: 32px;
+}
+.digital-lightbox-counter {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 10000;
+}
+
+/* ===== Digital Long Image Lightbox (拖拽+缩放) ===== */
+.digital-long-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+  cursor: grab;
+}
+.digital-long-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.digital-long-lightbox.grabbing {
+  cursor: grabbing;
+}
+.digital-long-lightbox img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  transition: none;
+  max-width: none;
+  max-height: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+.digital-long-lightbox-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+.digital-long-lightbox-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.digital-long-lightbox-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  letter-spacing: 1px;
+  z-index: 10000;
+  text-align: center;
+  line-height: 1.8;
+}
+.digital-long-lightbox-zoom {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--gold-border);
+}
+.digital-list-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+.digital-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0;
+  justify-content: flex-start;
+}
+.digital-list-item {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: border-color 0.3s ease;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  position: relative;
+}
+.digital-list-item:hover {
+  border-color: var(--gold);
+}
+/* 360度旋转光效 */
+.digital-list-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.35) 60deg, transparent 120deg, transparent 180deg, rgba(255,255,255,0.35) 240deg, transparent 300deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.digital-list-item:hover::before {
+  opacity: 1;
+  animation: rotate-light 3s linear infinite;
+}
+@keyframes rotate-light {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.digital-list-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Project 05: Motion ===== */
+.motion-hero-video {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+  cursor: pointer;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.motion-hero-video img, .motion-hero-video video {
+  width: 100%;
+  aspect-ratio: 21/9;
+  object-fit: cover;
+}
+.motion-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.motion-hero-label {
+  position: absolute;
+  top: 24px; left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 18px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-size: 11px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.motion-hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.motion-hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.motion-hero-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 2px;
+}
+.motion-play-btn {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 0 40px rgba(201,169,110,0.5);
+  transition: transform 0.3s ease;
+}
+.motion-play-btn:hover { transform: scale(1.1); }
+.motion-play-btn svg {
+  width: 24px; height: 24px;
+  fill: #0a0a0f;
+  margin-left: 3px;
+}
+.motion-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.motion-grid-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+.motion-video-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: var(--bg-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.motion-video-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.motion-video-card video {
+  transition: filter 0.3s ease;
+}
+.motion-video-card:hover video {
+  filter: brightness(1.1);
+}
+/* 悬停时去掉黑色蒙版 */
+.motion-video-card:hover .play-overlay {
+  background: transparent;
+}
+.motion-video-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.motion-video-card video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.motion-video-card.tall img { aspect-ratio: 4/3; }
+.motion-video-card.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.motion-video-card .play-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  aspect-ratio: 16/9;
+  background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.motion-video-card .play-overlay .play-icon,
+.motion-vertical-card .play-overlay .play-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+}
+.motion-video-card .play-overlay .play-icon svg,
+.motion-vertical-card .play-overlay .play-icon svg {
+  width: 18px; height: 18px;
+  fill: #0a0a0f;
+  margin-left: 3px;
+}
+.motion-card-info {
+  padding: 18px 20px;
+}
+.motion-card-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.motion-card-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+.card-expand-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 6;
+  backdrop-filter: blur(4px);
+}
+.card-expand-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.motion-video-card.playing .card-expand-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.card-expand-btn:hover {
+  background: rgba(201,169,110,0.8);
+  border-color: var(--gold);
+  color: #0a0a0f;
+}
+.motion-vertical-videos {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+}
+.motion-vertical-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.motion-vertical-card .video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.motion-vertical-card .vertical-placeholder,
+.motion-vertical-card .vertical-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+.motion-vertical-card .play-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.motion-vertical-card.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+.motion-vertical-card.playing .card-expand-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.motion-vertical-card .motion-card-info {
+  padding: 14px 16px;
+  flex: 1;
+}
+.motion-vertical-card .motion-card-info h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.motion-vertical-card .motion-card-info p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.vertical-coverflow-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.vertical-coverflow-carousel {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  min-height: 0;
+}
+.vertical-coverflow-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.vertical-coverflow-item.active {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,110,0.15);
+}
+.vertical-coverflow-item .video-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.vertical-coverflow-item .video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 只有active的轮播项才有悬停效果 */
+.vertical-coverflow-item.active {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.vertical-coverflow-item.active:hover {
+  border-color: var(--gold-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.vertical-coverflow-item.active video {
+  transition: filter 0.3s ease;
+}
+.vertical-coverflow-item.active:hover video {
+  filter: brightness(1.1);
+}
+/* 抖音直播视频不应用提亮效果 */
+.vertical-coverflow-item.active:hover #douyinLiveVideo {
+  filter: none;
+}
+/* 悬停时去掉黑色蒙版 */
+.vertical-coverflow-item.active:hover .play-overlay {
+  background: transparent;
+}
+.vertical-coverflow-item.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.vertical-coverflow-item .play-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.vertical-coverflow-item .play-overlay .play-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+}
+.vertical-coverflow-item .play-overlay .play-icon svg {
+  width: 18px; height: 18px;
+  fill: #0a0a0f;
+  margin-left: 3px;
+}
+.vertical-coverflow-item.playing .card-expand-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.vertical-coverflow-item .card-expand-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+.vertical-coverflow-item .card-expand-btn:hover {
+  background: var(--gold);
+  color: #0a0a0f;
+}
+.vertical-coverflow-item .card-expand-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.vertical-coverflow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0 8px;
+}
+.vertical-coverflow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.vertical-coverflow-dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 4px;
+}
+.motion-video-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  pointer-events: none;
+}
+.motion-video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(201,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 30px rgba(201,169,110,0.4);
+  z-index: 5;
+  cursor: pointer;
+}
+.motion-video-play svg {
+  width: 20px; height: 20px;
+  fill: #0a0a0f;
+  margin-left: 3px;
+}
+.motion-video-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.motion-video-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+  text-align: center;
+  padding: 100px 56px;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+}
+.cta-label {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.cta-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  padding: 60px 56px 80px;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+.footer-col h5 {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.footer-col .footer-item {
+  margin-bottom: 12px;
+}
+.footer-col .footer-item .label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+.footer-col .footer-item .value {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-bottom p {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+/* ===== Left Side Navigation ===== */
+.side-nav {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+.side-nav.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.side-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+.side-nav-item .nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+.side-nav-item:hover {
+  color: var(--gold);
+}
+.side-nav-item.active {
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+}
+.side-nav-item.active .nav-dot {
+  background: var(--gold);
+  transform: scale(1.5);
+}
+@media (max-width: 1200px) {
+  .side-nav { display: none; }
+}
+
+/* ===== Left Side Navigation ===== */
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 3px;
+}
+
+/* ===== Responsive Showcase ===== */
+.responsive-showcase {
+  padding: 100px 56px 120px;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+}
+.responsive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.responsive-left h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.responsive-left .en {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.responsive-left .tag {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+.responsive-right {
+  max-width: 340px;
+  text-align: right;
+}
+.responsive-right p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  font-weight: 300;
+}
+.devices-mockup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-bottom: 60px;
+  position: relative;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.device {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.device-desktop {
+  width: 55%;
+  z-index: 1;
+  transform: translateX(40px);
+}
+.device-tablet {
+  width: 28%;
+  z-index: 2;
+  transform: translateX(-20px) translateY(20px);
+}
+.device-mobile {
+  width: 16%;
+  z-index: 3;
+  transform: translateX(-60px) translateY(40px);
+}
+.device-screen {
+  padding: 16px;
+  background: var(--bg-secondary);
+  min-height: 200px;
+}
+.device-label {
+  text-align: center;
+  padding: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  border-top: 1px solid var(--border);
+}
+.responsive-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.resp-feature {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.resp-feature .cat {
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.resp-feature h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.resp-feature p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ===== Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  transform: translateX(-50px);
+}
+.reveal-left.visible {
+  transform: translateX(0);
+}
+.reveal-right {
+  transform: translateX(50px);
+}
+.reveal-right.visible {
+  transform: translateX(0);
+}
+.reveal-scale {
+  transform: scale(0.9);
+}
+.reveal-scale.visible {
+  transform: scale(1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .nav { padding: 18px 32px; }
+  .nav.scrolled { padding: 14px 32px; }
+  .section { padding: 80px 32px; }
+  .hero-title { font-size: 48px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; max-width: 500px; }
+  .brand-intro { grid-template-columns: 1fr; gap: 40px; }
+  .brand-intro-text h2 { font-size: 42px; }
+  .category-cards { grid-template-columns: repeat(2, 1fr); }
+  .vi-manual-layout { grid-template-columns: 1fr; }
+  .digital-layout { grid-template-columns: 1fr; }
+  .motion-grid { grid-template-columns: 1fr; }
+  .cta-title { font-size: 38px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .responsive-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .responsive-right { text-align: left; max-width: 100%; }
+  .devices-mockup { flex-direction: column; align-items: center; gap: 20px; }
+  .device-desktop, .device-tablet, .device-mobile {
+    width: 80%; transform: none;
+  }
+  .responsive-features { grid-template-columns: 1fr; }
+  .project-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .project-desc-right { text-align: left; max-width: 100%; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-menu-btn { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(10,10,15,0.98);
+    backdrop-filter: blur(20px);
+    padding: 24px 32px; gap: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero { padding: 100px 24px 60px; }
+  .hero-title { font-size: 36px; letter-spacing: 3px; }
+  .hero-subtitle { font-size: 13px; letter-spacing: 1px; }
+  .hero-cta { flex-direction: column; width: 100%; max-width: 280px; }
+  .btn-gold, .btn-outline-light { justify-content: center; }
+  .section { padding: 60px 24px; }
+  .section-title { font-size: 30px; }
+  .project-title { font-size: 28px; }
+  .brand-intro-text h2 { font-size: 34px; }
+  .category-cards { grid-template-columns: 1fr; }
+  .offline-sub-cards { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr; }
+  .cta-title { font-size: 28px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .footer { padding: 40px 24px 20px; }
+  .responsive-showcase { padding: 60px 24px; }
+  .responsive-left h2 { font-size: 28px; }
+  .offline-carousel { padding: 0 35px; }
+  .coverflow-carousel {
+    height: 260px;
+  }
+  .coverflow-item {
+    width: 320px;
+    height: 200px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- 3D Particle Background -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">张晓曦</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">首页</a></li>
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#portfolio">品牌设计</a></li>
+    <li><a href="#contact">联系我</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <video id="heroVideo" muted autoplay playsinline preload="metadata" poster="https://aka.doubaocdn.com/s/guJ2wnl6ah">
+      <source src="https://aka.doubaocdn.com/s/YXVwuz4pq5" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <button class="hero-play-btn" id="heroPlayBtn" aria-label="播放视频">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <h1 class="hero-title">视觉<span style="color:#c9a96e">构建</span>想象</h1>
+    <p class="hero-subtitle">13年+IPTV运营专家 <strong>|</strong> 营销策划 <strong>×</strong> 品牌设计 <strong>×</strong> 视频创作</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-gold active">查看作品集</a>
+      <a href="#contact" class="btn-outline-light">联系我</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== Marquee ===== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="en">AI GENERATION</span><span class="cn">AI视觉生成</span><span class="dot"></span><span class="en">MOTION DESIGN</span><span class="cn">动态影像设计</span><span class="dot"></span><span class="en">BRAND MARKETING</span><span class="cn">营销策划</span><span class="dot"></span><span class="en">UI/UX DESIGN</span><span class="cn">界面体验设计</span><span class="dot"></span><span class="en">BRAND IDENTITY</span><span class="cn">品牌视觉识别</span><span class="dot"></span></div>
+    <div class="marquee-item"><span class="en">AI GENERATION</span><span class="cn">AI视觉生成</span><span class="dot"></span><span class="en">MOTION DESIGN</span><span class="cn">动态影像设计</span><span class="dot"></span><span class="en">BRAND MARKETING</span><span class="cn">营销策划</span><span class="dot"></span><span class="en">UI/UX DESIGN</span><span class="cn">界面体验设计</span><span class="dot"></span><span class="en">BRAND IDENTITY</span><span class="cn">品牌视觉识别</span><span class="dot"></span></div>
+  </div>
+</div>
+
+<!-- ===== About ===== -->
+<section class="section about" id="about">
+  <div class="section-header reveal">
+    <div class="section-label">ABOUT ME</div>
+    <h2 class="section-title">关于我</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-avatar reveal reveal-left">
+      <img src="https://aka.doubaocdn.com/s/ni8N3Ferdj" alt="张晓曦">
+    </div>
+    <div class="about-content reveal reveal-right">
+      <h3>张晓曦</h3>
+      <div class="role">AI VISUAL DESIGNER / BRAND CREATOR</div>
+      <p>毕业于中国传媒大学自动化专业，拥有18年新媒体行业从业经历，工作内容涵盖视觉设计、影像创作和营销策划。从影视后期到营销经理，再到AI视觉设计师，始终在创意与技术的交叉点上探索。</p>
+      <p>深耕 IPTV 领域 13 年+，精通免付费产品运营规则，具备 TV 端产品全周期运营运营能力，可有效提升用户活跃度与付费转化；擅长构建精准用户画像，持续提升用户体验与留存率。</p>
+      <p>拥有丰富的视频制作实操经验，2025年两次斩获全国医学类科普视频竞赛一等奖。精通各类设计软件及AI创作工具，高效完成从概念到落地的全流程视觉产出。</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">18+</div>
+          <div class="stat-label">年行业经验</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">品牌项目</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2x</div>
+          <div class="stat-label">全国一等奖</div>
+        </div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag">即梦AI</span>
+        <span class="skill-tag">Stable Diffusion</span>
+        <span class="skill-tag">ComfyUI</span>
+        <span class="skill-tag">Midjourney</span>
+        <span class="skill-tag">Photoshop</span>
+        <span class="skill-tag">Illustrator</span>
+        <span class="skill-tag">After Effects</span>
+        <span class="skill-tag">Cinema 4D</span>
+        <span class="skill-tag">Blender</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Portfolio ===== -->
+<section class="section" id="portfolio">
+  <div class="section-header reveal">
+    <div class="section-label">PORTFOLIO</div>
+    <h2 class="section-title">品牌设计</h2>
+    <p class="section-subtitle">光谷效应 — 消费级生活场景智能硬件品牌全案视觉设计</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">全部作品</button>
+    <button class="filter-btn" data-filter="brand">品牌设定</button>
+    <button class="filter-btn" data-filter="vi">VI手册</button>
+    <button class="filter-btn" data-filter="offline">营销物料</button>
+    <button class="filter-btn" data-filter="digital">数字端视觉</button>
+    <button class="filter-btn" data-filter="motion">动态资产</button>
+  </div>
+
+  <!-- Project 01: Brand Intro -->
+  <div class="project-block reveal" id="project-brand" data-category="brand">
+    <div class="brand-intro">
+      <div class="brand-intro-text">
+        <div class="project-num">01 <span class="total">/ 05</span></div>
+        <div class="featured-label">— FEATURED BRAND PROJECT —</div>
+        <h2>光谷效应</h2>
+        <div class="en-name">OPTICS VALLEY EFFECT</div>
+        <div class="slogan">光聚成谷，智启日常</div>
+        <p>消费级生活场景智能硬件品牌，聚焦民用日常生活场景，专注小微功能性机器人研发与制造。为C端年轻用户提供轻量化、高实用性的场景化智能生活解决方案。</p>
+        <p>品牌核心调性：科技感 · 极简 · 轻量化 · 未来感</p>
+      </div>
+      <div class="brand-intro-image">
+        <video id="brandVideo" muted loop autoplay playsinline preload="metadata">
+          <source src="https://aka.doubaocdn.com/s/0Vf1c6HoO0" type="video/mp4">
+        </video>
+        <button class="brand-play-btn" id="brandPlayBtn" aria-label="播放/暂停">
+          <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Middle Transition -->
+  <div class="middle-transition reveal">
+    <h2>让每一帧画面<br><span class="gold">都讲一个有价值的故事</span></h2>
+    <div class="category-cards">
+      <a href="#project-vi" class="category-card has-video tilt-card">
+        <div class="category-card-img">
+          <img src="https://aka.doubaocdn.com/s/cA3KvWK6wz" alt="品牌VI手册">
+          <video muted loop playsinline preload="metadata">
+            <source src="https://aka.doubaocdn.com/s/z9bq6fBYQY" type="video/mp4">
+          </video>
+        </div>
+        <div class="category-card-info">
+          <div class="category-card-name">品牌VI手册</div>
+          <div class="category-card-desc">Logo系统、色彩系统、字体系统、图形元素系统、物料应用示例</div>
+        </div>
+      </a>
+      <a href="#project-offline" class="category-card has-video tilt-card">
+        <div class="category-card-img">
+          <img src="https://aka.doubaocdn.com/s/rjMVWY4XDE" alt="线下营销与传播物料系统">
+          <video muted loop playsinline preload="metadata">
+            <source src="https://aka.doubaocdn.com/s/1lQjwcgL4M" type="video/mp4">
+          </video>
+        </div>
+        <div class="category-card-info">
+          <div class="category-card-name">线下营销与传播物料系统</div>
+          <div class="category-card-desc">产品手册、产品应用场景、产品拆解、功能演示、线下物料、户外广告</div>
+        </div>
+      </a>
+      <a href="#project-digital" class="category-card has-video tilt-card">
+        <div class="category-card-img">
+          <img src="https://aka.doubaocdn.com/s/8FBbNhQHqT" alt="数字端全渠道视觉系统">
+          <video muted loop playsinline preload="metadata">
+            <source src="https://aka.doubaocdn.com/s/mm05lU2oq9" type="video/mp4">
+          </video>
+        </div>
+        <div class="category-card-info">
+          <div class="category-card-name">数字端全渠道视觉系统</div>
+          <div class="category-card-desc">品牌官网、移动端APP、私域运营、电商营销与直播、社媒矩阵、数字人</div>
+        </div>
+      </a>
+      <a href="#project-motion" class="category-card has-video tilt-card">
+        <div class="category-card-img">
+          <img src="https://aka.doubaocdn.com/s/aXEQQI8BXY" alt="动态视觉与视频资产">
+          <video muted loop playsinline preload="metadata">
+            <source src="https://aka.doubaocdn.com/s/NmuTUYoBZ0" type="video/mp4">
+          </video>
+        </div>
+        <div class="category-card-info">
+          <div class="category-card-name">动态视觉与视频资产</div>
+          <div class="category-card-desc">抖音直播带货、小红书达人种草、场景TVC、功能TVC、企业级宣传片</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Project 02: VI Manual -->
+  <div class="project-block reveal" id="project-vi" data-category="vi">
+    <div class="project-header">
+      <div>
+        <div class="project-num">02 <span class="total">/ 05</span></div>
+        <div class="project-en-title">BRAND VI MANUAL</div>
+        <h3 class="project-title">品牌VI手册</h3>
+      </div>
+      <div class="project-desc-right">
+        <p>从标识系统、色彩系统、字体系统到图形元素，构建完整可视化的品牌识别规范</p>
+      </div>
+    </div>
+    <div class="vi-manual-layout">
+      <div class="vi-main-image">
+        <img id="viMainImg" src="https://aka.doubaocdn.com/s/UtMldrGOyA" alt="VI手册封面">
+        <div class="vi-zoom-hint">点击放大</div>
+        <div class="vi-image-label" id="viImageLabel">VI MANUAL COVER / 品牌手册封面 / 01 / Cover</div>
+      </div>
+      <div class="vi-features">
+        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/FoKhrsRuHT" data-label="VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>VI手册拆解</h4>
+            <p>构建触点统一、可落地使用、可持续迭代的品牌视觉资产体系</p>
+          </div>
+        </div>
+        <div class="vi-feature-card" data-image1="https://aka.doubaocdn.com/s/8WDzVGSFT9" data-image2="https://aka.doubaocdn.com/s/OztmiR4dxp" data-label1="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1" data-label2="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2a10 10 0 0 0 0 20"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>品牌标识系统</h4>
+            <p>项目的基石，应用物料以此衍生，定义品牌视觉的核心基因</p>
+          </div>
+        </div>
+        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/UruJrtPo49" data-label="COLOR SYSTEM / 品牌色彩系统 / 04 / Colors">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>色彩系统</h4>
+            <p>结合品牌调性，搭建适配品牌的配色方案、色卡规范、配色手册</p>
+          </div>
+        </div>
+        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/r38RsEYI38" data-label="TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>字体系统</h4>
+            <p>精选可用版权中英文字体，搭配科技风字体组合</p>
+          </div>
+        </div>
+        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/5YiDtYptJh" data-label="GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>图形元素系统</h4>
+            <p>品牌辅助图形与视觉元素库，光学纹理与几何图形规范</p>
+          </div>
+        </div>
+        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/o6Ys2cMto6" data-label="APPLICATION / 品牌应用示例 / 07 / Application">
+          <div class="vi-feature-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="vi-feature-text">
+            <h4>品牌应用示例</h4>
+            <p>品牌视觉在办公物料、包装、数字界面等场景的应用展示</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view-more-wrap">
+      <a href="works-list.html#category-vi" class="btn-view-more">查看更多</a>
+    </div>
+  </div>
+
+  <!-- Project 03: Offline Materials -->
+  <div class="project-block reveal" id="project-offline" data-category="offline">
+    <div class="project-header">
+      <div>
+        <div class="project-num">03 <span class="total">/ 05</span></div>
+        <div class="project-en-title">OFFLINE MARKETING MATERIALS</div>
+        <h3 class="project-title">线下营销与传播物料</h3>
+      </div>
+      <div class="project-desc-right">
+        <p>从产品手册到会展物料，从厨房客厅场景到机器人产品内页，让品牌在每一个触点都讲述同一份价值</p>
+      </div>
+    </div>
+    <div class="offline-carousel reveal">
+      <div class="coverflow-carousel">
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/MhOGiOUpZ9" alt="产品手册目录页"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/mEAvHpVXoO" alt="产品手册内页"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/jPPnsOqKno" alt="厨房场景"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/gFEJ254FNX" alt="客厅场景"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/4yn96KT36T" alt="线下活动物料"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/rHgZ25HzPQ" alt="户外广告物料"><div class="offline-zoom-hint">点击放大</div></div>
+      </div>
+      <button class="carousel-nav carousel-prev">&#8249;</button>
+      <button class="carousel-nav carousel-next">&#8250;</button>
+      <div class="carousel-dots">
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot active"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+      </div>
+    </div>
+    <div class="offline-sub-cards">
+      <div class="offline-sub-card product-zoom-card reveal reveal-left tilt-card">
+        <img src="https://aka.doubaocdn.com/s/2fWGXqtrf6" alt="产品拆解" class="product-zoom-img">
+        <div class="product-zoom-hint">点击放大</div>
+        <div class="offline-sub-info">
+          <h4>产品拆解</h4>
+          <p>所有产品均具备"自主感知、自主决策、自主移动、执行"的完整机器人属性</p>
+        </div>
+      </div>
+      <div class="offline-sub-card video-card reveal reveal-right tilt-card">
+        <div class="video-container">
+          <video id="productDemoVideo" class="product-demo-video" poster="https://aka.doubaocdn.com/s/kwZuUTVGmz" preload="metadata" playsinline>
+            <source src="https://aka.doubaocdn.com/s/w2zjdAwNt0" type="video/mp4">
+          </video>
+          <div class="play-overlay" id="videoPlayOverlay">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <button class="video-fullscreen-btn" id="videoFullscreenBtn" title="放大播放">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+        </div>
+        <div class="offline-sub-info">
+          <h4>功能演示</h4>
+          <p>主打"主动服务而非被动操作"，精准匹配年轻群体与品质家庭的轻量化智能生活需求</p>
+        </div>
+      </div>
+    </div>
+    <div class="view-more-wrap">
+      <a href="works-list.html#category-offline" class="btn-view-more">查看更多</a>
+    </div>
+  </div>
+
+  <!-- Project 04: Digital -->
+  <div class="project-block reveal" id="project-digital" data-category="digital">
+    <div class="project-header">
+      <div>
+        <div class="project-num">04 <span class="total">/ 05</span></div>
+        <div class="project-en-title">DIGITAL CHANNEL VISUAL SYSTEM</div>
+        <h3 class="project-title">数字端全渠道视觉</h3>
+      </div>
+      <div class="project-desc-right">
+        <p>官网、移动端、电商、直播、社媒、投放的全渠道视觉统一，让数字触点讲述同一个品牌故事</p>
+      </div>
+    </div>
+    <div class="digital-layout">
+      <div class="digital-left">
+        <img src="https://aka.doubaocdn.com/s/VlGlVON84U" alt="官网站点图">
+        <div class="digital-zoom-label">点击放大</div>
+      </div>
+      <div class="digital-right">
+        <button class="digital-nav digital-nav-up" id="digitalNavUp"><span class="digital-nav-arrow">&#8249;</span></button>
+        <div class="digital-list-container">
+          <div class="digital-list" id="digitalList">
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/0OaT9atp43" alt="官网视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/gtVYqoQwHR" alt="移动端视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/tGkWLRYzcJ" alt="私域视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/UNU2P6WuWZ" alt="电商视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/Ml4fkRb3Zu" alt="直播视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/UfTV2HYtwf" alt="社媒视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/DDODOx4lBq" alt="投放视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/POVYXl6I2Y" alt="数字人视觉"><div class="digital-zoom-label">点击放大</div></div>
+          </div>
+        </div>
+        <button class="digital-nav digital-nav-down" id="digitalNavDown"><span class="digital-nav-arrow">&#8250;</span></button>
+      </div>
+    </div>
+    <div class="view-more-wrap">
+      <a href="works-list.html#category-digital" class="btn-view-more">查看更多</a>
+    </div>
+  </div>
+
+  <!-- Project 05: Motion -->
+  <div class="project-block reveal" id="project-motion" data-category="motion">
+    <div class="project-header">
+      <div>
+        <div class="project-num">05 <span class="total">/ 05</span></div>
+        <div class="project-en-title">DYNAMIC VISUAL &amp; VIDEO ASSETS</div>
+        <h3 class="project-title">动态视觉与视频资产</h3>
+      </div>
+      <div class="project-desc-right">
+        <p>从视觉风格到抖音直播间，从功能TVC到品牌宣传片，每一帧画面都在讲述品牌的未来</p>
+      </div>
+    </div>
+    <div class="motion-hero-video">
+      <video id="motionHeroVideo" src="https://aka.doubaocdn.com/s/JxXct1fnjE" poster="https://aka.doubaocdn.com/s/eUgwV95g6x" playsinline preload="metadata"></video>
+      <button class="motion-expand-btn" id="motionExpandBtn" title="放大播放">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+      </button>
+      <div class="motion-hero-overlay">
+        <div class="motion-play-btn" id="motionHeroPlayBtn">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="motion-hero-title motion-hero-text">品牌宣传片</div>
+        <div class="motion-hero-sub motion-hero-text">光谷智慧空间的未来生活叙事</div>
+        <div class="motion-hero-meta motion-hero-text">MP4 · 1080P · 60FPS · 01:58</div>
+      </div>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-grid-left reveal reveal-left">
+        <div class="vertical-coverflow-wrapper">
+          <div class="vertical-coverflow-carousel">
+            <div class="vertical-coverflow-item" data-video-card>
+              <div class="video-container">
+                <video id="douyinLiveVideo" class="vertical-video" src="https://aka.doubaocdn.com/s/2a6WRCQHQV" poster="https://aka.doubaocdn.com/s/VEjRym14Ex" playsinline preload="metadata"></video>
+                <div class="play-overlay" data-play-btn>
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                </div>
+                <button class="card-expand-btn" data-expand-btn title="放大播放">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="motion-card-info">
+                <h4>抖音直播带货</h4>
+                <p>数码好物节，直播抽免单，光谷直播间福利加满，限时直降300元</p>
+              </div>
+            </div>
+            <div class="vertical-coverflow-item" data-video-card>
+              <div class="video-container">
+                <video id="xiaohongshuVideo" class="vertical-video" src="https://aka.doubaocdn.com/s/fuhBSvfVbM" poster="https://aka.doubaocdn.com/s/t6QulqVKiU" playsinline preload="metadata"></video>
+                <div class="play-overlay" data-play-btn>
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                </div>
+                <button class="card-expand-btn" data-expand-btn title="放大播放">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="motion-card-info">
+                <h4>小红书达人种草</h4>
+                <p>💼男律师的早晨｜谁懂啊！我的命是这个"小助理"给的😭</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="motion-grid-left reveal reveal-right">
+        <div class="motion-video-card" id="sceneTvcCard" data-video-card>
+          <div class="video-container">
+            <video id="sceneTvcVideo" class="motion-card-video" src="https://aka.doubaocdn.com/s/B7u6MBWuet" poster="https://aka.doubaocdn.com/s/SaeEUBsqcN" playsinline preload="metadata"></video>
+            <div class="play-overlay" data-play-btn>
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <button class="card-expand-btn" data-expand-btn title="放大播放">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+              </svg>
+            </button>
+          </div>
+          <div class="motion-card-info">
+            <h4>场景TVC</h4>
+            <p>厨房场景全系伺服机器人，语言指令下达自动完成清洁收纳，全程无需人工干预</p>
+          </div>
+        </div>
+        <div class="motion-video-card" id="functionTvcCard" data-video-card>
+          <div class="video-container">
+            <video id="functionTvcVideo" class="motion-card-video" src="https://aka.doubaocdn.com/s/u1MdgCPjwi" poster="https://aka.doubaocdn.com/s/ETV9U5GV67" playsinline preload="metadata"></video>
+            <div class="play-overlay" data-play-btn>
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+            </div>
+            <button class="card-expand-btn" data-expand-btn title="放大播放">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+              </svg>
+            </button>
+          </div>
+          <div class="motion-card-info">
+            <h4>功能TVC</h4>
+            <p>机器人自动陪玩、喂食、清理，圆润防磕碰，支持远程视频互动与一键投喂</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view-more-wrap">
+      <a href="works-list.html#category-motion" class="btn-view-more">查看更多</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="contact">
+  <div class="cta-label">— LET'S CREATE TOGETHER —</div>
+  <h2 class="cta-title">让我们一起<br>把每一帧画面变成品牌</h2>
+  <div class="cta-buttons">
+    <a href="javascript:void(0)" class="btn-gold">START A PROJECT</a>
+    <a href="https://aka.doubaocdn.com/s/MMtoXsRH6v" target="_blank" class="btn-outline-light active">DOWNLOAD RESUME</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>联系方式</h5>
+      <div class="footer-item">
+        <div class="label">EMAIL</div>
+        <div class="value">412784003@qq.com</div>
+      </div>
+      <div class="footer-item">
+        <div class="label">PHONE</div>
+        <div class="value">13920685643</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>位置</h5>
+      <div class="footer-item">
+        <div class="label">LOCATION</div>
+        <div class="value">天津市 · 南开区</div>
+      </div>
+      <div class="footer-item">
+        <div class="label">EDUCATION</div>
+        <div class="value">中国传媒大学 · 自动化</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>技能</h5>
+      <div class="footer-item">
+        <div class="label">VIDEO TOOLS</div>
+        <div class="value">Premiere · C4D · Blender · 3Dmax</div>
+      </div>
+      <div class="footer-item">
+        <div class="label">AI TOOLS</div>
+        <div class="value">即梦 · SD · ComfyUI · Midjourney</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 ZHANG XIAOXI. ALL RIGHTS RESERVED.</p>
+    <p class="center">ZHANG XIAOXI · CREATIVE × STRATEGY</p>
+    <p>Tianjin, CN · GMT+8</p>
+  </div>
+</footer>
+
+<!-- ===== Responsive Showcase ===== -->
+<section class="responsive-showcase">
+  <div class="responsive-header">
+    <div class="responsive-left">
+      <div class="en">RESPONSIVE 3D SHOWCASE</div>
+      <h2>全设备适配 × 立体视觉</h2>
+      <div class="tag">— RESPONSIVE × 3D —</div>
+    </div>
+    <div class="responsive-right">
+      <p>桌面端、平板、移动端三种设备无缝衔接，3D透视效果让作品在每一块屏幕都立体呈现</p>
+    </div>
+  </div>
+  <div class="devices-mockup">
+    <div class="device device-desktop">
+      <div class="device-screen" style="min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
+        <div style="font-size:11px;color:var(--text-muted);letter-spacing:3px;">PORTFOLIO · 张晓曦</div>
+        <div style="font-family:'Noto Serif SC',serif;font-size:32px;font-weight:700;color:#fff;letter-spacing:2px;">DESIGN × STRATEGY</div>
+        <div style="display:flex;gap:12px;">
+          <div style="padding:12px 28px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--gold);">BRAND 05</div>
+          <div style="padding:12px 28px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--gold);">VIDEO 13+</div>
+          <div style="padding:12px 28px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--gold);">YEARS 40+</div>
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);letter-spacing:2px;">— LOGO · VI MANUAL · DIGITAL · VIDEO —</div>
+      </div>
+      <div class="device-label">DESKTOP · 1440 × 900</div>
+    </div>
+    <div class="device device-tablet">
+      <div class="device-screen" style="min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div style="font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:#fff;">张晓曦</div>
+        <div style="font-size:10px;color:var(--gold);letter-spacing:2px;">PORTFOLIO</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+          <div style="padding:14px;border:1px solid var(--border);border-radius:4px;text-align:center;"><div style="font-size:16px;font-weight:700;color:var(--gold);">01</div><div style="font-size:9px;color:var(--text-muted);">品牌LOGO</div></div>
+          <div style="padding:14px;border:1px solid var(--border);border-radius:4px;text-align:center;"><div style="font-size:16px;font-weight:700;color:var(--gold);">02</div><div style="font-size:9px;color:var(--text-muted);">VI手册</div></div>
+          <div style="padding:14px;border:1px solid var(--border);border-radius:4px;text-align:center;"><div style="font-size:16px;font-weight:700;color:var(--gold);">03</div><div style="font-size:9px;color:var(--text-muted);">线下物料</div></div>
+          <div style="padding:14px;border:1px solid var(--border);border-radius:4px;text-align:center;"><div style="font-size:16px;font-weight:700;color:var(--gold);">04</div><div style="font-size:9px;color:var(--text-muted);">数字端</div></div>
+        </div>
+      </div>
+      <div class="device-label">TABLET · 768 × 1024</div>
+    </div>
+    <div class="device device-mobile">
+      <div class="device-screen" style="min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+        <div style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#fff;">张晓曦</div>
+        <div style="font-size:8px;color:var(--gold);letter-spacing:1px;">PORTFOLIO</div>
+        <div style="width:100%;display:flex;flex-direction:column;gap:6px;">
+          <div style="padding:8px;border:1px solid var(--gold-border);border-radius:4px;font-size:9px;color:var(--gold);text-align:center;">01 品牌LOGO设计</div>
+          <div style="padding:8px;border:1px solid var(--border);border-radius:4px;font-size:9px;color:var(--text-secondary);text-align:center;">02 品牌VI手册</div>
+          <div style="padding:8px;border:1px solid var(--border);border-radius:4px;font-size:9px;color:var(--text-secondary);text-align:center;">03 线下营销物料</div>
+        </div>
+      </div>
+      <div class="device-label">MOBILE · 375 × 812</div>
+    </div>
+  </div>
+  <div class="responsive-features">
+    <div class="resp-feature">
+      <div class="cat">BREAKPOINTS</div>
+      <h4>响应式断点</h4>
+      <p>≥ 1200 / 768 / 480 / 360 px<br>6 / 4 / 2 / 1 列栅格系统</p>
+    </div>
+    <div class="resp-feature">
+      <div class="cat">3D EFFECTS</div>
+      <h4>3D透视效果</h4>
+      <p>scroll-driven parallax<br>hover tilt + card lift</p>
+    </div>
+    <div class="resp-feature">
+      <div class="cat">PERFORMANCE</div>
+      <h4>滚动性能</h4>
+      <p>60 fps · 滚动加载<br>lazy load 视频资源</p>
+    </div>
+  </div>
+</section>
+
+<!-- Three.js -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js" integrity="sha384-vV17nr/rMaJqmeZkFUzXLpHdQ+ME5QHKdydaqqN+3Ga39RJlNrTatJxHwGV4ml2C" crossorigin="anonymous"></script>
+
+<script>
+// ===== Nav Scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== Mobile Menu =====
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// ===== Hero Video Control =====
+const heroVideo = document.getElementById('heroVideo');
+const heroPlayBtn = document.getElementById('heroPlayBtn');
+let heroPlaying = true;
+
+// 页面加载时自动播放，按钮显示暂停图标
+heroPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+
+// 视频播放结束后，按钮恢复为播放图标
+heroVideo.addEventListener('ended', () => {
+  heroPlaying = false;
+  heroPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+});
+
+heroPlayBtn.addEventListener('click', () => {
+  if (heroPlaying) {
+    heroVideo.pause();
+    heroPlaying = false;
+    heroPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  } else {
+    // 如果视频已播放结束，重置到开头再播放
+    if (heroVideo.ended) {
+      heroVideo.currentTime = 0;
+    }
+    heroVideo.play();
+    heroPlaying = true;
+    heroPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  }
+});
+
+// ===== Brand Video Control =====
+const brandVideo = document.getElementById('brandVideo');
+const brandPlayBtn = document.getElementById('brandPlayBtn');
+let brandPlaying = true;
+
+brandPlayBtn.addEventListener('click', () => {
+  if (brandPlaying) {
+    brandVideo.pause();
+    brandPlaying = false;
+    brandPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  } else {
+    if (brandVideo.ended) {
+      brandVideo.currentTime = 0;
+    }
+    brandVideo.play();
+    brandPlaying = true;
+    brandPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  }
+});
+
+// ===== Filter =====
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.project-block').forEach(block => {
+      if (filter === 'all' || block.dataset.category === filter) {
+        block.style.display = '';
+      } else {
+        block.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ===== Coverflow Carousel =====
+let coverflowIndex = 1;
+const coverflowItems = document.querySelectorAll('.coverflow-item');
+const coverflowPrev = document.querySelector('.carousel-prev');
+const coverflowNext = document.querySelector('.carousel-next');
+const coverflowDots = document.querySelectorAll('.carousel-dot');
+const COVERFLOW_COUNT = coverflowItems.length;
+
+function updateCoverflow() {
+  coverflowItems.forEach((item, i) => {
+    // 使用模运算实现循环offset
+    let offset = (i - coverflowIndex + COVERFLOW_COUNT) % COVERFLOW_COUNT;
+    if (offset > COVERFLOW_COUNT / 2) {
+      offset -= COVERFLOW_COUNT;
+    }
+    const absOffset = Math.abs(offset);
+    
+    let translateX, scale, zIndex, opacity, rotateY;
+    
+    if (absOffset > 2) {
+      // 隐藏在后面
+      translateX = offset > 0 ? '160%' : '-160%';
+      scale = 0.4;
+      zIndex = 0;
+      opacity = 0;
+      rotateY = offset > 0 ? -30 : 30;
+    } else if (offset === 0) {
+      // 中间大图
+      translateX = '0%';
+      scale = 1;
+      zIndex = 10;
+      opacity = 1;
+      rotateY = 0;
+    } else if (absOffset === 1) {
+      // 近侧
+      translateX = offset > 0 ? '58%' : '-58%';
+      scale = 0.72;
+      zIndex = 5;
+      opacity = 0.9;
+      rotateY = offset > 0 ? -25 : 25;
+    } else {
+      // 远侧
+      translateX = offset > 0 ? '92%' : '-92%';
+      scale = 0.5;
+      zIndex = 1;
+      opacity = 0.55;
+      rotateY = offset > 0 ? -35 : 35;
+    }
+    
+    item.style.transform = `translateX(${translateX}) scale(${scale}) rotateY(${rotateY}deg)`;
+    item.style.zIndex = zIndex;
+    item.style.opacity = opacity;
+    item.classList.toggle('active', offset === 0);
+  });
+  
+  coverflowDots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === coverflowIndex);
+  });
+}
+
+if (coverflowPrev) {
+  coverflowPrev.addEventListener('click', () => {
+    coverflowIndex = (coverflowIndex - 1 + COVERFLOW_COUNT) % COVERFLOW_COUNT;
+    updateCoverflow();
+  });
+}
+if (coverflowNext) {
+  coverflowNext.addEventListener('click', () => {
+    coverflowIndex = (coverflowIndex + 1) % COVERFLOW_COUNT;
+    updateCoverflow();
+  });
+}
+coverflowDots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    coverflowIndex = i;
+    updateCoverflow();
+  });
+});
+coverflowItems.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    if (i === coverflowIndex) {
+      // 点击中间大图，打开lightbox放大查看
+      openOfflineLightbox(i);
+    } else {
+      // 点击两侧图片，仅切换到该图片
+      coverflowIndex = i;
+      updateCoverflow();
+    }
+  });
+});
+
+// ===== Offline Lightbox =====
+const offlineImages = [
+  { src: 'https://aka.doubaocdn.com/s/MhOGiOUpZ9', alt: '产品手册目录页' },
+  { src: 'https://aka.doubaocdn.com/s/mEAvHpVXoO', alt: '产品手册内页' },
+  { src: 'https://aka.doubaocdn.com/s/jPPnsOqKno', alt: '厨房场景' },
+  { src: 'https://aka.doubaocdn.com/s/gFEJ254FNX', alt: '客厅场景' },
+  { src: 'https://aka.doubaocdn.com/s/4yn96KT36T', alt: '线下活动物料' },
+  { src: 'https://aka.doubaocdn.com/s/rHgZ25HzPQ', alt: '户外广告物料' }
+];
+let offlineLightboxIndex = 0;
+
+function getOfflineLightboxElements() {
+  return {
+    lightbox: document.getElementById('offlineLightbox'),
+    img: document.getElementById('offlineLightboxImg'),
+    close: document.getElementById('offlineLightboxClose'),
+    prev: document.getElementById('offlineLightboxPrev'),
+    next: document.getElementById('offlineLightboxNext'),
+    counter: document.getElementById('offlineLightboxCounter')
+  };
+}
+
+function showOfflineLightboxImage(index) {
+  const els = getOfflineLightboxElements();
+  const item = offlineImages[index];
+  if (els.img) {
+    els.img.style.opacity = '0';
+    setTimeout(() => {
+      els.img.src = item.src;
+      els.img.alt = item.alt;
+      els.img.style.opacity = '1';
+    }, 150);
+  }
+  if (els.counter) {
+    els.counter.textContent = `${index + 1} / ${offlineImages.length}`;
+  }
+}
+
+function openOfflineLightbox(index) {
+  const els = getOfflineLightboxElements();
+  offlineLightboxIndex = index;
+  showOfflineLightboxImage(index);
+  if (els.lightbox) {
+    els.lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeOfflineLightbox() {
+  const els = getOfflineLightboxElements();
+  if (els.lightbox) {
+    els.lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// 在DOM完全加载后绑定lightbox事件
+document.addEventListener('DOMContentLoaded', () => {
+  const els = getOfflineLightboxElements();
+  if (els.close) {
+    els.close.addEventListener('click', closeOfflineLightbox);
+  }
+  if (els.prev) {
+    els.prev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      offlineLightboxIndex = (offlineLightboxIndex - 1 + offlineImages.length) % offlineImages.length;
+      showOfflineLightboxImage(offlineLightboxIndex);
+    });
+  }
+  if (els.next) {
+    els.next.addEventListener('click', (e) => {
+      e.stopPropagation();
+      offlineLightboxIndex = (offlineLightboxIndex + 1) % offlineImages.length;
+      showOfflineLightboxImage(offlineLightboxIndex);
+    });
+  }
+  if (els.lightbox) {
+    els.lightbox.addEventListener('click', (e) => {
+      if (e.target === els.lightbox) {
+        closeOfflineLightbox();
+      }
+    });
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  const els = getOfflineLightboxElements();
+  if (!els.lightbox || !els.lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeOfflineLightbox();
+  } else if (e.key === 'ArrowLeft') {
+    offlineLightboxIndex = (offlineLightboxIndex - 1 + offlineImages.length) % offlineImages.length;
+    showOfflineLightboxImage(offlineLightboxIndex);
+  } else if (e.key === 'ArrowRight') {
+    offlineLightboxIndex = (offlineLightboxIndex + 1) % offlineImages.length;
+    showOfflineLightboxImage(offlineLightboxIndex);
+  }
+});
+
+// ===== Product Zoom Lightbox =====
+const productZoomCard = document.querySelector('.product-zoom-card');
+const PRODUCT_ZOOM_SRC = 'https://aka.doubaocdn.com/s/2fWGXqtrf6';
+
+function getProductLightboxElements() {
+  return {
+    lightbox: document.getElementById('productLightbox'),
+    img: document.getElementById('productLightboxImg'),
+    close: document.getElementById('productLightboxClose')
+  };
+}
+
+function openProductLightbox() {
+  const els = getProductLightboxElements();
+  if (els.img) {
+    els.img.src = PRODUCT_ZOOM_SRC;
+    els.img.alt = '产品拆解';
+  }
+  if (els.lightbox) {
+    els.lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeProductLightbox() {
+  const els = getProductLightboxElements();
+  if (els.lightbox) {
+    els.lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+if (productZoomCard) {
+  productZoomCard.addEventListener('click', openProductLightbox);
+}
+
+// 在DOM完全加载后绑定product lightbox事件
+document.addEventListener('DOMContentLoaded', () => {
+  const els = getProductLightboxElements();
+  if (els.close) {
+    els.close.addEventListener('click', closeProductLightbox);
+  }
+  if (els.lightbox) {
+    els.lightbox.addEventListener('click', (e) => {
+      if (e.target === els.lightbox) {
+        closeProductLightbox();
+      }
+    });
+  }
+});
+
+// ===== Product Demo Video =====
+const productDemoVideo = document.getElementById('productDemoVideo');
+const videoPlayOverlay = document.getElementById('videoPlayOverlay');
+const videoCard = document.querySelector('.video-card');
+
+if (videoPlayOverlay && productDemoVideo) {
+  videoPlayOverlay.addEventListener('click', () => {
+    if (productDemoVideo.paused) {
+      productDemoVideo.play();
+      if (videoCard) {
+        videoCard.classList.add('playing');
+      }
+    } else {
+      productDemoVideo.pause();
+      if (videoCard) {
+        videoCard.classList.remove('playing');
+      }
+    }
+  });
+}
+
+if (productDemoVideo) {
+  productDemoVideo.addEventListener('click', () => {
+    if (productDemoVideo.paused) {
+      productDemoVideo.play();
+      if (videoCard) {
+        videoCard.classList.add('playing');
+      }
+    } else {
+      productDemoVideo.pause();
+      if (videoCard) {
+        videoCard.classList.remove('playing');
+      }
+    }
+  });
+  
+  productDemoVideo.addEventListener('ended', () => {
+    if (videoCard) {
+      videoCard.classList.remove('playing');
+    }
+  });
+}
+
+// ===== Video Fullscreen Lightbox =====
+const videoFullscreenBtn = document.getElementById('videoFullscreenBtn');
+let currentLightboxVideoElement = null; // 记录当前在lightbox中播放的原视频元素
+
+function getVideoLightboxElements() {
+  return {
+    lightbox: document.getElementById('videoLightbox'),
+    video: document.getElementById('videoLightboxVideo'),
+    close: document.getElementById('videoLightboxClose')
+  };
+}
+
+function openVideoLightbox() {
+  const els = getVideoLightboxElements();
+  if (!els.lightbox || !els.video || !productDemoVideo) return;
+  
+  // 记录当前在lightbox中播放的原视频元素
+  currentLightboxVideoElement = productDemoVideo;
+  
+  // 记录当前播放时间和状态
+  const currentTime = productDemoVideo.currentTime;
+  const wasPlaying = !productDemoVideo.paused;
+  
+  // 暂停原视频
+  productDemoVideo.pause();
+  
+  // 设置lightbox视频的源
+  els.video.src = productDemoVideo.querySelector('source') ? productDemoVideo.querySelector('source').src : productDemoVideo.src;
+  
+  // 设置lightbox视频的播放时间
+  els.video.currentTime = currentTime;
+  
+  // 打开lightbox
+  els.lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // 如果原视频在播放，lightbox视频也播放
+  if (wasPlaying) {
+    els.video.play();
+  }
+}
+
+function closeVideoLightbox() {
+  const els = getVideoLightboxElements();
+  if (!els.lightbox || !els.video || !currentLightboxVideoElement) return;
+  
+  // 记录lightbox视频的播放时间和状态
+  const currentTime = els.video.currentTime;
+  const wasPlaying = !els.video.paused;
+  
+  // 暂停lightbox视频
+  els.video.pause();
+  
+  // 关闭lightbox
+  els.lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  
+  // 设置原视频的播放时间
+  currentLightboxVideoElement.currentTime = currentTime;
+  
+  // 如果lightbox视频在播放，原视频也继续播放
+  if (wasPlaying) {
+    currentLightboxVideoElement.play();
+    // 如果是功能演示视频，添加playing类
+    if (currentLightboxVideoElement.id === 'productDemoVideo' && videoCard) {
+      videoCard.classList.add('playing');
+    }
+    // 如果是品牌宣传片视频，添加playing类
+    if (currentLightboxVideoElement.id === 'motionHeroVideo') {
+      const motionHeroVideoContainer = document.querySelector('.motion-hero-video');
+      if (motionHeroVideoContainer) {
+        motionHeroVideoContainer.classList.add('playing');
+      }
+    }
+  }
+  
+  // 清空当前lightbox视频元素
+  currentLightboxVideoElement = null;
+}
+
+if (videoFullscreenBtn) {
+  videoFullscreenBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openVideoLightbox();
+  });
+}
+
+// 品牌宣传片视频放大播放
+function openMotionHeroLightbox() {
+  const els = getVideoLightboxElements();
+  const motionVideo = document.getElementById('motionHeroVideo');
+  if (!els.lightbox || !els.video || !motionVideo) return;
+  
+  // 记录当前在lightbox中播放的原视频元素
+  currentLightboxVideoElement = motionVideo;
+  
+  // 记录当前播放时间和状态
+  const currentTime = motionVideo.currentTime;
+  const wasPlaying = !motionVideo.paused;
+  
+  // 暂停原视频
+  motionVideo.pause();
+  
+  // 设置lightbox视频的源
+  els.video.src = motionVideo.src;
+  
+  // 设置lightbox视频的播放时间
+  els.video.currentTime = currentTime;
+  
+  // 打开lightbox
+  els.lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // 如果原视频在播放，lightbox视频也播放
+  if (wasPlaying) {
+    els.video.play();
+  }
+}
+
+// 在DOM完全加载后绑定video lightbox事件
+document.addEventListener('DOMContentLoaded', () => {
+  const els = getVideoLightboxElements();
+  if (els.close) {
+    els.close.addEventListener('click', closeVideoLightbox);
+  }
+  if (els.lightbox) {
+    els.lightbox.addEventListener('click', (e) => {
+      if (e.target === els.lightbox) {
+        closeVideoLightbox();
+      }
+    });
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  const els = getVideoLightboxElements();
+  if (!els.lightbox || !els.lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeVideoLightbox();
+  }
+});
+
+// 确保首次加载时显示第一张图，禁用初始过渡动画
+coverflowIndex = 0;
+coverflowItems.forEach(item => {
+  item.style.transition = 'none';
+});
+updateCoverflow();
+// 强制重排后恢复过渡动画
+setTimeout(() => {
+  coverflowItems.forEach(item => {
+    item.style.transition = '';
+  });
+}, 50);
+
+// ===== Digital Vertical List =====
+const digitalList = document.getElementById('digitalList');
+const digitalNavUp = document.getElementById('digitalNavUp');
+const digitalNavDown = document.getElementById('digitalNavDown');
+const digitalRight = document.querySelector('.digital-right');
+const digitalLeft = document.querySelector('.digital-left');
+const DIGITAL_VISIBLE = 5;
+const DIGITAL_TOTAL = 8;
+const DIGITAL_GAP = 20;
+const DIGITAL_PADDING = 16;
+let digitalIndex = 0;
+let digitalItemHeight = 0;
+
+// 同步左右两侧高度，确保右侧和左侧长图高度一致
+function syncDigitalHeight() {
+  if (!digitalLeft || !digitalRight) return;
+  const leftWidth = digitalLeft.offsetWidth;
+  if (leftWidth > 0) {
+    // 根据aspect-ratio 1376:4368计算高度，不依赖图片加载
+    const leftHeight = leftWidth * 4368 / 1376;
+    digitalRight.style.height = `${leftHeight}px`;
+  }
+}
+
+function updateDigitalList() {
+  if (!digitalList || !digitalRight) return;
+  
+  // 先同步左右高度
+  syncDigitalHeight();
+  
+  const items = digitalList.querySelectorAll('.digital-list-item');
+  if (items.length === 0) return;
+  
+  // 获取每张图的实际高度（由aspect-ratio决定）
+  digitalItemHeight = items[0].offsetHeight;
+  
+  const step = digitalItemHeight + DIGITAL_GAP;
+  
+  // 计算总高度和最大滚动距离，确保最后一张图底部对齐容器底部
+  const totalHeight = DIGITAL_TOTAL * digitalItemHeight + (DIGITAL_TOTAL - 1) * DIGITAL_GAP;
+  const containerHeight = digitalRight.clientHeight;
+  const maxTranslate = Math.max(0, totalHeight - containerHeight);
+  
+  let translate = digitalIndex * step;
+  if (translate > maxTranslate) {
+    translate = maxTranslate;
+  }
+  
+  digitalList.style.transform = `translateY(-${translate}px)`;
+  
+  // 更新按钮禁用状态
+  if (digitalNavUp) {
+    digitalNavUp.disabled = digitalIndex <= 0;
+  }
+  if (digitalNavDown) {
+    digitalNavDown.disabled = digitalIndex >= DIGITAL_TOTAL - DIGITAL_VISIBLE;
+  }
+}
+
+if (digitalNavUp) {
+  digitalNavUp.addEventListener('click', () => {
+    if (digitalIndex > 0) {
+      digitalIndex--;
+      updateDigitalList();
+    }
+  });
+}
+if (digitalNavDown) {
+  digitalNavDown.addEventListener('click', () => {
+    if (digitalIndex < DIGITAL_TOTAL - DIGITAL_VISIBLE) {
+      digitalIndex++;
+      updateDigitalList();
+    }
+  });
+}
+
+// 页面加载后初始化
+window.addEventListener('load', () => {
+  setTimeout(updateDigitalList, 100);
+});
+// 窗口大小变化时重新计算
+window.addEventListener('resize', () => {
+  updateDigitalList();
+});
+
+// ===== Digital Lightbox Zoom =====
+// 仅包含右侧8张横屏比例的图片，不包含左侧官网长图
+const digitalImages = [
+  'https://aka.doubaocdn.com/s/0OaT9atp43',  // 0: 官网视觉
+  'https://aka.doubaocdn.com/s/gtVYqoQwHR',  // 1: 移动端视觉
+  'https://aka.doubaocdn.com/s/tGkWLRYzcJ',  // 2: 私域视觉
+  'https://aka.doubaocdn.com/s/UNU2P6WuWZ',  // 3: 电商视觉
+  'https://aka.doubaocdn.com/s/Ml4fkRb3Zu',  // 4: 直播视觉
+  'https://aka.doubaocdn.com/s/UfTV2HYtwf',  // 5: 社媒视觉
+  'https://aka.doubaocdn.com/s/DDODOx4lBq',  // 6: 投放视觉
+  'https://aka.doubaocdn.com/s/POVYXl6I2Y'   // 7: 数字人视觉
+];
+let digitalLightboxIndex = 0;
+
+function getDigitalLightboxElements() {
+  return {
+    lightbox: document.getElementById('digitalLightbox'),
+    img: document.getElementById('digitalLightboxImg'),
+    close: document.getElementById('digitalLightboxClose'),
+    prev: document.getElementById('digitalLightboxPrev'),
+    next: document.getElementById('digitalLightboxNext'),
+    counter: document.getElementById('digitalLightboxCounter')
+  };
+}
+
+function showDigitalLightboxImage(index) {
+  const els = getDigitalLightboxElements();
+  if (!els.img) return;
+  digitalLightboxIndex = (index + digitalImages.length) % digitalImages.length;
+  els.img.style.opacity = '0';
+  setTimeout(() => {
+    els.img.src = digitalImages[digitalLightboxIndex];
+    els.img.style.opacity = '1';
+  }, 150);
+  if (els.counter) {
+    els.counter.textContent = `${digitalLightboxIndex + 1} / ${digitalImages.length}`;
+  }
+}
+
+function openDigitalLightbox(index) {
+  const els = getDigitalLightboxElements();
+  if (!els.lightbox) return;
+  digitalLightboxIndex = index;
+  showDigitalLightboxImage(index);
+  els.lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDigitalLightbox() {
+  const els = getDigitalLightboxElements();
+  if (!els.lightbox) return;
+  els.lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 绑定9张图片的点击事件
+document.addEventListener('DOMContentLoaded', () => {
+  // 左侧长图 - 打开独立的拖拽缩放lightbox
+  const digitalLeftEl = document.querySelector('.digital-left');
+  if (digitalLeftEl) {
+    digitalLeftEl.addEventListener('click', () => openDigitalLongLightbox());
+  }
+  // 右侧8张图 - 打开普通轮播lightbox（仅8张横屏图）
+  const digitalItems = document.querySelectorAll('.digital-list-item');
+  digitalItems.forEach((item, i) => {
+    item.addEventListener('click', () => openDigitalLightbox(i));
+  });
+
+  // lightbox事件
+  const els = getDigitalLightboxElements();
+  if (els.close) {
+    els.close.addEventListener('click', closeDigitalLightbox);
+  }
+  if (els.prev) {
+    els.prev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showDigitalLightboxImage(digitalLightboxIndex - 1);
+    });
+  }
+  if (els.next) {
+    els.next.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showDigitalLightboxImage(digitalLightboxIndex + 1);
+    });
+  }
+  if (els.lightbox) {
+    els.lightbox.addEventListener('click', (e) => {
+      if (e.target === els.lightbox) {
+        closeDigitalLightbox();
+      }
+    });
+  }
+});
+
+// 键盘事件
+document.addEventListener('keydown', (e) => {
+  const els = getDigitalLightboxElements();
+  if (!els.lightbox || !els.lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeDigitalLightbox();
+  } else if (e.key === 'ArrowLeft') {
+    showDigitalLightboxImage(digitalLightboxIndex - 1);
+  } else if (e.key === 'ArrowRight') {
+    showDigitalLightboxImage(digitalLightboxIndex + 1);
+  }
+});
+
+// ===== Digital Long Image Lightbox (滚轮上下滑动+拖拽) =====
+let longLightboxState = {
+  translateX: 0,
+  translateY: 0,
+  isDragging: false,
+  startX: 0,
+  startY: 0,
+  startTranslateX: 0,
+  startTranslateY: 0
+};
+
+function getLongLightboxElements() {
+  return {
+    lightbox: document.getElementById('digitalLongLightbox'),
+    img: document.getElementById('digitalLongLightboxImg'),
+    close: document.getElementById('digitalLongLightboxClose'),
+    zoom: document.getElementById('digitalLongLightboxZoom')
+  };
+}
+
+function updateLongLightboxTransform() {
+  const els = getLongLightboxElements();
+  if (!els.img) return;
+  els.img.style.transform = `translate(-50%, -50%) translate(${longLightboxState.translateX}px, ${longLightboxState.translateY}px)`;
+}
+
+function openDigitalLongLightbox() {
+  const els = getLongLightboxElements();
+  if (!els.lightbox) return;
+  
+  // 重置状态，默认显示原始尺寸，从顶部开始
+  longLightboxState.translateX = 0;
+  longLightboxState.translateY = 0;
+  longLightboxState.isDragging = false;
+  
+  updateLongLightboxTransform();
+  els.lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // 图片加载后，默认定位到顶部（显示头部）
+  if (els.img) {
+    els.img.onload = () => {
+      const imgHeight = els.img.naturalHeight;
+      const viewportHeight = window.innerHeight;
+      if (imgHeight > viewportHeight) {
+        // 图片比视口高，默认定位到顶部（显示头部）
+        longLightboxState.translateY = (imgHeight - viewportHeight) / 2;
+        updateLongLightboxTransform();
+      }
+    };
+    // 如果图片已经加载完成
+    if (els.img.complete) {
+      const imgHeight = els.img.naturalHeight;
+      const viewportHeight = window.innerHeight;
+      if (imgHeight > viewportHeight) {
+        longLightboxState.translateY = (imgHeight - viewportHeight) / 2;
+        updateLongLightboxTransform();
+      }
+    }
+  }
+}
+
+function closeDigitalLongLightbox() {
+  const els = getLongLightboxElements();
+  if (!els.lightbox) return;
+  els.lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 绑定long lightbox事件
+document.addEventListener('DOMContentLoaded', () => {
+  const els = getLongLightboxElements();
+  if (!els.lightbox || !els.img) return;
+  
+  // 关闭按钮
+  if (els.close) {
+    els.close.addEventListener('click', closeDigitalLongLightbox);
+  }
+  
+  // 注意：已移除点击背景关闭功能，避免点击/拖动图片时误关闭
+  // 仅通过右上角关闭按钮或ESC键关闭
+  
+  // 拖拽功能
+  els.lightbox.addEventListener('mousedown', (e) => {
+    if (e.target === els.close) return;
+    longLightboxState.isDragging = true;
+    longLightboxState.startX = e.clientX;
+    longLightboxState.startY = e.clientY;
+    longLightboxState.startTranslateX = longLightboxState.translateX;
+    longLightboxState.startTranslateY = longLightboxState.translateY;
+    els.lightbox.classList.add('grabbing');
+    e.preventDefault();
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!longLightboxState.isDragging) return;
+    const dx = e.clientX - longLightboxState.startX;
+    const dy = e.clientY - longLightboxState.startY;
+    longLightboxState.translateX = longLightboxState.startTranslateX + dx;
+    longLightboxState.translateY = longLightboxState.startTranslateY + dy;
+    updateLongLightboxTransform();
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (longLightboxState.isDragging) {
+      longLightboxState.isDragging = false;
+      const els = getLongLightboxElements();
+      if (els.lightbox) {
+        els.lightbox.classList.remove('grabbing');
+      }
+    }
+  });
+  
+  // 滚轮上下滑动（滚轮向下显示下方内容，和常规网页滚动一致）
+  els.lightbox.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const scrollSpeed = 80;
+    // 滚轮向下（deltaY > 0）：图片向上移动，显示下方内容
+    // 滚轮向上（deltaY < 0）：图片向下移动，显示上方内容
+    const delta = e.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+    longLightboxState.translateY += delta;
+    
+    // 限制滚动范围，不让图片完全滚出视口
+    const imgHeight = els.img.naturalHeight || 2000;
+    const viewportHeight = window.innerHeight;
+    const maxTranslateY = (imgHeight - viewportHeight) / 2 + 100;
+    const minTranslateY = -(imgHeight - viewportHeight) / 2 - 100;
+    longLightboxState.translateY = Math.max(minTranslateY, Math.min(maxTranslateY, longLightboxState.translateY));
+    
+    updateLongLightboxTransform();
+  }, { passive: false });
+});
+
+// 键盘事件 - ESC关闭long lightbox
+document.addEventListener('keydown', (e) => {
+  const els = getLongLightboxElements();
+  if (!els.lightbox || !els.lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeDigitalLongLightbox();
+  }
+});
+
+// ===== Reveal Observer =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== VI Feature Cards Animation =====
+const viFeaturesObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const cards = entry.target.querySelectorAll('.vi-feature-card');
+      cards.forEach(card => {
+        card.classList.add('animate');
+        card.addEventListener('animationend', () => {
+          card.classList.remove('animate');
+          card.classList.add('vi-card-shown');
+        });
+      });
+      viFeaturesObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+const viFeaturesEl = document.querySelector('.vi-features');
+if (viFeaturesEl) viFeaturesObserver.observe(viFeaturesEl);
+
+// ===== VI Manual Image Hover Switch =====
+const viMainImg = document.getElementById('viMainImg');
+const viImageLabel = document.getElementById('viImageLabel');
+const viDefaultImg = 'https://aka.doubaocdn.com/s/UtMldrGOyA';
+const viDefaultLabel = 'VI MANUAL COVER / 品牌手册封面 / 01 / Cover';
+let viCarouselTimer = null;
+let viCarouselIndex = 0;
+
+function switchViImage(src, label) {
+  viMainImg.style.opacity = '0';
+  setTimeout(() => {
+    viMainImg.src = src;
+    if (label) viImageLabel.textContent = label;
+    viMainImg.style.opacity = '1';
+  }, 300);
+}
+
+function startViCarousel(img1, img2, label1, label2) {
+  stopViCarousel();
+  viCarouselIndex = 0;
+  switchViImage(img1, label1);
+  viCarouselTimer = setInterval(() => {
+    viCarouselIndex = 1 - viCarouselIndex;
+    if (viCarouselIndex === 0) {
+      switchViImage(img1, label1);
+    } else {
+      switchViImage(img2, label2);
+    }
+  }, 2000);
+}
+
+function stopViCarousel() {
+  if (viCarouselTimer) {
+    clearInterval(viCarouselTimer);
+    viCarouselTimer = null;
+  }
+}
+
+document.querySelectorAll('.vi-feature-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    stopViCarousel();
+    const img = card.dataset.image;
+    const label = card.dataset.label;
+    const img1 = card.dataset.image1;
+    const img2 = card.dataset.image2;
+    const label1 = card.dataset.label1;
+    const label2 = card.dataset.label2;
+    if (img1 && img2) {
+      startViCarousel(img1, img2, label1, label2);
+    } else if (img) {
+      switchViImage(img, label);
+    }
+  });
+  card.addEventListener('mouseleave', () => {
+    stopViCarousel();
+  });
+});
+
+// ===== Three.js Gold Particle Background =====
+(function initParticles() {
+  const canvas = document.getElementById('particleCanvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const particleCount = 400;
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  const scales = new Float32Array(particleCount);
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 50;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+    const v = Math.random() * 0.25;
+    colors[i * 3] = 0.79 + v;
+    colors[i * 3 + 1] = 0.66 + v * 0.5;
+    colors[i * 3 + 2] = 0.43;
+    scales[i] = Math.random() * 2 + 0.5; // 随机大小：0.5 ~ 2.5
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.15,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending,
+    sizeAttenuation: true
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+  camera.position.z = 8;
+
+  let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  let time = 0;
+  let scrollY = 0;
+  
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+  });
+  
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.001;
+    targetX += (mouseX - targetX) * 0.06; // 增大跟随速度
+    targetY += (mouseY - targetY) * 0.06;
+    
+    // 粒子随滚动移动，增加深度感
+    const scrollProgress = scrollY / (document.body.scrollHeight - window.innerHeight);
+    
+    // 增强鼠标跟随效果：旋转幅度更大
+    particles.rotation.y = time * 0.4 + targetX * 0.6 + scrollProgress * 0.5;
+    particles.rotation.x = targetY * 0.4 + scrollProgress * 0.2;
+    
+    // 粒子位置也随鼠标移动，增强空间感
+    particles.position.x = targetX * 1.5;
+    particles.position.y = -targetY * 1.0 + scrollProgress * 5;
+    
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+
+// ===== VI Lightbox Zoom =====
+document.addEventListener('DOMContentLoaded', () => {
+  const viLightbox = document.getElementById('viLightbox');
+  const viLightboxImg = document.getElementById('viLightboxImg');
+  const viLightboxClose = document.getElementById('viLightboxClose');
+  const viLightboxPrev = document.getElementById('viLightboxPrev');
+  const viLightboxNext = document.getElementById('viLightboxNext');
+  const viLightboxCounter = document.getElementById('viLightboxCounter');
+  const viMainImageEl = document.querySelector('.vi-main-image');
+  const viMainImgEl = document.getElementById('viMainImg');
+
+  // 图片顺序：封面-拆解-标识系统(2张)-色彩-字体-图形元素-应用示例
+  const viImages = [
+    { src: 'https://aka.doubaocdn.com/s/UtMldrGOyA', label: 'VI MANUAL COVER / 品牌手册封面 / 01 / Cover' },
+    { src: 'https://aka.doubaocdn.com/s/FoKhrsRuHT', label: 'VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure' },
+    { src: 'https://aka.doubaocdn.com/s/8WDzVGSFT9', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1' },
+    { src: 'https://aka.doubaocdn.com/s/OztmiR4dxp', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2' },
+    { src: 'https://aka.doubaocdn.com/s/UruJrtPo49', label: 'COLOR SYSTEM / 品牌色彩系统 / 04 / Colors' },
+    { src: 'https://aka.doubaocdn.com/s/r38RsEYI38', label: 'TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts' },
+    { src: 'https://aka.doubaocdn.com/s/5YiDtYptJh', label: 'GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements' },
+    { src: 'https://aka.doubaocdn.com/s/o6Ys2cMto6', label: 'APPLICATION / 品牌应用示例 / 07 / Application' }
+  ];
+  let viCurrentIndex = 0;
+
+  function showViImage(index) {
+    viCurrentIndex = (index + viImages.length) % viImages.length;
+    const item = viImages[viCurrentIndex];
+    viLightboxImg.style.opacity = '0';
+    setTimeout(() => {
+      viLightboxImg.src = item.src;
+      viLightboxImg.alt = item.label;
+      viLightboxImg.style.opacity = '1';
+    }, 200);
+    if (viLightboxCounter) {
+      viLightboxCounter.textContent = `${viCurrentIndex + 1} / ${viImages.length}`;
+    }
+  }
+
+  function showPrevViImage() {
+    showViImage(viCurrentIndex - 1);
+  }
+
+  function showNextViImage() {
+    showViImage(viCurrentIndex + 1);
+  }
+
+  if (viMainImageEl && viLightbox) {
+    viMainImageEl.addEventListener('click', () => {
+      // 根据当前左侧显示的图片找到对应索引
+      let startIndex = 0;
+      if (viMainImgEl) {
+        const currentSrc = viMainImgEl.src;
+        const foundIndex = viImages.findIndex(img => currentSrc.includes(img.src.split('/').pop()));
+        if (foundIndex >= 0) startIndex = foundIndex;
+      }
+      showViImage(startIndex);
+      viLightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  function closeViLightbox() {
+    viLightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (viLightboxClose) {
+    viLightboxClose.addEventListener('click', closeViLightbox);
+  }
+  if (viLightboxPrev) {
+    viLightboxPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrevViImage();
+    });
+  }
+  if (viLightboxNext) {
+    viLightboxNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNextViImage();
+    });
+  }
+  if (viLightbox) {
+    viLightbox.addEventListener('click', (e) => {
+      if (e.target === viLightbox) {
+        closeViLightbox();
+      }
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!viLightbox || !viLightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') {
+      closeViLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      showPrevViImage();
+    } else if (e.key === 'ArrowRight') {
+      showNextViImage();
+    }
+  });
+});
+
+// ===== Category Card Video Hover =====
+document.addEventListener('DOMContentLoaded', () => {
+  const videoCards = document.querySelectorAll('.category-card.has-video');
+  videoCards.forEach(card => {
+    const video = card.querySelector('video');
+    if (!video) return;
+    card.addEventListener('mouseenter', () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+});
+
+// ===== Motion Hero Video Play/Pause =====
+document.addEventListener('DOMContentLoaded', () => {
+  const motionVideo = document.getElementById('motionHeroVideo');
+  const motionPlayBtn = document.getElementById('motionHeroPlayBtn');
+  const motionOverlay = document.querySelector('.motion-hero-overlay');
+  const motionTexts = document.querySelectorAll('.motion-hero-text');
+  const motionVideoContainer = document.querySelector('.motion-hero-video');
+  const motionExpandBtn = document.getElementById('motionExpandBtn');
+  
+  if (!motionVideo || !motionPlayBtn) return;
+  
+  // 默认不播放，显示overlay和播放按钮
+  let isPlaying = false;
+  let hasStarted = false; // 视频是否曾经开始播放过
+  
+  function togglePlay() {
+    if (isPlaying) {
+      motionVideo.pause();
+    } else {
+      motionVideo.play().catch(() => {});
+    }
+  }
+  
+  // 点击播放按钮播放/暂停
+  motionPlayBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePlay();
+  });
+  
+  // 点击视频区域切换播放/暂停（播放时overlay隐藏，点击穿透到video）
+  motionVideo.addEventListener('click', () => {
+    togglePlay();
+  });
+  
+  // 点击放大按钮，打开视频放大播放
+  if (motionExpandBtn) {
+    motionExpandBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMotionHeroLightbox();
+    });
+  }
+  
+  motionVideo.addEventListener('play', () => {
+    isPlaying = true;
+    hasStarted = true;
+    // 播放时添加playing类，显示放大按钮
+    if (motionVideoContainer) {
+      motionVideoContainer.classList.add('playing');
+    }
+    // 播放时隐藏overlay（播放按钮和文字全部隐藏）
+    if (motionOverlay) {
+      motionOverlay.style.opacity = '0';
+      motionOverlay.style.pointerEvents = 'none';
+      motionOverlay.style.transition = 'opacity 0.3s ease';
+    }
+  });
+  
+  motionVideo.addEventListener('pause', () => {
+    isPlaying = false;
+    // 暂停时移除playing类，隐藏放大按钮
+    if (motionVideoContainer) {
+      motionVideoContainer.classList.remove('playing');
+    }
+    // 暂停时显示overlay
+    if (motionOverlay) {
+      motionOverlay.style.opacity = '1';
+      motionOverlay.style.pointerEvents = 'auto';
+    }
+    // 如果视频曾经开始播放过，暂停时仅显示播放按钮，不显示文字
+    // 使用display:none让文字不占据空间，使播放按钮真正居中
+    if (hasStarted) {
+      motionTexts.forEach(text => {
+        text.style.display = 'none';
+      });
+    }
+    // 播放按钮恢复为播放图标
+    motionPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  });
+  
+  motionVideo.addEventListener('ended', () => {
+    isPlaying = false;
+    // 播放结束时移除playing类，隐藏放大按钮
+    if (motionVideoContainer) {
+      motionVideoContainer.classList.remove('playing');
+    }
+    // 播放结束时显示overlay和播放按钮，文字保持隐藏
+    if (motionOverlay) {
+      motionOverlay.style.opacity = '1';
+      motionOverlay.style.pointerEvents = 'auto';
+    }
+    motionTexts.forEach(text => {
+      text.style.display = 'none';
+    });
+    motionPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  });
+});
+
+// ===== Motion Small Video Cards Play/Pause =====
+document.addEventListener('DOMContentLoaded', () => {
+  const videoCards = document.querySelectorAll('[data-video-card]');
+  
+  videoCards.forEach(card => {
+    const video = card.querySelector('video');
+    const playBtn = card.querySelector('[data-play-btn]');
+    const expandBtn = card.querySelector('[data-expand-btn]');
+    
+    if (!video || !playBtn) return;
+    
+    // 点击播放按钮播放视频
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      
+      // 如果是竖版轮播项且不是激活状态，先切换到激活状态，不播放视频
+      if (card.classList.contains('vertical-coverflow-item') && !card.classList.contains('active')) {
+        // 触发轮播切换
+        const event = new Event('click', { bubbles: true });
+        card.dispatchEvent(event);
+        return;
+      }
+      
+      video.play().catch(err => {
+        console.error('视频播放失败:', err);
+        // 如果播放失败，尝试静音播放
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    });
+    
+    // 视频加载错误处理
+    video.addEventListener('error', () => {
+      console.error('视频加载错误:', video.error);
+    });
+    
+    // 点击视频区域暂停视频
+    video.addEventListener('click', () => {
+      // 如果是竖版轮播项且不是激活状态，先切换到激活状态，不暂停视频
+      if (card.classList.contains('vertical-coverflow-item') && !card.classList.contains('active')) {
+        const event = new Event('click', { bubbles: true });
+        card.dispatchEvent(event);
+        return;
+      }
+      
+      if (!video.paused) {
+        video.pause();
+      }
+    });
+    
+    // 播放时添加playing类，隐藏overlay和播放按钮
+    video.addEventListener('play', () => {
+      card.classList.add('playing');
+    });
+    
+    // 暂停时移除playing类，显示overlay和播放按钮
+    video.addEventListener('pause', () => {
+      card.classList.remove('playing');
+    });
+    
+    // 播放结束时移除playing类，显示overlay和播放按钮
+    video.addEventListener('ended', () => {
+      card.classList.remove('playing');
+    });
+    
+    // 点击放大按钮，打开视频放大播放
+    if (expandBtn) {
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // 如果是竖版轮播项且不是激活状态，先切换到激活状态，不打开lightbox
+        if (card.classList.contains('vertical-coverflow-item') && !card.classList.contains('active')) {
+          const event = new Event('click', { bubbles: true });
+          card.dispatchEvent(event);
+          return;
+        }
+        
+        openAnyVideoLightbox(video);
+      });
+    }
+  });
+});
+
+// 通用视频放大播放函数
+function openAnyVideoLightbox(videoElement) {
+  const els = getVideoLightboxElements();
+  if (!els.lightbox || !els.video || !videoElement) return;
+  
+  // 记录当前在lightbox中播放的原视频元素
+  currentLightboxVideoElement = videoElement;
+  
+  // 记录当前播放时间和状态
+  const currentTime = videoElement.currentTime;
+  const wasPlaying = !videoElement.paused;
+  
+  // 暂停原视频
+  videoElement.pause();
+  
+  // 设置lightbox视频的源
+  els.video.src = videoElement.src;
+  
+  // 设置lightbox视频的播放时间
+  els.video.currentTime = currentTime;
+  
+  // 打开lightbox
+  els.lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // 如果原视频在播放，lightbox视频也播放
+  if (wasPlaying) {
+    els.video.play();
+  }
+}
+
+// ===== Vertical Coverflow Carousel =====
+document.addEventListener('DOMContentLoaded', () => {
+  const verticalItems = document.querySelectorAll('.vertical-coverflow-item');
+  const verticalDots = document.querySelectorAll('.vertical-coverflow-dot');
+  const VERTICAL_COUNT = verticalItems.length;
+  let verticalIndex = 0;
+  
+  if (VERTICAL_COUNT === 0) return;
+  
+  function updateVerticalCoverflow() {
+    // 切换轮播时暂停所有视频
+    verticalItems.forEach(item => {
+      const video = item.querySelector('video');
+      if (video && !video.paused) {
+        video.pause();
+      }
+      item.classList.remove('playing');
+    });
+    
+    verticalItems.forEach((item, i) => {
+      // 使用模运算实现循环offset
+      let offset = (i - verticalIndex + VERTICAL_COUNT) % VERTICAL_COUNT;
+      if (offset > VERTICAL_COUNT / 2) {
+        offset -= VERTICAL_COUNT;
+      }
+      const absOffset = Math.abs(offset);
+      
+      let translateX, scale, zIndex, opacity, rotateY;
+      
+      if (offset === 0) {
+        // 中间大图（左对齐、顶对齐、底对齐）
+        translateX = '0%';
+        scale = 1;
+        zIndex = 10;
+        opacity = 1;
+        rotateY = 0;
+      } else if (absOffset === 1) {
+        // 近侧（右侧小图向右移动更多）
+        translateX = offset > 0 ? '55%' : '-38%';
+        scale = 0.65;
+        zIndex = 5;
+        opacity = 0.85;
+        rotateY = offset > 0 ? -20 : 20;
+      } else {
+        // 远侧（右侧小图向右移动更多）
+        translateX = offset > 0 ? '95%' : '-72%';
+        scale = 0.5;
+        zIndex = 1;
+        opacity = 0.55;
+        rotateY = offset > 0 ? -35 : 35;
+      }
+      
+      item.style.transform = `translateX(${translateX}) scale(${scale}) rotateY(${rotateY}deg)`;
+      item.style.zIndex = zIndex;
+      item.style.opacity = opacity;
+      item.classList.toggle('active', offset === 0);
+    });
+    
+    verticalDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === verticalIndex);
+    });
+  }
+  
+  // 点击轮播项切换
+  verticalItems.forEach((item, i) => {
+    item.addEventListener('click', (e) => {
+      // 如果点击的是播放按钮或放大按钮，不切换轮播
+      if (e.target.closest('[data-play-btn]') || e.target.closest('[data-expand-btn]')) {
+        return;
+      }
+      verticalIndex = i;
+      updateVerticalCoverflow();
+    });
+  });
+  
+  // 点击圆圈切换
+  verticalDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      verticalIndex = i;
+      updateVerticalCoverflow();
+    });
+  });
+  
+  // 初始化
+  updateVerticalCoverflow();
+});
+
+// ===== Left Side Navigation =====
+document.addEventListener('DOMContentLoaded', () => {
+  const sideNav = document.getElementById('sideNav');
+  const navItems = document.querySelectorAll('.side-nav-item');
+  const sections = [
+    document.getElementById('project-brand'),
+    document.getElementById('project-vi'),
+    document.getElementById('project-offline'),
+    document.getElementById('project-digital'),
+    document.getElementById('project-motion')
+  ];
+  const ctaSection = document.getElementById('contact');
+  
+  if (!sideNav || sections.some(s => !s)) return;
+  
+  function updateSideNav() {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // 品牌设定区域的顶部位置
+    const brandRect = sections[0].getBoundingClientRect();
+    const brandTop = brandRect.top + window.scrollY;
+    
+    // CTA区域的顶部位置
+    const ctaRect = ctaSection.getBoundingClientRect();
+    const ctaTop = ctaRect.top + window.scrollY;
+    
+    // 判断是否显示导航：滚动到品牌设定区域时显示，滚动到CTA区域之后隐藏
+    if (scrollY >= brandTop - windowHeight * 0.2 && scrollY < ctaTop - windowHeight * 0.3) {
+      sideNav.classList.add('visible');
+    } else {
+      sideNav.classList.remove('visible');
+    }
+    
+    // 高亮当前所在区域
+    let currentIndex = -1;
+    const scrollPosition = scrollY + windowHeight * 0.2; // 视口上方20%位置作为切换点
+    
+    // 使用getBoundingClientRect()计算准确位置，不受offsetParent影响
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const rect = sections[i].getBoundingClientRect();
+      const absoluteTop = rect.top + window.scrollY; // 相对于document的位置
+      
+      if (absoluteTop <= scrollPosition) {
+        currentIndex = i;
+        break;
+      }
+    }
+    
+    navItems.forEach((item, i) => {
+      item.classList.toggle('active', i === currentIndex);
+    });
+  }
+  
+  // 滚动事件监听
+  window.addEventListener('scroll', updateSideNav);
+  
+  // 点击导航项跳转
+  navItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      const targetId = item.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        // 使用scrollIntoView，更准确
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // 减去顶部导航高度的偏移
+        setTimeout(() => {
+          const topOffset = 40;
+          const currentTop = window.scrollY;
+          window.scrollTo({
+            top: currentTop - topOffset,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    });
+  });
+  
+  // 初始化
+  updateSideNav();
+});
+</script>
+
+<!-- VI Lightbox -->
+<div class="vi-lightbox" id="viLightbox">
+  <button class="vi-lightbox-close" id="viLightboxClose">&times;</button>
+  <button class="vi-lightbox-nav vi-lightbox-prev" id="viLightboxPrev">&#10094;</button>
+  <button class="vi-lightbox-nav vi-lightbox-next" id="viLightboxNext">&#10095;</button>
+  <div class="vi-lightbox-counter" id="viLightboxCounter"></div>
+  <img id="viLightboxImg" src="" alt="放大查看">
+</div>
+<div class="offline-lightbox" id="offlineLightbox">
+  <button class="offline-lightbox-close" id="offlineLightboxClose">&times;</button>
+  <button class="offline-lightbox-nav offline-lightbox-prev" id="offlineLightboxPrev">&#10094;</button>
+  <button class="offline-lightbox-nav offline-lightbox-next" id="offlineLightboxNext">&#10095;</button>
+  <div class="offline-lightbox-counter" id="offlineLightboxCounter"></div>
+  <img id="offlineLightboxImg" src="" alt="放大查看">
+</div>
+<div class="product-lightbox" id="productLightbox">
+  <button class="product-lightbox-close" id="productLightboxClose">&times;</button>
+  <img id="productLightboxImg" src="" alt="产品拆解放大">
+</div>
+<div class="video-lightbox" id="videoLightbox">
+  <button class="video-lightbox-close" id="videoLightboxClose">&times;</button>
+  <video id="videoLightboxVideo" class="video-lightbox-video" controls playsinline>
+    <source src="https://aka.doubaocdn.com/s/w2zjdAwNt0" type="video/mp4">
+  </video>
+</div>
+<!-- Digital Lightbox -->
+<div class="digital-lightbox" id="digitalLightbox">
+  <button class="digital-lightbox-close" id="digitalLightboxClose">&times;</button>
+  <button class="digital-lightbox-nav digital-lightbox-prev" id="digitalLightboxPrev">&#10094;</button>
+  <button class="digital-lightbox-nav digital-lightbox-next" id="digitalLightboxNext">&#10095;</button>
+  <div class="digital-lightbox-counter" id="digitalLightboxCounter"></div>
+  <img id="digitalLightboxImg" src="" alt="放大查看">
+</div>
+<!-- Digital Long Image Lightbox -->
+<div class="digital-long-lightbox" id="digitalLongLightbox">
+  <button class="digital-long-lightbox-close" id="digitalLongLightboxClose">&times;</button>
+  <div class="digital-long-lightbox-zoom" id="digitalLongLightboxZoom">100%</div>
+  <img id="digitalLongLightboxImg" src="https://aka.doubaocdn.com/s/VlGlVON84U" alt="官网站点图">
+  <div class="digital-long-lightbox-hint">滚轮上下滑动查看 · 按住鼠标拖动 · ESC关闭</div>
+</div>
+
+<!-- Left Side Navigation -->
+<nav class="side-nav" id="sideNav">
+  <button class="side-nav-item" data-target="project-brand">
+    <span class="nav-dot"></span>
+    <span>品牌设定</span>
+  </button>
+  <button class="side-nav-item" data-target="project-vi">
+    <span class="nav-dot"></span>
+    <span>VI手册</span>
+  </button>
+  <button class="side-nav-item" data-target="project-offline">
+    <span class="nav-dot"></span>
+    <span>营销物料</span>
+  </button>
+  <button class="side-nav-item" data-target="project-digital">
+    <span class="nav-dot"></span>
+    <span>数字端视觉</span>
+  </button>
+  <button class="side-nav-item" data-target="project-motion">
+    <span class="nav-dot"></span>
+    <span>动态资产</span>
+  </button>
+</nav>
+
+</body>
+</html>
