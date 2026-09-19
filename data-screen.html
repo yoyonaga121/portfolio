@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+
+<!-- viewport 说明：本页是 1920×1080 固定画布，由 JS 的 resizeScreen() 用 transform:scale()
+     等比缩放并居中留边，任何视口下最终视觉大小都由画布自适应决定，加不加 viewport 画面尺寸基本一致。
+     这里的 viewport 主要解决两点：① 移动端按设备宽度渲染，避免默认 980px 布局视口下
+     先缩放再显示导致文字发虚；② maximum-scale/user-scalable 禁止双击缩放，防止用户缩放后
+     布局视口变化、画布比例与 toLocal() 的坐标换算被打乱。
+     注意：本页也会被主页以 iframe 嵌入，而 iframe 内部的 viewport meta 不生效（由父页面控制），
+     因此这些设置只对本页被独立访问时起作用，对嵌入展示无影响。 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>联通智慧视频运营数据可视化大屏 | 张晓曦</title>
+<meta name="description" content="联通智慧视频运营数据可视化大屏：以 1920×1080 固定画布等比缩放适配，汇聚用户规模、活跃度、渠道转化、地域分布与实时榜单等多维运营指标，支持节点点击下钻查看明细。页面内数据为演示数据。">
+<meta name="author" content="张晓曦">
+<meta name="keywords" content="数据可视化,数据大屏,联通,智慧视频,运营数据,IPTV,可视化设计,张晓曦">
+<meta name="robots" content="index, follow">
+
+<!-- 域名已填写为 GitHub Pages 项目站地址（2026-09-19）。本页 4 处均为绝对 URL：
+     canonical、og:url、og:image、twitter:image。社交平台与搜索引擎抓取时不执行 JS、
+     也不接受相对路径，故必须保留绝对地址，勿改回相对路径。
+     本页线上地址为 /portfolio/data-screen.html。 -->
+<link rel="canonical" href="https://yoyonaga121.github.io/portfolio/data-screen.html">
+
+<!-- 站点图标（与主页共用根目录的 favicon.png / og-image.jpg） -->
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#050b1e">
+
+<!-- Open Graph：分享到微信 / 微博 / LinkedIn / Facebook 时的标题、摘要与封面 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="张晓曦 · 作品集">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="联通智慧视频运营数据可视化大屏">
+<meta property="og:description" content="多维运营指标一屏总览，支持节点下钻查看明细。1920×1080 固定画布等比缩放，适配任意窗口比例。">
+<meta property="og:url" content="https://yoyonaga121.github.io/portfolio/data-screen.html">
+<meta property="og:image" content="https://yoyonaga121.github.io/portfolio/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="张晓曦作品集封面 · 低多边形风品牌主视觉">
+
+<!-- Twitter Card：分享到 X / Telegram 等使用 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="联通智慧视频运营数据可视化大屏">
+<meta name="twitter:description" content="多维运营指标一屏总览，支持节点下钻查看明细。">
+<meta name="twitter:image" content="https://yoyonaga121.github.io/portfolio/og-image.jpg">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: "Microsoft YaHei", sans-serif; }
+body { width:100vw; height:100vh; overflow:hidden; background:#050b1e; color:#fff; }
+.screen { width:1920px; height:1080px; position:absolute; left:50%; top:50%; transform: translate(-50%, -50%); padding:0 40px; transform-origin: center center; }
+
+/* 背景光效 */
+.screen::before {
+  content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(ellipse at center, rgba(0,80,200,0.15) 0%, transparent 70%);
+  pointer-events:none; z-index:0;
+}
+
+/* 顶部：内容由 assets/top.png 背景图呈现，尺寸与间距写在该元素的内联样式上。
+   这里只保留 ::before 光效定位所需的 position:relative 与层级。
+   原先的 height/margin-bottom 已被内联样式覆盖，display:flex 等作用于空元素无效果；
+   文字版头部的 .logo/.logo-icon/.logo-text/.main-title/.header-right 已无对应 DOM，一并移除。 */
+.header { position:relative; z-index:10; }
+.header::before {
+  content:''; position:absolute; top:50%; left:25%; right:25%; height:40px;
+  transform:translateY(-50%);
+  background: linear-gradient(90deg, transparent, rgba(0,150,255,0.15) 20%, rgba(0,150,255,0.25) 50%, rgba(0,150,255,0.15) 80%, transparent);
+  border-top:1px solid rgba(79,163,255,0.4);
+  border-bottom:1px solid rgba(79,163,255,0.4);
+  clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
+  pointer-events:none;
+}
+
+/* 主布局 */
+.main { position:relative; z-index:5; display:grid; grid-template-columns: 420px 1fr 420px; gap:20px; height: 783px; }
+
+/* 通用面板 */
+.panel {
+  background: linear-gradient(180deg, rgba(15,45,100,0.45), rgba(8,20,55,0.75));
+  border:1px solid rgba(70,160,255,0.5);
+  border-radius:4px; padding:18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(0,120,255,0.15), inset 0 0 25px rgba(0,80,200,0.08);
+  margin-bottom:10px;
+  position:relative;
+  transition: all 0.3s ease;
+}
+.panel:hover {
+  border-color: rgba(100,180,255,0.9);
+  box-shadow: 0 0 25px rgba(0,150,255,0.35), inset 0 0 30px rgba(0,120,255,0.12);
+}
+.panel::before, .panel::after {
+  content:''; position:absolute; width:12px; height:12px; border-color:#60b0ff; border-style:solid;
+}
+.panel::before { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+.panel::after { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+.panel-title { font-size:16px; font-weight:bold; color:#fff; margin-bottom:15px; padding-left:12px; position:relative; letter-spacing:1px; }
+.panel-title::before { content:''; position:absolute; left:0; top:3px; width:4px; height:18px; background:#3090ff; box-shadow:0 0 8px #3090ff; }
+
+/* 左侧 */
+.left-col { display:flex; flex-direction:column; gap:10px; height:100%; }
+.left-col .panel { margin-bottom:0; }
+.left-col .l1 { height:304px; padding-bottom:0; }
+.left-col .l2 { height:246px; padding-bottom:0; margin-bottom:0; }
+.left-col .l3 { height:251px; }
+.right-col { display:flex; flex-direction:column; gap:10px; height:100%; }
+.right-col .panel { margin-bottom:0; }
+.right-col .r1 { height:263px; padding-bottom:18px; }
+.right-col .r2 { height:230px; padding-bottom:0; margin-bottom:0; }
+/* 实时数据 */
+.data-row { display:flex; gap:15px; margin-bottom:12px; }
+.data-item { flex:1; text-align:center; transition: all 0.3s; }
+.data-item:hover { transform: scale(1.05); }
+.data-label { font-size:13px; color:#88aadd; margin-bottom:5px; }
+.data-value { font-size:20px; font-weight:bold; color:#03f3fd; }
+/* 单位字号用固定 px：大屏是 1920×1080 固定画布 + transform 整体缩放，
+   vw/vh 按真实视口计算且不参与缩放，会让单位字与周围文字缩放比例不一致 */
+.data-value small { font-size:14px; color:#88aadd; }
+.data-trend { font-size:12px; color:#00ff88; margin-top:3px; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+.line-chart { height:110px; position:relative; }
+/* dasharray 需贴合路径真实长度（本折线约 339.5px，取 340）：
+   原先写 1000 远大于路径长，offset 降到 660 时线已画满，剩余约 1/3 时长画面静止空转，
+   再叠加 ease 把速度集中在中段，导致绘制过程一闪而过、观感不明显。
+   缓动改用 linear，让每一帧都产生等量可见进展。 */
+.chart-line { stroke:#4fa3ff; stroke-width:2; fill:rgba(0,150,255,0.2); stroke-dasharray:340; stroke-dashoffset:340; animation: drawLine 3s linear forwards; }
+@keyframes drawLine { to { stroke-dashoffset:0; } }
+
+/* 节点圆点：随折线绘制进度依次淡入，线画到该节点时它才出现。
+   延时 = 节点累计弧长 / 路径总长(339.5px) × 绘制时长(3s)。
+   折线用的是 linear 匀速绘制，故延时与进度严格线性对应，不会出现点先于线出现。
+   各节点累计弧长：0 / 55.9 / 111.0 / 168.9 / 224.1 / 281.7 / 339.5px。 */
+.chart-dot { opacity:0; animation: dotFadeIn 0.45s ease-out forwards; }
+.chart-dot:nth-of-type(1) { animation-delay: 0s; }
+.chart-dot:nth-of-type(2) { animation-delay: 0.49s; }
+.chart-dot:nth-of-type(3) { animation-delay: 0.98s; }
+.chart-dot:nth-of-type(4) { animation-delay: 1.49s; }
+.chart-dot:nth-of-type(5) { animation-delay: 1.98s; }
+.chart-dot:nth-of-type(6) { animation-delay: 2.49s; }
+.chart-dot:nth-of-type(7) { animation-delay: 3s; }
+@keyframes dotFadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* 饼图 */
+.pie-wrap { display:flex; align-items:center; gap:20px; }
+.pie { width:110px; height:110px; border-radius:50%;
+  background: conic-gradient(#4fa3ff 0 42.8%, #36cfc9 42.8% 61.4%, #ffc53d 61.4% 77.1%, #9254de 77.1% 88.4%, #13c2c2 88.4% 96%, #ff7a45 96% 100%);
+  display:flex; align-items:center; justify-content:center;
+  transition: transform 0.3s;
+  animation: rotateIn 1.5s ease;
+}
+@keyframes rotateIn { from { transform: rotate(0) scale(0.5); opacity:0;} to { transform: rotate(360deg) scale(1); opacity:1;} }
+.pie:hover { transform: scale(1.05); }
+.pie-center { width:65px; height:65px; background:#050b1e; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px; color:#a0c8ff; }
+.legend-list { flex:1; }
+.legend-item { display:flex; justify-content:space-between; font-size:13px; margin-bottom:8px; color:#ccc; transition: all 0.3s; }
+.legend-item:hover { color:#4fa3ff; transform: translateX(5px); }
+.legend-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+/* 柱状图 */
+.bar-chart { display:flex; align-items:flex-end; justify-content:space-between; height:150px; padding:0 10px; }
+.bar-col { display:flex; flex-direction:column; align-items:center; flex:1; }
+.bar { width:30px; background: linear-gradient(180deg, #4fa3ff, #003399); border-radius:3px 3px 0 0; height:0; transition: height 1.5s cubic-bezier(0.4,0,0.2,1); }
+.bar-label { font-size:12px; color:#88aadd; margin-top:8px; }
+/* 淡入时机由 JS 的 setTimeout(1800) 统一控制，此处不再叠加 transition-delay：
+   原先写 0.5s 1.5s 会与 JS 延时重复计算，使柱值在柱子长满后还要再等 1.5s 才出现 */
+.bar-value { font-size:12px; color:#4fa3ff; margin-bottom:5px; opacity:0; transition: opacity 0.5s; }
+
+/* 中央地图区 */
+.center-col { position:relative; height:100%; }
+.map-bg { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:4px; overflow:hidden; border:1px solid rgba(70,160,255,0.4); box-shadow: 0 0 30px rgba(0,100,255,0.2); }
+.map-bg video { width:100%; height:100%; object-fit:cover; }
+.top-icons { position:absolute; top:20px; left:50%; transform:translateX(-50%); display:flex; gap:50px; z-index:10; }
+.top-icon { display:flex; flex-direction:column; align-items:center; gap:6px; transition: transform 0.3s; cursor:pointer; }
+.top-icon:hover { transform: translateY(-5px) scale(1.1); }
+.icon-hex { width:64px; height:64px; background: rgba(0,80,200,0.3); border:1px solid #4fa3ff; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display:flex; align-items:center; justify-content:center; font-size:26px; }
+.icon-text { font-size:14px; color:#fff; }
+
+.map-title { position:absolute; bottom:110px; left:50%; transform:translateX(-50%);
+  font-size:18px; color:#fff; padding:10px 36px;
+  background: rgba(0,80,200,0.3); border-radius:30px; border:1px solid #4fa3ff;
+  animation: titleGlow 2s infinite alternate;
+}
+@keyframes titleGlow { from { box-shadow: 0 0 10px rgba(0,150,255,0.3); } to { box-shadow: 0 0 25px rgba(0,150,255,0.8); } }
+
+/* 右侧 */
+.right-col { display:flex; flex-direction:column; gap:10px; height:100%; }
+.tab-row { display:flex; gap:10px; margin-bottom:8px; }
+.tab { flex:1; text-align:center; padding:4px 0; border-radius:4px; font-size:13px; cursor:pointer; background:rgba(0,80,200,0.3); color:#a0c8ff; transition: all 0.3s; }
+.tab.active { background:linear-gradient(90deg, #0066ff, #00aaff); color:#fff; box-shadow: 0 0 10px rgba(0,150,255,0.5); }
+.tab:hover { background: rgba(0,150,255,0.4); }
+
+.rank-item { display:flex; align-items:center; gap:8px; margin-bottom:5px; transition: all 0.3s; }
+.rank-item:hover { transform: translateX(5px); }
+.rank-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.rank-1 { background:rgba(255,197,61,0.2); }
+.rank-2 { background:rgba(192,192,192,0.2); }
+.rank-3 { background:rgba(205,127,50,0.2); }
+.rank-other { background:rgba(255,255,255,0.1); color:#88aadd; }
+.rank-name { width:50px; font-size:14px; color:#fff; flex-shrink:0; }
+.rank-bar { flex:1; height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden; }
+.rank-bar-fill { height:100%; background:linear-gradient(90deg, #0066ff, #4fa3ff); border-radius:4px; width:0; transition: width 1.5s ease; }
+.rank-value { width:75px; text-align:right; font-size:14px; color:#03f3fd; flex-shrink:0; }
+
+/* 小卡片组 */
+.small-cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.mini-panel { background: linear-gradient(180deg, rgba(15,45,100,0.45), rgba(8,20,55,0.75)); border:1px solid rgba(70,160,255,0.5); border-radius:4px; padding:15px; transition: all 0.3s; display:flex; flex-direction:column; justify-content:center; }
+.mini-panel:hover { border-color:#60b0ff; box-shadow:0 0 15px rgba(0,150,255,0.3); }
+.mini-title { font-size:15px; color:#fff; margin-bottom:10px; font-weight:bold; padding-left:10px; border-left:3px solid #4fa3ff; }
+.donut { width:75px; height:75px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto; position:relative; transition: transform 0.3s; }
+.donut:hover { transform: scale(1.1); }
+.donut::after { content:''; position:absolute; width:52px; height:52px; background:#050b1e; border-radius:50%; }
+.donut-value { position:relative; z-index:2; font-size:18px; font-weight:bold; color:#4fa3ff; }
+
+/* 注：底部原为文字版时间轴（.footer/.timeline/.tl-item/.tl-dot/.tl-year/.tl-name/.tl-desc），
+   现改为 assets/btm1.png 背景图呈现，这些类与仅供 .tl-dot 使用的 @keyframes pulse 已无对应 DOM，故移除。 */
+
+/* ============ SECTION: interaction —— 交互动效与弹窗样式 ============
+   注意：以下元素都必须位于 .screen 内部，才能随 transform: scale() 一起缩放；
+   定位坐标由 JS 从 client 空间换算回 1920×1080 本地空间后写入。 */
+
+/* 悬浮数据气泡 */
+.chart-tooltip {
+  position:absolute; z-index:600; pointer-events:none; opacity:0;
+  transform:translate(-50%,-100%);
+  background:linear-gradient(180deg, rgba(10,32,74,0.97), rgba(5,16,42,0.97));
+  border:1px solid rgba(79,163,255,0.65); border-radius:4px;
+  padding:9px 13px; min-width:140px;
+  box-shadow:0 6px 26px rgba(0,0,0,0.5), 0 0 16px rgba(0,140,255,0.28);
+  font-size:13px; line-height:1.7; color:#dceaff; white-space:nowrap;
+  transition:opacity .16s ease;
+}
+.chart-tooltip.active { opacity:1; }
+.chart-tooltip .tt-title { color:#fff; font-weight:bold; letter-spacing:.5px; margin-bottom:5px;
+  padding-bottom:5px; border-bottom:1px solid rgba(79,163,255,0.25); }
+.chart-tooltip .tt-row { display:flex; align-items:center; gap:7px; }
+.chart-tooltip .tt-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.chart-tooltip .tt-label { color:#9db8dd; }
+.chart-tooltip .tt-val { color:#03f3fd; font-weight:bold; margin-left:auto; padding-left:16px; }
+.chart-tooltip::after {
+  content:''; position:absolute; left:50%; bottom:-6px; width:10px; height:10px; margin-left:-5px;
+  background:rgba(5,16,42,0.97);
+  border-right:1px solid rgba(79,163,255,0.65); border-bottom:1px solid rgba(79,163,255,0.65);
+  transform:rotate(45deg);
+}
+
+/* SVG 内的透明热区：原图节点/柱子太小，点不中也悬停不准 */
+.chart-hit { fill:transparent; pointer-events:all; cursor:pointer; }
+.chart-dot.hl { stroke:#fff; stroke-width:2; }
+.rev-bar.hl { fill:#8fd0ff; }
+
+/* 饼图图例联动高亮 */
+.legend-item { cursor:pointer; }
+.legend-item.hl { color:#fff; transform:translateX(5px); }
+.legend-item.hl .legend-dot { box-shadow:0 0 10px currentColor; }
+
+/* 可点击入口的统一手感 */
+.top-icon, .rank-item, .donut, .activity-row { cursor:pointer; }
+.activity-row { padding:5px 8px; margin:-5px -8px; border-radius:4px; transition:background .25s ease; }
+.activity-row:hover { background:rgba(79,163,255,0.12); }
+.rank-item { border-radius:4px; transition:all .3s; }
+.rank-item:hover { background:rgba(79,163,255,0.1); }
+
+/* 详情弹窗 */
+.modal-mask {
+  position:absolute; inset:0; z-index:500; display:none;
+  align-items:center; justify-content:center;
+  background:rgba(2,8,25,0.72); backdrop-filter:blur(4px);
+}
+.modal-mask.active { display:flex; animation:maskIn .22s ease; }
+@keyframes maskIn { from { opacity:0; } to { opacity:1; } }
+.modal {
+  position:relative; width:660px; max-width:88%;
+  background:linear-gradient(180deg, rgba(12,38,86,0.97), rgba(6,18,48,0.99));
+  border:1px solid rgba(70,160,255,0.6); border-radius:6px;
+  box-shadow:0 0 60px rgba(0,120,255,0.35), inset 0 0 40px rgba(0,80,200,0.1);
+  padding:26px 30px 30px;
+  animation:modalIn .3s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes modalIn { from { opacity:0; transform:scale(.92) translateY(14px); } to { opacity:1; transform:scale(1) translateY(0); } }
+.modal::before, .modal::after {
+  content:''; position:absolute; width:14px; height:14px; border-color:#60b0ff; border-style:solid;
+}
+.modal::before { top:-1px; left:-1px; border-width:2px 0 0 2px; }
+.modal::after { bottom:-1px; right:-1px; border-width:0 2px 2px 0; }
+.modal-title { font-size:20px; font-weight:bold; color:#fff; letter-spacing:1px;
+  padding-left:13px; position:relative; margin-bottom:6px; }
+.modal-title::before { content:''; position:absolute; left:0; top:4px; width:4px; height:20px;
+  background:#3090ff; box-shadow:0 0 8px #3090ff; }
+.modal-sub { font-size:13px; color:#8fb0d8; padding-left:13px; margin-bottom:18px; }
+.modal-close { position:absolute; top:14px; right:16px; width:32px; height:32px;
+  background:none; border:1px solid rgba(79,163,255,0.35); border-radius:4px;
+  color:#a0c8ff; font-size:20px; line-height:1; cursor:pointer; transition:all .25s ease; }
+.modal-close:hover { color:#fff; border-color:#4fa3ff; background:rgba(79,163,255,0.2); transform:rotate(90deg); }
+.modal-body { font-size:14px; color:#cfe0f5; line-height:1.85; }
+.modal-kpis { display:flex; gap:12px; margin-bottom:18px; }
+.modal-kpi { flex:1; background:rgba(79,163,255,0.09); border:1px solid rgba(79,163,255,0.28);
+  border-radius:4px; padding:12px 14px; text-align:center; }
+.modal-kpi .k-val { font-size:24px; font-weight:bold; color:#03f3fd; line-height:1.3; }
+.modal-kpi .k-val small { font-size:13px; color:#88aadd; font-weight:normal; margin-left:2px; }
+.modal-kpi .k-label { font-size:12px; color:#8fb0d8; margin-top:4px; }
+.modal-table { width:100%; border-collapse:collapse; margin-top:4px; }
+.modal-table th, .modal-table td { padding:8px 10px; text-align:left; font-size:13px;
+  border-bottom:1px solid rgba(79,163,255,0.16); }
+.modal-table th { color:#8fb0d8; font-weight:normal; background:rgba(79,163,255,0.07); }
+.modal-table td { color:#dceaff; }
+.modal-table td.num { color:#03f3fd; font-weight:bold; text-align:right; }
+.modal-table tr:last-child td { border-bottom:none; }
+.modal-note { margin-top:14px; font-size:12px; color:#7e9bc0; line-height:1.7; }
+
+/* 中央地图扫描光带（常驻氛围动效） */
+.map-scan {
+  position:absolute; left:0; right:0; height:130px; top:-130px; z-index:2; pointer-events:none;
+  background:linear-gradient(180deg, transparent, rgba(79,163,255,0.14) 42%,
+    rgba(3,243,253,0.3) 50%, rgba(79,163,255,0.14) 58%, transparent);
+  animation:mapScan 7s linear infinite;
+}
+@keyframes mapScan { 0% { top:-130px; } 100% { top:100%; } }
+
+/* 面板标题竖条呼吸光（常驻氛围动效） */
+.panel-title::before { animation:titleBar 3.2s ease-in-out infinite; }
+@keyframes titleBar { 0%,100% { box-shadow:0 0 6px #3090ff; opacity:.75; } 50% { box-shadow:0 0 16px #4fa3ff; opacity:1; } }
+
+/* 数字实时跳动时的高亮闪烁 */
+.data-value.tick { animation:tickFlash .7s ease; }
+@keyframes tickFlash {
+  0% { color:#03f3fd; text-shadow:none; }
+  35% { color:#9dfaff; text-shadow:0 0 16px rgba(3,243,253,0.95); }
+  100% { color:#03f3fd; text-shadow:none; }
+}
+
+/* Tab 自动轮播时，当前项的指示条 */
+.tab { position:relative; }
+.tab.active::after { content:''; position:absolute; left:50%; bottom:-5px; width:0; height:2px;
+  background:#03f3fd; box-shadow:0 0 8px #03f3fd; transform:translateX(-50%);
+  animation:tabUnderline 6s linear forwards; }
+@keyframes tabUnderline { from { width:0; } to { width:70%; } }
+/* 鼠标悬停暂停轮播时，指示条也一并暂停 */
+.tab-row.paused .tab.active::after { animation-play-state:paused; }
+
+/* 演示数据角标：本页数值为设计演示用，非真实业务数据。不需要时删除该元素即可 */
+.demo-badge { position:absolute; right:26px; bottom:14px; z-index:60; pointer-events:none;
+  font-size:12px; letter-spacing:1px; color:rgba(157,184,221,0.8);
+  background:rgba(5,16,42,0.55); border:1px solid rgba(79,163,255,0.26);
+  border-radius:20px; padding:4px 14px; }
+
+/* 适配策略：固定 1920×1080 设计画布，由 JS 的 resizeScreen() 用 transform: scale()
+   等比缩放。任何视口下布局关系都与设计稿一致，窗口比例不同时居中留边（letterbox）。
+   原先这里的 @media 断点会改 .main 列宽与 .screen 高度，与本方案相互冲突：
+   vw 按真实视口计算且不参与 transform 缩放，会与 1920 设计坐标系脱节；
+   .screen 高度改 auto 后，position:absolute 的 -50% 居中位移随之失准，内容错位或被裁切。
+   故移除断点，统一由缩放适配。 */
+</style>
+</head>
+<body>
+<div class="screen">
+  <!-- 顶部 -->
+  <div class="header" style="width:100%; height:90px; background:url('assets/top.png') center/100% 100% no-repeat; margin-bottom:10px;">
+  </div>
+
+  <!-- 主区域 -->
+  <div class="main">
+    <!-- 左侧 -->
+    <div class="left-col">
+      <div class="panel l1">
+        <div class="panel-title">全省实时会员订购数据</div>
+        <div class="data-row">
+          <div class="data-item" style="text-align:left; display:flex; align-items:center; gap:8px;">
+            <div>
+              <div class="data-label">总会员数</div>
+              <div class="data-value">8,268<small>万</small></div>
+              <div class="data-trend" style="color:#ef4444;">↑12.6%</div>
+            </div>
+            <div style="width:32px; height:32px; background:rgba(79,163,255,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#4fa3ff; font-size:18px;">👤</div>
+          </div>
+          <div class="data-item" style="text-align:left; display:flex; align-items:center; gap:8px;">
+            <div>
+              <div class="data-label">当日新增</div>
+              <div class="data-value">126<small>万</small></div>
+              <div class="data-trend" style="color:#ef4444;">↑18.4%</div>
+            </div>
+            <div style="width:32px; height:32px; background:rgba(79,163,255,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#4fa3ff; font-size:18px;">👥</div>
+          </div>
+          <div class="data-item" style="text-align:left; display:flex; align-items:center; gap:8px;">
+            <div>
+              <div class="data-label">当日订购</div>
+              <div class="data-value">86<small>万</small></div>
+              <div class="data-trend" style="color:#ef4444;">↑15.2%</div>
+            </div>
+            <div style="width:32px; height:32px; background:rgba(79,163,255,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#ffc53d; font-size:18px;">👑</div>
+          </div>
+        </div>
+        <svg class="line-chart" viewBox="0 0 380 120" style="height:120px; width:100%;">
+          <defs>
+            <linearGradient id="lineFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4fa3ff" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#4fa3ff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- 纵轴刻度 -->
+          <text x="5" y="20" fill="#88aadd" font-size="10">200</text>
+          <text x="5" y="45" fill="#88aadd" font-size="10">150</text>
+          <text x="5" y="70" fill="#88aadd" font-size="10">100</text>
+          <text x="5" y="95" fill="#88aadd" font-size="10">50</text>
+          <text x="5" y="115" fill="#88aadd" font-size="10">0</text>
+          <!-- 渐变填充区域 -->
+          <path d="M40,85 L95,75 L150,78 L205,60 L260,55 L315,38 L370,20 L370,115 L40,115 Z" fill="url(#lineFill)"/>
+          <!-- 折线 -->
+          <path class="chart-line" d="M40,85 L95,75 L150,78 L205,60 L260,55 L315,38 L370,20" />
+          <!-- 节点发光圆点 -->
+          <circle cx="40" cy="85" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="95" cy="75" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="150" cy="78" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="205" cy="60" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="260" cy="55" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="315" cy="38" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <circle cx="370" cy="20" r="3" fill="#4fa3ff" class="chart-dot" style="filter:drop-shadow(0 0 4px #4fa3ff)"/>
+          <!-- 横轴日期 -->
+          <text x="35" y="118" fill="#88aadd" font-size="10">04-22</text>
+          <text x="90" y="118" fill="#88aadd" font-size="10">04-23</text>
+          <text x="145" y="118" fill="#88aadd" font-size="10">04-24</text>
+          <text x="200" y="118" fill="#88aadd" font-size="10">04-25</text>
+          <text x="255" y="118" fill="#88aadd" font-size="10">04-26</text>
+          <text x="310" y="118" fill="#88aadd" font-size="10">04-27</text>
+          <text x="355" y="118" fill="#88aadd" font-size="10">04-28</text>
+        </svg>
+      </div>
+
+      <div class="panel l2">
+        <div class="panel-title">用户渠道来源</div>
+        <div class="pie-wrap">
+          <div class="pie">
+            <div class="pie-center">渠道构成<br>100%</div>
+          </div>
+          <div class="legend-list">
+            <div class="legend-item"><span><span class="legend-dot" style="background:#4fa3ff"></span>IPTV</span><span>42.8%</span></div>
+            <div class="legend-item"><span><span class="legend-dot" style="background:#36cfc9"></span>手机营业厅</span><span>18.6%</span></div>
+            <div class="legend-item"><span><span class="legend-dot" style="background:#ffc53d"></span>联通APP</span><span>15.7%</span></div>
+            <div class="legend-item"><span><span class="legend-dot" style="background:#9254de"></span>线下营业厅</span><span>11.3%</span></div>
+            <div class="legend-item"><span><span class="legend-dot" style="background:#13c2c2"></span>第三方平台</span><span>7.6%</span></div>
+            <div class="legend-item"><span><span class="legend-dot" style="background:#ff7a45"></span>其他</span><span>4.0%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel l3">
+        <div class="panel-title">用户分层年龄分布</div>
+        <div class="bar-chart">
+          <!-- 柱高不写内联值：由 CSS .bar{height:0} 作起点，JS 在入场时赋终值以触发 transition -->
+          <div class="bar-col"><div class="bar-value">12.5%</div><div class="bar"></div><div class="bar-label">18-24岁</div></div>
+          <div class="bar-col"><div class="bar-value">28.7%</div><div class="bar"></div><div class="bar-label">25-34岁</div></div>
+          <div class="bar-col"><div class="bar-value">32.6%</div><div class="bar"></div><div class="bar-label">35-44岁</div></div>
+          <div class="bar-col"><div class="bar-value">18.9%</div><div class="bar"></div><div class="bar-label">45-54岁</div></div>
+          <div class="bar-col"><div class="bar-value">7.3%</div><div class="bar"></div><div class="bar-label">55岁以上</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中央地图 -->
+    <div class="center-col">
+      <div class="map-bg">
+        <video autoplay muted loop playsinline poster="assets/mapshot.jpg">
+          <source src="assets/map-bg.mp4" type="video/mp4">
+        </video>
+        <!-- 常驻氛围：自上而下的扫描光带 -->
+        <div class="map-scan"></div>
+      </div>
+      <div class="top-icons">
+        <!-- data-biz 对应 JS 里 bizDetail 的业务索引，点击弹出详情 -->
+        <div class="top-icon" data-biz="0"><div class="icon-hex">📺</div><div class="icon-text">智慧大屏</div></div>
+        <div class="top-icon" data-biz="1"><div class="icon-hex">5G</div><div class="icon-text">5G会员</div></div>
+        <div class="top-icon" data-biz="2"><div class="icon-hex">🏠</div><div class="icon-text">家庭宽带</div></div>
+        <div class="top-icon" data-biz="3"><div class="icon-hex">🎬</div><div class="icon-text">内容生态</div></div>
+        <div class="top-icon" data-biz="4"><div class="icon-hex">🗺️</div><div class="icon-text">分省运营</div></div>
+      </div>
+      <div class="map-title">重点省份联通IPTV业务运营</div>
+    </div>
+
+    <!-- 右侧 -->
+    <div class="right-col">
+      <div class="panel r1">
+        <div class="panel-title">热门业务省份排行</div>
+        <div class="tab-row">
+          <div class="tab active" data-index="0">会员订购</div>
+          <div class="tab" data-index="1">收入贡献</div>
+          <div class="tab" data-index="2">活跃率</div>
+        </div>
+        <div class="rank-list">
+          <!-- 条宽不写内联值：由 CSS .rank-bar-fill{width:0} 作起点，JS 在入场时赋终值以触发 transition -->
+          <div class="rank-item"><div class="rank-num rank-1">🏆</div><div class="rank-name">山东</div><div class="rank-bar"><div class="rank-bar-fill"></div></div><div class="rank-value">1,248万</div></div>
+          <div class="rank-item"><div class="rank-num rank-2">🥈</div><div class="rank-name">广东</div><div class="rank-bar"><div class="rank-bar-fill"></div></div><div class="rank-value">1,102万</div></div>
+          <div class="rank-item"><div class="rank-num rank-3">🥉</div><div class="rank-name">江苏</div><div class="rank-bar"><div class="rank-bar-fill"></div></div><div class="rank-value">986万</div></div>
+          <div class="rank-item"><div class="rank-num rank-other">4</div><div class="rank-name">河南</div><div class="rank-bar"><div class="rank-bar-fill"></div></div><div class="rank-value">842万</div></div>
+          <div class="rank-item"><div class="rank-num rank-other">5</div><div class="rank-name">浙江</div><div class="rank-bar"><div class="rank-bar-fill"></div></div><div class="rank-value">768万</div></div>
+        </div>
+      </div>
+
+      <div class="panel r2">
+        <div class="panel-title">会员收入数据</div>
+        <div style="display:flex; gap:15px;">
+          <div style="width:120px;">
+            <div class="data-value" style="font-size:36px; font-weight:bold; color:#03f3fd;">8.76<small style="font-size:14px; color:#88aadd;">亿元</small></div>
+            <div style="font-size:14px; color:#ef4444; margin:5px 0;">↑16.8%</div>
+            <div style="font-size:18px; color:#88aadd;">本月会员收入</div>
+          </div>
+          <div style="flex:1;">
+            <!-- 图例 -->
+            <div style="display:flex; gap:15px; justify-content:flex-end; margin-bottom:8px; font-size:12px; color:#ccc;">
+              <span><span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#4fa3ff; margin-right:4px;"></span>收入</span>
+              <span><span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ffc53d; margin-right:4px;"></span>环比增长</span>
+            </div>
+            <svg viewBox="0 0 280 128" style="width:100%; height:125px; margin-bottom:0;">
+              <!-- 左轴刻度 -->
+              <text x="0" y="12" fill="#88aadd" font-size="11">10</text>
+              <text x="0" y="35" fill="#88aadd" font-size="11">8</text>
+              <text x="0" y="58" fill="#88aadd" font-size="11">6</text>
+              <text x="0" y="81" fill="#88aadd" font-size="11">4</text>
+              <text x="0" y="104" fill="#88aadd" font-size="11">2</text>
+              <text x="0" y="122" fill="#88aadd" font-size="11">0</text>
+              <!-- 右轴刻度 -->
+              <text x="258" y="12" fill="#ffc53d" font-size="11">30%</text>
+              <text x="258" y="47" fill="#ffc53d" font-size="11">20%</text>
+              <text x="258" y="82" fill="#ffc53d" font-size="11">10%</text>
+              <text x="258" y="117" fill="#ffc53d" font-size="11">0%</text>
+              <!-- 蓝色柱状图 -->
+              <rect x="28" y="85" width="20" height="37" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="65" y="95" width="20" height="27" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="102" y="75" width="20" height="47" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="139" y="88" width="20" height="34" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="176" y="65" width="20" height="57" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="213" y="75" width="20" height="47" fill="#4fa3ff" opacity="0.7" rx="2"/>
+              <rect x="248" y="25" width="20" height="97" fill="#4fa3ff" rx="2"/>
+              <!-- 平滑黄色折线 -->
+              <path d="M38,85 C55,100 75,100 75,95 C95,90 110,70 112,75 C130,80 150,90 149,88 C170,82 190,62 186,65 C210,68 230,72 223,75 C240,50 255,30 258,25" stroke="#ffc53d" stroke-width="2.5" fill="none"/>
+              <circle cx="38" cy="85" r="3.5" fill="#ffc53d"/>
+              <circle cx="75" cy="95" r="3.5" fill="#ffc53d"/>
+              <circle cx="112" cy="75" r="3.5" fill="#ffc53d"/>
+              <circle cx="149" cy="88" r="3.5" fill="#ffc53d"/>
+              <circle cx="186" cy="65" r="3.5" fill="#ffc53d"/>
+              <circle cx="223" cy="75" r="3.5" fill="#ffc53d"/>
+              <circle cx="258" cy="25" r="3.5" fill="#ffc53d"/>
+              <!-- 横轴日期 -->
+              <text x="25" y="128" fill="#88aadd" font-size="11">04-22</text>
+              <text x="62" y="128" fill="#88aadd" font-size="11">04-23</text>
+              <text x="99" y="128" fill="#88aadd" font-size="11">04-24</text>
+              <text x="136" y="128" fill="#88aadd" font-size="11">04-25</text>
+              <text x="173" y="128" fill="#88aadd" font-size="11">04-26</text>
+              <text x="210" y="128" fill="#88aadd" font-size="11">04-27</text>
+              <text x="247" y="128" fill="#88aadd" font-size="11">04-28</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-cards">
+        <div class="mini-panel" style="grid-column: 1 / -1;">
+          <div class="mini-title">核心活动效果</div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:13px;">
+            <div class="activity-row" data-act="0" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:20px;">🧧</span>
+                <span style="color:#fff;">春节红包活动</span>
+              </div>
+              <div style="color:#88aadd;">
+                订购量 <b style="color:#03f3fd;">328万</b> &nbsp;&nbsp; 转化率 <b style="color:#03f3fd;">18.7%</b>
+              </div>
+            </div>
+            <div class="activity-row" data-act="1" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:20px;">🎁</span>
+                <span style="color:#fff;">分省差异化运营</span>
+              </div>
+              <div style="color:#88aadd;">
+                订购量 <b style="color:#03f3fd;">256万</b> &nbsp;&nbsp; 转化率 <b style="color:#03f3fd;">16.3%</b>
+              </div>
+            </div>
+            <div class="activity-row" data-act="2" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:20px;">📢</span>
+                <span style="color:#fff;">全渠道协同营销</span>
+              </div>
+              <div style="color:#88aadd;">
+                订购量 <b style="color:#03f3fd;">412万</b> &nbsp;&nbsp; 转化率 <b style="color:#03f3fd;">22.6%</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-panel">
+          <div class="mini-title">用户续费率</div>
+          <div style="display:flex; align-items:center; gap:15px;">
+            <div class="donut" data-donut="0" data-pct="82.4" data-color="#4fa3ff" style="background: conic-gradient(#4fa3ff 0 82.4%, rgba(255,255,255,0.1) 82.4% 100%);">
+              <div class="donut-value">82.4%</div>
+            </div>
+            <div style="font-size:13px;">
+              <div style="color:#fff; margin-bottom:5px;">续费占比</div>
+              <div style="color:#ef4444;">环比 ↑ 3.2%</div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-panel">
+          <div class="mini-title">用户活跃率</div>
+          <div style="display:flex; align-items:center; gap:15px;">
+            <div class="donut" data-donut="1" data-pct="76.8" data-color="#ffc53d" style="background: conic-gradient(#ffc53d 0 76.8%, rgba(255,255,255,0.1) 76.8% 100%);">
+              <div class="donut-value" style="color:#ffc53d;">76.8%</div>
+            </div>
+            <div style="font-size:13px;">
+              <div style="color:#fff; margin-bottom:5px;">活跃占比</div>
+              <div style="color:#ef4444;">环比 ↑ 2.7%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部时间轴 -->
+  <div style="width:100%; height:129px; background:url('assets/btm1.png') center/100% 100% no-repeat; margin-top:60px;">
+  </div>
+
+  <!-- SECTION: interaction-layer —— 悬浮气泡与详情弹窗容器。
+       必须放在 .screen 内部：画布用 transform: scale() 整体缩放，
+       容器在其中才能随之缩放，坐标也由 JS 换算到 1920×1080 本地空间。 -->
+  <div class="chart-tooltip" id="chartTooltip"></div>
+
+  <div class="modal-mask" id="modalMask">
+    <div class="modal" id="modalBox">
+      <button class="modal-close" id="modalClose" aria-label="关闭">&times;</button>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-sub" id="modalSub"></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="demo-badge">演示数据</div>
+</div>
+
+<script>
+// 自动缩放适配窗口
+function resizeScreen() {
+  const scaleX = window.innerWidth / 1920;
+  const scaleY = window.innerHeight / 1080;
+  const scale = Math.min(scaleX, scaleY);
+  document.querySelector('.screen').style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+window.addEventListener('resize', resizeScreen);
+// 脚本位于 body 末尾，DOM 已就绪，注册监听后立即适配一次：
+// 若只等 load，首屏会以 CSS 的 scale(1)（1920px 原尺寸）渲染，
+// 小窗口下先溢出视口，待约 1.35MB 资源下载完再跳变为缩放尺寸，画面抖动明显。
+resizeScreen();
+
+// SECTION: number-roll —— 数字滚动动画
+// 目标值、单位后缀与小数位全部从元素自身文本解析，使 HTML 成为唯一数据源，
+// 避免同一数值在 HTML 与 JS 各写一份、改一漏一导致动画滚到旧值。
+function parseNumberSpec(el) {
+  if (!el) return null;
+
+  // 分离单位后缀（如 <small>万</small>）与纯数值文本
+  const small = el.querySelector('small');
+  const suffix = small ? small.outerHTML : '';
+  const text = el.textContent.replace(small ? small.textContent : '', '').replace(/,/g, '').trim();
+  const target = parseFloat(text);
+  if (!Number.isFinite(target)) return null;
+
+  // 小数位取自原文本（如 8.76 → 2），保证滚动结束后的显示与原文完全一致
+  const dotIndex = text.indexOf('.');
+  const decimals = dotIndex === -1 ? 0 : text.length - dotIndex - 1;
+
+  return { el, target, decimals, suffix };
+}
+
+function renderNumber(spec, value) {
+  const val = spec.decimals > 0 ? value.toFixed(spec.decimals) : Math.floor(value).toLocaleString();
+  spec.el.innerHTML = val + spec.suffix;
+}
+
+function animateNumber(spec, duration = 1800, from = 0) {
+  // 解析失败或元素缺失时直接跳过，否则下方 setInterval 会每 16ms 抛一次错直到结束
+  if (!spec) return;
+  let start = from;
+  const span = spec.target - from;
+  const step = span / (duration / 16);
+  spec.current = from;
+  const timer = setInterval(() => {
+    start += step;
+    // step 可能为负（极少见），故按跨度方向判断是否到达终点
+    const done = span >= 0 ? start >= spec.target : start <= spec.target;
+    if (done) {
+      start = spec.target;
+      clearInterval(timer);
+    }
+    spec.current = start;
+    renderNumber(spec, start);
+  }, 16);
+}
+
+// 需要滚动动画的数字：元素选择器与时长
+const numberRolls = [
+  { selector: '.data-item:nth-child(1) .data-value', duration: 2000 },
+  { selector: '.data-item:nth-child(2) .data-value', duration: 1500 },
+  { selector: '.data-item:nth-child(3) .data-value', duration: 1500 },
+  { selector: '.right-col .data-value',              duration: 1800 }
+];
+
+// 脚本在 body 末尾同步执行，此时 DOM 已解析完毕、浏览器尚未首次绘制，
+// 因此在这里就解析出目标值并立即把显示归零：
+// HTML 里写的是最终值（如 8,268万），若等到动画开始才归零，用户会先看到终值、
+// 再跳回 0 重新滚上去，出现明显的“数字倒退”。提前归零可让首帧就是 0。
+const numberSpecs = numberRolls.map(item => {
+  const spec = parseNumberSpec(document.querySelector(item.selector));
+  if (spec) renderNumber(spec, 0);
+  return { spec, duration: item.duration };
+});
+
+// 入场动画统一由 DOMContentLoaded 触发，而非 load：
+// 折线、节点圆点、饼图都是 CSS 动画，DOM 渲染即启动；本页 load 需等
+// top.png(232KB)、btm1.png(259KB)、map-bg.mp4(864KB) 共约 1.35MB 下载完，
+// 若 JS 动画等 load，会比 CSS 动画晚数百毫秒起步，出现折线已画掉一截、
+// 数字才开始滚动的错位。DOMContentLoaded 在 DOM 解析完即触发，两者基本同步。
+document.addEventListener('DOMContentLoaded', () => {
+  // 数字滚动：目标值与单位已在脚本执行时解析并归零，此处只负责播放
+  numberSpecs.forEach(item => animateNumber(item.spec, item.duration));
+
+  // 柱状图入场
+  setTimeout(() => {
+    document.querySelectorAll('.bar').forEach((bar, i) => {
+      const heights = ['40px','90px','110px','60px','25px'];
+      bar.style.height = heights[i];
+      // 注：此处原本有一行 bar.nextElementSibling.previousElementSibling.style.opacity = '1';
+      // 该表达式取 next 再取 previous 得到的就是 bar 自身（等于空操作），
+      // 柱值 .bar-value 的显隐由下方专门的定时器统一处理，故移除
+    });
+  }, 300);
+
+  // 排名条入场：复用 renderRank 与当前激活 Tab 的数据，避免条宽在两处各写一份，
+  // 也避免用户在 500ms 内已切换 Tab 时被重置回第一组（高亮与数据不一致）
+  setTimeout(() => {
+    renderRank(getActiveTabIndex());
+  }, 500);
+
+  // 柱状图数值显示：时机由本定时器控制，.bar-value 的 transition 已不含额外 delay
+  setTimeout(() => {
+    document.querySelectorAll('.bar-value').forEach(el => el.style.opacity = '1');
+  }, 1800);
+});
+
+// ============ SECTION: chart-tooltip —— 图表悬浮数值气泡 ============
+// 图表原本只有几何图形、没有数值数据。此处不硬编码 7 个数字，而是
+// 运行时按纵轴锚点从 SVG 坐标反算，保证气泡值与图上画的位置严格一致。
+// 注意：轴刻度为手绘、间距不完全均匀（y=70 处轴标写 100、线性反算为 94.7），
+// 反算值因此为“从图上量出的近似值”，仅作演示，非业务真值。
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+// 线性映射：按轴的两个锚点把 y 坐标换算为数值
+function axisValue(y, topY, topV, botY, botV) {
+  return (botY - y) / (botY - topY) * (topV - botV) + botV;
+}
+
+// client 坐标 -> .screen 内 1920×1080 本地坐标。
+// 画布用 transform: translate(-50%,-50%) scale(s) 缩放，直接取 clientX/Y
+// 会让气泡位置随窗口大小偏移，必须除以实际缩放比并减去画布左上角。
+function toLocal(clientX, clientY) {
+  const screenEl = document.querySelector('.screen');
+  const rect = screenEl.getBoundingClientRect();
+  const scale = rect.width / 1920 || 1;
+  return { x: (clientX - rect.left) / scale, y: (clientY - rect.top) / scale };
+}
+
+const tooltipEl = document.getElementById('chartTooltip');
+
+function showTooltip(html, clientX, clientY) {
+  tooltipEl.innerHTML = html;
+  const p = toLocal(clientX, clientY);
+  // 气泡在指针上方居中，靠近左右边缘时向内收，避免被画布裁掉
+  const w = tooltipEl.offsetWidth || 160;
+  const x = Math.min(1900 - w / 2, Math.max(20 + w / 2, p.x));
+  tooltipEl.style.left = x + 'px';
+  tooltipEl.style.top = (p.y - 16) + 'px';
+  tooltipEl.classList.add('active');
+}
+
+function hideTooltip() {
+  tooltipEl.classList.remove('active');
+}
+
+function tooltipRow(color, label, val) {
+  return `<div class="tt-row"><span class="tt-dot" style="background:${color}"></span>` +
+         `<span class="tt-label">${label}</span><span class="tt-val">${val}</span></div>`;
+}
+
+// 折线图：纵轴 y=20 对应 200，y=115 对应 0
+const lineAxis = { topY: 20, topV: 200, botY: 115, botV: 0 };
+
+function initLineChartTooltip() {
+  const svg = document.querySelector('svg.line-chart');
+  if (!svg) return;
+  const dates = svg.querySelectorAll('text[y="118"]');
+  const dots = svg.querySelectorAll('circle.chart-dot');
+
+  // 热区必须追加在现有 circle 之后：.chart-dot:nth-of-type(n) 按 circle 序号
+  // 定位淡入延时，若在中间插入热区 circle 会让序号错位、延时全乱。
+  dots.forEach((dot, i) => {
+    const cx = Number(dot.getAttribute('cx'));
+    const cy = Number(dot.getAttribute('cy'));
+    const val = axisValue(cy, lineAxis.topY, lineAxis.topV, lineAxis.botY, lineAxis.botV);
+    const date = dates[i] ? dates[i].textContent : `第${i + 1}日`;
+
+    const hit = document.createElementNS(SVG_NS, 'circle');
+    hit.setAttribute('class', 'chart-hit');
+    hit.setAttribute('cx', cx);
+    hit.setAttribute('cy', cy);
+    hit.setAttribute('r', 13);          // 原节点 r=3 太小，放大命中范围
+    hit.setAttribute('fill', 'transparent');
+    svg.appendChild(hit);
+
+    hit.addEventListener('mouseenter', (e) => {
+      dot.classList.add('hl');
+      showTooltip(
+        `<div class="tt-title">${date} · 会员订购</div>` +
+        tooltipRow('#4fa3ff', '订购量', val.toFixed(1) + '万'),
+        e.clientX, e.clientY
+      );
+    });
+    hit.addEventListener('mousemove', (e) => {
+      const p = toLocal(e.clientX, e.clientY);
+      tooltipEl.style.left = Math.min(1900 - 80, Math.max(100, p.x)) + 'px';
+      tooltipEl.style.top = (p.y - 16) + 'px';
+    });
+    hit.addEventListener('mouseleave', () => {
+      dot.classList.remove('hl');
+      hideTooltip();
+    });
+  });
+}
+
+// 会员收入组合图：左轴 y=12 对应 10 亿元、y=122 对应 0；右轴 y=12 对应 30%、y=117 对应 0%
+const revAxis = { topY: 12, topV: 10, botY: 122, botV: 0 };
+const pctAxis = { topY: 12, topV: 30, botY: 117, botV: 0 };
+
+function initRevenueTooltip() {
+  const svg = document.querySelector('.panel.r2 svg');
+  if (!svg) return;
+  const bars = svg.querySelectorAll('rect');
+  const dates = svg.querySelectorAll('text[y="128"]');
+  const dots = svg.querySelectorAll('circle');
+
+  bars.forEach((bar, i) => {
+    const y = Number(bar.getAttribute('y'));
+    const cx = Number(bar.getAttribute('x')) + Number(bar.getAttribute('width')) / 2;
+    const rev = axisValue(y, revAxis.topY, revAxis.topV, revAxis.botY, revAxis.botV);
+    const pct = axisValue(y, pctAxis.topY, pctAxis.topV, pctAxis.botY, pctAxis.botV);
+    const date = dates[i] ? dates[i].textContent : `第${i + 1}日`;
+    bar.classList.add('rev-bar');
+
+    // 透明热区覆盖整根柱子的高度，比直接监听柱子更好命中
+    const hit = document.createElementNS(SVG_NS, 'rect');
+    hit.setAttribute('class', 'chart-hit');
+    hit.setAttribute('x', cx - 17);
+    hit.setAttribute('y', 8);
+    hit.setAttribute('width', 34);
+    hit.setAttribute('height', 118);
+    hit.setAttribute('fill', 'transparent');
+    svg.appendChild(hit);
+
+    const enter = (e) => {
+      bar.classList.add('hl');
+      if (dots[i]) dots[i].setAttribute('r', 5);
+      showTooltip(
+        `<div class="tt-title">${date} · 会员收入</div>` +
+        tooltipRow('#4fa3ff', '收入', rev.toFixed(2) + '亿元') +
+        tooltipRow('#ffc53d', '环比增长', pct.toFixed(1) + '%'),
+        e.clientX, e.clientY
+      );
+    };
+    const leave = () => {
+      bar.classList.remove('hl');
+      if (dots[i]) dots[i].setAttribute('r', 3.5);
+      hideTooltip();
+    };
+    hit.addEventListener('mouseenter', enter);
+    hit.addEventListener('mouseleave', leave);
+    bar.addEventListener('mouseenter', enter);
+    bar.addEventListener('mouseleave', leave);
+  });
+}
+
+// 渠道饼图：conic-gradient 无法分扇区响应 hover，改为监听图例并联动中心文字与扇区提亮
+const channelSegs = [
+  { name:'IPTV',       pct:42.8, color:'#4fa3ff' },
+  { name:'手机营业厅', pct:18.6, color:'#36cfc9' },
+  { name:'联通APP',    pct:15.7, color:'#ffc53d' },
+  { name:'线下营业厅', pct:11.3, color:'#9254de' },
+  { name:'第三方平台', pct:7.6,  color:'#13c2c2' },
+  { name:'其他',       pct:4.0,  color:'#ff7a45' }
+];
+const PIE_CENTER_DEFAULT = '渠道构成<br>100%';
+
+function buildConic(highlightIndex) {
+  // 重绘渐变实现“该扇区提亮、其余压暗”，视觉上近似分扇区 hover
+  let acc = 0;
+  const stops = channelSegs.map((seg, i) => {
+    const from = acc;
+    acc += seg.pct;
+    const color = (highlightIndex === -1 || i === highlightIndex)
+      ? seg.color
+      : seg.color + '59';   // 追加 alpha 十六进制，压暗非目标扇区
+    // 累加会产生浮点误差（如 88.39999999999999），统一保留 1 位小数，
+    // 与原 CSS 里手写的 42.8%/61.4%/77.1%/88.4%/96%/100% 严格一致
+    return `${color} ${from.toFixed(1)}% ${acc.toFixed(1)}%`;
+  });
+  return `conic-gradient(${stops.join(', ')})`;
+}
+
+function initChannelPie() {
+  const pie = document.querySelector('.pie');
+  const center = document.querySelector('.pie-center');
+  const items = document.querySelectorAll('.legend-item');
+  if (!pie || !center || !items.length) return;
+
+  items.forEach((item, i) => {
+    const seg = channelSegs[i];
+    if (!seg) return;
+    item.addEventListener('mouseenter', (e) => {
+      item.classList.add('hl');
+      pie.style.background = buildConic(i);
+      center.innerHTML = `${seg.name}<br>${seg.pct}%`;
+      showTooltip(
+        `<div class="tt-title">用户渠道来源</div>` +
+        tooltipRow(seg.color, seg.name, seg.pct + '%'),
+        e.clientX, e.clientY
+      );
+    });
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('hl');
+      pie.style.background = buildConic(-1);
+      center.innerHTML = PIE_CENTER_DEFAULT;
+      hideTooltip();
+    });
+  });
+}
+
+// SECTION: rank-tabs —— 热门业务省份排行的 Tab 数据切换
+// 演示用 Mock 数据，与页面其他模块的示意口径保持一致（单位已含在数值文本中）
+const rankData = [
+  // Tab 1「会员订购」：value 文本已自带单位（万），width 为条形相对长度
+  { rows: [
+    { name:'山东', value:'1,248万', width:'95%' },
+    { name:'广东', value:'1,102万', width:'85%' },
+    { name:'江苏', value:'986万',   width:'75%' },
+    { name:'河南', value:'842万',   width:'65%' },
+    { name:'浙江', value:'768万',   width:'55%' }
+  ] },
+  // Tab 2「收入贡献」
+  { rows: [
+    { name:'山东', value:'1.28亿元', width:'95%' },
+    { name:'广东', value:'1.15亿元', width:'88%' },
+    { name:'江苏', value:'0.96亿元', width:'74%' },
+    { name:'浙江', value:'0.83亿元', width:'64%' },
+    { name:'河南', value:'0.71亿元', width:'55%' }
+  ] },
+  // Tab 3「活跃率」
+  { rows: [
+    { name:'广东', value:'81.6%', width:'95%' },
+    { name:'浙江', value:'79.3%', width:'92%' },
+    { name:'山东', value:'77.8%', width:'90%' },
+    { name:'江苏', value:'76.2%', width:'88%' },
+    { name:'河南', value:'73.5%', width:'85%' }
+  ] }
+];
+
+// 当前激活的 Tab 索引（无激活项时回落到第一个）
+function getActiveTabIndex() {
+  const active = document.querySelector('.tab.active');
+  return active ? (Number(active.dataset.index) || 0) : 0;
+}
+
+// 按 Tab 渲染排行：省份、数值、条宽三者同时更新
+function renderRank(index) {
+  const data = rankData[index];
+  if (!data) return;
+  document.querySelectorAll('.rank-item').forEach((item, i) => {
+    const row = data.rows[i];
+    if (!row) return;
+    const nameEl = item.querySelector('.rank-name');
+    const valueEl = item.querySelector('.rank-value');
+    const fill = item.querySelector('.rank-bar-fill');
+    if (nameEl) nameEl.textContent = row.name;
+    if (valueEl) valueEl.textContent = row.value;
+    if (!fill) return;
+    // 先归零并强制回流，再赋终值，保证每次切换都能看到生长动画
+    fill.style.width = '0';
+    void fill.offsetWidth;
+    fill.style.width = row.width;
+  });
+}
+
+// SECTION: tab-carousel —— Tab 激活 + 自动轮播
+// 手动点击与自动轮播共用 activateTab，避免两处逻辑漂移；
+// 点击后重置计时，避免刚点完立刻被自动切走。
+let rankTimer = null;
+const RANK_INTERVAL = 6000;
+
+function activateTab(index) {
+  const tabs = document.querySelectorAll('.tab');
+  const target = tabs[index];
+  if (!target) return;
+  tabs.forEach(t => t.classList.remove('active'));
+  target.classList.add('active');
+  renderRank(index);
+  // 强制回流以重启 .tab.active::after 的指示条动画
+  void target.offsetWidth;
+}
+
+function startRankCarousel() {
+  stopRankCarousel();
+  rankTimer = setInterval(() => {
+    const tabs = document.querySelectorAll('.tab');
+    activateTab((getActiveTabIndex() + 1) % tabs.length);
+  }, RANK_INTERVAL);
+}
+
+function stopRankCarousel() {
+  if (rankTimer) { clearInterval(rankTimer); rankTimer = null; }
+}
+
+// 鼠标进入排行面板时暂停轮播，移出后继续——避免用户正在看时被切走
+const rankPanel = document.querySelector('.panel.r1');
+if (rankPanel) {
+  rankPanel.addEventListener('mouseenter', () => {
+    stopRankCarousel();
+    rankPanel.querySelector('.tab-row')?.classList.add('paused');
+  });
+  rankPanel.addEventListener('mouseleave', () => {
+    rankPanel.querySelector('.tab-row')?.classList.remove('paused');
+    startRankCarousel();
+  });
+}
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    activateTab(Number(tab.dataset.index) || 0);
+    startRankCarousel();
+  });
+});
+
+// ============ SECTION: modal —— 详情弹窗 ============
+// 一个通用弹窗组件，各入口只负责提供标题与内容 HTML。
+// 弹窗容器在 .screen 内部，随画布一起缩放，故尺寸用 1920 设计坐标系的 px。
+const modalMask = document.getElementById('modalMask');
+const modalBox = document.getElementById('modalBox');
+const modalTitle = document.getElementById('modalTitle');
+const modalSub = document.getElementById('modalSub');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+let lastFocused = null;
+
+function openModal(title, sub, bodyHTML) {
+  lastFocused = document.activeElement;
+  modalTitle.textContent = title;
+  modalSub.textContent = sub || '';
+  modalSub.style.display = sub ? '' : 'none';
+  modalBody.innerHTML = bodyHTML;
+  modalMask.classList.add('active');
+  stopRankCarousel();   // 弹窗期间停掉轮播，避免背景数据一直在变
+  hideTooltip();
+  modalClose.focus();
+}
+
+function closeModal() {
+  if (!modalMask.classList.contains('active')) return;
+  modalMask.classList.remove('active');
+  modalBody.innerHTML = '';
+  startRankCarousel();
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
+}
+
+modalClose.addEventListener('click', closeModal);
+// 点击遮罩关闭；点击弹窗本体不关闭
+modalMask.addEventListener('click', (e) => {
+  if (e.target === modalMask) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function kpiHTML(items) {
+  return `<div class="modal-kpis">${items.map(k =>
+    `<div class="modal-kpi"><div class="k-val">${k.value}</div><div class="k-label">${k.label}</div></div>`
+  ).join('')}</div>`;
+}
+
+function tableHTML(head, rows) {
+  return `<table class="modal-table"><thead><tr>${head.map(h =>
+    `<th${h.num ? ' style="text-align:right"' : ''}>${h.text}</th>`).join('')}</tr></thead><tbody>` +
+    rows.map(r => `<tr>${r.map(c =>
+      `<td${c.num ? ' class="num"' : ''}>${c.text}</td>`).join('')}</tr>`).join('') +
+    '</tbody></table>';
+}
+
+const DEMO_NOTE = '本页为视觉设计演示稿，以上数值均为示意数据，非真实业务统计。';
+
+// 业务模块详情（对应顶部 5 个 icon 的 data-biz）
+const bizDetail = [
+  {
+    title: '智慧大屏', sub: '家庭客厅场景 · IPTV 大屏会员',
+    body: kpiHTML([
+      { value:'3,860<small>万</small>', label:'大屏活跃用户' },
+      { value:'68.4<small>%</small>',    label:'会员渗透率' },
+      { value:'142<small>分钟</small>',  label:'日均观看时长' }
+    ]) + tableHTML(
+      [{text:'能力模块'},{text:'核心价值'},{text:'覆盖',num:true}],
+      [
+        [{text:'内容聚合'},{text:'影视、少儿、教育多品类统一入口'},{text:'全国',num:true}],
+        [{text:'语音交互'},{text:'遥控器语音搜索与点播'},{text:'28省',num:true}],
+        [{text:'多屏互动'},{text:'手机投屏、跨端续播'},{text:'31省',num:true}]
+      ]
+    ) + `<div class="modal-note">${DEMO_NOTE}</div>`
+  },
+  {
+    title: '5G会员', sub: '5G 套餐权益 · 融合会员体系',
+    body: kpiHTML([
+      { value:'1,246<small>万</small>', label:'5G会员规模' },
+      { value:'23.8<small>%</small>',   label:'环比增速' },
+      { value:'8.9<small>亿</small>',   label:'年权益核销' }
+    ]) + tableHTML(
+      [{text:'权益类型'},{text:'说明'},{text:'领取率',num:true}],
+      [
+        [{text:'视频会员'},{text:'主流平台月卡互换'},{text:'76.2%',num:true}],
+        [{text:'流量加速'},{text:'专属上行带宽保障'},{text:'61.5%'}],
+        [{text:'生活权益'},{text:'出行、餐饮、购物折扣'},{text:'44.3%'}]
+      ]
+    ) + `<div class="modal-note">${DEMO_NOTE}</div>`
+  },
+  {
+    title: '家庭宽带', sub: '全屋智能 · 宽带融合套餐',
+    body: kpiHTML([
+      { value:'6,420<small>万</small>', label:'宽带用户' },
+      { value:'52.7<small>%</small>',   label:'融合绑定率' },
+      { value:'318<small>Mbps</small>', label:'平均下行速率' }
+    ]) + tableHTML(
+      [{text:'产品档位'},{text:'主打场景'},{text:'占比',num:true}],
+      [
+        [{text:'千兆全屋'},{text:'大户型、多设备并发'},{text:'31.6%'}],
+        [{text:'500M 家庭'},{text:'常规家庭日常使用'},{text:'46.2%'}],
+        [{text:'300M 基础'},{text:'单身公寓、老人家庭'},{text:'22.2%'}]
+      ]
+    ) + `<div class="modal-note">${DEMO_NOTE}</div>`
+  },
+  {
+    title: '内容生态', sub: '版权合作 · 自制内容运营',
+    body: kpiHTML([
+      { value:'12.8<small>万</small>', label:'在架内容量' },
+      { value:'86<small>家</small>',    label:'版权合作方' },
+      { value:'41.3<small>%</small>',  label:'新内容点击占比' }
+    ]) + tableHTML(
+      [{text:'内容品类'},{text:'运营策略'},{text:'时长占比',num:true}],
+      [
+        [{text:'影视剧'},{text:'头部独播 + 会员抢先看'},{text:'44.7%'}],
+        [{text:'少儿教育'},{text:'分龄专区、家长管控'},{text:'23.1%'}],
+        [{text:'体育赛事'},{text:'赛事日历 + 多路解说'},{text:'18.6%'}],
+        [{text:'综艺纪录'},{text:'周更排播、话题运营'},{text:'13.6%'}]
+      ]
+    ) + `<div class="modal-note">${DEMO_NOTE}</div>`
+  },
+  {
+    title: '分省运营', sub: '区域差异化 · 省级运营中心',
+    body: kpiHTML([
+      { value:'31<small>省</small>',  label:'已开通运营中心' },
+      { value:'18<small>省</small>',  label:'差异化策略试点' },
+      { value:'73.5<small>%</small>', label:'平均目标达成率' }
+    ]) + tableHTML(
+      [{text:'省份'},{text:'本地化策略'},{text:'达成率',num:true}],
+      [
+        [{text:'山东'},{text:'下沉市场地推 + 乡镇营业厅联动'},{text:'92.4%'}],
+        [{text:'广东'},{text:'粤港澳大湾区跨境内容合作'},{text:'88.7%'}],
+        [{text:'江苏'},{text:'政企融合、智慧社区试点'},{text:'85.1%'}],
+        [{text:'浙江'},{text:'电商直播 + 会员权益互通'},{text:'83.6%'}]
+      ]
+    ) + `<div class="modal-note">${DEMO_NOTE}</div>`
+  }
+];
+
+// 核心活动效果详情（对应 3 条 activity-row 的 data-act）
+const activityDetail = [
+  { title:'春节红包活动', period:'2026-01-20 ~ 2026-02-20',
+    kpi:[{value:'328<small>万</small>',label:'订购量'},{value:'18.7<small>%</small>',label:'转化率'},{value:'2,140<small>万</small>',label:'参与用户'}],
+    table:[['触点','曝光量','点击率'],['IPTV 首页焦点图','8,620万','12.4%'],
+           ['手机营业厅弹窗','5,180万','9.8%'],['短信 + 外呼','2,340万','6.1%']] },
+  { title:'分省差异化运营', period:'2026-03-01 ~ 2026-06-30',
+    kpi:[{value:'256<small>万</small>',label:'订购量'},{value:'16.3<small>%</small>',label:'转化率'},{value:'18<small>省</small>',label:'试点范围'}],
+    table:[['策略','落地省份','订购增量'],['本地内容包','山东、河南','98万'],
+           ['乡镇渠道联动','江苏、安徽','86万'],['方言客服','广东、四川','72万']] },
+  { title:'全渠道协同营销', period:'2026-05-01 ~ 2026-08-31',
+    kpi:[{value:'412<small>万</small>',label:'订购量'},{value:'22.6<small>%</small>',label:'转化率'},{value:'9<small>个</small>',label:'协同触点'}],
+    table:[['触点组合','协同方式','转化率'],['线上广告 + 落地页','统一权益口径','24.8%'],
+           ['直播 + 小程序','边看边领','21.3%'],['门店 + 企业微信','到店后私域跟进','19.6%']] }
+];
+
+// 环形图详情（对应 2 个 donut 的 data-donut）
+const donutDetail = [
+  { title:'用户续费率', pct:'82.4%', trend:'环比 ↑ 3.2%', color:'#4fa3ff',
+    rows:[['连续包月','62.3%','自动续费，流失最低'],['年卡会员','14.8%','到期前 7 日提醒'],
+          ['月卡手动续费','5.3%','需人工触发，流失较高']] },
+  { title:'用户活跃率', pct:'76.8%', trend:'环比 ↑ 2.7%', color:'#ffc53d',
+    rows:[['日活跃','38.2%','近 7 日有观看行为'],['周活跃','26.4%','近 30 日有观看行为'],
+          ['月活跃','12.2%','仅月初/月末集中使用']] }
+];
+
+function bindModals() {
+  // 顶部业务图标
+  document.querySelectorAll('.top-icon').forEach(icon => {
+    icon.addEventListener('click', () => {
+      const d = bizDetail[Number(icon.dataset.biz)];
+      if (d) openModal(d.title, d.sub, d.body);
+    });
+  });
+
+  // 核心活动效果
+  document.querySelectorAll('.activity-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const d = activityDetail[Number(row.dataset.act)];
+      if (!d) return;
+      openModal(d.title, `活动周期：${d.period}`,
+        kpiHTML(d.kpi) +
+        tableHTML([{text:d.table[0][0]},{text:d.table[0][1]},{text:d.table[0][2],num:true}],
+          d.table.slice(1).map(r => [{text:r[0]},{text:r[1]},{text:r[2],num:true}])) +
+        `<div class="modal-note">${DEMO_NOTE}</div>`);
+    });
+  });
+
+  // 环形图
+  document.querySelectorAll('.donut').forEach(donut => {
+    donut.addEventListener('click', () => {
+      const d = donutDetail[Number(donut.dataset.donut)];
+      if (!d) return;
+      openModal(d.title, `当前 ${d.pct} · ${d.trend}`,
+        kpiHTML([{value:d.pct,label:'当前占比'},{value:d.trend.replace('环比 ',''),label:'环比变化'}]) +
+        tableHTML([{text:'构成'},{text:'占比',num:true},{text:'说明'}],
+          d.rows.map(r => [{text:r[0]},{text:r[1],num:true},{text:r[2]}])) +
+        `<div class="modal-note">${DEMO_NOTE}</div>`);
+    });
+  });
+
+  // 省份排行项：展示该省在三个 Tab 下的完整表现
+  document.querySelectorAll('.rank-item').forEach((item, i) => {
+    item.addEventListener('click', () => {
+      // 点击时排行可能已被轮播切到别的 Tab，故按当前 DOM 上的省份名反查三组数据
+      const nameEl = item.querySelector('.rank-name');
+      if (!nameEl) return;
+      const name = nameEl.textContent;
+      const rows = rankData.map((set, si) => {
+        const hit = set.rows.find(r => r.name === name);
+        const tabName = document.querySelectorAll('.tab')[si]?.textContent || `维度${si + 1}`;
+        return [{text:tabName},{text:hit ? hit.value : '—',num:true},
+                {text:hit ? `位列第 ${set.rows.indexOf(hit) + 1}` : '未进前五',num:false}];
+      });
+      openModal(`${name} · 业务表现`, '三个维度下的排名与数值',
+        tableHTML([{text:'维度'},{text:'数值',num:true},{text:'排名'}], rows) +
+        `<div class="modal-note">${DEMO_NOTE}</div>`);
+    });
+  });
+}
+
+// 年龄分层柱状图：数值直接取自 DOM 文本，无需反算
+function initAgeBarTooltip() {
+  document.querySelectorAll('.bar-col').forEach(col => {
+    const label = col.querySelector('.bar-label')?.textContent || '';
+    const val = col.querySelector('.bar-value')?.textContent || '';
+    col.addEventListener('mouseenter', (e) => {
+      showTooltip(
+        `<div class="tt-title">用户分层 · ${label}</div>` +
+        tooltipRow('#4fa3ff', '占比', val),
+        e.clientX, e.clientY
+      );
+    });
+    col.addEventListener('mousemove', (e) => {
+      const p = toLocal(e.clientX, e.clientY);
+      tooltipEl.style.left = Math.min(1900 - 80, Math.max(100, p.x)) + 'px';
+      tooltipEl.style.top = (p.y - 16) + 'px';
+    });
+    col.addEventListener('mouseleave', hideTooltip);
+  });
+}
+
+// ============ SECTION: ambient —— 环形图入场生长 + 数字实时跳动 ============
+// 环形图用 conic-gradient，CSS 无法直接过渡渐变角度，故用 rAF 逐帧重绘从 0 长到目标值。
+function growDonut(donut, duration = 1400) {
+  const pct = parseFloat(donut.dataset.pct);
+  const color = donut.dataset.color;
+  if (!Number.isFinite(pct) || !color) return;
+  const valueEl = donut.querySelector('.donut-value');
+  const decimals = (String(donut.dataset.pct).split('.')[1] || '').length;
+  const bg = (v) => `conic-gradient(${color} 0 ${v}%, rgba(255,255,255,0.1) ${v}% 100%)`;
+  let t0 = null;
+  function frame(ts) {
+    if (t0 === null) t0 = ts;
+    const p = Math.min(1, (ts - t0) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);            // easeOutCubic
+    const cur = pct * eased;
+    donut.style.background = bg(cur.toFixed(2));
+    if (valueEl) valueEl.textContent = cur.toFixed(decimals) + '%';
+    if (p < 1) requestAnimationFrame(frame);
+    else donut.style.background = bg(pct);            // 收尾对齐精确值
+  }
+  requestAnimationFrame(frame);
+}
+
+// 数字实时跳动：模拟“实时”刷新。基于当前值做小幅增量，复用 animateNumber 从当前值滚到新值。
+// 注意这会让显示值缓慢偏离 HTML 原值，属演示效果；页面已加“演示数据”角标。
+const liveTicks = [
+  { every: 7000,  delta: () => 1 + Math.floor(Math.random() * 3) },  // 总会员数
+  { every: 9000,  delta: () => 1 + Math.floor(Math.random() * 2) },  // 当日新增
+  { every: 11000, delta: () => (Math.random() < 0.6 ? 1 : 0) },      // 当日订购
+  { every: 12000, delta: () => 0.01 }                                // 会员收入（2 位小数）
+];
+
+function startLiveTicks() {
+  liveTicks.forEach((cfg, i) => {
+    const item = numberSpecs[i];
+    if (!item || !item.spec) return;
+    setInterval(() => {
+      const spec = item.spec;
+      // 弹窗打开或入场动画未结束时跳过，避免与主动画争抢同一元素
+      if (modalMask.classList.contains('active')) return;
+      if (typeof spec.current !== 'number') return;
+      const inc = cfg.delta();
+      if (!inc) return;
+      const from = spec.current;
+      spec.target = from + inc;
+      spec.el.classList.remove('tick');
+      void spec.el.offsetWidth;              // 重启闪烁动画
+      spec.el.classList.add('tick');
+      animateNumber(spec, 600, from);
+      setTimeout(() => spec.el.classList.remove('tick'), 750);
+    }, cfg.every);
+  });
+}
+
+// ============ SECTION: bootstrap —— 统一初始化 ============
+// 脚本在 body 末尾，DOM 已全部解析；放入 DOMContentLoaded 与入场动画同批启动。
+document.addEventListener('DOMContentLoaded', () => {
+  initLineChartTooltip();
+  initRevenueTooltip();
+  initChannelPie();
+  initAgeBarTooltip();
+  bindModals();
+  document.querySelectorAll('.donut').forEach(d => growDonut(d));
+  startRankCarousel();
+  startLiveTicks();
+});
+</script>
+</body>
+</html>

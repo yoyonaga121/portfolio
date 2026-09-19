@@ -1,10 +1,51 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>张晓曦 | AI Visual Designer Portfolio</title>
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+
+<title>张晓曦 | AI视觉设计师 · IPTV营销运营专家 | 作品集</title>
+<meta name="description" content="张晓曦作品集：AI视觉设计师 × 13年+IPTV运营专家，18年新媒体从业经历。涵盖品牌视觉全案、营销策划与运营、影像创作，主导50+品牌项目、每年20+场全国级营销活动、支撑31省分省运营，2025年两次获全国医学类科普视频竞赛一等奖。">
+<meta name="author" content="张晓曦">
+<meta name="keywords" content="张晓曦,AI视觉设计师,品牌设计,IPTV运营,营销策划,视觉设计,作品集,光谷效应">
+<meta name="robots" content="index, follow">
+
+<!-- 域名已填写为 GitHub Pages 项目站地址（2026-09-19）。以下 4 处均为绝对 URL：
+     canonical、og:url、og:image、twitter:image。社交平台与搜索引擎抓取时不执行 JS、
+     也不接受相对路径，故必须保留绝对地址，勿改回相对路径。
+
+     ⚠️ 上传部署注意：本页 canonical 与 og:url 指向 https://yoyonaga121.github.io/portfolio/
+     （站点根地址，不带文件名）。GitHub Pages 的根路径只会查找 index.html，
+     因此上传时必须把本文件重命名为 index.html，否则根路径会 404、canonical 也会失效。 -->
+<link rel="canonical" href="https://yoyonaga121.github.io/portfolio/">
+
+<!-- 站点图标（favicon.png 与 og-image.jpg 已随本次修改生成在项目根目录） -->
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- Open Graph：分享到微信 / 微博 / LinkedIn / Facebook 时的标题、摘要与封面 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="张晓曦 · 作品集">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="张晓曦 | AI视觉设计师 · IPTV营销运营专家">
+<meta property="og:description" content="视觉构建想象 —— 品牌视觉全案、营销策划与运营、影像创作。13年+IPTV运营经验，50+品牌项目，每年20+场全国级营销活动。">
+<meta property="og:url" content="https://yoyonaga121.github.io/portfolio/">
+<meta property="og:image" content="https://yoyonaga121.github.io/portfolio/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="张晓曦作品集封面 · 低多边形风品牌主视觉">
+
+<!-- Twitter Card：分享到 X / Telegram 等使用 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="张晓曦 | AI视觉设计师 · IPTV营销运营专家">
+<meta name="twitter:description" content="视觉构建想象 —— 品牌视觉全案、营销策划与运营、影像创作。13年+IPTV运营经验，50+品牌项目。">
+<meta name="twitter:image" content="https://yoyonaga121.github.io/portfolio/og-image.jpg">
+
+<!-- Noto Sans SC 必须包含 600：CSS 中有 18 处 font-weight:600 继承 body 字体族。
+     若该族不加载 600，浏览器按字重匹配规则会向上取 700（目标>500 时先向上找），
+     导致标题与强调文字比设计稿偏粗一档。Serif SC 原本已含 600，无需改动。 -->
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap">
 <style>
 /* ===== Reset ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,6 +87,20 @@ video { display: block; }
   --text-muted: #5a5a6a;
   --border: rgba(255, 255, 255, 0.07);
   --border-light: rgba(255, 255, 255, 0.12);
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -439,6 +494,7 @@ video { display: block; }
 .project-block {
   margin-bottom: 60px;
   position: relative;
+  scroll-margin-top: 180px;
 }
 .project-block:last-child { margin-bottom: 0; }
 .project-header {
@@ -714,11 +770,16 @@ video { display: block; }
   justify-content: center;
   z-index: 9999;
   opacity: 0;
+  /* visibility 是关闭态对屏幕阅读器隐藏的关键：opacity:0 + pointer-events:none
+     只让元素「看不见、点不到」，内容仍留在无障碍树里会被逐个朗读。
+     参与 transition 才能保住原有的淡出效果（否则会瞬间消失）。 */
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .vi-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .vi-lightbox img {
@@ -728,6 +789,22 @@ video { display: block; }
   border-radius: 4px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   transition: opacity 0.25s ease;
+}
+
+/* 核心能力详情图放大1.8倍 */
+#skillDetailLightbox {
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5%;
+}
+#skillDetailLightboxImg {
+  max-width: none !important;
+  max-height: none !important;
+  width: auto;
+  height: auto;
+  zoom: 1.3;
 }
 .vi-lightbox-close {
   position: absolute;
@@ -964,11 +1041,13 @@ video { display: block; }
   justify-content: center;
   z-index: 9999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .offline-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .offline-lightbox img {
@@ -1175,11 +1254,13 @@ video { display: block; }
   justify-content: center;
   z-index: 9999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .product-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .product-lightbox img {
@@ -1282,11 +1363,13 @@ video { display: block; }
   justify-content: center;
   z-index: 9999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .video-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .video-lightbox-video {
@@ -1441,11 +1524,13 @@ video { display: block; }
   justify-content: center;
   z-index: 9999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .digital-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .digital-lightbox img {
@@ -1523,13 +1608,15 @@ video { display: block; }
   background: rgba(0,0,0,0.95);
   z-index: 9999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   overflow: hidden;
   cursor: grab;
 }
 .digital-long-lightbox.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 .digital-long-lightbox.grabbing {
@@ -2222,7 +2309,12 @@ video { display: block; }
   .side-nav { display: none; }
 }
 
-/* ===== Left Side Navigation ===== */
+/* 左侧导航文字标签。
+   此处原本缺失选择器与左花括号，只剩 4 条裸属性加一个多余的右花括号，
+   使整段样式的左右花括号数量不平衡（610 对 611），浏览器会丢弃这 5 行。
+   导航按钮内的文字是不带 class 的 span 元素，故按原设计意图补全为
+   排除圆点后的 span，恢复衬线字体与 3px 字距。 */
+.side-nav-item span:not(.nav-dot) {
   font-family: 'Noto Serif SC', serif;
   font-size: 12px;
   color: var(--text-secondary);
@@ -2445,6 +2537,1247 @@ video { display: block; }
     height: 200px;
   }
 }
+
+/* ===== Marketing Section ===== */
+.marketing {
+  background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.02), transparent);
+}
+
+.marketing-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto 60px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+}
+
+.stat-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.stat-num span {
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.stat-suffix {
+  font-size: 24px !important;
+  opacity: 0.8;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.marketing-skills {
+  max-width: 1080px;
+  margin: 0 auto 60px;
+  position: relative;
+}
+
+/* 初始状态：4列网格 */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  position: relative;
+  transition: grid-template-columns 0.6s cubic-bezier(0.4, 0, 0.2, 1), gap 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skills-list {
+  display: contents;
+}
+
+/* 点击后切换为左右布局 */
+.marketing-skills.active .skills-layout {
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.marketing-skills.active .skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skills-detail-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 100px;
+  opacity: 0;
+  transform: translateX(30px) scale(0.95);
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  width: calc(50% - 15px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.6s;
+  overflow: hidden;
+}
+
+.marketing-skills.active .skills-detail-panel {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  visibility: visible;
+  position: sticky;
+  width: auto;
+  right: auto;
+  transition: opacity 0.5s ease 0.8s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s, visibility 0s;
+}
+
+.skills-detail-placeholder {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.skills-detail-placeholder .icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.skills-detail-placeholder p {
+  font-size: 14px;
+}
+
+.close-skills-btn:hover {
+  background: #b8965a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201,169,110,0.3);
+}
+
+/* 交互模式下的技能卡片样式 */
+.marketing-skills .mkt-skill-card {
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* 激活状态下，每个卡片依次出现 */
+.marketing-skills.active .mkt-skill-card {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.marketing-skills.active .mkt-skill-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.marketing-skills.active .mkt-skill-card:hover::before,
+.marketing-skills.active .mkt-skill-card.active::before {
+  height: 60%;
+}
+
+/* 初始隐藏激活后的卡片，然后依次淡入 */
+.marketing-skills .mkt-skill-card {
+  opacity: 1;
+}
+
+.marketing-skills.active .mkt-skill-card {
+  animation: skillCardIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.marketing-skills.active .mkt-skill-card:nth-child(1) { animation-delay: 0.05s; }
+.marketing-skills.active .mkt-skill-card:nth-child(2) { animation-delay: 0.17s; }
+.marketing-skills.active .mkt-skill-card:nth-child(3) { animation-delay: 0.29s; }
+.marketing-skills.active .mkt-skill-card:nth-child(4) { animation-delay: 0.41s; }
+.marketing-skills.active .mkt-skill-card:nth-child(5) { animation-delay: 0.53s; }
+.marketing-skills.active .mkt-skill-card:nth-child(6) { animation-delay: 0.65s; }
+.marketing-skills.active .mkt-skill-card:nth-child(7) { animation-delay: 0.77s; }
+.marketing-skills.active .mkt-skill-card:nth-child(8) { animation-delay: 0.89s; }
+
+@keyframes skillCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.marketing-skills.active .mkt-skill-card.active {
+  border-color: var(--gold-border);
+  background: rgba(201,169,110,0.08);
+}
+
+.marketing-skills.active .mkt-skill-card:hover {
+  transform: translateX(-8px);
+  border-color: var(--gold-border);
+  background: rgba(201,169,110,0.05);
+}
+
+.marketing-skills.active .mkt-skill-icon {
+  font-size: 24px;
+  margin-bottom: 0;
+  margin-right: 12px;
+  display: inline-block;
+}
+
+.marketing-skills.active .mkt-skill-card h4 {
+  margin-bottom: 0;
+  margin-right: 12px;
+  min-width: 120px;
+}
+
+.marketing-skills.active .mkt-skill-card p {
+  font-size: 12px;
+  margin: 0;
+}
+
+/* 模块二：代表性案例深度解析 */
+.case-deepdive {
+  max-width: 1080px;
+  margin: 0 auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.case-row {
+  display: grid;
+  gap: 20px;
+}
+
+.case-row-1 {
+  grid-template-columns: 1fr 1.5fr 1fr;
+}
+
+.case-row-2 {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.case-panel {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.case-panel:hover {
+  border-color: var(--gold-border);
+}
+
+.case-panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-panel-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* 中间活动图 */
+.case-activity-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #8b0000, #dc143c);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.case-activity-img::before {
+  content: '🏮';
+  font-size: 60px;
+  opacity: 0.8;
+}
+
+/* 层叠卡片 */
+.case-stack {
+  position: relative;
+  height: 200px;
+  margin-top: 16px;
+}
+
+.stack-card {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.stack-card.main {
+  left: 0;
+  z-index: 3;
+  width: 80%;
+  background: linear-gradient(135deg, var(--bg-card-2), var(--bg-card));
+}
+
+.stack-card.card-2 {
+  right: 0;
+  top: 10px;
+  z-index: 2;
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+.stack-card.card-3 {
+  right: 0;
+  top: 20px;
+  z-index: 1;
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+/* 数据展示 */
+.case-data-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.data-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* 图表展示 */
+.case-chart {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 20px 10px 0;
+  margin-top: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chart-bar {
+  width: 12%;
+  background: linear-gradient(180deg, var(--gold), rgba(201,169,110,0.3));
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+  background: linear-gradient(180deg, #d4b87a, rgba(212,184,122,0.3));
+}
+
+.chart-bar::after {
+  content: attr(data-value);
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 10px 0;
+}
+
+.chart-label {
+  width: 12%;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.case-deepdive-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-deepdive-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(201,169,110,0.15);
+  color: var(--gold);
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.case-deepdive-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.case-deepdive-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.case-deepdive-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.case-feature-item .check {
+  color: var(--gold);
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.case-deepdive-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.case-metric-card {
+  padding: 24px 20px;
+  background: rgba(201,169,110,0.05);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.case-metric-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.case-metric-num span {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.case-metric-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* 模块三：突破性能力（左右两个卡片） */
+.breakthrough-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto 60px;
+}
+
+.breakthrough-card {
+  padding: 36px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.breakthrough-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.breakthrough-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+}
+
+.breakthrough-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.breakthrough-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 8px 8px 0 0;
+}
+
+.breakthrough-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.breakthrough-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.breakthrough-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.breakthrough-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.breakthrough-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 48px;
+}
+
+.breakthrough-point {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.breakthrough-point .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* 右侧动画区域 */
+.breakthrough-visual {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 左侧卡片：齿轮产品化动画 */
+.gear-system {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.gear {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  opacity: 0.6;
+}
+
+.gear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 30%;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.gear-1 {
+  width: 80px;
+  height: 80px;
+  top: 10px;
+  left: 10px;
+  animation: spin 8s linear infinite;
+}
+
+.gear-2 {
+  width: 50px;
+  height: 50px;
+  bottom: 10px;
+  right: 10px;
+  animation: spin-reverse 6s linear infinite;
+}
+
+.gear-3 {
+  width: 35px;
+  height: 35px;
+  bottom: 30px;
+  left: 20px;
+  animation: spin 5s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* 右侧卡片：全国扩散动画 */
+.network-system {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.network-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #0a0a0f;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.network-node {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.network-node:nth-child(2) { top: 10px; left: 50%; margin-left: -10px; animation-delay: 0s; }
+.network-node:nth-child(3) { bottom: 10px; left: 50%; margin-left: -10px; animation-delay: 0.3s; }
+.network-node:nth-child(4) { left: 10px; top: 50%; margin-top: -10px; animation-delay: 0.6s; }
+.network-node:nth-child(5) { right: 10px; top: 50%; margin-top: -10px; animation-delay: 0.9s; }
+.network-node:nth-child(6) { top: 25px; left: 25px; animation-delay: 1.2s; }
+.network-node:nth-child(7) { top: 25px; right: 25px; animation-delay: 1.5s; }
+.network-node:nth-child(8) { bottom: 25px; left: 25px; animation-delay: 1.8s; }
+.network-node:nth-child(9) { bottom: 25px; right: 25px; animation-delay: 2.1s; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 0.3; }
+}
+
+/* 模块四：案例轮播 */
+.case-carousel-section {
+  max-width: 1080px;
+  margin: 0 auto 48px;
+  position: relative;
+  padding: 0;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10px 0 10px 0;
+}
+
+.carousel-slide {
+  flex: 0 0 333px;
+  width: 333px;
+  height: 237px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.carousel-slide:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+}
+
+.carousel-slide-top {
+  flex: 1;
+  display: flex;
+  padding: 24px 24px 16px 24px;
+  gap: 16px;
+}
+
+.carousel-slide-img {
+  width: 130px;
+  height: 121px;
+  background: linear-gradient(135deg, var(--bg-card-2), var(--bg-card));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+.carousel-slide-content {
+  flex: 1;
+  padding: 24px 0 0 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.carousel-slide-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.carousel-slide-content p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.carousel-slide-bottom {
+  padding: 0 24px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-slide-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.carousel-slide-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(201,169,110,0.15);
+  color: var(--gold);
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.carousel-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.carousel-arrow {
+  width: 44px;
+  height: 44px;
+  background: rgba(10,10,15,0.8) !important;
+  border: 1px solid var(--gold) !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+  font-size: 20px;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  text-decoration: none;
+}
+
+.carousel-arrow:active,
+.carousel-arrow:hover,
+.carousel-arrow:focus,
+.carousel-arrow:focus-visited,
+.carousel-arrow:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.carousel-arrow:hover {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #0a0a0f;
+}
+
+/* 底部圆点指示器 */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none !important;
+  border: none;
+}
+
+.carousel-dot:hover {
+  background: rgba(201,169,110,0.5);
+}
+
+.carousel-dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .marketing-skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .case-row-1 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .case-row-2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .breakthrough-grid {
+    grid-template-columns: 1fr;
+  }
+  .breakthrough-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .carousel-slide {
+    flex: 0 0 calc(100% - 20px);
+  }
+}
+
+.mkt-skill-card {
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mkt-skill-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+}
+
+.mkt-skill-card .view-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.75);
+  color: var(--gold);
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--gold-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 5;
+  letter-spacing: 1px;
+}
+
+.mkt-skill-card:hover .view-hint {
+  opacity: 1;
+}
+
+/* 列表形式时隐藏标签 */
+.marketing-skills.active .mkt-skill-card .view-hint {
+  display: none;
+}
+
+.mkt-skill-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.mkt-skill-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.mkt-skill-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.marketing-cases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  margin: 0 auto 48px;
+}
+
+.mkt-case-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mkt-case-card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.mkt-case-img {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--bg-card-2), var(--bg-card));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mkt-case-placeholder {
+  font-size: 18px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.mkt-case-info {
+  padding: 20px;
+}
+
+.mkt-case-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.mkt-case-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.marketing-cta {
+  text-align: center;
+}
+
+/* Marketing responsive */
+@media (max-width: 1024px) {
+  .marketing-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skills-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .marketing-skills.active .skills-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .marketing-skills.active .skills-detail-panel {
+    min-height: 300px;
+    position: static;
+  }
+  .marketing-cases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .marketing-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .stat-num {
+    font-size: 36px;
+  }
+  .skills-layout {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+  .marketing-skills.active .skills-layout {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .marketing-cases {
+    grid-template-columns: 1fr;
+  }
+}
+/* 营销案例轮播 Lightbox */
+.marketing-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.marketing-lightbox .lightbox-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+}
+.marketing-lightbox .lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 92%;
+  max-height: 90vh;
+}
+.marketing-lightbox .lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+.marketing-lightbox .lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.marketing-lightbox .lightbox-close:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0f;
+}
+.marketing-lightbox .lightbox-prev,
+.marketing-lightbox .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.marketing-lightbox .lightbox-prev {
+  left: 30px;
+}
+.marketing-lightbox .lightbox-next {
+  right: 30px;
+}
+.marketing-lightbox .lightbox-prev:hover,
+.marketing-lightbox .lightbox-next:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0a0a0f;
+}
+.marketing-lightbox .lightbox-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+.carousel-slide-img {
+  transition: transform 0.3s ease;
+}
+
+/* ===== 无障碍：灯箱内控件的焦点可见性 =====
+   灯箱遮罩是近黑色（rgba(0,0,0,0.92~0.95)），浏览器默认的深色焦点环
+   在上面几乎不可见，键盘用户 Tab 到「关闭/上一张/下一张」时无从判断焦点位置。
+   这里给所有灯箱内的可聚焦控件加一圈高对比描边。
+   用 :focus-visible 而非 :focus，避免鼠标点击也留下描边。 */
+.vi-lightbox :focus-visible,
+.offline-lightbox :focus-visible,
+.product-lightbox :focus-visible,
+.video-lightbox :focus-visible,
+.digital-lightbox :focus-visible,
+.digital-long-lightbox :focus-visible,
+.marketing-lightbox :focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* 灯箱容器自身作为焦点兜底（无可聚焦子元素时）也需要可见描边 */
+.vi-lightbox:focus-visible,
+.offline-lightbox:focus-visible,
+.product-lightbox:focus-visible,
+.video-lightbox:focus-visible,
+.digital-lightbox:focus-visible,
+.digital-long-lightbox:focus-visible,
+.marketing-lightbox:focus-visible {
+  outline: none;
+}
+
+/* ===== 无障碍：尊重系统「减少动态效果」设置 =====
+   本页动画极多（8 个 keyframes、93 处 transition、粒子背景、多处自动轮播），
+   对前庭敏感用户不友好。用户系统开启该偏好后，这里统一压制动效：
+   - 动画/过渡压到 0.01ms（等效瞬间完成，但保留状态切换的最终结果）
+   - 无限循环动画直接停用，避免持续闪烁
+   - 平滑滚动改回瞬时跳转
+   下列选择器均按 body 中实际存在的元素核对过（.gear-*、.network-node 等
+   虽有 CSS 定义但页面无对应元素，故不列入）。
+   注意：这里只处理 CSS 动效；粒子背景 rAF 循环与自动轮播的暂停在 JS 中另行处理。 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* 无限循环动画彻底停用（而非只跑一次）：
+     .hero-scroll=向下引导箭头(bounce)、.marquee-track=跑马灯(marquee)、
+     .digital-list-item::before=悬停旋转光(rotate-light) */
+  .hero-scroll,
+  .marquee-track,
+  .digital-list-item:hover::before {
+    animation: none !important;
+  }
+  /* 平滑滚动改瞬时 */
+  html { scroll-behavior: auto !important; }
+  /* 卡片悬停位移取消，避免视觉跳动 */
+  .tilt-card:hover { transform: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -2458,6 +3791,7 @@ video { display: block; }
   <ul class="nav-links" id="navLinks">
     <li><a href="#hero">首页</a></li>
     <li><a href="#about">关于我</a></li>
+    <li><a href="#marketing">营销策划</a></li>
     <li><a href="#portfolio">品牌设计</a></li>
     <li><a href="#contact">联系我</a></li>
   </ul>
@@ -2469,8 +3803,8 @@ video { display: block; }
 <!-- ===== Hero ===== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <video id="heroVideo" muted autoplay playsinline preload="metadata" poster="https://aka.doubaocdn.com/s/guJ2wnl6ah">
-      <source src="https://aka.doubaocdn.com/s/YXVwuz4pq5" type="video/mp4">
+    <video id="heroVideo" muted autoplay playsinline preload="metadata" poster="assets/截图 00_02.990.png">
+      <source src="assets/个人创意形象.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
   </div>
@@ -2481,6 +3815,7 @@ video { display: block; }
     <h1 class="hero-title">视觉<span style="color:#c9a96e">构建</span>想象</h1>
     <p class="hero-subtitle">13年+IPTV运营专家 <strong>|</strong> 营销策划 <strong>×</strong> 品牌设计 <strong>×</strong> 视频创作</p>
     <div class="hero-cta">
+      <a href="#marketing" class="btn-outline-light">查看营销案例</a>
       <a href="#portfolio" class="btn-gold active">查看作品集</a>
       <a href="#contact" class="btn-outline-light">联系我</a>
     </div>
@@ -2508,7 +3843,7 @@ video { display: block; }
   </div>
   <div class="about-grid">
     <div class="about-avatar reveal reveal-left">
-      <img src="https://aka.doubaocdn.com/s/ni8N3Ferdj" alt="张晓曦">
+      <img loading="lazy" decoding="async" src="assets/头像.jpg" alt="张晓曦">
     </div>
     <div class="about-content reveal reveal-right">
       <h3>张晓曦</h3>
@@ -2545,6 +3880,367 @@ video { display: block; }
   </div>
 </section>
 
+<!-- ===== Marketing ===== -->
+<section class="section marketing" id="marketing">
+  <div class="section-header reveal">
+    <div class="section-label">MARKETING</div>
+    <h2 class="section-title">营销策划与运营</h2>
+    <p class="section-subtitle">13年IPTV行业深耕 · 数据驱动 · 用户增长 · 全国级活动策划</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- 核心数据 -->
+  <div class="marketing-stats reveal">
+    <div class="stat-card">
+      <div class="stat-num">13<span>+</span></div>
+      <div class="stat-label">年IPTV运营经验</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="stat-suffix">每年</span>20<span>+</span></div>
+      <div class="stat-label">场全国级营销活动</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">31<span>省</span></div>
+      <div class="stat-label">全国分省运营支撑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">亿级<span>用户</span></div>
+      <div class="stat-label">覆盖用户规模</div>
+    </div>
+  </div>
+
+  <!-- 核心能力卡片（模块一：八类营销工作技能） -->
+  <div class="section-subheader reveal" style="text-align:center; margin-bottom:30px;">
+    <h3 style="font-size:20px; color:#fff; margin-bottom:8px;">核心营销能力</h3>
+    <p style="font-size:13px; color:var(--text-secondary);">从活动策划到体系建设，覆盖营销全链路</p>
+  </div>
+  <div class="marketing-skills reveal" id="marketingSkills">
+    <div class="skills-layout" id="skillsLayout">
+      <div class="skills-list" id="skillsList">
+        <div class="mkt-skill-card" data-skill="planning">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">📊</div>
+          <h4>活动策划与执行</h4>
+          <p>春节/暑期/双11等大型节点活动全流程策划与执行</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="data">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">📈</div>
+          <h4>数据分析与复盘</h4>
+          <p>活动效果分析、用户行为洞察、ROI优化与提升</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="pricing">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">💰</div>
+          <h4>产品定价策略</h4>
+          <p>会员产品定价、优惠策略、组合套餐与提值增效</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="system">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">🏗️</div>
+          <h4>营销体系建设</h4>
+          <p>从0到1搭建活动评价体系与标准化流程</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="user">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">👥</div>
+          <h4>用户分层运营</h4>
+          <p>新用户/活跃用户/流失用户分层运营策略制定</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="channel">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">📱</div>
+          <h4>多渠道投放运营</h4>
+          <p>开机屏/PUSH/信息流/手厅全渠道触达用户</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="creative">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">💡</div>
+          <h4>创新玩法设计</h4>
+          <p>红包互动/签到打卡/任务体系等创新营销玩法</p>
+        </div>
+        <div class="mkt-skill-card" data-skill="team">
+          <div class="view-hint">点击查看</div>
+          <div class="mkt-skill-icon">🤝</div>
+          <h4>跨部门协作管理</h4>
+          <p>联动产品/技术/内容/分公司多部门协同推进</p>
+        </div>
+      </div>
+      <div class="skills-detail-panel" id="skillsDetailPanel">
+        <div class="skills-detail-content" id="skillsDetailContent" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 24px 24px 88px; box-sizing: border-box;">
+          <img loading="lazy" decoding="async" src="assets/8-1.png" alt="详情展示" style="width: 100%; height: 100%; border-radius: 8px; object-fit: fill;">
+        </div>
+        <button class="close-skills-btn" id="closeSkillsBtn" style="position:absolute; bottom:20px; right:20px; padding:10px 24px; background:var(--gold); color:#0a0a0f; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.3s ease;">
+          关闭列表
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模块二：代表性案例深度解析 -->
+  <div id="case-section" class="section-subheader reveal" style="text-align:center; margin-bottom:30px;">
+    <h3 style="font-size:20px; color:#fff; margin-bottom:8px;">标杆案例深度解析</h3>
+    <p style="font-size:13px; color:var(--text-secondary);">全国级活动全链路操盘复盘</p>
+  </div>
+  <div class="case-deepdive reveal">
+    <!-- 第一行 -->
+    <div class="case-row case-row-1">
+      <!-- 左1：活动方案策划 -->
+      <div class="case-panel">
+        <h4 class="case-panel-title">📋 活动方案策划</h4>
+        <div class="case-panel-desc">
+          <p style="margin-bottom:12px; padding-left:16px; position:relative;">
+            <span style="position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--gold); border-radius:50%;"></span>
+            设计"订会员领现金红包"核心机制，多种会员体系返现阶梯设计，制定活动整体节奏与分省差异化策略。
+          </p>
+          <p style="margin-bottom:12px; padding-left:16px; position:relative;">
+            <span style="position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--gold); border-radius:50%;"></span>
+            精准用户分群，根据用户历史订购行为定向推送月/季/半年/年/提前续订……等多种产品多种会员价格，完成用户会员身份的快速转化。
+          </p>
+          <p style="padding-left:16px; position:relative;">
+            <span style="position:absolute; left:0; top:8px; width:6px; height:6px; background:var(--gold); border-radius:50%;"></span>
+            用户通过微信领取完成大小屏分屏联动，持续推进手机端能力，推送新热内容提醒，完成离屏用户线上召回，从而使用户进入全新营销生命周期。
+          </p>
+        </div>
+      </div>
+      
+      <!-- 中间：营销活动图 -->
+      <div class="case-panel">
+        <h4 class="case-panel-title">🎨 营销活动呈现</h4>
+        <div style="position: relative; width: 100%; height: 220px; margin-bottom: 16px; overflow: hidden; border-radius: 8px; background: rgba(255,255,255,0.05);">
+          <img loading="lazy" decoding="async" src="assets/红包首页.png" alt="活动主视觉" class="activity-slide" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; opacity: 1; transition: opacity 0.5s ease;">
+          <img loading="lazy" decoding="async" src="assets/签到首页.png" alt="活动素材2" class="activity-slide" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; opacity: 0; transition: opacity 0.5s ease;">
+          <img loading="lazy" decoding="async" src="assets/9-1.png" alt="活动素材3" class="activity-slide" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; opacity: 0; transition: opacity 0.5s ease;">
+          <img loading="lazy" decoding="async" src="assets/海看界面.png" alt="活动素材4" class="activity-slide" style="width: 100%; height: 100%; object-fit: contain; position: absolute; top:0; left:0; opacity: 0; transition: opacity 0.5s ease;">
+        </div>
+        <!-- 轮播圆点 -->
+        <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;">
+          <span class="activity-dot" data-index="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--gold); cursor: pointer; transition: all 0.3s ease;"></span>
+          <span class="activity-dot" data-index="1" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease;"></span>
+          <span class="activity-dot" data-index="2" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease;"></span>
+          <span class="activity-dot" data-index="3" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s ease;"></span>
+        </div>
+        <p class="case-panel-desc">返现活动主视觉，订购、签到多种形式，覆盖31省分公司全渠道推广</p>
+      </div>
+      
+      <!-- 右1：营销业绩成果（层叠卡片） -->
+      <div class="case-panel">
+        <h4 class="case-panel-title">📈 营销业绩成果</h4>
+        <p class="case-panel-desc">分省活动效果数据对标</p>
+        <div class="case-stack">
+          <!-- 卡片1：山东 -->
+          <div class="stack-card" id="stackCard0" style="display: block; padding: 20px; background: var(--bg-card); border: 1px solid var(--gold-border); box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">山东</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              整体收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑83.46%</span>
+            </div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              长周期收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑15.93%</span>
+            </div>
+          </div>
+          <!-- 卡片2：重庆 -->
+          <div class="stack-card" id="stackCard1" style="display: block; padding: 20px; box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">重庆</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              月卡订购量 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑222.5%</span>
+            </div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              长周期收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑96%</span>
+            </div>
+          </div>
+          <!-- 卡片3：福建 -->
+          <div class="stack-card" id="stackCard2" style="display: block; padding: 20px; box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">福建</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              长周期订购量 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑104%</span>
+            </div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              月卡订购量及收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑111.6%</span>
+            </div>
+          </div>
+          <!-- 卡片4：黑龙江 -->
+          <div class="stack-card" id="stackCard3" style="display: block; padding: 20px; box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">黑龙江</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              长周期订购量 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑185%</span>
+            </div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              月卡订购量 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑120%</span>
+            </div>
+          </div>
+          <!-- 卡片5：内蒙古 -->
+          <div class="stack-card" id="stackCard4" style="display: block; padding: 20px; box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">内蒙古</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              整体收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑108.2%</span>
+            </div>
+          </div>
+          <!-- 卡片6：新疆 -->
+          <div class="stack-card" id="stackCard5" style="display: block; padding: 20px; box-sizing: border-box; cursor: pointer;">
+            <div style="font-size: 18px; font-weight: 600; color: var(--gold); margin-bottom: 12px;">新疆</div>
+            <div style="font-size: 14px; color: #fff; line-height: 2;">
+              整体收入 <span style="color: #ef4444; font-weight: 700; font-size: 16px;">↑61.8%</span>
+            </div>
+          </div>
+        </div>
+        <!-- 页码显示 -->
+        <div id="stackPagination" style="text-align: center; margin-top: 24px; font-size: 14px; color: #888; position: relative; z-index: 10;">
+          <span id="stackCurrentPage" style="color: var(--gold); font-weight: 600;">1</span>
+          <span style="margin: 0 4px;">/</span>
+          <span>6</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 第二行：数据大屏展示 -->
+    <div class="case-row" style="display:block; width:100%;">
+      <div class="case-panel" style="padding:24px; width:100%;">
+        <h4 class="case-panel-title">📊 智慧视频运营数据可视化大屏</h4>
+        <p class="case-panel-desc" style="margin-bottom:16px;">基于全国31省实时运营数据搭建的数字驾驶舱，实现业务数据一屏统览</p>
+        <div style="width:100%; height:620px; border-radius:8px; overflow:hidden; border:1px solid rgba(79,163,255,0.3); box-shadow:0 0 30px rgba(0,100,255,0.2);">
+          <iframe src="data-screen.html" style="width:100%; height:100%; border:none;" allow="autoplay"></iframe>
+        </div>
+        <div style="text-align:center; margin-top:16px;">
+          <a href="data-screen.html" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:8px 24px; border:1px solid var(--gold); color:var(--gold); border-radius:4px; text-decoration:none; font-size:14px; transition:all 0.3s;" onmouseover="this.style.background='rgba(255,197,61,0.1)'" onmouseout="this.style.background='transparent'">点击全屏查看大屏 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模块三：突破性工作能力 -->
+  <div class="section-subheader reveal" style="text-align:center; margin-bottom:30px;">
+    <h3 style="font-size:20px; color:#fff; margin-bottom:8px;">差异化竞争力</h3>
+    <p style="font-size:13px; color:var(--text-secondary);">不止于营销执行，更具备产品化思维与体系化能力</p>
+  </div>
+  <div class="breakthrough-grid reveal">
+    <div class="breakthrough-card">
+      <div class="breakthrough-header">
+        <div class="breakthrough-icon">⚙️</div>
+        <h4 class="breakthrough-title">营销功能产品化</h4>
+      </div>
+      <p class="breakthrough-desc">将营销活动经验沉淀为标准化产品功能，从"每次做活动"升级为"平台能力复用"，产品功能不断迭代。</p>
+      <div class="breakthrough-points">
+        <div class="breakthrough-point"><span class="dot"></span>续订返现功能产品化设计</div>
+        <div class="breakthrough-point"><span class="dot"></span>营销活动全流程管理体系搭建</div>
+        <div class="breakthrough-point"><span class="dot"></span>红包互动玩法标准化封装</div>
+        <div class="breakthrough-point"><span class="dot"></span>活动成本测算模型自动化</div>
+        <div class="breakthrough-point"><span class="dot"></span>活动配置后台能力搭建</div>
+        <div class="breakthrough-point"><span class="dot"></span>营销活动稽核体系建设</div>
+        <div class="breakthrough-point"><span class="dot"></span>数据看板自动化生成</div>
+        <div class="breakthrough-point"><span class="dot"></span>跨部门产品需求对接与迭代</div>
+      </div>
+    </div>
+    <div class="breakthrough-card">
+      <div class="breakthrough-header">
+        <div class="breakthrough-icon">🌐</div>
+        <h4 class="breakthrough-title">全国分省运营体系</h4>
+      </div>
+      <p class="breakthrough-desc">从0到1搭建全国31省分省运营支撑体系，实现总部策略与分省落地的高效协同。</p>
+      <div class="breakthrough-points">
+        <div class="breakthrough-point"><span class="dot"></span>分省活动策略模板库</div>
+        <div class="breakthrough-point"><span class="dot"></span>重点省分专项问题攻坚</div>
+        <div class="breakthrough-point"><span class="dot"></span>分省数据对标分析体系</div>
+        <div class="breakthrough-point"><span class="dot"></span>省分营销能力赋能与培训</div>
+        <div class="breakthrough-point"><span class="dot"></span>竞品监控与差异化应对</div>
+        <div class="breakthrough-point"><span class="dot"></span>31省活动落地追踪与效果分析</div>
+        <div class="breakthrough-point"><span class="dot"></span>分公司培训与赋能</div>
+        <div class="breakthrough-point"><span class="dot"></span>分省运营汇报材料体系搭建</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模块四：案例轮播 -->
+  <div class="section-subheader reveal" style="text-align:center; margin-bottom:30px;">
+    <h3 style="font-size:20px; color:#fff; margin-bottom:8px;">精选营销案例</h3>
+    <p style="font-size:13px; color:var(--text-secondary);">覆盖全年主要营销节点的代表性项目</p>
+  </div>
+  <div class="case-carousel-section reveal">
+    <div class="carousel-container">
+      <div class="carousel-track" id="caseCarouselTrack">      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-01.png" alt="春节订购返现活动" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>全国级大型活动，设计"订年卡领现金红包"核心机制，覆盖31省分公司</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">春节订购返现活动</div>
+          <span class="carousel-slide-tag">全国级活动</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-02.png" alt="暑期营销战役" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>暑期学生用户高峰，多渠道组合投放，分省差异化运营策略</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">暑期营销战役</div>
+          <span class="carousel-slide-tag">重点营销节点</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-03.png" alt="双11多种产品福利叠加" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>电商大促节点，多种产品联动，利用超低价优惠价格吸引用户转化，提升会员渗透率</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">双11多种产品福利叠加</div>
+          <span class="carousel-slide-tag">大促活动</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-04.png" alt="红包互动活动" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>创新红包互动玩法，结合内容场景设计红包系列活动</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">签到打卡红包互动活动</div>
+          <span class="carousel-slide-tag">创新玩法</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-05.png" alt="支付宝立减金活动" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>联合支付宝生态，立减金优惠活动设计，提升支付转化率</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">支付宝立减金活动</div>
+          <span class="carousel-slide-tag">跨界合作</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="carousel-slide-top">
+          <div class="carousel-slide-img"><img loading="lazy" decoding="async" src="assets/6-06.png" alt="热播IP驱动营销" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"></div>
+          <div class="carousel-slide-content">
+            <p>内容为王，多触点热播内容露出，结合用户历史播放行为分群内容精准推荐</p>
+          </div>
+        </div>
+        <div class="carousel-slide-bottom">
+          <div class="carousel-slide-title">热播IP驱动营销</div>
+          <span class="carousel-slide-tag">内容引领</span>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="carousel-arrows">
+      <button class="carousel-arrow" id="carouselPrev">‹</button>
+      <button class="carousel-arrow" id="carouselNext">›</button>
+    </div>
+  </div>
+
+  <div class="marketing-cta reveal">
+    <a href="works-list-marketing.html" class="btn-gold active">查看更多营销案例 →</a>
+  </div>
+</section>
+
 <!-- ===== Portfolio ===== -->
 <section class="section" id="portfolio">
   <div class="section-header reveal">
@@ -2576,8 +4272,8 @@ video { display: block; }
         <p>品牌核心调性：科技感 · 极简 · 轻量化 · 未来感</p>
       </div>
       <div class="brand-intro-image">
-        <video id="brandVideo" muted loop autoplay playsinline preload="metadata">
-          <source src="https://aka.doubaocdn.com/s/0Vf1c6HoO0" type="video/mp4">
+        <video id="brandVideo" muted loop autoplay playsinline preload="metadata" poster="assets/尾帧.png">
+          <source src="assets/Logo演绎.mp4" type="video/mp4">
         </video>
         <button class="brand-play-btn" id="brandPlayBtn" aria-label="播放/暂停">
           <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -2592,9 +4288,9 @@ video { display: block; }
     <div class="category-cards">
       <a href="#project-vi" class="category-card has-video tilt-card">
         <div class="category-card-img">
-          <img src="https://aka.doubaocdn.com/s/cA3KvWK6wz" alt="品牌VI手册">
+          <img loading="lazy" decoding="async" src="assets/玻璃拟态风品牌主视觉.png" alt="品牌VI手册">
           <video muted loop playsinline preload="metadata">
-            <source src="https://aka.doubaocdn.com/s/z9bq6fBYQY" type="video/mp4">
+            <source src="assets/video 9.mp4" type="video/mp4">
           </video>
         </div>
         <div class="category-card-info">
@@ -2604,9 +4300,9 @@ video { display: block; }
       </a>
       <a href="#project-offline" class="category-card has-video tilt-card">
         <div class="category-card-img">
-          <img src="https://aka.doubaocdn.com/s/rjMVWY4XDE" alt="线下营销与传播物料系统">
+          <img loading="lazy" decoding="async" src="assets/01_产品手册样机.png" alt="线下营销与传播物料系统">
           <video muted loop playsinline preload="metadata">
-            <source src="https://aka.doubaocdn.com/s/1lQjwcgL4M" type="video/mp4">
+            <source src="assets/video 11.mp4" type="video/mp4">
           </video>
         </div>
         <div class="category-card-info">
@@ -2616,9 +4312,9 @@ video { display: block; }
       </a>
       <a href="#project-digital" class="category-card has-video tilt-card">
         <div class="category-card-img">
-          <img src="https://aka.doubaocdn.com/s/8FBbNhQHqT" alt="数字端全渠道视觉系统">
+          <img loading="lazy" decoding="async" src="assets/低多边形风品牌主视觉.png" alt="数字端全渠道视觉系统">
           <video muted loop playsinline preload="metadata">
-            <source src="https://aka.doubaocdn.com/s/mm05lU2oq9" type="video/mp4">
+            <source src="assets/video 10.mp4" type="video/mp4">
           </video>
         </div>
         <div class="category-card-info">
@@ -2628,9 +4324,9 @@ video { display: block; }
       </a>
       <a href="#project-motion" class="category-card has-video tilt-card">
         <div class="category-card-img">
-          <img src="https://aka.doubaocdn.com/s/aXEQQI8BXY" alt="动态视觉与视频资产">
+          <img loading="lazy" decoding="async" src="assets/赛博未来风品牌主视觉.png" alt="动态视觉与视频资产">
           <video muted loop playsinline preload="metadata">
-            <source src="https://aka.doubaocdn.com/s/NmuTUYoBZ0" type="video/mp4">
+            <source src="assets/01_视觉风格.mp4" type="video/mp4">
           </video>
         </div>
         <div class="category-card-info">
@@ -2655,12 +4351,12 @@ video { display: block; }
     </div>
     <div class="vi-manual-layout">
       <div class="vi-main-image">
-        <img id="viMainImg" src="https://aka.doubaocdn.com/s/UtMldrGOyA" alt="VI手册封面">
+        <img id="viMainImg" loading="lazy" decoding="async" src="assets/01_品牌手册封面.png" alt="VI手册封面">
         <div class="vi-zoom-hint">点击放大</div>
         <div class="vi-image-label" id="viImageLabel">VI MANUAL COVER / 品牌手册封面 / 01 / Cover</div>
       </div>
       <div class="vi-features">
-        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/FoKhrsRuHT" data-label="VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure">
+        <div class="vi-feature-card" data-image="assets/02_VI手册结构示意图.png" data-label="VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
@@ -2669,7 +4365,7 @@ video { display: block; }
             <p>构建触点统一、可落地使用、可持续迭代的品牌视觉资产体系</p>
           </div>
         </div>
-        <div class="vi-feature-card" data-image1="https://aka.doubaocdn.com/s/8WDzVGSFT9" data-image2="https://aka.doubaocdn.com/s/OztmiR4dxp" data-label1="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1" data-label2="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2">
+        <div class="vi-feature-card" data-image1="assets/03_品牌标识系统第1页.png" data-image2="assets/03_品牌标识系统第2页.png" data-label1="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1" data-label2="BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2a10 10 0 0 0 0 20"/></svg>
           </div>
@@ -2678,7 +4374,7 @@ video { display: block; }
             <p>项目的基石，应用物料以此衍生，定义品牌视觉的核心基因</p>
           </div>
         </div>
-        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/UruJrtPo49" data-label="COLOR SYSTEM / 品牌色彩系统 / 04 / Colors">
+        <div class="vi-feature-card" data-image="assets/04_品牌色彩系统.png" data-label="COLOR SYSTEM / 品牌色彩系统 / 04 / Colors">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10"/></svg>
           </div>
@@ -2687,7 +4383,7 @@ video { display: block; }
             <p>结合品牌调性，搭建适配品牌的配色方案、色卡规范、配色手册</p>
           </div>
         </div>
-        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/r38RsEYI38" data-label="TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts">
+        <div class="vi-feature-card" data-image="assets/05_品牌字体系统.png" data-label="TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
           </div>
@@ -2696,7 +4392,7 @@ video { display: block; }
             <p>精选可用版权中英文字体，搭配科技风字体组合</p>
           </div>
         </div>
-        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/5YiDtYptJh" data-label="GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements">
+        <div class="vi-feature-card" data-image="assets/07_图形元素系统.png" data-label="GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
           </div>
@@ -2705,7 +4401,7 @@ video { display: block; }
             <p>品牌辅助图形与视觉元素库，光学纹理与几何图形规范</p>
           </div>
         </div>
-        <div class="vi-feature-card" data-image="https://aka.doubaocdn.com/s/o6Ys2cMto6" data-label="APPLICATION / 品牌应用示例 / 07 / Application">
+        <div class="vi-feature-card" data-image="assets/08_应用示例页.png" data-label="APPLICATION / 品牌应用示例 / 07 / Application">
           <div class="vi-feature-icon">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
           </div>
@@ -2735,12 +4431,12 @@ video { display: block; }
     </div>
     <div class="offline-carousel reveal">
       <div class="coverflow-carousel">
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/MhOGiOUpZ9" alt="产品手册目录页"><div class="offline-zoom-hint">点击放大</div></div>
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/mEAvHpVXoO" alt="产品手册内页"><div class="offline-zoom-hint">点击放大</div></div>
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/jPPnsOqKno" alt="厨房场景"><div class="offline-zoom-hint">点击放大</div></div>
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/gFEJ254FNX" alt="客厅场景"><div class="offline-zoom-hint">点击放大</div></div>
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/4yn96KT36T" alt="线下活动物料"><div class="offline-zoom-hint">点击放大</div></div>
-        <div class="coverflow-item"><img src="https://aka.doubaocdn.com/s/rHgZ25HzPQ" alt="户外广告物料"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/01_产品手册目录页.png" alt="产品手册目录页"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/02_产品手册内页.png" alt="产品手册内页"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/03_厨房场景.png" alt="厨房场景"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/04_客厅场景.png" alt="客厅场景"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/05_线下活动物料.png" alt="线下活动物料"><div class="offline-zoom-hint">点击放大</div></div>
+        <div class="coverflow-item"><img loading="lazy" decoding="async" src="assets/06_户外广告物料.png" alt="户外广告物料"><div class="offline-zoom-hint">点击放大</div></div>
       </div>
       <button class="carousel-nav carousel-prev">&#8249;</button>
       <button class="carousel-nav carousel-next">&#8250;</button>
@@ -2755,7 +4451,7 @@ video { display: block; }
     </div>
     <div class="offline-sub-cards">
       <div class="offline-sub-card product-zoom-card reveal reveal-left tilt-card">
-        <img src="https://aka.doubaocdn.com/s/2fWGXqtrf6" alt="产品拆解" class="product-zoom-img">
+        <img loading="lazy" decoding="async" src="assets/07_机器人产品内页.png" alt="产品拆解" class="product-zoom-img">
         <div class="product-zoom-hint">点击放大</div>
         <div class="offline-sub-info">
           <h4>产品拆解</h4>
@@ -2764,8 +4460,8 @@ video { display: block; }
       </div>
       <div class="offline-sub-card video-card reveal reveal-right tilt-card">
         <div class="video-container">
-          <video id="productDemoVideo" class="product-demo-video" poster="https://aka.doubaocdn.com/s/kwZuUTVGmz" preload="metadata" playsinline>
-            <source src="https://aka.doubaocdn.com/s/w2zjdAwNt0" type="video/mp4">
+          <video id="productDemoVideo" class="product-demo-video" preload="metadata" playsinline>
+            <source src="assets/08_产品功能演示视频.mp4" type="video/mp4">
           </video>
           <div class="play-overlay" id="videoPlayOverlay">
             <div class="play-icon">
@@ -2803,21 +4499,21 @@ video { display: block; }
     </div>
     <div class="digital-layout">
       <div class="digital-left">
-        <img src="https://aka.doubaocdn.com/s/VlGlVON84U" alt="官网站点图">
+        <img loading="lazy" decoding="async" src="assets/01_官网站点图.jpg" alt="官网站点图">
         <div class="digital-zoom-label">点击放大</div>
       </div>
       <div class="digital-right">
         <button class="digital-nav digital-nav-up" id="digitalNavUp"><span class="digital-nav-arrow">&#8249;</span></button>
         <div class="digital-list-container">
           <div class="digital-list" id="digitalList">
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/0OaT9atp43" alt="官网视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/gtVYqoQwHR" alt="移动端视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/tGkWLRYzcJ" alt="私域视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/UNU2P6WuWZ" alt="电商视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/Ml4fkRb3Zu" alt="直播视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/UfTV2HYtwf" alt="社媒视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/DDODOx4lBq" alt="投放视觉"><div class="digital-zoom-label">点击放大</div></div>
-            <div class="digital-list-item"><img src="https://aka.doubaocdn.com/s/POVYXl6I2Y" alt="数字人视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/02_官网view.png" alt="官网视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/03_移动端view.png" alt="移动端视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/04_私域view.png" alt="私域视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/05_电商view.png" alt="电商视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/06_直播view.png" alt="直播视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/07_社媒view.png" alt="社媒视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/08_投放view.png" alt="投放视觉"><div class="digital-zoom-label">点击放大</div></div>
+            <div class="digital-list-item"><img loading="lazy" decoding="async" src="assets/09_数字人view.png" alt="数字人视觉"><div class="digital-zoom-label">点击放大</div></div>
           </div>
         </div>
         <button class="digital-nav digital-nav-down" id="digitalNavDown"><span class="digital-nav-arrow">&#8250;</span></button>
@@ -2841,7 +4537,7 @@ video { display: block; }
       </div>
     </div>
     <div class="motion-hero-video">
-      <video id="motionHeroVideo" src="https://aka.doubaocdn.com/s/JxXct1fnjE" poster="https://aka.doubaocdn.com/s/eUgwV95g6x" playsinline preload="metadata"></video>
+      <video id="motionHeroVideo" src="assets/01_品牌宣传片.mp4" poster="assets/截屏003.jpg" playsinline preload="metadata"></video>
       <button class="motion-expand-btn" id="motionExpandBtn" title="放大播放">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
@@ -2862,7 +4558,7 @@ video { display: block; }
           <div class="vertical-coverflow-carousel">
             <div class="vertical-coverflow-item" data-video-card>
               <div class="video-container">
-                <video id="douyinLiveVideo" class="vertical-video" src="https://aka.doubaocdn.com/s/2a6WRCQHQV" poster="https://aka.doubaocdn.com/s/VEjRym14Ex" playsinline preload="metadata"></video>
+                <video id="douyinLiveVideo" class="vertical-video" src="assets/02_抖音直播间.mp4" poster="assets/直播演示.png" playsinline preload="metadata"></video>
                 <div class="play-overlay" data-play-btn>
                   <div class="play-icon">
                     <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -2881,7 +4577,7 @@ video { display: block; }
             </div>
             <div class="vertical-coverflow-item" data-video-card>
               <div class="video-container">
-                <video id="xiaohongshuVideo" class="vertical-video" src="https://aka.doubaocdn.com/s/fuhBSvfVbM" poster="https://aka.doubaocdn.com/s/t6QulqVKiU" playsinline preload="metadata"></video>
+                <video id="xiaohongshuVideo" class="vertical-video" src="assets/03_小红书种草.mp4" poster="assets/清晨.png" playsinline preload="metadata"></video>
                 <div class="play-overlay" data-play-btn>
                   <div class="play-icon">
                     <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -2904,7 +4600,7 @@ video { display: block; }
       <div class="motion-grid-left reveal reveal-right">
         <div class="motion-video-card" id="sceneTvcCard" data-video-card>
           <div class="video-container">
-            <video id="sceneTvcVideo" class="motion-card-video" src="https://aka.doubaocdn.com/s/B7u6MBWuet" poster="https://aka.doubaocdn.com/s/SaeEUBsqcN" playsinline preload="metadata"></video>
+            <video id="sceneTvcVideo" class="motion-card-video" src="assets/04_场景TVC.mp4" poster="assets/截图 00_07.812.png" playsinline preload="metadata"></video>
             <div class="play-overlay" data-play-btn>
               <div class="play-icon">
                 <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -2923,7 +4619,7 @@ video { display: block; }
         </div>
         <div class="motion-video-card" id="functionTvcCard" data-video-card>
           <div class="video-container">
-            <video id="functionTvcVideo" class="motion-card-video" src="https://aka.doubaocdn.com/s/u1MdgCPjwi" poster="https://aka.doubaocdn.com/s/ETV9U5GV67" playsinline preload="metadata"></video>
+            <video id="functionTvcVideo" class="motion-card-video" src="assets/05_功能TVC.mp4" poster="assets/1.png" playsinline preload="metadata"></video>
             <div class="play-overlay" data-play-btn>
               <div class="play-icon">
                 <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -2954,7 +4650,7 @@ video { display: block; }
   <h2 class="cta-title">让我们一起<br>把每一帧画面变成品牌</h2>
   <div class="cta-buttons">
     <a href="javascript:void(0)" class="btn-gold">START A PROJECT</a>
-    <a href="https://aka.doubaocdn.com/s/MMtoXsRH6v" target="_blank" class="btn-outline-light active">DOWNLOAD RESUME</a>
+    <a href="assets/张晓曦个人简历202604.pdf" target="_blank" rel="noopener noreferrer" class="btn-outline-light active">DOWNLOAD RESUME</a>
   </div>
 </section>
 
@@ -3077,6 +4773,424 @@ video { display: block; }
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js" integrity="sha384-vV17nr/rMaJqmeZkFUzXLpHdQ+ME5QHKdydaqqN+3Ga39RJlNrTatJxHwGV4ml2C" crossorigin="anonymous"></script>
 
 <script>
+// ===== SECTION: dialog-a11y —— 灯箱（模态对话框）无障碍管理 =====
+// 页面里的灯箱原本只用 opacity:0 + pointer-events:none 隐藏：视觉上关了，
+// 但内容仍留在无障碍树中，读屏软件会逐个朗读早已「关闭」的图片和按钮。
+// 本模块负责三件事：
+//   ① 开关时同步 aria-hidden，让关闭态真正对读屏软件消失；
+//   ② 打开时把焦点移入对话框，并把 Tab 循环限制在对话框内（焦点陷阱）；
+//   ③ 关闭时把焦点还给打开它的那个元素，避免键盘用户「失位」。
+// 注意：ESC 关闭沿用各灯箱原有的 keydown 处理器，本模块不重复注册，
+//       以免同一次按键触发两次关闭。
+
+// 以元素为键保存各自的打开前焦点与监听器，支持多个灯箱互不干扰
+const dialogA11yState = new WeakMap();
+
+// 对话框内可聚焦元素的判定选择器
+const DIALOG_FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  'video[controls]',
+  'audio[controls]',
+  '[tabindex]'
+].join(',');
+
+function isDialogFocusable(node) {
+  if (!node || node.disabled) return false;
+  if (node.getAttribute('aria-hidden') === 'true') return false;
+  // tabindex="-1" 只能被脚本聚焦，不参与 Tab 循环
+  if (node.getAttribute('tabindex') === '-1') return false;
+  const cs = window.getComputedStyle(node);
+  // 关闭态的灯箱是 visibility:hidden，其内部按钮必须排除，
+  // 否则焦点会被送进看不见的元素里
+  if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+  return true;
+}
+
+function getDialogFocusables(dialog) {
+  const nodes = dialog.querySelectorAll(DIALOG_FOCUSABLE_SELECTOR);
+  const list = [];
+  for (let i = 0; i < nodes.length; i++) {
+    if (isDialogFocusable(nodes[i])) list.push(nodes[i]);
+  }
+  return list;
+}
+
+// 把 Tab 循环限制在对话框内：到末尾再按 Tab 回到开头，Shift+Tab 反之
+function trapDialogFocus(e, dialog) {
+  // 防线：对话框处于关闭态时不介入。
+  // aria-hidden 由 openDialogA11y/closeDialogA11y 严格对称设置，是可靠判据。
+  // 正常情况下关闭时监听器已被摘除；但某些关闭路径存在提前 return，
+  // 万一监听器残留，这里可避免它把焦点抢进一个看不见的灯箱。
+  if (dialog.getAttribute('aria-hidden') !== 'false') return;
+  const focusables = getDialogFocusables(dialog);
+  if (!focusables.length) {
+    // 没有可聚焦内容时，别让焦点跑出对话框
+    e.preventDefault();
+    return;
+  }
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  const active = document.activeElement;
+
+  // 焦点在对话框外（例如用户点了遮罩），先拉回第一个可聚焦元素
+  if (!dialog.contains(active)) {
+    e.preventDefault();
+    first.focus();
+    return;
+  }
+  if (e.shiftKey && active === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && active === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
+function focusSafely(node) {
+  if (!node || typeof node.focus !== 'function') return;
+  // preventScroll 避免聚焦时页面跳动；旧浏览器不支持则退回普通 focus
+  try { node.focus({ preventScroll: true }); }
+  catch (err) { try { node.focus(); } catch (e2) { /* 忽略：焦点移入失败不应中断打开流程 */ } }
+}
+
+// 打开对话框的无障碍状态。
+// 必须在元素「已可见」之后调用（先加 .active 或先设 display），
+// 否则 visibility:hidden 会让 focus() 静默失败。
+function openDialogA11y(dialog, focusTarget) {
+  if (!dialog) return;
+  // 重复打开时先清理旧状态，避免监听器叠加
+  closeDialogA11y(dialog);
+
+  const state = {
+    prevFocus: document.activeElement,
+    onKeydown: function (e) {
+      if (e.key === 'Tab') trapDialogFocus(e, dialog);
+    }
+  };
+  // 用捕获阶段，确保焦点陷阱早于任何业务按键处理执行
+  document.addEventListener('keydown', state.onKeydown, true);
+  dialogA11yState.set(dialog, state);
+
+  dialog.setAttribute('aria-hidden', 'false');
+
+  // 焦点落点：优先调用方指定（一般是关闭按钮），
+  // 其次对话框内第一个可聚焦元素，最后才是对话框本身
+  function pickTarget() {
+    let target = focusTarget;
+    if (!target || !isDialogFocusable(target)) {
+      const list = getDialogFocusables(dialog);
+      target = list.length ? list[0] : null;
+    }
+    return target;
+  }
+
+  // 必须等可见性过渡生效后再聚焦：灯箱关闭态是 visibility:hidden，
+  // 而 classList.add('active') 的同一帧内计算样式仍是 hidden，
+  // 此时 focus() 会被浏览器静默忽略，键盘焦点留在页面上、陷阱形同虚设。
+  // 用双 rAF 跨过一帧，确保过渡已推进（visibility 只要进度>0 即为 visible）。
+  function attemptFocus(triesLeft) {
+    const target = pickTarget();
+    if (target) {
+      focusSafely(target);
+      return;
+    }
+    if (triesLeft > 0 && window.requestAnimationFrame) {
+      requestAnimationFrame(() => attemptFocus(triesLeft - 1));
+      return;
+    }
+    // 兜底：聚焦对话框容器本身，至少让焦点进入模态、Tab 陷阱能接管
+    if (!dialog.hasAttribute('tabindex')) dialog.setAttribute('tabindex', '-1');
+    focusSafely(dialog);
+  }
+
+  if (window.requestAnimationFrame) {
+    requestAnimationFrame(() => requestAnimationFrame(() => attemptFocus(3)));
+  } else {
+    setTimeout(() => attemptFocus(0), 30);
+  }
+}
+
+// 关闭对话框的无障碍状态：还原 aria-hidden、摘掉陷阱、把焦点还回去。
+// 幂等——重复调用或与业务关闭函数叠加调用都安全。
+function closeDialogA11y(dialog) {
+  if (!dialog) return;
+  dialog.setAttribute('aria-hidden', 'true');
+  const state = dialogA11yState.get(dialog);
+  if (!state) return;
+  document.removeEventListener('keydown', state.onKeydown, true);
+  dialogA11yState.delete(dialog);
+  const prev = state.prevFocus;
+  // 触发元素可能已被 innerHTML 重建（如技能详情图），此时不强行聚焦失效节点
+  if (prev && prev.isConnected) focusSafely(prev);
+}
+
+// ===== SECTION: trigger-a11y —— 灯箱触发元素的键盘可达性 =====
+// 本页所有灯箱的触发元素都是 <div>（.vi-main-image / .coverflow-item /
+// .product-zoom-card / .digital-left / .digital-list-item / .carousel-slide），
+// div 不在 Tab 顺序中、也不响应 Enter/Space，键盘用户完全打不开灯箱。
+// 这会让前面做的焦点陷阱形同虚设，故一并补齐：
+//   role="button" + tabindex="0" + Enter/Space 派发 click
+// 这些 div 内部均无可聚焦子元素（已逐个核对），加 tabindex 不会造成 Tab 顺序冗余；
+// 视频灯箱的两个触发本来就是真 <button>，不在此列、无需处理。
+
+const KEYBOARD_TRIGGER_SELECTOR = [
+  '.vi-main-image',
+  '.coverflow-item',
+  '.product-zoom-card',
+  '.digital-left',
+  '.digital-list-item',
+  '.carousel-slide'
+].join(',');
+
+function makeKeyboardTrigger(el) {
+  if (!el || el.dataset.kbdTrigger === '1') return;
+  el.dataset.kbdTrigger = '1';
+  if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+  if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+
+  // 已有可读文本的（如 .carousel-slide 含标题）交给浏览器自动取名；
+  // 纯图片容器补一句 aria-label，避免读屏软件只报「按钮」而无内容。
+  if (!el.hasAttribute('aria-label') && !el.textContent.trim()) {
+    const img = el.querySelector('img[alt]');
+    const alt = img && img.getAttribute('alt');
+    if (alt && alt.trim()) el.setAttribute('aria-label', alt.trim() + '，点击放大');
+    else el.setAttribute('aria-label', '点击放大查看');
+  }
+
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      el.click();
+    } else if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Space') {
+      // Space 默认会滚动页面，必须拦掉，否则按一下空格页面就跳走
+      e.preventDefault();
+      el.click();
+    }
+  });
+}
+
+function enhanceKeyboardTriggers(root) {
+  const scope = root && root.querySelectorAll ? root : document;
+  const nodes = scope.querySelectorAll(KEYBOARD_TRIGGER_SELECTOR);
+  for (let i = 0; i < nodes.length; i++) makeKeyboardTrigger(nodes[i]);
+  return nodes.length;
+}
+
+// 静态元素在 DOM 就绪后统一增强；动态生成的（.skill-detail-img-wrap）
+// 由生成处自行调用 makeKeyboardTrigger
+document.addEventListener('DOMContentLoaded', () => {
+  enhanceKeyboardTriggers(document);
+});
+// 兜底：脚本本身就在 body 末尾执行，DOMContentLoaded 可能已触发过
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  enhanceKeyboardTriggers(document);
+}
+
+// ===== SECTION: motion-scheduler —— 动效统一调度 =====
+// 解决三件事：
+// ① 页面切到后台时（visibilitychange）暂停所有定时器与粒子渲染，省电省 GPU；
+// ② 系统开启「减少动态效果」时，不启动任何自动轮播；
+// ③ 定时器集中登记，可统一挂起/恢复，避免各处 setInterval 无法配对 clearInterval。
+const prefersReducedMotion = window.matchMedia
+  ? window.matchMedia('(prefers-reduced-motion: reduce)')
+  : { matches: false, addEventListener: null };
+
+// 已登记的可暂停定时器：{ id, factory, delay, held, wantRun }
+const motionTimers = [];
+
+// 两种暂停来源必须分开记账，否则会互相干扰：
+//   held      —— 用户悬停导致的暂停（应跨「切走/切回标签页」保持）
+//   suspended —— 页面隐藏 / 系统开启减少动态效果导致的暂停
+// 定时器仅在「未被悬停 且 未被挂起」时才真正运行。
+let motionSuspended = false;
+
+// 登记一个可暂停定时器，返回句柄（替代裸 setInterval）
+// autoStart=false 用于「按需启动」的定时器（如悬停才跑的 VI 轮播）
+function registerMotionInterval(factory, delay, autoStart = true) {
+  const entry = {
+    id: null, factory, delay,
+    held: false,          // 悬停暂停
+    wantRun: autoStart    // 业务上是否希望它跑（按需启动的先置 false）
+  };
+  syncTimer(entry);
+  motionTimers.push(entry);
+  return entry;
+}
+
+// 按当前三种状态求值，决定该定时器是否应该处于运行中
+function syncTimer(entry) {
+  const shouldRun = entry.wantRun && !entry.held && !motionSuspended && !prefersReducedMotion.matches;
+  if (shouldRun && entry.id === null) {
+    entry.id = setInterval(entry.factory, entry.delay);
+  } else if (!shouldRun && entry.id !== null) {
+    clearInterval(entry.id);
+    entry.id = null;
+  }
+}
+
+function syncAllTimers() { motionTimers.forEach(syncTimer); }
+
+// 悬停暂停 / 恢复（只影响指定定时器，且状态可跨标签页切换保持）
+function holdMotionTimer(entry) { if (!entry) return; entry.held = true; syncTimer(entry); }
+function releaseMotionTimer(entry) { if (!entry) return; entry.held = false; syncTimer(entry); }
+
+// 业务启停（按需启动的定时器用它，语义是「业务想不想让它跑」）
+function startMotionTimer(entry) { if (!entry) return; entry.wantRun = true; syncTimer(entry); }
+function stopMotionTimer(entry) { if (!entry) return; entry.wantRun = false; syncTimer(entry); }
+
+// 页面隐藏 / 减少动态效果时挂起全部动效
+function suspendMotion() { motionSuspended = true; syncAllTimers(); }
+function resumeMotion() { motionSuspended = false; syncAllTimers(); }
+
+// 粒子背景的渲染开关（rAF 不走 setInterval，单独控制）
+const motionState = { particleRunning: true };
+
+function syncParticleRunning() {
+  motionState.particleRunning = !document.hidden && !prefersReducedMotion.matches;
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    suspendMotion();
+    motionState.particleRunning = false;
+  } else {
+    resumeMotion();
+    syncParticleRunning();
+  }
+});
+
+// 系统在运行期间切换「减少动态效果」时同步响应
+if (prefersReducedMotion.addEventListener) {
+  prefersReducedMotion.addEventListener('change', () => {
+    syncAllTimers();
+    syncParticleRunning();
+  });
+}
+
+// 兼容旧式 API：某些浏览器只支持 addListener
+else if (prefersReducedMotion.addListener) {
+  prefersReducedMotion.addListener(() => {
+    syncAllTimers();
+    syncParticleRunning();
+  });
+}
+
+// ===== 核心营销能力卡片交互 =====
+const marketingSkills = document.getElementById('marketingSkills');
+const skillCards = marketingSkills.querySelectorAll('.mkt-skill-card');
+const skillsDetailPanel = document.getElementById('skillsDetailPanel');
+
+// 每个能力卡片对应的右侧详情图片
+const skillDetailImages = {
+  'planning': 'assets/8-1.png', // 活动策划与执行
+  'data': 'assets/8-2.png',    // 数据分析与复盘
+  'pricing': 'assets/8-3.png', // 产品定价策略
+  'system': 'assets/8-4.png',  // 营销体系建设
+  'user': 'assets/8-5.png',    // 用户分层运营
+  'channel': 'assets/8-6.png', // 多渠道投放运营
+  'creative': 'assets/8-7.png',// 创新玩法设计
+  'team': 'assets/8-8.png'     // 跨部门协作管理
+};
+
+skillCards.forEach(card => {
+  card.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const skillName = this.querySelector('h4').textContent;
+    const skillKey = this.dataset.skill;
+    
+    // 如果还没激活，先激活
+    if (!marketingSkills.classList.contains('active')) {
+      marketingSkills.classList.add('active');
+    }
+    
+    // 高亮当前卡片
+    skillCards.forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    
+    // 更新右侧详情面板内容
+    const detailImg = skillDetailImages[skillKey] || 'assets/8-1.png';
+    document.getElementById('skillsDetailContent').innerHTML = `
+      <div style="position: relative; width: 100%; height: 100%; cursor: pointer;" class="skill-detail-img-wrap">
+        <img src="${detailImg}" alt="${skillName}详情" style="width: 100%; height: 100%; border-radius: 8px; object-fit: fill;">
+        <div class="vi-zoom-hint" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.75); color: var(--gold); font-size: 13px; padding: 8px 18px; border-radius: 20px; border: 1px solid var(--gold-border); pointer-events: none; opacity: 0; transition: opacity 0.25s ease; z-index: 5; letter-spacing: 1px;">点击放大</div>
+      </div>
+    `;
+    // 绑定悬停和点击事件
+    const imgWrap = document.querySelector('.skill-detail-img-wrap');
+    // 该容器由 innerHTML 动态重建，不在 KEYBOARD_TRIGGER_SELECTOR 的静态扫描范围内，
+    // 需在此单独增强，否则键盘用户无法打开核心能力详情图灯箱
+    if (imgWrap) makeKeyboardTrigger(imgWrap);
+    imgWrap.addEventListener('mouseenter', () => {
+      imgWrap.querySelector('.vi-zoom-hint').style.opacity = '1';
+    });
+    imgWrap.addEventListener('mouseleave', () => {
+      imgWrap.querySelector('.vi-zoom-hint').style.opacity = '0';
+    });
+    imgWrap.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // 打开lightbox放大
+      openSkillDetailLightbox(detailImg, skillName);
+    });
+  });
+});
+
+// 点击详情面板空白处可以切回网格视图
+skillsDetailPanel.addEventListener('click', function(e) {
+  if (e.target === this || e.target.id === 'skillsDetailContent') {
+    marketingSkills.classList.remove('active');
+    skillCards.forEach(c => c.classList.remove('active'));
+  }
+});
+
+// 关闭列表按钮
+document.getElementById('closeSkillsBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  marketingSkills.classList.remove('active');
+  skillCards.forEach(c => c.classList.remove('active'));
+});
+
+// ===== 营销案例轮播 =====
+const carouselTrack = document.getElementById('caseCarouselTrack');
+const carouselPrev = document.getElementById('carouselPrev');
+const carouselNext = document.getElementById('carouselNext');
+let currentSlide = 0;
+const cardsPerView = 3;
+const totalCards = carouselTrack.querySelectorAll('.carousel-slide').length;
+const totalSlides = Math.ceil((totalCards - cardsPerView + 1));
+
+function goToSlide(index) {
+  currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+  const cardWidth = carouselTrack.querySelector('.carousel-slide').offsetWidth;
+  const gap = 20;
+  const offset = currentSlide * (cardWidth + gap);
+  carouselTrack.style.transform = `translateX(-${offset}px)`;
+}
+
+// 左右按钮
+carouselPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+carouselNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+// 自动轮播：交由动效调度器托管。
+// 原实现每次 mouseleave 都新建一个 setInterval，若该事件连续触发两次
+// （中间没有 mouseenter）就会残留重复定时器；且切到后台时不会暂停。
+// 改为登记一次、由 hold/release 切换状态，可同时解决这两个问题。
+const autoSlideTimer = registerMotionInterval(() => {
+  const next = (currentSlide + 1) % totalSlides;
+  goToSlide(next);
+}, 5000);
+
+// 鼠标悬停时暂停自动轮播
+const carouselSection = document.querySelector('.case-carousel-section');
+if (carouselSection) {
+  carouselSection.addEventListener('mouseenter', () => holdMotionTimer(autoSlideTimer));
+  carouselSection.addEventListener('mouseleave', () => releaseMotionTimer(autoSlideTimer));
+}
+
 // ===== Nav Scroll =====
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -3147,13 +5261,14 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
-    document.querySelectorAll('.project-block').forEach(block => {
-      if (filter === 'all' || block.dataset.category === filter) {
-        block.style.display = '';
-      } else {
-        block.style.display = 'none';
+    if (filter !== 'all') {
+      const targetBlock = document.querySelector(`.project-block[data-category="${filter}"]`);
+      const filterBar = document.querySelector('.filter-bar');
+      if (targetBlock && filterBar) {
+        const topPos = targetBlock.getBoundingClientRect().top + window.pageYOffset - filterBar.offsetHeight - 40;
+        window.scrollTo({top: topPos, behavior: 'smooth'});
       }
-    });
+    }
   });
 });
 
@@ -3250,12 +5365,12 @@ coverflowItems.forEach((item, i) => {
 
 // ===== Offline Lightbox =====
 const offlineImages = [
-  { src: 'https://aka.doubaocdn.com/s/MhOGiOUpZ9', alt: '产品手册目录页' },
-  { src: 'https://aka.doubaocdn.com/s/mEAvHpVXoO', alt: '产品手册内页' },
-  { src: 'https://aka.doubaocdn.com/s/jPPnsOqKno', alt: '厨房场景' },
-  { src: 'https://aka.doubaocdn.com/s/gFEJ254FNX', alt: '客厅场景' },
-  { src: 'https://aka.doubaocdn.com/s/4yn96KT36T', alt: '线下活动物料' },
-  { src: 'https://aka.doubaocdn.com/s/rHgZ25HzPQ', alt: '户外广告物料' }
+  { src: 'assets/01_产品手册目录页.png', alt: '产品手册目录页' },
+  { src: 'assets/02_产品手册内页.png', alt: '产品手册内页' },
+  { src: 'assets/03_厨房场景.png', alt: '厨房场景' },
+  { src: 'assets/04_客厅场景.png', alt: '客厅场景' },
+  { src: 'assets/05_线下活动物料.png', alt: '线下活动物料' },
+  { src: 'assets/06_户外广告物料.png', alt: '户外广告物料' }
 ];
 let offlineLightboxIndex = 0;
 
@@ -3293,6 +5408,7 @@ function openOfflineLightbox(index) {
   if (els.lightbox) {
     els.lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    openDialogA11y(els.lightbox, els.close);
   }
 }
 
@@ -3301,6 +5417,7 @@ function closeOfflineLightbox() {
   if (els.lightbox) {
     els.lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    closeDialogA11y(els.lightbox);
   }
 }
 
@@ -3349,7 +5466,7 @@ document.addEventListener('keydown', (e) => {
 
 // ===== Product Zoom Lightbox =====
 const productZoomCard = document.querySelector('.product-zoom-card');
-const PRODUCT_ZOOM_SRC = 'https://aka.doubaocdn.com/s/2fWGXqtrf6';
+const PRODUCT_ZOOM_SRC = 'assets/07_机器人产品内页.png';
 
 function getProductLightboxElements() {
   return {
@@ -3368,6 +5485,7 @@ function openProductLightbox() {
   if (els.lightbox) {
     els.lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    openDialogA11y(els.lightbox, els.close);
   }
 }
 
@@ -3376,6 +5494,7 @@ function closeProductLightbox() {
   if (els.lightbox) {
     els.lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    closeDialogA11y(els.lightbox);
   }
 }
 
@@ -3395,6 +5514,16 @@ document.addEventListener('DOMContentLoaded', () => {
         closeProductLightbox();
       }
     });
+  }
+});
+
+// ESC 关闭：本页其他 7 个灯箱都有这个处理器，唯独产品拆解灯箱漏了，
+// 导致键盘用户打开后只能靠 Tab 找到关闭按钮才能退出。这里补齐。
+document.addEventListener('keydown', (e) => {
+  const els = getProductLightboxElements();
+  if (!els.lightbox || !els.lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeProductLightbox();
   }
 });
 
@@ -3476,6 +5605,7 @@ function openVideoLightbox() {
   // 打开lightbox
   els.lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  openDialogA11y(els.lightbox, els.close);
   
   // 如果原视频在播放，lightbox视频也播放
   if (wasPlaying) {
@@ -3485,7 +5615,12 @@ function openVideoLightbox() {
 
 function closeVideoLightbox() {
   const els = getVideoLightboxElements();
-  if (!els.lightbox || !els.video || !currentLightboxVideoElement) return;
+  if (!els.lightbox || !els.video || !currentLightboxVideoElement) {
+    // 提前返回也必须做无障碍清理：否则 aria-hidden 会残留在 "false"、
+    // Tab 焦点陷阱不摘除，之后打开其他灯箱时这个僵尸陷阱会抢走焦点。
+    if (els.lightbox) closeDialogA11y(els.lightbox);
+    return;
+  }
   
   // 记录lightbox视频的播放时间和状态
   const currentTime = els.video.currentTime;
@@ -3497,6 +5632,9 @@ function closeVideoLightbox() {
   // 关闭lightbox
   els.lightbox.classList.remove('active');
   document.body.style.overflow = '';
+  // 焦点归还在「清空 currentLightboxVideoElement」之前执行，
+  // 否则上面的提前 return 会让关闭态残留 aria-hidden="false"
+  closeDialogA11y(els.lightbox);
   
   // 设置原视频的播放时间
   currentLightboxVideoElement.currentTime = currentTime;
@@ -3553,6 +5691,7 @@ function openMotionHeroLightbox() {
   // 打开lightbox
   els.lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  openDialogA11y(els.lightbox, els.close);
   
   // 如果原视频在播放，lightbox视频也播放
   if (wasPlaying) {
@@ -3684,14 +5823,14 @@ window.addEventListener('resize', () => {
 // ===== Digital Lightbox Zoom =====
 // 仅包含右侧8张横屏比例的图片，不包含左侧官网长图
 const digitalImages = [
-  'https://aka.doubaocdn.com/s/0OaT9atp43',  // 0: 官网视觉
-  'https://aka.doubaocdn.com/s/gtVYqoQwHR',  // 1: 移动端视觉
-  'https://aka.doubaocdn.com/s/tGkWLRYzcJ',  // 2: 私域视觉
-  'https://aka.doubaocdn.com/s/UNU2P6WuWZ',  // 3: 电商视觉
-  'https://aka.doubaocdn.com/s/Ml4fkRb3Zu',  // 4: 直播视觉
-  'https://aka.doubaocdn.com/s/UfTV2HYtwf',  // 5: 社媒视觉
-  'https://aka.doubaocdn.com/s/DDODOx4lBq',  // 6: 投放视觉
-  'https://aka.doubaocdn.com/s/POVYXl6I2Y'   // 7: 数字人视觉
+  'assets/02_官网view.png',  // 0: 官网视觉
+  'assets/03_移动端view.png',  // 1: 移动端视觉
+  'assets/04_私域view.png',  // 2: 私域视觉
+  'assets/05_电商view.png',  // 3: 电商视觉
+  'assets/06_直播view.png',  // 4: 直播视觉
+  'assets/07_社媒view.png',  // 5: 社媒视觉
+  'assets/08_投放view.png',  // 6: 投放视觉
+  'assets/09_数字人view.png'   // 7: 数字人视觉
 ];
 let digitalLightboxIndex = 0;
 
@@ -3727,6 +5866,7 @@ function openDigitalLightbox(index) {
   showDigitalLightboxImage(index);
   els.lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  openDialogA11y(els.lightbox, els.close);
 }
 
 function closeDigitalLightbox() {
@@ -3734,6 +5874,7 @@ function closeDigitalLightbox() {
   if (!els.lightbox) return;
   els.lightbox.classList.remove('active');
   document.body.style.overflow = '';
+  closeDialogA11y(els.lightbox);
 }
 
 // 绑定9张图片的点击事件
@@ -3826,28 +5967,30 @@ function openDigitalLongLightbox() {
   updateLongLightboxTransform();
   els.lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  // 放在下面的 `if (!els.img) return` 之前，确保焦点管理不会因提前返回被跳过
+  openDialogA11y(els.lightbox, els.close);
   
-  // 图片加载后，默认定位到顶部（显示头部）
-  if (els.img) {
-    els.img.onload = () => {
-      const imgHeight = els.img.naturalHeight;
-      const viewportHeight = window.innerHeight;
-      if (imgHeight > viewportHeight) {
-        // 图片比视口高，默认定位到顶部（显示头部）
-        longLightboxState.translateY = (imgHeight - viewportHeight) / 2;
-        updateLongLightboxTransform();
-      }
-    };
-    // 如果图片已经加载完成
-    if (els.img.complete) {
-      const imgHeight = els.img.naturalHeight;
-      const viewportHeight = window.innerHeight;
-      if (imgHeight > viewportHeight) {
-        longLightboxState.translateY = (imgHeight - viewportHeight) / 2;
-        updateLongLightboxTransform();
-      }
-    }
+  if (!els.img) return;
+
+  // 首次打开时才把 data-src 赋给 src，避免首屏下载这张 2.26MB 长图
+  const pendingSrc = els.img.dataset.src;
+  if (pendingSrc && !els.img.getAttribute('src')) {
+    els.img.src = pendingSrc;
   }
+
+  // 定位到顶部：图片高于视口时向下偏移半个差值，使顶端贴住视口顶部
+  const alignTop = () => {
+    const imgHeight = els.img.naturalHeight;
+    if (!imgHeight) return;
+    const viewportHeight = window.innerHeight;
+    if (imgHeight > viewportHeight) {
+      longLightboxState.translateY = (imgHeight - viewportHeight) / 2;
+      updateLongLightboxTransform();
+    }
+  };
+  // 首次打开走 load；再次打开时图已在缓存、complete 为 true，走同步分支
+  els.img.onload = alignTop;
+  if (els.img.complete) alignTop();
 }
 
 function closeDigitalLongLightbox() {
@@ -3855,6 +5998,7 @@ function closeDigitalLongLightbox() {
   if (!els.lightbox) return;
   els.lightbox.classList.remove('active');
   document.body.style.overflow = '';
+  closeDialogA11y(els.lightbox);
 }
 
 // 绑定long lightbox事件
@@ -3963,10 +6107,23 @@ if (viFeaturesEl) viFeaturesObserver.observe(viFeaturesEl);
 // ===== VI Manual Image Hover Switch =====
 const viMainImg = document.getElementById('viMainImg');
 const viImageLabel = document.getElementById('viImageLabel');
-const viDefaultImg = 'https://aka.doubaocdn.com/s/UtMldrGOyA';
+const viDefaultImg = 'assets/01_品牌手册封面.png';
 const viDefaultLabel = 'VI MANUAL COVER / 品牌手册封面 / 01 / Cover';
-let viCarouselTimer = null;
 let viCarouselIndex = 0;
+let currentViIndex = 0;
+
+// VI 轮播的动态参数：工厂函数从这里读，故 startViCarousel 只需更新变量再启动定时器
+let viCarouselArgs = null;
+const viCarouselTimer = registerMotionInterval(() => {
+  if (!viCarouselArgs) return;
+  const { img1, img2, label1, label2 } = viCarouselArgs;
+  viCarouselIndex = 1 - viCarouselIndex;
+  if (viCarouselIndex === 0) {
+    switchViImage(img1, label1);
+  } else {
+    switchViImage(img2, label2);
+  }
+}, 2000, false);   // autoStart=false：按需启动，仅悬停时跑
 
 function switchViImage(src, label) {
   viMainImg.style.opacity = '0';
@@ -3974,28 +6131,21 @@ function switchViImage(src, label) {
     viMainImg.src = src;
     if (label) viImageLabel.textContent = label;
     viMainImg.style.opacity = '1';
+    const idx = viImages.findIndex(vi => vi.src === src);
+    if (idx >=0) currentViIndex = idx;
   }, 300);
 }
 
 function startViCarousel(img1, img2, label1, label2) {
   stopViCarousel();
+  viCarouselArgs = { img1, img2, label1, label2 };
   viCarouselIndex = 0;
   switchViImage(img1, label1);
-  viCarouselTimer = setInterval(() => {
-    viCarouselIndex = 1 - viCarouselIndex;
-    if (viCarouselIndex === 0) {
-      switchViImage(img1, label1);
-    } else {
-      switchViImage(img2, label2);
-    }
-  }, 2000);
+  startMotionTimer(viCarouselTimer);
 }
 
 function stopViCarousel() {
-  if (viCarouselTimer) {
-    clearInterval(viCarouselTimer);
-    viCarouselTimer = null;
-  }
+  stopMotionTimer(viCarouselTimer);
 }
 
 document.querySelectorAll('.vi-feature-card').forEach(card => {
@@ -4019,8 +6169,31 @@ document.querySelectorAll('.vi-feature-card').forEach(card => {
 });
 
 // ===== Three.js Gold Particle Background =====
+// 纯装饰性背景（pointer-events:none; opacity:.35; z-index:0），失败时跳过即可。
+// 关键：这段 IIFE 位于脚本块顶层、解析到此立即执行，一旦抛错会中断本脚本块内
+// 后续约 500 行交互（VI灯箱缩放、分类卡片视频悬停、Motion 视频控制、垂直轮播、
+// 左侧导航高亮）。因此必须三重防护：CDN 未加载 / 无 WebGL / 初始化异常。
 (function initParticles() {
+  // 第一重：three.js 未加载 —— CDN（jsdelivr）在国内网络不稳定，失败时 THREE 为未定义
+  if (typeof THREE === 'undefined') return;
+
   const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+
+  // 第二重：WebGL 能力检测 —— 老旧设备或禁用硬件加速时 WebGLRenderer 构造会抛异常。
+  //    必须用独立探测 canvas，不能直接探测 particleCanvas：同一 canvas 只能有
+  //    一种 context 类型，若在此处先取了 webgl，three.js 再请求 webgl2 会得到 null。
+  try {
+    const probe = document.createElement('canvas');
+    const gl = probe.getContext('webgl2') || probe.getContext('webgl') || probe.getContext('experimental-webgl');
+    if (!gl) return;
+  } catch (e) {
+    return;
+  }
+
+  // 第三重兜底：GPU 黑名单、显存不足、three.js 版本 API 变动等意外一律不外抛。
+  //    内部代码保持原有缩进以减少 diff 噪音。
+  try {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -4076,6 +6249,10 @@ document.querySelectorAll('.vi-feature-card').forEach(card => {
   
   function animate() {
     requestAnimationFrame(animate);
+    // 显式短路：用户开启「减少动态效果」时不跑渲染计算。
+    // 注：rAF 在后台标签页本就不会触发，故省电主要靠浏览器机制；
+    // 这一层的实际价值是让 prefers-reduced-motion 能立即停住画面。
+    if (!motionState.particleRunning) return;
     time += 0.001;
     targetX += (mouseX - targetX) * 0.06; // 增大跟随速度
     targetY += (mouseY - targetY) * 0.06;
@@ -4093,13 +6270,25 @@ document.querySelectorAll('.vi-feature-card').forEach(card => {
     
     renderer.render(scene, camera);
   }
-  animate();
+  if (prefersReducedMotion.matches) {
+    // 减少动态效果：只渲染一帧静态粒子作为背景，不启动循环
+    motionState.particleRunning = false;
+    renderer.render(scene, camera);
+  } else {
+    animate();
+  }
 
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
+  } catch (err) {
+    // 初始化失败时保持 canvas 为透明空层，不影响页面其余部分
+    if (window.console && console.warn) {
+      console.warn('3D 粒子背景初始化失败，已跳过（不影响页面其他功能）：', err);
+    }
+  }
 })();
 
 // ===== VI Lightbox Zoom =====
@@ -4115,14 +6304,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 图片顺序：封面-拆解-标识系统(2张)-色彩-字体-图形元素-应用示例
   const viImages = [
-    { src: 'https://aka.doubaocdn.com/s/UtMldrGOyA', label: 'VI MANUAL COVER / 品牌手册封面 / 01 / Cover' },
-    { src: 'https://aka.doubaocdn.com/s/FoKhrsRuHT', label: 'VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure' },
-    { src: 'https://aka.doubaocdn.com/s/8WDzVGSFT9', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1' },
-    { src: 'https://aka.doubaocdn.com/s/OztmiR4dxp', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2' },
-    { src: 'https://aka.doubaocdn.com/s/UruJrtPo49', label: 'COLOR SYSTEM / 品牌色彩系统 / 04 / Colors' },
-    { src: 'https://aka.doubaocdn.com/s/r38RsEYI38', label: 'TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts' },
-    { src: 'https://aka.doubaocdn.com/s/5YiDtYptJh', label: 'GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements' },
-    { src: 'https://aka.doubaocdn.com/s/o6Ys2cMto6', label: 'APPLICATION / 品牌应用示例 / 07 / Application' }
+    { src: 'assets/01_品牌手册封面.png', label: 'VI MANUAL COVER / 品牌手册封面 / 01 / Cover' },
+    { src: 'assets/02_VI手册结构示意图.png', label: 'VI MANUAL STRUCTURE / VI手册结构示意图 / 02 / Structure' },
+    { src: 'assets/03_品牌标识系统第1页.png', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-1 / Page 1' },
+    { src: 'assets/03_品牌标识系统第2页.png', label: 'BRAND IDENTITY SYSTEM / 品牌标识系统 / 03-2 / Page 2' },
+    { src: 'assets/04_品牌色彩系统.png', label: 'COLOR SYSTEM / 品牌色彩系统 / 04 / Colors' },
+    { src: 'assets/05_品牌字体系统.png', label: 'TYPOGRAPHY SYSTEM / 品牌字体系统 / 05 / Fonts' },
+    { src: 'assets/07_图形元素系统.png', label: 'GRAPHIC ELEMENTS / 品牌图形元素系统 / 06 / Elements' },
+    { src: 'assets/08_应用示例页.png', label: 'APPLICATION / 品牌应用示例 / 07 / Application' }
   ];
   let viCurrentIndex = 0;
 
@@ -4150,22 +6339,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (viMainImageEl && viLightbox) {
     viMainImageEl.addEventListener('click', () => {
-      // 根据当前左侧显示的图片找到对应索引
       let startIndex = 0;
-      if (viMainImgEl) {
-        const currentSrc = viMainImgEl.src;
-        const foundIndex = viImages.findIndex(img => currentSrc.includes(img.src.split('/').pop()));
-        if (foundIndex >= 0) startIndex = foundIndex;
-      }
+      // 原代码写的是 viMainImg（未声明），靠浏览器「按 id 自动创建全局变量」
+      // 的遗留特性才没报错；严格模式或未来重构下会直接抛 ReferenceError。
+      const currentSrc = viMainImgEl ? viMainImgEl.getAttribute('src') : '';
+      const foundIndex = viImages.findIndex(img => img.src === currentSrc);
+      if (foundIndex >= 0) startIndex = foundIndex;
       showViImage(startIndex);
       viLightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      openDialogA11y(viLightbox, viLightboxClose);
     });
   }
 
   function closeViLightbox() {
     viLightbox.classList.remove('active');
     document.body.style.overflow = '';
+    closeDialogA11y(viLightbox);
   }
 
   if (viLightboxClose) {
@@ -4423,6 +6613,7 @@ function openAnyVideoLightbox(videoElement) {
   // 打开lightbox
   els.lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  openDialogA11y(els.lightbox, els.close);
   
   // 如果原视频在播放，lightbox视频也播放
   if (wasPlaying) {
@@ -4536,33 +6727,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
-    // 品牌设定区域的顶部位置
-    const brandRect = sections[0].getBoundingClientRect();
-    const brandTop = brandRect.top + window.scrollY;
+    // 标杆案例区域的顶部位置
+    const caseSection = document.getElementById('case-section');
+    const caseRect = caseSection.getBoundingClientRect();
+    const caseTop = caseRect.top + window.scrollY;
     
     // CTA区域的顶部位置
     const ctaRect = ctaSection.getBoundingClientRect();
     const ctaTop = ctaRect.top + window.scrollY;
     
-    // 判断是否显示导航：滚动到品牌设定区域时显示，滚动到CTA区域之后隐藏
-    if (scrollY >= brandTop - windowHeight * 0.2 && scrollY < ctaTop - windowHeight * 0.3) {
+    // 判断是否显示导航：滚动到标杆案例深度解析区域时显示，滚动到CTA区域之后隐藏
+    if (scrollY >= caseTop - windowHeight * 0.2 && scrollY < ctaTop - windowHeight * 0.3) {
       sideNav.classList.add('visible');
+      // 悬浮菜单出现时默认高亮营销策划
+      document.querySelectorAll('.side-nav-item').forEach(item => item.classList.remove('active'));
+      const marketingItem = document.querySelector('.side-nav-item[data-target="marketing"]');
+      if (marketingItem) marketingItem.classList.add('active');
     } else {
       sideNav.classList.remove('visible');
     }
     
     // 高亮当前所在区域
-    let currentIndex = -1;
-    const scrollPosition = scrollY + windowHeight * 0.2; // 视口上方20%位置作为切换点
+    const scrollPosition = scrollY + windowHeight * 0.3; // 视口上方30%位置作为切换点
     
-    // 使用getBoundingClientRect()计算准确位置，不受offsetParent影响
-    for (let i = sections.length - 1; i >= 0; i--) {
+    let currentIndex = 0;
+    // 按顺序判断当前滚动位置在哪个区块
+    for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect();
-      const absoluteTop = rect.top + window.scrollY; // 相对于document的位置
-      
+      const absoluteTop = rect.top + window.scrollY;
       if (absoluteTop <= scrollPosition) {
-        currentIndex = i;
-        break;
+        currentIndex = i + 1; // +1 因为navItems第一个是营销策划
       }
     }
     
@@ -4606,48 +6800,55 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- VI Lightbox -->
-<div class="vi-lightbox" id="viLightbox">
-  <button class="vi-lightbox-close" id="viLightboxClose">&times;</button>
-  <button class="vi-lightbox-nav vi-lightbox-prev" id="viLightboxPrev">&#10094;</button>
-  <button class="vi-lightbox-nav vi-lightbox-next" id="viLightboxNext">&#10095;</button>
-  <div class="vi-lightbox-counter" id="viLightboxCounter"></div>
+<div class="vi-lightbox" id="viLightbox" role="dialog" aria-modal="true" aria-label="品牌VI手册图片放大查看" aria-hidden="true">
+  <button type="button" class="vi-lightbox-close" id="viLightboxClose" aria-label="关闭放大查看">&times;</button>
+  <button type="button" class="vi-lightbox-nav vi-lightbox-prev" id="viLightboxPrev" aria-label="上一张">&#10094;</button>
+  <button type="button" class="vi-lightbox-nav vi-lightbox-next" id="viLightboxNext" aria-label="下一张">&#10095;</button>
+  <div class="vi-lightbox-counter" id="viLightboxCounter" aria-live="polite"></div>
   <img id="viLightboxImg" src="" alt="放大查看">
 </div>
-<div class="offline-lightbox" id="offlineLightbox">
-  <button class="offline-lightbox-close" id="offlineLightboxClose">&times;</button>
-  <button class="offline-lightbox-nav offline-lightbox-prev" id="offlineLightboxPrev">&#10094;</button>
-  <button class="offline-lightbox-nav offline-lightbox-next" id="offlineLightboxNext">&#10095;</button>
-  <div class="offline-lightbox-counter" id="offlineLightboxCounter"></div>
+<div class="offline-lightbox" id="offlineLightbox" role="dialog" aria-modal="true" aria-label="线下营销物料图片放大查看" aria-hidden="true">
+  <button type="button" class="offline-lightbox-close" id="offlineLightboxClose" aria-label="关闭放大查看">&times;</button>
+  <button type="button" class="offline-lightbox-nav offline-lightbox-prev" id="offlineLightboxPrev" aria-label="上一张">&#10094;</button>
+  <button type="button" class="offline-lightbox-nav offline-lightbox-next" id="offlineLightboxNext" aria-label="下一张">&#10095;</button>
+  <div class="offline-lightbox-counter" id="offlineLightboxCounter" aria-live="polite"></div>
   <img id="offlineLightboxImg" src="" alt="放大查看">
 </div>
-<div class="product-lightbox" id="productLightbox">
-  <button class="product-lightbox-close" id="productLightboxClose">&times;</button>
+<div class="product-lightbox" id="productLightbox" role="dialog" aria-modal="true" aria-label="产品拆解图放大查看" aria-hidden="true">
+  <button type="button" class="product-lightbox-close" id="productLightboxClose" aria-label="关闭放大查看">&times;</button>
   <img id="productLightboxImg" src="" alt="产品拆解放大">
 </div>
-<div class="video-lightbox" id="videoLightbox">
-  <button class="video-lightbox-close" id="videoLightboxClose">&times;</button>
+<div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="视频全屏播放" aria-hidden="true">
+  <button type="button" class="video-lightbox-close" id="videoLightboxClose" aria-label="关闭全屏播放">&times;</button>
   <video id="videoLightboxVideo" class="video-lightbox-video" controls playsinline>
-    <source src="https://aka.doubaocdn.com/s/w2zjdAwNt0" type="video/mp4">
+    <source src="assets/08_产品功能演示视频.mp4" type="video/mp4">
   </video>
 </div>
 <!-- Digital Lightbox -->
-<div class="digital-lightbox" id="digitalLightbox">
-  <button class="digital-lightbox-close" id="digitalLightboxClose">&times;</button>
-  <button class="digital-lightbox-nav digital-lightbox-prev" id="digitalLightboxPrev">&#10094;</button>
-  <button class="digital-lightbox-nav digital-lightbox-next" id="digitalLightboxNext">&#10095;</button>
-  <div class="digital-lightbox-counter" id="digitalLightboxCounter"></div>
+<div class="digital-lightbox" id="digitalLightbox" role="dialog" aria-modal="true" aria-label="数字端视觉图片放大查看" aria-hidden="true">
+  <button type="button" class="digital-lightbox-close" id="digitalLightboxClose" aria-label="关闭放大查看">&times;</button>
+  <button type="button" class="digital-lightbox-nav digital-lightbox-prev" id="digitalLightboxPrev" aria-label="上一张">&#10094;</button>
+  <button type="button" class="digital-lightbox-nav digital-lightbox-next" id="digitalLightboxNext" aria-label="下一张">&#10095;</button>
+  <div class="digital-lightbox-counter" id="digitalLightboxCounter" aria-live="polite"></div>
   <img id="digitalLightboxImg" src="" alt="放大查看">
 </div>
 <!-- Digital Long Image Lightbox -->
-<div class="digital-long-lightbox" id="digitalLongLightbox">
-  <button class="digital-long-lightbox-close" id="digitalLongLightboxClose">&times;</button>
-  <div class="digital-long-lightbox-zoom" id="digitalLongLightboxZoom">100%</div>
-  <img id="digitalLongLightboxImg" src="https://aka.doubaocdn.com/s/VlGlVON84U" alt="官网站点图">
+<div class="digital-long-lightbox" id="digitalLongLightbox" role="dialog" aria-modal="true" aria-label="官网站点长图放大查看" aria-hidden="true">
+  <button type="button" class="digital-long-lightbox-close" id="digitalLongLightboxClose" aria-label="关闭放大查看">&times;</button>
+  <div class="digital-long-lightbox-zoom" id="digitalLongLightboxZoom" aria-hidden="true">100%</div>
+  <!-- 长图 2.26MB，且灯箱是 position:fixed + opacity:0（非 display:none），
+       浏览器会视其为「在视口内」，loading="lazy" 对它无效、首屏仍会下载。
+       故改用 data-src，由 openDigitalLongLightbox() 在首次打开时才赋给 src。 -->
+  <img id="digitalLongLightboxImg" data-src="assets/01_官网站点图.jpg" alt="官网站点图">
   <div class="digital-long-lightbox-hint">滚轮上下滑动查看 · 按住鼠标拖动 · ESC关闭</div>
 </div>
 
 <!-- Left Side Navigation -->
 <nav class="side-nav" id="sideNav">
+  <button class="side-nav-item" data-target="marketing">
+    <span class="nav-dot"></span>
+    <span>营销策划</span>
+  </button>
   <button class="side-nav-item" data-target="project-brand">
     <span class="nav-dot"></span>
     <span>品牌设定</span>
@@ -4670,5 +6871,366 @@ document.addEventListener('DOMContentLoaded', () => {
   </button>
 </nav>
 
+<!-- 营销案例轮播 Lightbox -->
+<div class="marketing-lightbox" id="marketingLightbox" style="display:none;" role="dialog" aria-modal="true" aria-label="营销案例图片放大查看" aria-hidden="true">
+  <div class="lightbox-bg"></div>
+  <button type="button" class="lightbox-close" id="marketingLightboxClose" aria-label="关闭放大查看">×</button>
+  <button type="button" class="lightbox-prev" id="marketingLightboxPrev" aria-label="上一张">‹</button>
+  <div class="lightbox-content">
+    <img id="marketingLightboxImg" src="" alt="">
+  </div>
+  <button type="button" class="lightbox-next" id="marketingLightboxNext" aria-label="下一张">›</button>
+  <div class="lightbox-counter" id="marketingLightboxCounter" aria-live="polite">1 / 18</div>
+</div>
+
+<!-- 营销案例轮播 Lightbox 逻辑 -->
+<script>
+// 18张营销案例图片，后续替换为真实图片
+const marketingImages = [
+  // 卡片1：春节订购返现活动
+  'assets/春节1.jpg',
+  'assets/春节2.jpg',
+  'assets/春节3.jpg',
+  // 卡片2：暑期营销战役
+  'assets/暑期1.gif',
+  'assets/暑期2.gif',
+  'assets/暑期3.png',
+  // 卡片3：双11多种产品福利叠加
+  'assets/双111.png',
+  'assets/双112.png',
+  'assets/双113.png',
+  // 卡片4：红包互动活动
+  'assets/签到页.png',
+  'assets/签到2.png',
+  'assets/签到3.png',
+  // 卡片5：支付宝立减金活动
+  'assets/支付宝1.png',
+  'assets/支付宝2.png',
+  'assets/支付宝3.png',
+  // 卡片6：热播IP驱动营销
+  'assets/影视IP主题活动截图3.png',
+  'assets/双产品.jpg',
+  'assets/主页面.jpg'
+];
+
+// 每个卡片对应的起始索引
+const cardStartIndices = [0, 3, 6, 9, 12, 15];
+
+const lightbox = document.getElementById('marketingLightbox');
+const lightboxImg = document.getElementById('marketingLightboxImg');
+const lightboxClose = document.getElementById('marketingLightboxClose');
+const lightboxPrev = document.getElementById('marketingLightboxPrev');
+const lightboxNext = document.getElementById('marketingLightboxNext');
+const lightboxCounter = document.getElementById('marketingLightboxCounter');
+
+let currentIndex = 0;
+
+// 打开lightbox
+function openMarketingLightbox(startIndex) {
+  currentIndex = startIndex;
+  updateLightboxImage();
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // 本灯箱用 display:none/flex 切换（其余灯箱用 opacity+visibility），
+  // display:flex 之后元素立即可见，无需等待过渡
+  openDialogA11y(lightbox, lightboxClose);
+}
+
+// 更新图片
+function updateLightboxImage() {
+  lightboxImg.src = marketingImages[currentIndex];
+  // 原本 alt 是空字符串，读屏软件只会报「图片」而无内容信息。
+  // 从文件名推导一个可读名称（marketingImages 只存路径、没有单独的描述字段）。
+  const fileName = String(marketingImages[currentIndex] || '').split('/').pop() || '';
+  lightboxImg.alt = fileName.replace(/\.[a-z0-9]+$/i, '') + ' 营销案例图';
+  lightboxCounter.textContent = (currentIndex + 1) + ' / ' + marketingImages.length;
+}
+
+// 关闭lightbox
+function closeMarketingLightbox() {
+  lightbox.style.display = 'none';
+  document.body.style.overflow = '';
+  closeDialogA11y(lightbox);
+}
+
+// 上一张
+function prevImage() {
+  currentIndex = (currentIndex - 1 + marketingImages.length) % marketingImages.length;
+  updateLightboxImage();
+}
+
+// 下一张
+function nextImage() {
+  currentIndex = (currentIndex + 1) % marketingImages.length;
+  updateLightboxImage();
+}
+
+// 绑定点击事件
+document.querySelectorAll('.carousel-slide').forEach((slideEl, cardIndex) => {
+  slideEl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openMarketingLightbox(cardStartIndices[cardIndex]);
+  });
+});
+
+// 绑定关闭按钮
+lightboxClose.addEventListener('click', closeMarketingLightbox);
+lightbox.querySelector('.lightbox-bg').addEventListener('click', closeMarketingLightbox);
+
+// 绑定左右箭头
+lightboxPrev.addEventListener('click', prevImage);
+lightboxNext.addEventListener('click', nextImage);
+
+// 键盘事件
+document.addEventListener('keydown', (e) => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'Escape') closeMarketingLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  }
+});
+</script>
+
+<!-- 核心能力详情图Lightbox -->
+<!-- 原先关闭/上一张/下一张用的是 span+onclick，span 不在 Tab 顺序中、
+     键盘与读屏用户完全无法触发，属 WCAG 2.1.1 失败项，故改为真 button。 -->
+<div class="vi-lightbox" id="skillDetailLightbox" role="dialog" aria-modal="true" aria-label="核心能力详情图放大查看" aria-hidden="true">
+  <button type="button" class="vi-lightbox-close" id="skillDetailLightboxClose" aria-label="关闭放大查看" onclick="closeSkillDetailLightbox()">&times;</button>
+  <button type="button" class="vi-lightbox-nav vi-lightbox-prev" id="skillDetailLightboxPrev" aria-label="上一张" onclick="prevSkillImage()">&#8249;</button>
+  <img id="skillDetailLightboxImg" src="" alt="详情放大">
+  <button type="button" class="vi-lightbox-nav vi-lightbox-next" id="skillDetailLightboxNext" aria-label="下一张" onclick="nextSkillImage()">&#8250;</button>
+  <!-- 页码 -->
+  <div aria-live="polite" style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-size: 14px; color: #888; z-index: 10000;">
+    <span id="skillCurrentPage" style="color: var(--gold); font-weight: 600;">1</span>
+    <span style="margin: 0 4px;">/</span>
+    <span id="skillTotalPage">8</span>
+  </div>
+</div>
+
+<script>
+// 业绩层叠卡片轮播切换（独立块，错误不影响其他功能）
+try {
+  const stackCards = [
+    document.getElementById('stackCard0'),
+    document.getElementById('stackCard1'),
+    document.getElementById('stackCard2'),
+    document.getElementById('stackCard3'),
+    document.getElementById('stackCard4'),
+    document.getElementById('stackCard5')
+  ].filter(card => card !== null);
+  const totalCards = stackCards.length;
+
+  if (totalCards > 0) {
+    let currentOrder = stackCards.map((_, i) => i);
+
+    function applyStackOrder() {
+      currentOrder.forEach((cardIdx, pos) => {
+        const card = stackCards[cardIdx];
+        if (pos === 0) {
+          card.style.left = '0px';
+          card.style.top = '0px';
+          card.style.zIndex = '6';
+          card.style.width = '80%';
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+          card.style.border = '1px solid var(--gold-border)';
+          card.style.pointerEvents = 'auto';
+          card.style.display = 'block';
+        } else if (pos === 1) {
+          card.style.left = '20px';
+          card.style.top = '12px';
+          card.style.zIndex = '5';
+          card.style.width = '80%';
+          card.style.opacity = '0.9';
+          card.style.transform = 'scale(0.97)';
+          card.style.border = '1px solid var(--border)';
+          card.style.pointerEvents = 'auto';
+          card.style.display = 'block';
+        } else if (pos === 2) {
+          card.style.left = '40px';
+          card.style.top = '24px';
+          card.style.zIndex = '4';
+          card.style.width = '80%';
+          card.style.opacity = '0.75';
+          card.style.transform = 'scale(0.94)';
+          card.style.border = '1px solid var(--border)';
+          card.style.pointerEvents = 'auto';
+          card.style.display = 'block';
+        } else if (pos === 3) {
+          card.style.left = '60px';
+          card.style.top = '36px';
+          card.style.zIndex = '3';
+          card.style.width = '80%';
+          card.style.opacity = '0.5';
+          card.style.transform = 'scale(0.91)';
+          card.style.border = '1px solid var(--border)';
+          card.style.pointerEvents = 'auto';
+          card.style.display = 'block';
+        } else if (pos === 4) {
+          card.style.left = '80px';
+          card.style.top = '48px';
+          card.style.zIndex = '2';
+          card.style.width = '80%';
+          card.style.opacity = '0.3';
+          card.style.transform = 'scale(0.88)';
+          card.style.border = '1px solid var(--border)';
+          card.style.pointerEvents = 'auto';
+          card.style.display = 'block';
+        } else {
+          card.style.left = '0px';
+          card.style.top = '60px';
+          card.style.zIndex = '0';
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.85)';
+          card.style.pointerEvents = 'none';
+          card.style.display = 'none';
+        }
+      });
+      // 更新页码
+      const currentPageEl = document.getElementById('stackCurrentPage');
+      if (currentPageEl) {
+        currentPageEl.textContent = (currentOrder[0] + 1).toString();
+      }
+    }
+
+    // 层叠卡片轮播：交由动效调度器托管，切到后台或开启减少动态效果时暂停
+    const stackTimer = registerMotionInterval(() => {
+      currentOrder = [...currentOrder.slice(1), currentOrder[0]];
+      applyStackOrder();
+    }, 3000);
+    // 悬停时暂停，移开后恢复（状态可跨标签页切换保持）
+    const stackWrap = document.querySelector('.case-stack');
+    if (stackWrap) {
+      stackWrap.addEventListener('mouseenter', () => holdMotionTimer(stackTimer));
+      stackWrap.addEventListener('mouseleave', () => releaseMotionTimer(stackTimer));
+    }
+
+    stackCards.forEach((card, cardIdx) => {
+      card.addEventListener('click', () => {
+        if (currentOrder[0] === cardIdx) return;
+        const posIdx = currentOrder.indexOf(cardIdx);
+        currentOrder = [cardIdx, ...currentOrder.slice(0, posIdx), ...currentOrder.slice(posIdx + 1)];
+        applyStackOrder();
+      });
+    });
+
+    stackCards.forEach(card => {
+      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+
+    applyStackOrder();
+  }
+} catch(e) {
+  console.warn('层叠卡片初始化失败：', e);
+}
+</script>
+
+<script>
+// 营销活动呈现轮播
+const activitySlides = document.querySelectorAll('.activity-slide');
+const activityDots = document.querySelectorAll('.activity-dot');
+let currentActivitySlide = 0;
+
+function goToActivitySlide(index) {
+  currentActivitySlide = index;
+  activitySlides.forEach((slide, i) => {
+    slide.style.opacity = i === index ? '1' : '0';
+  });
+  activityDots.forEach((dot, i) => {
+    dot.style.background = i === index ? 'var(--gold)' : 'rgba(255,255,255,0.3)';
+  });
+}
+
+activityDots.forEach((dot, i) => {
+  dot.addEventListener('click', () => goToActivitySlide(i));
+});
+
+// 自动轮播，3秒切换一次；交由动效调度器托管
+const activityTimer = registerMotionInterval(() => {
+  goToActivitySlide((currentActivitySlide + 1) % activitySlides.length);
+}, 3000);
+
+// 悬停暂停：活动图容器无 class，向上取所在面板作为悬停区域
+if (activitySlides.length) {
+  const activityPanel = activitySlides[0].closest('.case-panel');
+  if (activityPanel) {
+    activityPanel.addEventListener('mouseenter', () => holdMotionTimer(activityTimer));
+    activityPanel.addEventListener('mouseleave', () => releaseMotionTimer(activityTimer));
+  }
+}
+
+// 核心能力详情图放大功能
+const skillAllImages = [
+  'assets/8-1.png', // 1.活动策划与执行
+  'assets/8-2.png', // 2.数据分析与复盘
+  'assets/8-3.png', // 3.产品定价策略
+  'assets/8-4.png', // 4.营销体系建设
+  'assets/8-5.png', // 5.用户分层运营
+  'assets/8-6.png', // 6.多渠道投放运营
+  'assets/8-7.png', // 7.创新玩法设计
+  'assets/8-8.png'  // 8.跨部门协作管理
+];
+let currentSkillIndex = 0;
+
+function updateSkillPage() {
+  const currentEl = document.getElementById('skillCurrentPage');
+  const totalEl = document.getElementById('skillTotalPage');
+  if (currentEl) currentEl.textContent = (currentSkillIndex + 1).toString();
+  if (totalEl) totalEl.textContent = skillAllImages.length.toString();
+}
+
+function openSkillDetailLightbox(imgSrc, title) {
+  currentSkillIndex = skillAllImages.indexOf(imgSrc);
+  const lightbox = document.getElementById('skillDetailLightbox');
+  const img = document.getElementById('skillDetailLightboxImg');
+  img.src = imgSrc;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  updateSkillPage();
+  openDialogA11y(lightbox, document.getElementById('skillDetailLightboxClose'));
+}
+
+function closeSkillDetailLightbox() {
+  const lightbox = document.getElementById('skillDetailLightbox');
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  closeDialogA11y(lightbox);
+}
+
+function prevSkillImage() {
+  currentSkillIndex = (currentSkillIndex - 1 + skillAllImages.length) % skillAllImages.length;
+  document.getElementById('skillDetailLightboxImg').src = skillAllImages[currentSkillIndex];
+  updateSkillPage();
+}
+
+function nextSkillImage() {
+  currentSkillIndex = (currentSkillIndex + 1) % skillAllImages.length;
+  document.getElementById('skillDetailLightboxImg').src = skillAllImages[currentSkillIndex];
+  updateSkillPage();
+}
+
+// 点击背景关闭
+document.getElementById('skillDetailLightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeSkillDetailLightbox();
+});
+
+// 键盘左右切换 + ESC 关闭（原本只处理了左右键，键盘用户无法用 ESC 退出）
+document.addEventListener('keydown', function(e) {
+  const lightbox = document.getElementById('skillDetailLightbox');
+  if (!lightbox || !lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeSkillDetailLightbox();
+  } else if (e.key === 'ArrowLeft') {
+    prevSkillImage();
+  } else if (e.key === 'ArrowRight') {
+    nextSkillImage();
+  }
+});
+</script>
+
 </body>
 </html>
+
+
+
+
