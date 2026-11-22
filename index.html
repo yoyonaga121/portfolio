@@ -245,7 +245,32 @@ button:focus-visible {
   font-weight: 600;
 }
 .hero-subtitle strong { color: var(--gold); font-weight: 700; }
-.hero-cta { display: flex; gap: 18px; }
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 1100px;
+}
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 14px;
+  width: 100%;
+}
+.hero-cta .btn-gold,
+.hero-cta .btn-outline-light {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  line-height: 1.25;
+  padding: 13px 26px;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  white-space: nowrap;
+}
 .btn-gold,
 .btn-outline-light {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1434,6 +1459,61 @@ button:focus-visible {
   object-position: top center;
   display: block;
 }
+.digital-left.digital-live {
+  background: #0B1533;
+  cursor: default;
+}
+.digital-site-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+}
+.digital-site-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1376px;
+  height: 4368px;
+  border: 0;
+  display: block;
+  transform-origin: top left;
+  transform: scale(var(--digital-site-scale, .38));
+  background: #fff;
+}
+.digital-live-open {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-border);
+  background: rgba(10,10,15,.88);
+  backdrop-filter: blur(12px);
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+.digital-live-open::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6FE0A5;
+  box-shadow: 0 0 10px rgba(111,224,165,.7);
+  flex: 0 0 auto;
+}
+.digital-live-open:hover {
+  background: var(--gold);
+  color: #0a0a0f;
+  border-color: var(--gold);
+}
 .digital-right {
   position: relative;
   height: auto;
@@ -1487,7 +1567,7 @@ button:focus-visible {
   line-height: 1;
   font-size: 20px;
 }
-.digital-left, .digital-list-item {
+.digital-list-item {
   position: relative;
   cursor: pointer;
 }
@@ -2479,6 +2559,7 @@ button:focus-visible {
   .nav { padding: 18px 32px; }
   .nav.scrolled { padding: 14px 32px; }
   .section { padding: 80px 32px; }
+  .digital-site-frame { width: 100%; height: 100%; transform: none; }
   .hero-title { font-size: 48px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; max-width: 500px; }
   .brand-intro { grid-template-columns: 1fr; gap: 40px; }
@@ -2514,7 +2595,19 @@ button:focus-visible {
   .hero { padding: 100px 24px 60px; }
   .hero-title { font-size: 36px; letter-spacing: 3px; }
   .hero-subtitle { font-size: 13px; letter-spacing: 1px; }
-  .hero-cta { flex-direction: column; width: 100%; max-width: 280px; }
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: 10px;
+  }
+  .hero-cta-row { gap: 10px; }
+  .hero-cta .btn-gold,
+  .hero-cta .btn-outline-light {
+    padding: 12px 22px;
+    font-size: 12.5px;
+    letter-spacing: 1px;
+  }
   .btn-gold, .btn-outline-light { justify-content: center; }
   .section { padding: 60px 24px; }
   .section-title { font-size: 30px; }
@@ -3814,10 +3907,18 @@ button:focus-visible {
     </button>
     <h1 class="hero-title">视觉<span style="color:#c9a96e">构建</span>想象</h1>
     <p class="hero-subtitle">13年+IPTV运营专家 <strong>|</strong> 营销策划 <strong>×</strong> 品牌设计 <strong>×</strong> 视频创作</p>
-    <div class="hero-cta">
-      <a href="#marketing" class="btn-outline-light">查看营销案例</a>
-      <a href="#portfolio" class="btn-gold active">查看作品集</a>
-      <a href="#contact" class="btn-outline-light">联系我</a>
+    <div class="hero-cta" role="group" aria-label="作品集分类">
+      <div class="hero-cta-row">
+        <a href="#marketing" class="btn-outline-light">营销案例</a>
+        <a href="#portfolio" class="btn-gold active">VI作品集</a>
+        <a href="ovem-brand/index.html" class="btn-outline-light" target="_blank" rel="noopener">官网&amp;商城</a>
+        <a href="mobile-delivery.html" class="btn-outline-light">移动端（APP&amp;小程序）</a>
+      </div>
+      <div class="hero-cta-row">
+        <a href="https://yoyonaga121.github.io/ovem-ai-marketing/" class="btn-outline-light" target="_blank" rel="noopener">营销系统（平台&amp;后台&amp;Agent）</a>
+        <a href="#project-motion" class="btn-outline-light">动态视频</a>
+        <a href="channel-marketing.html" class="btn-outline-light">渠道营销</a>
+      </div>
     </div>
   </div>
   <div class="hero-scroll">
@@ -4498,9 +4599,11 @@ button:focus-visible {
       </div>
     </div>
     <div class="digital-layout">
-      <div class="digital-left">
-        <img loading="lazy" decoding="async" src="assets/01_官网站点图.jpg" alt="官网站点图">
-        <div class="digital-zoom-label">点击放大</div>
+      <div class="digital-left digital-live" aria-label="OVEM 光谷效应品牌官网实时嵌入">
+        <div class="digital-site-stage">
+          <iframe class="digital-site-frame" src="ovem-brand/index.html" title="OVEM 光谷效应品牌官网" loading="lazy" allow="autoplay; fullscreen"></iframe>
+        </div>
+        <a class="digital-live-open" href="ovem-brand/index.html" target="_blank" rel="noopener">LIVE SITE · 全屏打开 ↗</a>
       </div>
       <div class="digital-right">
         <button class="digital-nav digital-nav-up" id="digitalNavUp"><span class="digital-nav-arrow">&#8249;</span></button>
@@ -5752,6 +5855,18 @@ let digitalItemHeight = 0;
 function syncDigitalHeight() {
   if (!digitalLeft || !digitalRight) return;
   const leftWidth = digitalLeft.offsetWidth;
+  const siteFrame = digitalLeft.querySelector('.digital-site-frame');
+  if (siteFrame) {
+    if (window.matchMedia('(max-width: 1024px)').matches) {
+      siteFrame.style.width = '100%';
+      siteFrame.style.height = '100%';
+      siteFrame.style.transform = 'none';
+    } else {
+      siteFrame.style.width = '1376px';
+      siteFrame.style.height = '4368px';
+      siteFrame.style.transform = `scale(${digitalLeft.clientWidth / 1376})`;
+    }
+  }
   if (leftWidth > 0) {
     // 根据aspect-ratio 1376:4368计算高度，不依赖图片加载
     const leftHeight = leftWidth * 4368 / 1376;
@@ -5877,13 +5992,8 @@ function closeDigitalLightbox() {
   closeDialogA11y(els.lightbox);
 }
 
-// 绑定9张图片的点击事件
+// 绑定图片的点击事件
 document.addEventListener('DOMContentLoaded', () => {
-  // 左侧长图 - 打开独立的拖拽缩放lightbox
-  const digitalLeftEl = document.querySelector('.digital-left');
-  if (digitalLeftEl) {
-    digitalLeftEl.addEventListener('click', () => openDigitalLongLightbox());
-  }
   // 右侧8张图 - 打开普通轮播lightbox（仅8张横屏图）
   const digitalItems = document.querySelectorAll('.digital-list-item');
   digitalItems.forEach((item, i) => {

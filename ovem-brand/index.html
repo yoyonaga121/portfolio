@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>光谷效应 OVEM · 消费级生活机器人｜未来智能家居解决方案</title>
+<meta name="description" content="光谷效应 Optics Valley Effect，以 20 款消费级生活机器人，覆盖餐厨、客厅、卧室、卫浴、出行与收纳场景。探索全屋智能解决方案，预约智能管家。">
+<meta name="theme-color" content="#1B2A5B">
+<meta property="og:title" content="光谷效应 OVEM · 未来智能家居解决方案">
+<meta property="og:description" content="20 款消费级生活机器人，7 类家庭场景。让机器人接管重复家务，把时间还给人。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo-dark.png">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<link rel="preload" href="assets/hero.jpg" as="image" imagesrcset="assets/hero-mobile.jpg 750w, assets/hero.jpg 1376w" imagesizes="100vw">
+<style>
+/* ============================================================
+   光谷效应 · 品牌官网 2026
+   设计语言：青绿 / 电光蓝 / 深海军蓝 / 冷白
+   ============================================================ */
+:root{
+  --ink:#14213D;
+  --ink-2:#40506C;
+  --muted:#74819A;
+  --navy:#1B2A5B;
+  --navy-2:#223570;
+  --blue:#0E67E8;
+  --blue-2:#2F86FF;
+  --mint:#12C9A4;
+  --cyan:#16B9E8;
+  --gold:#C68B35;
+  --gold-soft:#FBF3E4;
+  --line:#DDE5F0;
+  --paper:#F5F8FD;
+  --paper-2:#EAF1FA;
+  --white:#FFFFFF;
+  --r:16px;
+  --r-sm:10px;
+  --shadow:0 18px 44px rgba(20,33,61,.08);
+  --shadow-lg:0 28px 70px rgba(20,33,61,.14);
+  --font:"Manrope","Noto Sans SC","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  --display:"Manrope","Noto Sans SC","PingFang SC","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  --mono:"Cascadia Mono","Consolas","SFMono-Regular",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit;text-decoration:none}
+button, input{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--blue-2);outline-offset:3px}
+.skip-link{position:fixed;z-index:100;left:16px;top:-60px;padding:10px 18px;border-radius:999px;background:#fff;color:var(--navy);font-size:12px;font-weight:700;box-shadow:var(--shadow);transition:top .2s ease}
+.skip-link:focus{top:12px}
+.nb{white-space:nowrap}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.container{width:min(1360px,calc(100% - 80px));margin:0 auto}
+.section{padding:96px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.eyebrow .plus{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;color:var(--blue);font-size:18px;line-height:1;background:#fff}
+.eyebrow.dark{color:rgba(255,255,255,.66)}
+.eyebrow.dark .plus{border-color:rgba(255,255,255,.24);color:#fff;background:rgba(255,255,255,.08)}
+.section-title{font-family:var(--display);font-weight:800;letter-spacing:-.055em;line-height:1.22}
+.section-title .sub{display:block;font-weight:500;letter-spacing:-.02em;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border:1px solid transparent;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.01em;transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 24px rgba(14,103,232,.18)}
+.btn-primary:hover{background:#0A57C6}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-white{background:#fff;color:var(--navy)}
+.btn-white:hover{background:#F0F5FC}
+.btn-navy{background:var(--navy);color:#fff}
+.arrow{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid currentColor;font-size:14px;flex:0 0 auto}
+.arrow svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none}
+
+/* ============================== HEADER ============================== */
+.site-head{position:fixed;z-index:60;left:0;right:0;top:0;transition:background .26s ease,box-shadow .26s ease,backdrop-filter .26s ease}
+.site-head::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,21,45,.26),rgba(8,21,45,0));pointer-events:none}
+.site-head.is-scrolled::before{opacity:0}
+.site-head.is-scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);box-shadow:0 8px 30px rgba(20,33,61,.06)}
+.head-inner{width:min(1440px,calc(100% - 72px));height:88px;margin:0 auto;display:flex;align-items:center;gap:24px;position:relative}
+.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto;color:var(--navy);transition:color .25s ease}
+.brand-logo.light{display:none}
+.brand-logo.dark{display:block}
+.brand-logo{width:37px;height:37px;object-fit:contain;display:block}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-text b{font-size:18px;letter-spacing:.12em;font-weight:800}
+.brand-text small{font-size:9px;letter-spacing:.16em;opacity:.72;margin-top:4px}
+.nav{margin-left:auto;display:flex;align-items:center;gap:2px;background:rgba(8,21,45,.22);border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:4px;backdrop-filter:blur(12px);transition:background .25s ease,border-color .25s ease}
+.nav a{position:relative;padding:9px 15px;border-radius:999px;color:rgba(255,255,255,.96);font-size:13px;white-space:nowrap;transition:background .2s ease,color .2s ease}
+.nav a:hover,.nav a.active{background:#fff;color:var(--navy)}
+.head-cta{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px 0 24px;border-radius:999px;background:#fff;color:var(--navy);font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.5);box-shadow:0 10px 26px rgba(8,21,45,.12);transition:transform .2s ease}
+.head-cta:hover{transform:translateY(-2px)}
+.head-cta .arrow{width:28px;height:28px;border-color:rgba(27,42,91,.22);background:#F3F6FB}
+.site-head:not(.is-scrolled) .brand{color:#fff}
+.site-head:not(.is-scrolled) .brand-logo.light{display:block}
+.site-head:not(.is-scrolled) .brand-logo.dark{display:none}
+.site-head.is-scrolled .brand{color:var(--navy)}
+.site-head.is-scrolled .brand-logo.light{display:none}
+.site-head.is-scrolled .brand-logo.dark{display:block}
+.site-head.is-scrolled .nav{background:#F2F6FC;border-color:#E3EAF4}
+.site-head.is-scrolled .nav a{color:var(--ink-2)}
+.site-head.is-scrolled .nav a:hover,.site-head.is-scrolled .nav a.active{background:var(--navy);color:#fff}
+.site-head.is-scrolled .head-cta{background:var(--navy);color:#fff;border-color:var(--navy)}
+.site-head.is-scrolled .head-cta .arrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+.menu-toggle{display:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.16);color:#fff;backdrop-filter:blur(12px);padding:0}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{display:block;width:18px;height:1.5px;background:currentColor;position:relative;margin:0 auto;content:""}
+.menu-toggle span::before{position:absolute;top:-6px;left:0}
+.menu-toggle span::after{position:absolute;top:6px;left:0}
+.site-head.is-scrolled .menu-toggle{border-color:var(--line);color:var(--navy);background:#fff}
+.mobile-panel{position:fixed;z-index:55;inset:88px 18px auto 18px;border-radius:20px;background:#fff;box-shadow:var(--shadow-lg);padding:12px;display:none;transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+.mobile-panel.open{display:block;opacity:1;transform:none;pointer-events:auto}
+.mobile-panel a{display:flex;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink)}
+.mobile-panel a:last-child{border:0;color:var(--blue);font-weight:600}
+
+/* ============================== HERO ============================== */
+.hero{position:relative;height:clamp(680px,53vw,760px);min-height:680px;overflow:hidden;background:#16AFCB}
+.hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.015);animation:heroIn 1.4s cubic-bezier(.2,.7,.2,1) both}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,20,42,.74) 0%,rgba(5,20,42,.48) 30%,rgba(5,20,42,.12) 56%,rgba(5,20,42,0) 68%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,18,42,.24) 0%,rgba(5,18,42,.01) 30%,rgba(5,18,42,.06) 52%,rgba(5,18,42,.4) 72%,rgba(5,18,42,.84) 100%);pointer-events:none}
+.hero-inner{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero-copy{position:absolute;left:max(40px,calc((100vw - 1360px)/2));top:18%;width:min(620px,44vw);padding:32px 34px 30px;border-radius:18px;background:linear-gradient(145deg,rgba(7,24,50,.9),rgba(12,39,74,.74));border:1px solid rgba(255,255,255,.15);box-shadow:0 32px 80px rgba(3,13,32,.26);backdrop-filter:blur(14px) saturate(1.1);color:#fff;pointer-events:auto;overflow:hidden}
+.hero-copy::before{content:"";position:absolute;left:34px;top:0;width:74px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(198,139,53,0))}
+.hero-copy .k{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.6);text-transform:uppercase;white-space:nowrap}
+.hero-copy .k i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(18,201,164,.1)}
+.hero-copy h1{font-family:var(--display);font-size:clamp(40px,4.25vw,62px);line-height:1.08;letter-spacing:-.06em;font-weight:900;margin-top:18px}
+.hero-copy h1 em{font-style:normal;color:#9DD8FF}
+.hero-copy p{font-size:14px;line-height:1.78;color:rgba(255,255,255,.78);max-width:510px;margin-top:16px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.btn-outline-light{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-outline-light:hover{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.48)}
+.hero-actions .btn{height:46px;min-height:46px;font-size:13px}
+.hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:27px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.hero-proof b{display:block;font-family:var(--display);font-size:25px;line-height:1;letter-spacing:-.045em;color:#fff}
+.hero-proof span{display:block;font-size:10px;line-height:1.45;color:rgba(255,255,255,.55);margin-top:6px}
+.hero-scroll{position:absolute;z-index:3;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.78);font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.hero-scroll .line{width:1px;height:36px;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,0))}
+.hero-scroll .dot{width:5px;height:5px;border-radius:50%;background:#fff;animation:scrollPulse 2s ease-in-out infinite}
+@keyframes heroIn{from{opacity:.65;transform:scale(1.045)}to{opacity:1;transform:scale(1.015)}}
+@keyframes scrollPulse{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(8px);opacity:1}}
+
+/* ============================== MARQUEE / BRAND INTRO ============================== */
+.brand-strip{background:var(--white);border-bottom:1px solid var(--line)}
+.brand-strip .inner{width:min(1360px,calc(100% - 80px));margin:0 auto;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.brand-strip .inner b{color:var(--ink);font-weight:500}
+.brand-strip .inner span{display:flex;align-items:center;gap:7px}
+.brand-strip .dot{width:5px;height:5px;border-radius:50%;background:var(--mint)}
+
+/* ============================== PRODUCTS ============================== */
+.products{padding:96px 0 88px;background:var(--white);overflow:hidden}
+.products-head{text-align:center;display:flex;flex-direction:column;align-items:center}
+.products-head .section-title{margin-top:17px;font-size:clamp(31px,3.1vw,44px);max-width:1120px}
+.products-head .section-title .sub{font-size:clamp(21px,2vw,29px);margin-top:8px}
+.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:26px}
+.filter{border:1px solid var(--line);background:#fff;color:var(--ink-2);border-radius:999px;padding:8px 16px;font-size:13px;transition:all .2s ease}
+.filter:hover{border-color:rgba(14,103,232,.45);color:var(--blue)}
+.filter.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:36px}
+.grid-meta{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.grid-meta .count b{font-family:var(--display);font-size:15px;color:var(--navy);letter-spacing:-.02em}
+.rail-wrap{position:relative;margin-top:38px}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding:2px 1px 18px;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.product-card{position:relative;min-width:0;scroll-snap-align:start;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:10px;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;text-align:left}
+.product-card:hover{transform:translateY(-6px);border-color:rgba(14,103,232,.28);box-shadow:var(--shadow)}
+.pc-media{position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#F8FAFE,#EDF3FB);aspect-ratio:1.32/1}
+.pc-media img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .5s ease}
+.product-card:hover .pc-media img{transform:scale(1.035)}
+.pc-tier{position:absolute;left:10px;top:10px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--navy)}
+.pc-body{padding:14px 4px 4px}
+.pc-scene{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.pc-body h3{font-size:19px;line-height:1.35;letter-spacing:-.03em;margin-top:7px;min-height:50px;font-weight:800}
+.pc-body p{font-size:12px;line-height:1.55;color:var(--ink-2);margin-top:5px;min-height:38px}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;border-top:1px solid #EDF1F7;padding-top:10px}
+.pc-foot .price{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap}
+.pc-foot .price b{font-family:var(--display);font-size:16px;color:var(--blue);letter-spacing:-.03em}
+.pc-link{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.04em;color:var(--muted);transition:color .2s ease}
+.pc-link svg{width:12px;height:12px;stroke:currentColor;stroke-width:1.5;fill:none;transition:transform .2s ease}
+.product-card:hover .pc-link{color:var(--blue)}
+.product-card:hover .pc-link svg{transform:translate(2px,-2px)}
+.pc-open{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--blue);transition:all .2s ease}
+.product-card:hover .pc-open{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(8deg)}
+.grid-actions{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.grid-actions .btn{height:44px;min-height:44px;font-size:12px}
+.grid-note{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:15px;font-size:11px;color:var(--muted);text-align:center}
+.grid-note button{border:0;background:none;padding:0;color:var(--blue);font-size:11px;font-weight:600}
+.grid-note button:hover{text-decoration:underline}
+.rail-btn{position:absolute;z-index:2;top:44%;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:0 12px 30px rgba(20,33,61,.1);display:flex;align-items:center;justify-content:center;color:var(--navy);transition:all .2s ease}
+.rail-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.rail-btn.prev{left:-20px}
+.rail-btn.next{right:-20px}
+.progress-row .rail-btn{position:static;top:auto;left:auto;right:auto;width:40px;height:40px;flex:0 0 auto;box-shadow:none}
+.progress-row{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:12px}
+.progress-line{width:min(520px,46%);height:2px;background:#E6EDF6;position:relative;overflow:hidden;border-radius:99px}
+.progress-line i{display:block;height:100%;width:20%;background:var(--blue);transition:width .2s ease,transform .2s ease}
+.rail-count{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+.all-products{margin-top:22px;display:flex;justify-content:center}
+.all-products .btn{height:42px;min-height:42px;font-size:13px}
+
+/* ============================== SOLUTIONS ============================== */
+.solutions{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.solutions::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 14% 24%,rgba(47,134,255,.24),transparent 33%),radial-gradient(circle at 85% 84%,rgba(18,201,164,.14),transparent 31%);pointer-events:none}
+.solutions .container{position:relative;z-index:2}
+.solutions-head{text-align:center;display:flex;flex-direction:column;align-items:center}
+.solutions-head .section-title{margin-top:18px;font-size:clamp(31px,3vw,43px);max-width:1120px}
+.solutions-head .section-title .sub{color:rgba(255,255,255,.72);font-size:clamp(20px,1.9vw,27px);margin-top:9px}
+.solution-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+.solution-card{position:relative;min-height:510px;border-radius:18px;overflow:hidden;background:#223570;cursor:pointer;isolation:isolate;transition:transform .3s ease,box-shadow .3s ease}
+.solution-card:hover{transform:translateY(-6px);box-shadow:0 26px 60px rgba(2,10,34,.32)}
+.solution-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s ease;z-index:-2}
+.solution-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,23,54,.08) 20%,rgba(14,23,54,.86) 100%);z-index:-1}
+.solution-card:hover img{transform:scale(1.06)}
+.sol-content{position:absolute;left:28px;right:28px;bottom:26px;display:flex;flex-direction:column;gap:9px}
+.sol-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.66);text-transform:uppercase}
+.sol-title{font-size:35px;line-height:1.06;font-weight:900;letter-spacing:-.05em}
+.sol-copy{font-size:13px;line-height:1.55;color:rgba(255,255,255,.74);max-width:270px}
+.sol-cta{position:absolute;right:20px;bottom:22px;display:flex;align-items:center;gap:8px;padding:8px 10px 8px 16px;border-radius:999px;background:var(--blue);font-size:11px;font-weight:600;box-shadow:0 10px 24px rgba(14,103,232,.26)}
+.solution-card:hover .sol-cta{background:#fff;color:var(--blue)}
+
+/* ============================== STORY ============================== */
+.story{background:var(--paper);overflow:hidden}
+.story-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.story-copy .section-title{font-size:clamp(34px,3.3vw,48px);margin-top:16px;max-width:560px}
+.story-copy p{max-width:510px;color:var(--ink-2);font-size:15px;line-height:1.85;margin-top:18px}
+.story-bullets{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.story-bullet{display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--ink-2);background:#fff}
+.story-bullet i{width:6px;height:6px;border-radius:50%;background:var(--mint)}
+.story-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:32px;max-width:560px}
+.story-metric{padding-top:14px;border-top:1px solid var(--line)}
+.story-metric b{display:block;font-size:30px;line-height:1;letter-spacing:-.04em;color:var(--blue)}
+.story-metric span{display:block;font-size:12px;color:var(--muted);margin-top:7px}
+.story-collage{position:relative;min-height:590px}
+.story-tile{position:absolute;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:1px solid #fff}
+.story-tile img{width:100%;height:100%;object-fit:cover}
+.story-tile.one{width:57%;height:66%;left:0;top:0;z-index:1}
+.story-tile.two{width:43%;height:45%;right:0;top:8%;z-index:2}
+.story-tile.three{width:51%;height:42%;right:3%;bottom:0;z-index:3}
+.story-tile .tag{position:absolute;left:12px;bottom:11px;padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.88);font-size:10px;color:var(--navy);backdrop-filter:blur(5px)}
+.story-float{position:absolute;left:-20px;bottom:6%;z-index:4;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow-lg);max-width:220px}
+.story-float .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--mint)}
+.story-float p{font-size:15px;line-height:1.45;font-weight:800;margin-top:6px;letter-spacing:-.02em}
+
+/* ============================== CAPABILITIES ============================== */
+.capabilities{background:var(--white);position:relative;overflow:hidden;border-top:1px solid #EDF2F9}
+.capabilities::before{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(20,33,61,.04) 1px,transparent 1px),linear-gradient(rgba(20,33,61,.04) 1px,transparent 1px);background-size:64px 64px;opacity:.55;pointer-events:none}
+.capabilities .container{position:relative;z-index:1}
+.cap-head{display:grid;grid-template-columns:1.12fr .88fr;gap:54px;align-items:end}
+.cap-head .section-title{font-size:clamp(34px,3.3vw,48px);margin-top:15px;max-width:720px}
+.cap-head p{color:var(--ink-2);font-size:14px;line-height:1.85;max-width:520px;justify-self:end}
+.cap-tags{display:flex;align-items:center;gap:16px;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.cap-tags i{display:block;width:28px;height:1px;background:var(--line)}
+.cap-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px}
+.cap-card{position:relative;min-height:184px;padding:22px 22px 20px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.9);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.cap-card:hover{transform:translateY(-4px);border-color:rgba(198,139,53,.45);box-shadow:0 18px 40px rgba(20,33,61,.07)}
+.cap-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.cap-icon{width:42px;height:42px;border-radius:50%;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;color:var(--gold);flex:0 0 auto}
+.cap-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cap-no{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:#A2AEBE}
+.cap-card h3{font-size:18px;line-height:1.3;letter-spacing:-.03em;margin-top:17px}
+.cap-card p{font-size:11px;line-height:1.7;color:var(--muted);margin-top:7px}
+.cap-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.cap-foot span{display:flex;align-items:center;gap:10px;color:var(--ink-2)}
+.cap-foot .mini-arrow{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+
+/* ============================== BATHROOM ============================== */
+.bathroom{background:#EFF5FC;overflow:hidden}
+.bath-head{display:grid;grid-template-columns:1fr .9fr;gap:48px;align-items:end}
+.bath-head .section-title{font-size:clamp(34px,3.3vw,48px);margin-top:15px}
+.bath-head p{color:var(--ink-2);font-size:15px;line-height:1.8;max-width:540px;justify-self:end}
+.bath-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.bath-tags span{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:5px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.bath-grid{display:grid;grid-template-columns:2.05fr .95fr;gap:18px;margin-top:34px;align-items:stretch}
+.bath-panel{background:#fff;border:1px solid #fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.bath-visual{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 55%,#E8F2FC,#F7FAFE 66%)}
+.bath-visual img{width:78%;height:78%;object-fit:contain;position:relative;z-index:1}
+.bath-visual::before{content:"";position:absolute;width:72%;aspect-ratio:1;border:1px dashed #C9D8EA;border-radius:50%;transform:rotate(-18deg)}
+.bath-visual::after{content:"";position:absolute;width:56%;aspect-ratio:1;border:1px solid #DCE7F4;border-radius:50%;transform:rotate(24deg)}
+.bath-visual.bath-sheet{background:#fff}
+.bath-visual.bath-sheet::before,.bath-visual.bath-sheet::after{display:none}
+.bath-visual.bath-sheet img{width:100%;height:100%;object-fit:contain;background:#fff}
+.hotspot{position:absolute;z-index:2;display:flex;align-items:center;gap:7px;padding:6px 9px;background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:999px;box-shadow:0 6px 18px rgba(20,33,61,.06);font-size:10px;color:var(--ink-2);backdrop-filter:blur(4px)}
+.hotspot i{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.hotspot.h1{left:9%;top:14%}
+.hotspot.h2{left:5%;bottom:16%}
+.hotspot.h3{right:7%;top:18%}
+.hotspot.h4{right:5%;bottom:13%}
+.bath-specs{padding:24px}
+.bath-specs h3{font-size:20px;letter-spacing:-.03em}
+.bath-spec-list{display:flex;flex-direction:column;gap:0;margin-top:14px}
+.bath-spec{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--line)}
+.bath-spec:first-child{border-top:0}
+.bath-spec .n{font-family:var(--mono);font-size:11px;color:var(--blue)}
+.bath-spec b{display:block;font-size:14px;line-height:1.4}
+.bath-spec span{display:block;font-size:11px;line-height:1.55;color:var(--muted);margin-top:3px}
+.bath-demo{display:flex;flex-direction:column}
+.bath-demo-img{position:relative;flex:1;min-height:370px;overflow:hidden;background:#0B1533}
+.bath-demo-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+.bath-demo-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,48,.05),rgba(8,20,48,.6))}
+.play{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:66px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.18);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:#fff;transition:transform .2s ease,background .2s ease}
+.play:hover{transform:translate(-50%,-50%) scale(1.05);background:var(--blue)}
+.play svg{width:22px;height:22px;fill:currentColor}
+.bath-demo-copy{padding:18px 20px}
+.bath-demo-copy .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.bath-demo-copy h3{font-size:18px;margin-top:5px;letter-spacing:-.03em}
+.bath-demo-copy p{font-size:11px;line-height:1.6;color:var(--muted);margin-top:6px}
+.bath-side{display:flex;flex-direction:column;gap:18px;min-height:0}
+.bath-video-panel{position:relative;flex:0 0 auto;aspect-ratio:16/9;background:#0B1533;border-color:#0B1533;cursor:pointer}
+.bath-video-panel video{display:block;width:100%;height:100%;object-fit:cover;background:#0B1533}
+.bath-video-play{position:absolute;inset:0;z-index:2;width:100%;height:100%;border:0;border-radius:0;background:transparent;display:flex;align-items:center;justify-content:center;color:#fff;transition:opacity .2s ease}
+.bath-video-play::before{content:"";position:absolute;width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.18);backdrop-filter:blur(10px);transition:transform .2s ease,background .2s ease}
+.bath-video-play:hover::before{transform:scale(1.06);background:var(--blue)}
+.bath-video-play svg{position:relative;z-index:1;width:19px;height:19px;fill:currentColor}
+.bath-video-play.is-hidden{opacity:0;pointer-events:none}
+.bath-side .bath-specs{flex:1;padding:22px 24px}
+.bath-side .bath-spec-list{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;margin-top:10px}
+.bath-side .bath-spec{grid-template-columns:28px 1fr;padding:10px 0;border-top:1px solid var(--line)}
+.bath-side .bath-spec:first-child,.bath-side .bath-spec:nth-child(2){border-top:0}
+.bath-side .bath-more{margin-top:0;justify-content:flex-end}
+.bath-more{display:flex;justify-content:flex-end;margin-top:18px}
+.bath-more a{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--navy);font-weight:600}
+.bath-more .arrow{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ============================== MOBILE DELIVERY ============================== */
+.mobile-delivery{position:relative;background:#07152C;color:#fff;overflow:hidden;scroll-margin-top:88px}
+.mobile-delivery::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 18%,rgba(47,134,255,.22),transparent 32%),radial-gradient(circle at 88% 76%,rgba(18,201,164,.13),transparent 34%);pointer-events:none}
+.mobile-delivery::after{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);pointer-events:none}
+.mobile-delivery .container{position:relative;z-index:2}
+.mobile-head{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:end}
+.mobile-head .section-title{font-size:clamp(34px,3.3vw,48px);margin-top:15px;color:#fff;max-width:780px}
+.mobile-head .section-title .sub{font-size:clamp(17px,1.5vw,20px);color:rgba(255,255,255,.6);margin-top:10px;max-width:680px}
+.mobile-head p{justify-self:end;max-width:460px;color:rgba(255,255,255,.62);font-size:14px;line-height:1.85}
+.mobile-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:18px;margin-top:38px}
+.mobile-card{position:relative;min-height:520px;padding:34px;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;isolation:isolate;transition:transform .3s ease,box-shadow .3s ease}
+.mobile-card:hover{transform:translateY(-5px)}
+.card-apk{background:linear-gradient(155deg,#0D2148 0%,#08162F 56%,#061124 100%);border:1px solid rgba(255,255,255,.13);box-shadow:0 24px 60px rgba(2,10,34,.28)}
+.card-apk:hover{box-shadow:0 32px 80px rgba(2,10,34,.38)}
+.card-apk::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 22%,rgba(47,134,255,.24),transparent 36%),radial-gradient(circle at 86% 88%,rgba(18,201,164,.14),transparent 30%);pointer-events:none}
+.card-apk::after{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;opacity:.5;pointer-events:none}
+.card-mini{background:linear-gradient(150deg,#F8FBFF 0%,#EAF2FB 100%);border:1px solid #fff;color:var(--navy);box-shadow:var(--shadow)}
+.card-mini:hover{box-shadow:var(--shadow-lg)}
+.card-mini::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 16%,rgba(14,103,232,.12),transparent 34%),radial-gradient(circle at 18% 90%,rgba(18,201,164,.09),transparent 30%);pointer-events:none}
+.card-badge{position:relative;z-index:2;display:inline-flex;align-items:center;align-self:flex-start;gap:9px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.card-badge i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(18,201,164,.12)}
+.card-badge.dark{background:#fff;border-color:var(--line);color:var(--muted);box-shadow:0 6px 18px rgba(20,33,61,.05)}
+.card-badge.dark i{background:var(--blue);box-shadow:0 0 0 4px rgba(14,103,232,.1)}
+.mobile-copy{position:relative;z-index:2;max-width:calc(100% - 220px);display:flex;flex-direction:column}
+.mobile-title{font-family:var(--display);font-size:clamp(30px,2.8vw,40px);line-height:1.16;letter-spacing:-.055em;font-weight:900;margin-top:19px}
+.mobile-title .lite{color:#9DD8FF}
+.card-mini .mobile-title .lite{color:var(--blue)}
+.mobile-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.62);margin-top:13px;max-width:380px}
+.card-mini .mobile-desc{color:var(--ink-2)}
+.mobile-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
+.card-mini .mobile-meta{border-top-color:var(--line)}
+.mobile-meta div{min-width:62px}
+.mobile-meta b{display:block;font-family:var(--display);font-size:15px;line-height:1;letter-spacing:-.02em;color:#fff}
+.card-mini .mobile-meta b{color:var(--navy)}
+.mobile-meta span{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:rgba(255,255,255,.38);margin-top:6px;text-transform:uppercase}
+.card-mini .mobile-meta span{color:var(--muted)}
+.mobile-actions{position:relative;z-index:2;display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:26px;max-width:100%}
+.mobile-actions .btn{height:44px;min-height:44px;font-size:12px;padding:0 18px}
+.btn-ghost-dark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
+.btn-ghost-dark:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4)}
+.mobile-actions .text-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.56);padding:8px 4px}
+.mobile-actions .text-link:hover{color:#fff}
+.card-mini .mobile-actions .text-link{color:var(--muted)}
+.card-mini .mobile-actions .text-link:hover{color:var(--blue)}
+.mobile-footnote{position:relative;z-index:2;margin-top:13px;font-family:var(--mono);font-size:9px;line-height:1.7;letter-spacing:.03em;color:rgba(255,255,255,.36);max-width:100%}
+.card-mini .mobile-footnote{color:var(--muted)}
+.apk-phone{position:absolute;z-index:2;right:30px;bottom:30px;width:208px;height:416px;border-radius:36px;background:#050A16;border:1px solid rgba(255,255,255,.17);box-shadow:0 30px 60px rgba(0,0,0,.42);transform:rotate(4deg);overflow:hidden}
+.apk-phone::before{content:"";position:absolute;inset:5px;border-radius:31px;background:radial-gradient(circle at 50% 36%,#17407C 0%,#0A1B3D 42%,#050E22 100%);border:1px solid rgba(255,255,255,.06)}
+.apk-phone::after{content:"";position:absolute;z-index:3;top:12px;left:50%;transform:translateX(-50%);width:62px;height:17px;border-radius:999px;background:#050A16;border:1px solid rgba(255,255,255,.07)}
+.apk-phone .icon-ring{position:absolute;z-index:1;left:50%;top:42%;width:176px;height:176px;border-radius:50%;border:1px solid rgba(18,201,164,.18);transform:translate(-50%,-50%)}
+.apk-phone .icon-ring.two{width:150px;height:150px;border-color:rgba(47,134,255,.2);transform:translate(-50%,-50%) rotate(22deg);border-style:dashed}
+.apk-phone img{position:absolute;z-index:2;left:50%;top:36%;width:112px;height:112px;transform:translate(-50%,-50%);border-radius:24px;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 22px 46px rgba(0,0,0,.42)}
+.apk-phone .phone-brand{position:absolute;z-index:2;left:0;right:0;bottom:92px;text-align:center;font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.2em;color:#fff}
+.apk-phone .phone-sub{position:absolute;z-index:2;left:0;right:0;bottom:78px;text-align:center;font-family:var(--mono);font-size:7px;letter-spacing:.14em;color:rgba(255,255,255,.46)}
+.apk-phone .phone-line{position:absolute;z-index:2;left:50%;bottom:46px;transform:translateX(-50%);width:34px;height:2px;border-radius:99px;background:rgba(255,255,255,.28)}
+.mini-phone{position:absolute;z-index:2;right:30px;bottom:30px;width:202px;height:424px;border-radius:34px;background:#fff;border:9px solid #0D1A34;box-shadow:0 28px 60px rgba(20,33,61,.22);transform:rotate(-3deg);overflow:hidden}
+.mini-phone img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.mini-float{position:absolute;z-index:3;left:50%;bottom:-13px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(20,33,61,.12);white-space:nowrap;font-size:9px;color:var(--navy)}
+.mini-float i{width:6px;height:6px;border-radius:50%;background:var(--mint)}
+.mini-code{position:relative;z-index:2;display:flex;align-items:center;gap:18px;margin-top:24px;max-width:100%}
+.qr-real{width:144px;height:144px;flex:0 0 auto;display:block;padding:6px;border-radius:16px;background:#fff;border:1px solid #DCE6F2;box-shadow:0 12px 28px rgba(20,33,61,.12);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.qr-real img{display:block;width:100%;height:100%;object-fit:contain}
+.qr-real:hover{transform:translateY(-2px);border-color:rgba(14,103,232,.32);box-shadow:0 16px 34px rgba(20,33,61,.15)}
+.mini-code p{font-size:10px;line-height:1.55;color:var(--muted)}
+.mini-code p b{display:block;color:var(--navy);font-size:12px;margin-bottom:3px}
+.mini-code p em{display:block;font-style:normal;margin-top:5px;font-family:var(--mono);font-size:8px;letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+.card-mini .mini-download{margin-top:22px;flex-wrap:nowrap}
+.card-mini .mini-download .btn{width:auto;flex:0 0 auto}
+.card-mini .mini-download .text-link{width:auto;flex:0 0 auto;justify-content:flex-start;padding-left:0}
+.mini-install-hint{white-space:nowrap}
+.card-mini .mini-code{margin-top:18px}
+.mobile-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-foot div{padding:18px 24px 18px 0}
+.mobile-foot div+div{padding-left:24px;border-left:1px solid rgba(255,255,255,.1)}
+.mobile-foot b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--mint);text-transform:uppercase}
+.mobile-foot span{display:block;font-size:11px;line-height:1.65;color:rgba(255,255,255,.5);margin-top:6px}
+@media(max-width:1180px){
+  .mobile-head{gap:30px}
+  .mobile-grid{grid-template-columns:1fr}
+  .mobile-card{padding:32px;min-height:640px}
+  .mobile-copy{max-width:calc(100% - 330px)}
+  .mobile-title{max-width:620px}
+  .mobile-desc{max-width:620px}
+  .mobile-actions,.mobile-footnote,.mini-code{max-width:100%}
+  .apk-phone{right:36px;bottom:34px;width:280px;height:560px;border-radius:46px}
+  .apk-phone::before{inset:6px;border-radius:40px}
+  .apk-phone::after{top:16px;width:86px;height:22px}
+  .apk-phone img{width:150px;height:150px}
+  .apk-phone .phone-brand{bottom:118px;font-size:23px}
+  .apk-phone .phone-sub{bottom:100px;font-size:8px}
+  .apk-phone .phone-line{bottom:58px;width:44px}
+  .apk-phone .icon-ring{width:230px;height:230px}
+  .apk-phone .icon-ring.two{width:200px;height:200px}
+  .mini-phone{right:36px;bottom:34px;width:268px;height:572px;border-width:10px;border-radius:38px}
+  .mini-float{bottom:-13px;font-size:8px;padding:6px 9px}
+}
+@media(min-width:1181px) and (max-width:1360px){
+  .mini-code{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media(max-width:980px){
+  .mobile-head{grid-template-columns:1fr;gap:18px}
+  .mobile-head p{justify-self:start;max-width:680px}
+  .mobile-grid{grid-template-columns:1fr}
+  .mobile-card{min-height:560px;padding:28px}
+  .mobile-copy{max-width:calc(100% - 280px)}
+  .mobile-title{max-width:520px}
+  .mobile-desc{max-width:470px}
+  .mobile-actions,.mobile-footnote,.mini-code{max-width:100%}
+  .apk-phone{right:30px;bottom:30px;width:240px;height:480px;border-radius:40px}
+  .apk-phone::before{inset:5px;border-radius:34px}
+  .apk-phone::after{top:14px;width:74px;height:19px}
+  .apk-phone img{width:130px;height:130px}
+  .apk-phone .phone-brand{bottom:104px;font-size:20px}
+  .apk-phone .phone-sub{bottom:88px;font-size:8px}
+  .apk-phone .phone-line{bottom:52px;width:38px}
+  .apk-phone .icon-ring{width:200px;height:200px}
+  .apk-phone .icon-ring.two{width:172px;height:172px}
+  .mini-phone{right:30px;bottom:30px;width:230px;height:490px;border-width:9px;border-radius:34px}
+  .mini-float{bottom:-12px;font-size:8px;padding:6px 8px}
+}
+@media(max-width:720px){
+  .mobile-head .section-title{font-size:28px}
+  .mobile-head p{margin-top:16px}
+  .mobile-grid{margin-top:28px}
+  .mobile-card{min-height:0;padding:24px 20px 22px}
+  .mobile-copy{max-width:100%}
+  .mobile-title{font-size:30px}
+  .mobile-desc{font-size:12px}
+  .mobile-meta{gap:18px;margin-top:18px}
+  .mobile-actions{max-width:100%;margin-top:20px}
+  .mobile-actions .btn{width:100%}
+  .mobile-actions .text-link{width:100%;justify-content:center;padding-left:0}
+  .mobile-footnote{max-width:100%}
+  .apk-phone,.mini-phone{position:relative;right:auto;bottom:auto;margin:26px auto 0;transform:none;width:170px;height:340px}
+  .apk-phone{border-radius:30px}
+  .apk-phone::before{inset:4px;border-radius:26px}
+  .apk-phone::after{top:10px;width:54px;height:15px}
+  .apk-phone img{width:92px;height:92px;top:34%}
+  .apk-phone .icon-ring{width:150px;height:150px}
+  .apk-phone .icon-ring.two{width:128px;height:128px}
+  .apk-phone .phone-brand{bottom:70px;font-size:15px}
+  .apk-phone .phone-sub{bottom:56px;font-size:7px}
+  .apk-phone .phone-line{bottom:32px;width:32px}
+  .mini-phone{width:170px;height:356px;border-width:8px;border-radius:30px}
+  .mini-float{font-size:8px;padding:6px 8px}
+  .mini-code{max-width:100%;margin-top:20px}
+  .qr-real{width:144px;height:144px;padding:6px}
+  .mobile-foot{grid-template-columns:1fr;margin-top:20px}
+  .mobile-foot div{padding:14px 0}
+  .mobile-foot div+div{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.1)}
+}
+@media(max-width:520px){
+  .mini-code{flex-direction:column;align-items:flex-start;gap:14px}
+  .qr-real{width:144px;height:144px;padding:6px}
+}
+
+/* ============================== SERVICE ============================== */
+.support{background:var(--white)}
+.support-head{display:flex;align-items:end;justify-content:space-between;gap:40px}
+.support-head .section-title{font-size:clamp(32px,3vw,44px);margin-top:14px}
+.support-head p{max-width:500px;color:var(--ink-2);font-size:14px;line-height:1.8}
+.support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.support-card{padding:26px;border:1px solid var(--line);border-radius:16px;background:#fff;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.support-card:hover{transform:translateY(-5px);border-color:rgba(14,103,232,.25);box-shadow:var(--shadow)}
+.support-icon{width:44px;height:44px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--blue)}
+.support-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.4}
+.support-card h3{font-size:22px;margin-top:18px;letter-spacing:-.04em}
+.support-card p{font-size:13px;line-height:1.65;color:var(--muted);margin-top:9px}
+.support-card .small{display:flex;align-items:center;gap:7px;margin-top:17px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--blue)}
+.support-card .small .dot{width:5px;height:5px;border-radius:50%;background:var(--mint)}
+
+/* ============================== PRODUCT FAMILIES ============================== */
+.families{padding:28px 0 34px;background:var(--white);border-top:1px solid var(--line)}
+.family-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.family-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);white-space:nowrap;line-height:1.6}
+.family-list{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:22px 34px;flex:1}
+.family{display:flex;align-items:baseline;gap:7px;color:#33415D;opacity:.82;transition:color .2s ease,opacity .2s ease}
+.family b{font-size:17px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+.family small{font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--muted)}
+.family:hover{color:var(--blue);opacity:1}
+
+/* ============================== CTA / FOOTER ============================== */
+.booking{background:var(--navy);color:#fff;padding:70px 0 0;position:relative;overflow:hidden}
+.booking::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 8% 20%,rgba(18,201,164,.16),transparent 30%),radial-gradient(circle at 88% 84%,rgba(47,134,255,.20),transparent 35%);pointer-events:none}
+.booking .container{position:relative;z-index:2}
+.booking-row{display:grid;grid-template-columns:1fr .95fr;gap:50px;align-items:end;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.15)}
+.booking h2{font-size:clamp(38px,4.3vw,60px);line-height:1.12;letter-spacing:-.06em;font-weight:900}
+.booking p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7);max-width:500px;margin-top:14px}
+.booking-form{display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px;max-width:570px;margin-left:auto;box-shadow:0 20px 50px rgba(2,10,34,.24)}
+.booking-form input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:0 18px;font-size:13px;color:var(--ink);height:48px}
+.booking-form input::placeholder{color:#8995A9}
+.booking-form .btn{height:46px;min-height:46px;padding:0 24px;font-size:13px}
+.form-note{font-family:var(--mono);font-size:10px;line-height:1.5;color:rgba(255,255,255,.52);margin-top:10px;text-align:right}
+.form-status{min-height:20px;margin-top:6px;text-align:right;font-size:11px;color:var(--mint)}
+.footer-main{display:grid;grid-template-columns:1.4fr 2.1fr;gap:60px;padding:44px 0 34px}
+.footer-brand .brand{color:#fff;margin-bottom:16px}
+.footer-brand p{font-size:12px;line-height:1.75;color:rgba(255,255,255,.62);max-width:430px}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.55);font-weight:500;margin:0 0 13px}
+.footer-col a,.footer-col p{display:block;font-size:12px;line-height:1.9;color:rgba(255,255,255,.72);margin:0}
+.footer-col a:hover{color:#fff}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0 24px;border-top:1px solid rgba(255,255,255,.15);font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:rgba(255,255,255,.48)}
+.socials{display:flex;gap:7px}
+.social{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);transition:all .2s}
+.social:hover{background:#fff;color:var(--navy);border-color:#fff}
+.social svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.4}
+
+/* ============================== MODALS ============================== */
+.modal{position:fixed;z-index:80;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(7,16,36,.6);backdrop-filter:blur(10px)}
+.modal.open{display:flex}
+.modal-card{position:relative;width:min(920px,100%);max-height:calc(100vh - 48px);overflow:auto;background:#fff;border-radius:22px;box-shadow:0 30px 100px rgba(0,0,0,.3);animation:modalIn .24s ease both}
+.modal-card.wide{width:min(1160px,100%)}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;z-index:4;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--navy);font-size:20px;line-height:1;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.modal-close:hover{background:var(--navy);color:#fff}
+.pm-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:540px}
+.pm-media{background:linear-gradient(145deg,#F3F8FE,#E8F0FB);display:flex;align-items:center;justify-content:center;padding:38px}
+.pm-media img{width:100%;height:100%;object-fit:contain;max-height:440px}
+.pm-copy{padding:42px 40px 34px}
+.pm-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}
+.pm-copy h2{font-size:34px;line-height:1.18;letter-spacing:-.05em;margin-top:10px}
+.pm-copy .lead{font-size:14px;line-height:1.7;color:var(--ink-2);margin-top:10px}
+.pm-price{display:flex;align-items:baseline;gap:7px;margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.pm-price b{font-family:var(--display);font-size:27px;color:var(--blue);letter-spacing:-.04em}
+.pm-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px}
+.pm-tags span{font-size:10px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--ink-2)}
+.pm-facts{display:grid;gap:10px;margin-top:22px}
+.pm-fact{border-top:1px solid var(--line);padding-top:10px}
+.pm-fact .k{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted)}
+.pm-fact p{font-size:12px;line-height:1.65;color:var(--ink-2);margin-top:3px}
+.pm-actions{display:flex;gap:8px;margin-top:24px}
+.pm-actions .btn{height:44px;min-height:44px;font-size:12px}
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px 22px 26px}
+.shop-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;text-align:left;padding:0;transition:transform .2s,box-shadow .2s}
+.shop-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.shop-card img{width:100%;aspect-ratio:1.3/1;object-fit:cover;background:#F5F8FD}
+.shop-copy{padding:10px 11px 12px}
+.shop-copy .k{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.shop-copy b{display:block;font-size:13px;line-height:1.35;margin-top:4px}
+.shop-copy small{display:block;font-size:10px;color:var(--muted);margin-top:3px}
+.modal-title{padding:28px 30px 12px}
+.modal-title .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--blue)}
+.modal-title h2{font-size:32px;line-height:1.2;letter-spacing:-.05em;margin-top:7px}
+.modal-title p{font-size:13px;line-height:1.7;color:var(--muted);margin-top:6px;max-width:670px}
+.solution-detail{padding:0 30px 30px}
+.solution-detail .hero-img{height:270px;border-radius:14px;overflow:hidden;background:var(--navy)}
+.solution-detail .hero-img img{width:100%;height:100%;object-fit:cover}
+.solution-detail .copy{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.solution-detail .copy p{font-size:13px;line-height:1.75;color:var(--ink-2)}
+.solution-detail .recs{display:flex;gap:10px;margin-top:18px}
+.solution-detail .rec{flex:1;border:1px solid var(--line);border-radius:12px;padding:8px;background:#FBFCFE;display:flex;align-items:center;gap:9px;text-align:left}
+.solution-detail .rec img{width:58px;height:48px;object-fit:cover;border-radius:8px;background:#F2F6FC}
+.solution-detail .rec b{display:block;font-size:12px;line-height:1.3}
+.solution-detail .rec small{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+.toast{position:fixed;z-index:90;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;padding:12px 20px;border-radius:999px;font-size:12px;box-shadow:0 16px 40px rgba(0,0,0,.24);transition:all .25s ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ============================== REVEAL ============================== */
+[data-reveal]{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+[data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  [data-reveal]{opacity:1;transform:none}
+}
+
+/* ============================== RESPONSIVE ============================== */
+@media(max-width:1180px){
+  .container{width:calc(100% - 56px)}
+  .head-inner{width:calc(100% - 48px)}
+  .brand-strip .inner{width:calc(100% - 56px)}
+  .hero-copy{width:min(560px,48vw);padding:28px 30px 26px}
+  .story-shell{gap:38px}
+  .bath-grid{grid-template-columns:1.9fr 1fr}
+  .bath-side .bath-spec-list{grid-template-columns:1fr}
+  .bath-side .bath-spec:nth-child(2){border-top:1px solid var(--line)}
+  .shop-grid{grid-template-columns:repeat(3,1fr)}
+  .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .family-list{gap:18px 26px}
+}
+@media(max-width:980px){
+  .nav{display:none}
+  .menu-toggle{display:block}
+  .head-cta{margin-left:auto}
+  .head-inner{height:78px}
+  .mobile-panel{top:78px}
+  .hero{height:clamp(620px,66vw,700px);min-height:620px}
+  .hero-media{object-position:58% center}
+  .hero-copy{width:min(560px,58vw);top:15%;padding:28px 28px 25px}
+  .hero-copy h1{font-size:clamp(38px,5.4vw,50px)}
+  .section{padding:76px 0}
+  .products{padding:76px 0}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .solution-card{min-height:440px}
+  .sol-title{font-size:29px}
+  .story-shell{grid-template-columns:1fr;gap:34px}
+  .story-collage{min-height:500px;max-width:720px}
+  .cap-head{grid-template-columns:1fr;gap:18px}
+  .cap-head p{justify-self:start}
+  .cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bath-head{grid-template-columns:1fr;gap:20px}
+  .bath-head p{justify-self:start}
+  .bath-grid{grid-template-columns:1fr}
+  .bath-visual{grid-column:auto;min-height:480px}
+  .bath-visual.bath-sheet{min-height:0;aspect-ratio:16/9}
+  .bath-demo-img{min-height:300px}
+  .support-grid{grid-template-columns:1fr 1fr}
+  .support-card:last-child{grid-column:span 2}
+  .booking-row{grid-template-columns:1fr;gap:26px}
+  .booking-form{margin-left:0;max-width:560px}
+  .form-note{text-align:left}
+  .form-status{text-align:left}
+  .footer-main{grid-template-columns:1fr;gap:32px}
+  .family-inner{flex-wrap:wrap;align-items:flex-start}
+  .family-list{justify-content:flex-start;gap:16px 24px}
+}
+@media(max-width:720px){
+  .container{width:calc(100% - 32px)}
+  .head-inner{width:calc(100% - 32px);height:72px;gap:12px}
+  .brand-logo{width:31px;height:31px}
+  .brand-text b{font-size:15px}
+  .brand-text small{font-size:8px}
+  .head-cta{height:40px;padding:0 12px 0 14px;font-size:12px}
+  .head-cta .arrow{width:24px;height:24px}
+  .head-cta .label{display:none}
+  .menu-toggle{width:40px;height:40px}
+  .mobile-panel{top:72px;left:12px;right:12px}
+  .hero{height:600px;min-height:600px}
+  .hero-media{object-position:center center}
+  .hero-shade{background:linear-gradient(180deg,rgba(5,20,42,.16),rgba(5,20,42,.3) 42%,rgba(5,20,42,.82) 100%)}
+  .site-head:not(.is-scrolled) .brand{color:#fff}
+  .site-head:not(.is-scrolled) .brand-logo.light{display:block}
+  .site-head:not(.is-scrolled) .brand-logo.dark{display:none}
+  .hero-copy{left:16px;right:16px;top:auto;bottom:76px;width:auto;padding:23px 21px 21px;border-radius:16px;background:linear-gradient(155deg,rgba(7,24,50,.94),rgba(11,36,70,.84))}
+  .hero-copy::before{left:21px;width:58px}
+  .hero-copy .k{font-size:9px;letter-spacing:.13em}
+  .hero-copy h1{font-size:36px;line-height:1.1;margin-top:13px}
+  .hero-copy p{font-size:12px;line-height:1.65;margin-top:11px}
+  .hero-actions{gap:7px;margin-top:17px}
+  .hero-actions .btn{height:40px;min-height:40px;padding:0 15px;font-size:11px}
+  .hero-proof{display:none}
+  .hero-scroll{display:none}
+  .hero::after{background:linear-gradient(180deg,rgba(5,18,42,.26),rgba(5,18,42,.04) 28%,rgba(5,18,42,.58) 100%)}
+  .brand-strip .inner{width:calc(100% - 32px);overflow:auto;justify-content:flex-start;min-height:48px;white-space:nowrap}
+  .brand-strip .inner span:nth-child(n+3){display:none}
+  .products-head .section-title{font-size:27px}
+  .products-head .section-title .sub{font-size:18px}
+  .filters{gap:7px;margin-top:20px}
+  .filter{padding:7px 13px;font-size:11px}
+  .product-grid{gap:10px;margin-top:28px}
+  .product-card{padding:8px}
+  .pc-media{border-radius:10px}
+  .pc-body{padding:12px 3px 3px}
+  .pc-body h3{font-size:16px;min-height:44px}
+  .pc-body p{font-size:11px;min-height:36px}
+  .pc-foot .price b{font-size:14px}
+  .pc-link{font-size:9px}
+  .grid-meta{font-size:9px;margin-top:20px}
+  .grid-actions{margin-top:20px}
+  .section{padding:64px 0}
+  .capabilities{padding:64px 0}
+  .capabilities .section-title{font-size:30px}
+  .cap-head p{margin-top:4px}
+  .cap-grid{gap:9px;margin-top:24px}
+  .cap-card{min-height:164px;padding:17px 16px 16px}
+  .cap-card h3{font-size:16px;margin-top:13px}
+  .cap-card p{font-size:10px}
+  .cap-foot{display:block;line-height:1.8}
+  .cap-foot span{margin-top:8px}
+  .solutions-head .section-title{font-size:26px}
+  .solutions-head .section-title .sub{font-size:18px}
+  .solution-grid{grid-template-columns:1fr;margin-top:28px}
+  .solution-card{min-height:430px}
+  .story-collage{min-height:450px}
+  .story-tile.one{width:62%;height:57%}
+  .story-tile.two{width:42%;height:36%;top:4%}
+  .story-tile.three{width:58%;height:37%}
+  .story-float{left:-8px;bottom:-10px;max-width:190px;padding:11px 13px}
+  .story-float p{font-size:13px}
+  .story-metrics{grid-template-columns:repeat(3,1fr);gap:6px}
+  .story-metric b{font-size:24px}
+  .story-metric span{font-size:10px}
+  .bath-grid{grid-template-columns:1fr}
+  .bath-visual{grid-column:auto;min-height:390px}
+  .bath-visual.bath-sheet{min-height:0;aspect-ratio:16/9}
+  .bath-visual img{width:83%;height:78%}
+  .bath-side .bath-spec-list{grid-template-columns:1fr}
+  .bath-side .bath-spec:nth-child(2){border-top:1px solid var(--line)}
+  .hotspot.h1{left:4%;top:9%}
+  .hotspot.h2{left:2%;bottom:12%}
+  .hotspot.h3{right:3%;top:12%}
+  .hotspot.h4{right:2%;bottom:9%}
+  .bath-panel{min-height:0}
+  .bath-demo-img{min-height:300px}
+  .support-grid{grid-template-columns:1fr}
+  .support-card:last-child{grid-column:auto}
+  .support-head{display:block}
+  .support-head .section-title{font-size:28px}
+  .support-head p{margin-top:16px}
+  .family-label{line-height:1.5}
+  .family-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;justify-items:start}
+  .family b{font-size:14px}
+  .booking{padding-top:54px}
+  .booking-row{padding-bottom:34px}
+  .booking h2{font-size:34px}
+  .booking-form{flex-direction:column;border-radius:16px;padding:7px;align-items:stretch}
+  .booking-form input{height:44px}
+  .booking-form .btn{width:100%}
+  .footer-main{gap:28px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bottom{display:block}
+  .socials{margin-top:14px}
+  .modal{padding:12px}
+  .modal-card{max-height:calc(100vh - 24px);border-radius:16px}
+  .pm-grid{grid-template-columns:1fr}
+  .pm-media{min-height:300px;padding:20px}
+  .pm-media img{max-height:280px}
+  .pm-copy{padding:28px 24px 26px}
+  .pm-copy h2{font-size:28px}
+  .shop-grid{grid-template-columns:1fr 1fr;padding:14px 16px 20px;gap:10px}
+  .modal-title{padding:24px 22px 10px}
+  .modal-title h2{font-size:27px}
+  .solution-detail{padding:0 20px 24px}
+  .solution-detail .hero-img{height:210px}
+  .solution-detail .copy{grid-template-columns:1fr;gap:10px}
+  .solution-detail .recs{flex-direction:column}
+}
+@media(max-width:430px){
+  .hero{height:580px;min-height:580px}
+  .hero-copy{left:12px;right:12px;bottom:70px;padding:21px 18px 19px}
+  .hero-copy h1{font-size:32px}
+  .hero-copy p{font-size:11px}
+  .head-cta{width:40px;padding:0;justify-content:center}
+  .head-cta .arrow{width:26px;height:26px;border:0;background:transparent}
+  .product-card{padding:7px}
+  .pc-body h3{font-size:15px}
+  .pc-body p{font-size:10px;min-height:34px}
+  .pc-foot{gap:5px}
+  .pc-foot .price{font-size:9px}
+  .pc-foot .price b{font-size:13px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .cap-card{min-height:0}
+  .story-metrics{grid-template-columns:1fr 1fr 1fr}
+  .story-metric b{font-size:21px}
+  .footer-cols{grid-template-columns:1fr 1fr}
+  .shop-grid{grid-template-columns:1fr 1fr}
+  .family b{font-size:13px}
+}
+@media(max-width:360px){
+  .cap-grid{grid-template-columns:1fr}
+}</style>
+</head>
+<body>
+
+<a class="skip-link" href="#products">跳转到产品列表</a>
+
+<header class="site-head" id="siteHead">
+  <div class="head-inner">
+    <a class="brand" href="#home" aria-label="光谷效应首页">
+      <img class="brand-logo light" src="assets/logo-white.png" alt="光谷效应">
+      <img class="brand-logo dark" src="assets/logo-dark.png" alt="光谷效应">
+      <span class="brand-text"><b>光谷效应</b><small>OPTICS VALLEY EFFECT</small></span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#home" class="active">首页</a>
+      <a href="#products">明星产品</a>
+      <a href="#solutions">解决方案</a>
+      <a href="#capabilities">核心能力</a>
+      <a href="#story">品牌故事</a>
+      <a href="#mobile">移动端</a>
+      <a href="#support">服务支持</a>
+    </nav>
+    <a class="head-cta" href="https://4m1c4eaeqsarr.doubaoapps.com/app/app_17jfm7ga3uu" target="_blank" rel="noopener noreferrer" aria-label="进入 OVEM 官方商城（新窗口打开）"><span class="label">进入商城</span><span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#home">首页 <span>01</span></a>
+  <a href="#products">明星产品 <span>02</span></a>
+  <a href="#solutions">解决方案 <span>03</span></a>
+  <a href="#capabilities">核心能力 <span>04</span></a>
+  <a href="#story">品牌故事 <span>05</span></a>
+  <a href="#mobile">移动端 <span>06</span></a>
+  <a href="#support">服务支持 <span>07</span></a>
+  <a href="#booking">预约体验 <span>↗</span></a>
+</div>
+
+<main>
+  <!-- ============================== 首页 ============================== -->
+  <section class="hero" id="home" aria-labelledby="heroTitle">
+    <img class="hero-media" src="assets/hero.jpg" srcset="assets/hero-mobile.jpg 750w, assets/hero.jpg 1376w" sizes="100vw" alt="光谷效应未来智能家居等距场景，机器人正在客厅与厨房作业">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="k"><i></i>OPTICS VALLEY EFFECT / CONSUMER ROBOTICS</div>
+        <h1 id="heroTitle">让家，<br><em>自己照顾自己。</em></h1>
+        <p>20 款消费级生活机器人，接管备菜、清洁、收纳与陪护这些高频家务。不是远程控制，而是自主感知、自主决策、自主执行。</p>
+        <div class="hero-actions">
+          <a class="btn btn-white" href="#products">探索 20 款产品 <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <button class="btn btn-outline-light" data-book>预约全屋体验</button>
+        </div>
+        <div class="hero-proof">
+          <div><b>20</b><span>款在售产品</span></div>
+          <div><b>07</b><span>类家庭场景</span></div>
+          <div><b>24h</b><span>持续在岗</span></div>
+        </div>
+      </div>
+      <div class="hero-scroll"><span>SCROLL TO EXPLORE</span><span class="dot"></span><span class="line"></span></div>
+    </div>
+  </section>
+
+  <div class="brand-strip" aria-label="品牌指标">
+    <div class="inner"><span><i class="dot"></i><b>OVEM / 光谷效应</b></span><span>20 款在售产品</span><span>07 类家庭场景</span><span>08 项自主能力</span><span>48h 上门响应</span><span>天津 · 中国</span></div>
+  </div>
+
+  <!-- ============================== 明星产品 ============================== -->
+  <section class="products section" id="products">
+    <div class="container">
+      <div class="products-head" data-reveal>
+        <div class="eyebrow"><span class="plus">+</span> 明星产品 / Featured</div>
+        <h2 class="section-title"><span class="nb">把未来生活，提前放进家里。</span><span class="sub">20 款消费级生活机器人，覆盖 7 类家庭场景；从单品到全屋，都有可执行的方案。</span></h2>
+      </div>
+      <div class="filters" id="filters" data-reveal></div>
+      <div class="grid-meta" data-reveal><span class="count" id="gridCount">展示 08 / 20</span><span>建议零售价 · 含税</span></div>
+      <div class="product-grid" id="productGrid" aria-label="产品列表" data-reveal></div>
+      <div class="grid-actions" data-reveal>
+        <button class="btn btn-ghost" id="gridMore" hidden>展开全部 20 款产品 <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+        <a class="btn btn-primary" href="https://4m1c4eaeqsarr.doubaoapps.com/app/app_17jfm7ga3uu" target="_blank" rel="noopener noreferrer" aria-label="进入 OVEM 官方商城（新窗口打开）">进入官方商城 <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      </div>
+      <div class="grid-note" data-reveal><span>价格仅供参考，实际库存与活动以官方商城为准。</span><button type="button" data-book>需要按户型配一套？预约产品顾问 →</button></div>
+    </div>
+  </section>
+
+  <!-- ============================== 解决方案 ============================== -->
+  <section class="solutions section" id="solutions">
+    <div class="container">
+      <div class="solutions-head" data-reveal>
+        <div class="eyebrow dark"><span class="plus">+</span> 解决方案 / Solutions</div>
+        <h2 class="section-title">围绕「<span class="nb">小户型</span>、<span class="nb">轻家务</span>、<span class="nb">高颜值</span>、<span class="nb">强自主</span>」四大核心<span class="sub">所有产品均具备自主感知、自主决策、自主执行的机器人属性</span></h2>
+      </div>
+      <div class="solution-grid" data-reveal>
+        <article class="solution-card" data-solution="kitchen" tabindex="0" role="button" aria-label="查看餐厨料理解决方案">
+          <img src="assets/solutions/solution-kitchen.png" alt="精准备料辅助机器人">
+          <div class="sol-content"><div class="sol-k">KITCHEN / 01</div><div class="sol-title">餐厨<br>料理</div><p class="sol-copy">从备菜、烹饪到台面清洁，让一日三餐的重复劳动被重新分配。</p></div>
+          <span class="sol-cta">查看详情 <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </article>
+        <article class="solution-card" data-solution="pet" tabindex="0" role="button" aria-label="查看宠物起居解决方案">
+          <img src="assets/solutions/solution-pet.png" alt="宠物全托管陪护机器人">
+          <div class="sol-content"><div class="sol-k">PET / 02</div><div class="sol-title">宠物<br>起居</div><p class="sol-copy">喂食、陪玩、清洁与健康记录，让毛孩子独处时也被好好照顾。</p></div>
+          <span class="sol-cta">查看详情 <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </article>
+        <article class="solution-card" data-solution="storage" tabindex="0" role="button" aria-label="查看出行收纳解决方案">
+          <img src="assets/solutions/solution-storage.png" alt="出行物品智能筹备机器人">
+          <div class="sol-content"><div class="sol-k">MOBILITY / 03</div><div class="sol-title">出行<br>收纳</div><p class="sol-copy">证件、衣物、鞋履与随身物品，按下一次出门自动备好。</p></div>
+          <span class="sol-cta">查看详情 <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 品牌故事 ============================== -->
+  <section class="story section" id="story">
+    <div class="container">
+      <div class="story-shell">
+        <div class="story-copy" data-reveal>
+          <div class="eyebrow"><span class="plus">+</span> 品牌故事 / Our Belief</div>
+          <h2 class="section-title">把家务从时间里拿走，<br>把生活还给人。</h2>
+          <p>光谷效应诞生于一个很朴素的判断：未来的家，不应该让人更忙。我们用消费级机器人接管备菜、清洁、收纳、陪护这些高频小事，让科技真正回到日常。</p>
+          <div class="story-bullets"><span class="story-bullet"><i></i>自主感知</span><span class="story-bullet"><i></i>自主决策</span><span class="story-bullet"><i></i>自主执行</span></div>
+          <div class="story-metrics">
+            <div class="story-metric"><b>20</b><span>款生活机器人</span></div>
+            <div class="story-metric"><b>07</b><span>类家庭场景</span></div>
+            <div class="story-metric"><b>24h</b><span>持续在岗</span></div>
+          </div>
+        </div>
+        <div class="story-collage" data-reveal>
+          <div class="story-tile one"><img src="assets/products/p12.jpg" alt="浴室全域清洁消毒机器人"><span class="tag">卫浴 / 清洁消毒</span></div>
+          <div class="story-tile two"><img src="assets/products/p17.jpg" alt="盆栽智能养护巡航机器人"><span class="tag">阳台 / 养护</span></div>
+          <div class="story-tile three"><img src="assets/products/p19.jpg" alt="出行物品智能筹备机器人"><span class="tag">玄关 / 出行</span></div>
+          <div class="story-float"><div class="k">DESIGN PRINCIPLE</div><p>高颜值、低存在感，像家具一样融入家。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 核心能力 ============================== -->
+  <section class="capabilities section" id="capabilities">
+    <div class="container">
+      <div class="cap-head" data-reveal>
+        <div>
+          <div class="eyebrow"><span class="plus">+</span> 核心能力 / Autonomy Stack</div>
+          <h2 class="section-title">不是遥控器，<br>是一套能自己闭环的<span class="nb">机器人系统</span>。</h2>
+          <div class="cap-tags"><span>AUTONOMY STACK</span><i></i><span>08 MODULES / ONE SYSTEM</span></div>
+        </div>
+        <p>从感知到执行，8 个能力模块构成 OVEM 的自主底座。20 款产品共享同一套系统，按不同场景调用不同的“身体”，而不是把 20 个孤立功能堆进家里。</p>
+      </div>
+      <div class="cap-grid" data-reveal>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M7.5 7.5a6.4 6.4 0 0 0 0 9M16.5 7.5a6.4 6.4 0 0 1 0 9M4.5 4.5a10.6 10.6 0 0 0 0 15M19.5 4.5a10.6 10.6 0 0 1 0 15"/></svg></span><span class="cap-no">01</span></div>
+          <h3>环境感知</h3><p>激光雷达、视觉与超声融合，实时建立家居空间地图。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><path d="M7 18c3-1 5-3 6-6 1-3 2-5 4-5"/></svg></span><span class="cap-no">02</span></div>
+          <h3>自主导航</h3><p>厘米级定位与动态路径规划，跨房间连续作业。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><path d="M8 12c1.2-2 2.6-3 4-3s2.8 1 4 3c-1.2 2-2.6 3-4 3s-2.8-1-4-3z"/><circle cx="12" cy="12" r="1"/></svg></span><span class="cap-no">03</span></div>
+          <h3>物体识别</h3><p>识别材质、形状与状态，决定怎么拿、怎么放。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><path d="M8 13V7a1.5 1.5 0 0 1 3 0v4M11 11V5.5a1.5 1.5 0 0 1 3 0V11M14 11V7a1.5 1.5 0 0 1 3 0v6"/><path d="M8 13c0 4 2.5 7 6 7h1c3 0 5-2 5-5V10"/></svg></span><span class="cap-no">04</span></div>
+          <h3>柔性抓取</h3><p>自适应夹爪与力控，轻薄、易碎物品也能稳妥处理。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span><span class="cap-no">05</span></div>
+          <h3>任务决策</h3><p>把一句指令拆成动作序列，遇到变化即时重排。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="15" height="10" rx="2"/><path d="M21 10v4M7 12l3-4v3h3l-3 4v-3z"/></svg></span><span class="cap-no">06</span></div>
+          <h3>自主回充</h3><p>低电自动回充，补能后从断点继续未完成任务。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-5"/></svg></span><span class="cap-no">07</span></div>
+          <h3>安全避障</h3><p>人、宠物、线缆与台阶识别，先停再绕行。</p>
+        </article>
+        <article class="cap-card">
+          <div class="cap-top"><span class="cap-icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v9h14v-9"/><circle cx="9" cy="15" r="2"/><circle cx="15" cy="15" r="2"/><path d="M11 15h2"/></svg></span><span class="cap-no">08</span></div>
+          <h3>全屋协同</h3><p>多台机器人共享地图与任务，交接不重复、不打架。</p>
+        </article>
+      </div>
+      <div class="cap-foot" data-reveal><span>一次任务闭环 / 感知 → 决策 → 执行 → 回充</span><span><a href="#products">查看对应产品</a><span class="mini-arrow">↗</span></span></div>
+    </div>
+  </section>
+
+  <!-- ============================== 浴室产品 ============================== -->
+  <section class="bathroom section" id="bathroom">
+    <div class="container">
+      <div class="bath-head" data-reveal>
+        <div>
+          <div class="eyebrow"><span class="plus">+</span> 浴室清洁 / Product Focus</div>
+          <h2 class="section-title">浴室全域<br>清洁消毒机器人</h2>
+          <div class="bath-tags"><span>清洁 · 刮水 · 消毒</span><span>UV 消毒</span><span>贴边清洁 0mm</span><span>自动回充</span></div>
+        </div>
+        <p>顶部高压喷淋，配合边刷、滚刷与刮水模组；清洁完成后自动风干。可深入淋浴房、台盆边缘与马桶底座，把浴室里最难擦的角落交给它。</p>
+      </div>
+      <div class="bath-grid" data-reveal>
+        <div class="bath-panel bath-visual bath-sheet">
+          <img src="assets/products/bathroom-product-page.png" alt="浴室全域清洁消毒机器人产品内页">
+        </div>
+        <div class="bath-side">
+          <div class="bath-panel bath-video-panel">
+            <video id="bathDemoVideo" src="assets/video/bathroom-demo.mp4" poster="assets/video/bathroom-demo-poster.jpg" preload="metadata" playsinline aria-label="浴室全域清洁消毒机器人产品功能演示"></video>
+            <button id="bathDemoPlay" class="bath-video-play" type="button" aria-label="播放产品功能演示">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <div class="bath-panel bath-specs">
+            <h3>核心功能结构</h3>
+            <div class="bath-spec-list">
+              <div class="bath-spec"><div class="n">01</div><div><b>双层滚刷</b><span>前后双刷同步工作，剥离地砖缝隙污渍。</span></div></div>
+              <div class="bath-spec"><div class="n">02</div><div><b>贴边刮水</b><span>0mm 贴边结构，水渍不留在墙角。</span></div></div>
+              <div class="bath-spec"><div class="n">03</div><div><b>UV 消毒</b><span>清洁后自动消杀，减少潮湿环境细菌。</span></div></div>
+              <div class="bath-spec"><div class="n">04</div><div><b>自清洁基站</b><span>回充、风干、耗材自检一次完成。</span></div></div>
+            </div>
+          </div>
+          <div class="bath-more"><a href="#products">查看更多产品详情 <span class="arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 移动端交付 ============================== -->
+  <section class="mobile-delivery section" id="mobile" aria-labelledby="mobileTitle">
+    <div class="container">
+      <div class="mobile-head" data-reveal>
+        <div>
+          <div class="eyebrow dark"><span class="plus">+</span> 移动端交付 / Mobile Delivery</div>
+          <h2 class="section-title" id="mobileTitle">把整个家，<br>装进一块屏幕。<span class="sub">同一套 OVEM 体验，已经落成 Android 安装包与微信小程序测试工程。</span></h2>
+        </div>
+        <p>官网展示之外，OVEM 也把控制台带到了手机上。这里提供可直接下载的 debug APK 与微信扫码演示；小程序源码包保留在项目目录，供本地编译与评审。扫码即可浏览全部 8 页，无需安装、无需正式 AppID。</p>
+      </div>
+      <div class="mobile-grid" data-reveal>
+        <article class="mobile-card card-apk" aria-labelledby="apkTitle">
+          <span class="card-badge"><i></i> ANDROID / DEBUG BUILD</span>
+          <div class="mobile-copy">
+            <h3 class="mobile-title" id="apkTitle">把 OVEM 装进<br><span class="lite">Android 手机。</span></h3>
+            <p class="mobile-desc">Capacitor 打包的 debug 安装包，内置设备控制、场景、消息与个人中心，可直接在 Android 手机上安装体验。</p>
+            <div class="mobile-meta">
+              <div><b>v1.0</b><span>VERSION</span></div>
+              <div><b>18.8 MB</b><span>PACKAGE</span></div>
+              <div><b>minSdk 23</b><span>ANDROID</span></div>
+            </div>
+            <div class="mobile-actions">
+              <a class="btn btn-white" href="assets/downloads/OVEM-Android-debug.apk" download>下载 APK <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span></a>
+              <a class="text-link" href="#mobile-note">安装说明 <span>↓</span></a>
+            </div>
+            <div class="mobile-footnote">debug 签名测试包 · 安装时需允许“未知来源应用”</div>
+          </div>
+          <div class="apk-phone" role="img" aria-label="OVEM Android 启动画面预览：品牌图标与 OVEM 字标">
+            <span class="icon-ring"></span><span class="icon-ring two"></span>
+            <img src="assets/mobile/ovem-app-icon.png" alt="OVEM Android 应用图标">
+            <span class="phone-brand">OVEM</span>
+            <span class="phone-sub">OPTICS VALLEY EFFECT</span>
+            <span class="phone-line"></span>
+          </div>
+        </article>
+
+        <article class="mobile-card card-mini" aria-labelledby="miniTitle">
+          <span class="card-badge dark"><i></i> WECHAT / MINI PROGRAM</span>
+          <div class="mobile-copy">
+            <h3 class="mobile-title" id="miniTitle">微信里，<br><span class="lite">也能管好一个家。</span></h3>
+            <p class="mobile-desc">8 页原生小程序，覆盖新手引导、首页、设备、场景、消息与个人中心；开发者工具编译通过，并上线同版 H5 镜像，微信扫码即可浏览全部页面。</p>
+            <div class="mobile-actions mini-download">
+              <a class="btn btn-navy" href="assets/downloads/OVEM-miniprogram-test.zip" download aria-label="下载 OVEM 微信小程序测试工程">下载小程序工程 <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span></a>
+              <span class="text-link mini-install-hint">点击安装 <span>↓</span></span>
+            </div>
+            <div class="mini-code">
+              <a class="qr-real" href="https://yoyonaga121.github.io/ovem-ai-marketing/demo/#/onboarding" target="_blank" rel="noopener" aria-label="微信扫码或点击打开 OVEM 管家网页演示">
+                <img src="assets/mobile/miniprogram-qr.png" alt="OVEM 管家网页演示二维码，微信扫码浏览">
+              </a>
+              <p><b>OVEM管家随时相伴</b>微信扫码进入 H5 镜像版，在手机端走完引导、首页、设备、场景、消息、我的与产品目录。<em>NO APPID · NO INSTALL</em></p>
+            </div>
+          </div>
+          <div class="mini-phone" role="img" aria-label="OVEM 微信小程序新手引导页预览">
+            <img src="assets/mobile/miniprogram-preview.png" alt="OVEM 微信小程序新手引导页">
+            <span class="mini-float"><i></i> DevTools 编译验证</span>
+          </div>
+        </article>
+      </div>
+      <div class="mobile-foot" id="mobile-note" data-reveal>
+        <div><b>01 / APK 安装</b><span>下载后传到 Android 手机，允许“未知来源应用”安装；这是 debug 测试包，未做真机启动验证。</span></div>
+        <div><b>02 / 扫码演示</b><span>微信扫码打开 H5 镜像版，可浏览引导、首页、设备、场景、消息、我的与产品目录；无需正式 AppID，也不需安装。</span></div>
+        <div><b>03 / 官网部署</b><span>APK、二维码与小程序源码包均保留在 assets 内，随官网目录一起上传即可保持相对路径可用。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 服务支持 ============================== -->
+  <section class="support section" id="support">
+    <div class="container">
+      <div class="support-head" data-reveal>
+        <div><div class="eyebrow"><span class="plus">+</span> 服务支持 / Service</div><h2 class="section-title">从第一次体验到长期使用，<br>都有专人接住。</h2></div>
+        <p>我们提供上门勘测、全屋场景配置、机器人交付与后续耗材服务。每一台机器人，都从你的真实生活动线开始。</p>
+      </div>
+      <div class="support-grid" data-reveal>
+        <article class="support-card"><div class="support-icon"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11M8 20v-6h8v6M4 20h16"/></svg></div><h3>上门体验</h3><p>预约后由产品顾问携带样机上门，在你家的真实空间里演示。</p><div class="small"><i class="dot"></i>天津及周边 · 48h 内响应</div></article>
+        <article class="support-card"><div class="support-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 18v2M16 18v2M8 10h8M8 13h5"/></svg></div><h3>全屋配置</h3><p>按户型、家庭成员与生活习惯组合产品，不让功能堆在角落里。</p><div class="small"><i class="dot"></i>免费勘测 · 一对一方案</div></article>
+        <article class="support-card"><div class="support-icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7zM9 12l2 2 4-5"/></svg></div><h3>长期售后</h3><p>整机质保、耗材定期提醒、远程诊断与上门维护，一次建档长期跟进。</p><div class="small"><i class="dot"></i>整机 2 年 · 核心部件 3 年</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 产品家族 ============================== -->
+  <section class="families" aria-label="产品家族">
+    <div class="container family-inner">
+      <span class="family-label">PRODUCT FAMILIES<br>产品家族</span>
+      <div class="family-list">
+        <a class="family" href="#products" data-family="厨房"><b>OVEM KITCHEN</b><small>餐厨</small></a>
+        <a class="family" href="#products" data-family="客厅"><b>OVEM LIVING</b><small>客厅</small></a>
+        <a class="family" href="#products" data-family="卧室"><b>OVEM SLEEP</b><small>卧室</small></a>
+        <a class="family" href="#products" data-family="卫浴个护"><b>OVEM BATH</b><small>卫浴</small></a>
+        <a class="family" href="#products" data-family="阳台玄关"><b>OVEM BALCONY</b><small>阳台</small></a>
+        <a class="family" href="#products" data-family="出行宠物"><b>OVEM MOBILITY</b><small>出行 / 宠物</small></a>
+        <a class="family" href="#products" data-family="收纳"><b>OVEM STORAGE</b><small>收纳</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 预约与页脚 ============================== -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <div class="booking-row">
+        <div data-reveal><h2>即刻预订您的<br>智能管家！</h2><p>留下联系方式，产品顾问会与你确认户型、生活场景与适合的机器人组合。</p></div>
+        <div data-reveal>
+          <form class="booking-form" id="bookingForm" novalidate>
+            <input id="contactInput" type="text" inputmode="email" autocomplete="email" placeholder="输入您的手机号或邮箱" aria-label="手机号或邮箱">
+            <button class="btn btn-primary" type="submit">预约体验 <span class="arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+          </form>
+          <div class="form-note">提交即表示同意我们仅将信息用于本次产品咨询。</div>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#home"><img class="brand-logo" src="assets/logo-white.png" alt="光谷效应"><span class="brand-text"><b>光谷效应</b><small>OPTICS VALLEY EFFECT</small></span></a>
+          <p>聚焦日常生活中的高频小事，用消费级机器人接管重复劳动。让科技回到日常，让时间回到家人。</p>
+          <div class="socials" style="margin-top:18px">
+            <a class="social" href="#booking" aria-label="预约体验"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 7l8 6 8-6"/></svg></a>
+            <a class="social" href="#booking" aria-label="电话咨询"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 4-3 2a13 13 0 0 0 6 6l2-3 4 2v4c0 1-1 2-2 2A16 16 0 0 1 3 6c0-1 1-2 2-2z"/></svg></a>
+            <a class="social" href="#booking" aria-label="微信咨询"><svg viewBox="0 0 24 24"><path d="M4 12a7 7 0 0 1 14 0M12 5a7 7 0 0 1 7 7M6 13c0 3 3 5 6 5s6-2 6-5M8 12h.01M16 12h.01"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>PRODUCT</h4><a href="#products">明星产品</a><a href="#solutions">解决方案</a><a href="#capabilities">核心能力</a><a href="#bathroom">浴室清洁</a><a href="#mobile">移动端交付</a><a href="#products" data-open-shop>全部产品</a></div>
+          <div class="footer-col"><h4>BRAND</h4><a href="#story">品牌故事</a><a href="#support">服务支持</a><a href="#booking">预约体验</a><a href="#booking">联系我们</a></div>
+          <div class="footer-col"><h4>CONTACT</h4><p>+86 022 8888 6666</p><p>info@ovem.com</p><p>天津市和平区南京路 189 号</p><p>09:00 – 18:00</p></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 光谷效应 Optics Valley Effect. All Rights Reserved.</span><span>津 · 中国 / 消费级生活机器人</span><span>隐私政策　服务条款</span></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================== 产品详情弹层 ============================== -->
+<div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="modal-card">
+    <button class="modal-close" data-close-modal aria-label="关闭">×</button>
+    <div class="pm-grid">
+      <div class="pm-media"><img id="pmImage" src="assets/products/p01.jpg" alt=""></div>
+      <div class="pm-copy">
+        <div class="pm-kicker" id="pmKicker">PRODUCT / 01</div>
+        <h2 id="pmTitle">精准备料辅助机器人</h2>
+        <p class="lead" id="pmLead"></p>
+        <div class="pm-price"><span>建议零售价</span><b id="pmPrice">¥4,999</b></div>
+        <div class="pm-tags" id="pmTags"></div>
+        <div class="pm-facts"><div class="pm-fact"><div class="k">它解决的问题</div><p id="pmPain"></p></div><div class="pm-fact"><div class="k">它为什么不一样</div><p id="pmDiff"></p></div></div>
+        <div class="pm-actions"><button class="btn btn-primary" data-book>预约体验</button><button class="btn btn-ghost" data-open-shop>查看其他产品</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== 全部产品弹层 ============================== -->
+<div class="modal" id="shopModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="shopTitle">
+  <div class="modal-card wide">
+    <button class="modal-close" data-close-modal aria-label="关闭">×</button>
+    <div class="modal-title"><div class="k">OVEM STORE / 20 PRODUCTS</div><h2 id="shopTitle">全部生活机器人</h2><p>从一顿饭、一个台面，到一次出门。选择你当下最想被接管的那件小事。</p></div>
+    <div class="shop-grid" id="shopGrid"></div>
+  </div>
+</div>
+
+<!-- ============================== 解决方案弹层 ============================== -->
+<div class="modal" id="solutionModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="smTitle">
+  <div class="modal-card">
+    <button class="modal-close" data-close-modal aria-label="关闭">×</button>
+    <div class="modal-title"><div class="k" id="smKicker">SOLUTION / 01</div><h2 id="smTitle">餐厨料理</h2><p id="smLead"></p></div>
+    <div class="solution-detail">
+      <div class="hero-img"><img id="smImage" src="assets/solutions/banner-kitchen.png" alt=""></div>
+      <div class="copy"><p id="smCopy"></p><p>从备菜到清洁，产品之间不是简单相加，而是按你家的动线组合成一条连续动作链。顾问会先看厨房台面高度、常用动线和收纳习惯，再给出配置。</p></div>
+      <div class="recs" id="smRecs"></div>
+      <div class="modal-foot"><button class="btn btn-primary" data-book>预约全屋勘测</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* 产品数据由 OVEM 单一数据源导出；字段保持与配置中台一致 */
+const PRODUCTS = [{"id":"p01","no":1,"name":"精准备料辅助机器人","short":"精准备料","scene":"厨房","tier":"旗舰","price":"4,999","oneliner":"称量、切配、分份，跟着菜谱走","tags":["菜谱联动","食材识别","低噪运行"],"pain":"备菜要称、要切、要分份，是下班后最耗神的四十分钟。","diff":"不是固定功能的切菜机。它能按菜谱自动称量、识别食材硬度并调整切割力度，一次完成多步骤备料。"},{"id":"p02","no":2,"name":"厨房台面巡航清洁机器人","short":"台面清洁","scene":"厨房","tier":"主力","price":"1,999","oneliner":"3cm 机身，钻得进调料架下","tags":["蒸汽擦","自主避障","三模切换"],"pain":"做完饭灶台溅油、菜屑散落，擦一遍比做饭还累。","diff":"不是手持清洁机。它自主规划路径覆盖整张台面，按场景切换干吸、蒸汽、抛光三种模组。"},{"id":"p03","no":3,"name":"餐具智能归位机器人","short":"餐具归位","scene":"厨房","tier":"主力","price":"2,499","oneliner":"洗碗机之后，最后一步交给它","tags":["柔性抓取","视觉识别","自定义分区"],"pain":"碗洗完了，还得一只只摆回柜子，手是湿的，心是累的。","diff":"洗碗机只洗不收。它补上识别、抓取、路径规划、归位这一段完整动作。"},{"id":"p04","no":4,"name":"冰箱食材管家机器人","short":"食材管家","scene":"厨房","tier":"引流","price":"899","oneliner":"掌心大小，在冰箱里自己盘点","tags":["库存盘点","临期提醒","菜谱推荐"],"pain":"冰箱里的菜，总是放到烂才想起来。","diff":"不是被动冷藏。它是能在封闭空间独立作业的移动机器人，主动管理库存与保鲜。"},{"id":"p05","no":5,"name":"桌面物品归位巡检机器人","short":"桌面巡检","scene":"客厅","tier":"引流","price":"599","oneliner":"夜里巡逻，早上桌面自己归位","tags":["夜间静音","物品识别","拍照录入"],"pain":"遥控器、耳机、笔，永远在找的路上。","diff":"扫地机只管地面。它专注桌面立体空间的识别、抓取与归位。"},{"id":"p06","no":6,"name":"智能场景布置机器人","short":"场景布置","scene":"客厅","tier":"旗舰","price":"5,999","oneliner":"不是开关联动，是真的移动物体","tags":["电动云台","多场景","语音触发"],"pain":"说一句看电影，幕布、投影、窗帘还得自己动手。","diff":"智能家居只控开关。它能物理移动幕布与音响，主动改造空间。"},{"id":"p07","no":7,"name":"全屋空气治理巡航机器人","short":"空气治理","scene":"客厅","tier":"主力","price":"2,999","oneliner":"先找到污染源，再净化","tags":["多传感","静音 30dB","香氛管理"],"pain":"净化器旁边达标，房间另一头照样呛。","diff":"固定净化器守一个点。它移动检测、靶向停留，解决空间不均。"},{"id":"p08","no":8,"name":"睡眠环境自适应机器人","short":"睡眠自适应","scene":"卧室","tier":"主力","price":"2,699","oneliner":"监测不是目的，调环境才是","tags":["非接触监测","环境联动","起夜引导"],"pain":"夜里热醒、干醒，数据有了，却没人帮你调。","diff":"睡眠仪只出报告。它直接联动空调、加湿器、窗帘完成闭环。"},{"id":"p09","no":9,"name":"夜间陪护服务机器人","short":"夜间陪护","scene":"卧室","tier":"主力","price":"1,699","oneliner":"半夜口渴，不用起身","tags":["恒温仓","跌倒报警","语音交互"],"pain":"半夜口渴、吃药，起身一趟就再也睡不着。","diff":"音箱只会说话。它能真的把水或药送到床边，并做跌倒检测。"},{"id":"p10","no":10,"name":"衣物折叠收纳机器人","short":"衣物折叠","scene":"卧室","tier":"主力","price":"2,999","oneliner":"丢进去，第二天自己叠好入柜","tags":["自适应折叠","负离子除螨","嵌入衣柜"],"pain":"洗完澡，一堆衣服又堆在椅子上。","diff":"折叠板要人动手。它识别衣物类型、调整折法、自主入柜。"},{"id":"p11","no":11,"name":"衣柜抽屉精细化整理机器人","short":"抽屉整理","scene":"收纳","tier":"引流","price":"799","oneliner":"5cm 机身，进得去抽屉","tags":["抽屉适配","静电抓取","语音查找"],"pain":"换季找一件衣服，翻箱倒柜半小时。","diff":"收纳盒是静态容器。它能分类、优化位置，并主动把衣物送到手边。"},{"id":"p12","no":12,"name":"浴室全域清洁消毒机器人","short":"浴室清洁","scene":"卫浴个护","tier":"主力","price":"2,399","oneliner":"墙面、玻璃、地面，一趟走完","tags":["IPX8","三步清洁","紫外消毒"],"pain":"玻璃水垢、墙角霉斑，擦一次半小时，还擦不干净。","diff":"手持擦玻璃器只管一个面。它能跨墙面与地面移动，清洁后紫外消毒。"},{"id":"p13","no":13,"name":"美妆护肤品智能管理机器人","short":"美妆管理","scene":"卫浴个护","tier":"旗舰","price":"3,999","oneliner":"该冷的冷，该热的热，按顺序递到手","tags":["双温区","保质期识别","护肤流程"],"pain":"精华要冷藏、面膜要加热，台面上瓶瓶罐罐堆成山。","diff":"化妆冰箱只能存。它识别临期、按护肤程序调温并递送。"},{"id":"p14","no":14,"name":"头皮深层护理机器人","short":"头皮护理","scene":"卫浴个护","tier":"旗舰","price":"4,299","oneliner":"先检测，再决定怎么护理","tags":["显微检测","柔性触头","报告同步"],"pain":"头皮出油、头屑反复，去一趟养发馆几百块。","diff":"按摩梳只有固定震动。它扫描头皮、匹配方案、全头覆盖护理。"},{"id":"p15","no":15,"name":"智能美甲定制机器人","short":"美甲定制","scene":"卫浴个护","tier":"旗舰","price":"4,599","oneliner":"0.1mm 精度，单手十分钟","tags":["图案定制","自动修形","速干烤灯"],"pain":"做一次美甲，预约、排队、坐两小时。","diff":"美甲店靠人工。它把修形、上色、封层全流程搬回家。"},{"id":"p16","no":16,"name":"衣物晾晒收纳一体化机器人","short":"晾晒收纳","scene":"阳台玄关","tier":"主力","price":"2,899","oneliner":"取衣、晾晒、收回、叠好，一条线","tags":["轨道安装","柔性夹爪","天气联动"],"pain":"洗完忘了晾，下雨忘了收，白洗一遍。","diff":"电动晾衣架只负责升降。它管从洗衣机到衣柜的全流程。"},{"id":"p17","no":17,"name":"盆栽智能养护巡航机器人","short":"盆栽养护","scene":"阳台玄关","tier":"引流","price":"699","oneliner":"多盆巡检，还会搬着花盆追光","tags":["多盆管理","追光移动","品种识别"],"pain":"出差一周回来，阳台的绿植全蔫了。","diff":"滴灌系统位置固定。它逐盆巡检、按需浇水，并移动花盆调整光照。"},{"id":"p18","no":18,"name":"鞋履全能护理机器人","short":"鞋履护理","scene":"阳台玄关","tier":"引流","price":"899","oneliner":"先认材质，再决定怎么护理","tags":["材质识别","六步护理","自主归位"],"pain":"皮鞋要打油、球鞋要除臭，工具摆一排。","diff":"固定擦鞋机只会抛光。它按皮革、网面、麂皮切换工序。"},{"id":"p19","no":19,"name":"出行物品智能筹备机器人","short":"出行筹备","scene":"出行宠物","tier":"引流","price":"599","oneliner":"看日程、看天气，提前把包装好","tags":["日程联动","物品核查","人脸确认"],"pain":"出门总忘带伞、工牌、充电宝。","diff":"收纳盒不会思考。它按当日日程与天气主动备物，并在门口提醒。"},{"id":"p20","no":20,"name":"宠物全托管陪护机器人","short":"宠物陪护","scene":"出行宠物","tier":"旗舰","price":"3,999","oneliner":"陪玩、喂食、清理，加班晚归也放心","tags":["自主跟随","定时喂食","猫砂清理"],"pain":"加班到十点，猫粮空了、猫砂堆了，只能心疼。","diff":"喂食器只会定点投喂。它能移动陪玩、清理排泄物并监测健康。"}];
+const SCENES = ["全部","厨房","客厅","卧室","卫浴个护","阳台玄关","出行宠物","收纳"];
+const SOLUTIONS = {
+  kitchen:{title:"餐厨料理",kicker:"KITCHEN / 01",image:"assets/solutions/banner-kitchen.png",lead:"把备菜、烹饪与台面清洁连成一条连续动作链。",copy:"从食材识别、称量切配，到做完饭后的台面巡航清洁，餐厨场景里的重复动作被拆给不同机器人。人不离开餐桌，厨房已经回到可以开始下一件事的状态。",recs:["p01","p02","p03"]},
+  pet:{title:"宠物起居",kicker:"PET / 02",image:"assets/solutions/banner-pet.png",lead:"让毛孩子独处时，也有人照顾它的日常。",copy:"喂食、饮水、陪玩、排泄区清洁与健康记录，被收进同一套陪护流程。不是把宠物交给一台机器，而是让离家的人随时知道它今天过得怎么样。",recs:["p20","p09","p12"]},
+  storage:{title:"出行收纳",kicker:"MOBILITY / 03",image:"assets/solutions/banner-storage.png",lead:"下一次出门要带的东西，提前替你收好。",copy:"证件、钥匙、衣物、鞋履和随身物品，按日程与天气自动筹备。玄关不再堆着未整理的包，出门前也不再反复确认有没有落下什么。",recs:["p19","p13","p18"]}
+};
+let activeScene = "全部";
+let showAllProducts = false;
+let currentProduct = null;
+const $ = (s,el=document)=>el.querySelector(s);
+const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const productById = id => PRODUCTS.find(p=>p.id===id);
+const pad2 = n => String(n).padStart(2,"0");
+
+function filtered(){ return activeScene==="全部"?PRODUCTS:PRODUCTS.filter(p=>p.scene===activeScene); }
+function renderFilters(){
+  const box=$("#filters");
+  box.innerHTML=SCENES.map(s=>{
+    const n=s==="全部"?PRODUCTS.length:PRODUCTS.filter(p=>p.scene===s).length;
+    return `<button class="filter${s===activeScene?" active":""}" data-scene="${esc(s)}">${esc(s)} <span style="opacity:.55;font-family:var(--mono);font-size:10px">${n}</span></button>`;
+  }).join("");
+  $$(".filter",box).forEach(b=>b.addEventListener("click",()=>{activeScene=b.dataset.scene;showAllProducts=false;renderFilters();renderProducts();}));
+}
+function cardHTML(p){
+  return `<article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="查看 ${esc(p.name)}">
+    <div class="pc-media"><img src="assets/products/${p.id}.jpg" alt="${esc(p.name)}" loading="lazy" width="800" height="520"><span class="pc-tier">${esc(p.tier)}</span></div>
+    <div class="pc-body"><div class="pc-scene">${esc(p.scene)} / ${esc(p.short)}</div><h3>${esc(p.name)}</h3><p>${esc(p.oneliner)}</p>
+    <div class="pc-foot"><span class="price">¥ <b>${esc(p.price)}</b></span><span class="pc-link">详情 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div></div>
+  </article>`;
+}
+function renderProducts(){
+  const list=filtered();
+  const visible=(!showAllProducts&&list.length>8)?list.slice(0,8):list;
+  $("#productGrid").innerHTML=visible.map(cardHTML).join("");
+  $("#gridCount").textContent=`展示 ${pad2(visible.length)} / ${pad2(list.length)}`;
+  const more=$("#gridMore");
+  if(list.length>8){
+    more.hidden=false;
+    more.innerHTML=`${showAllProducts?"收起产品":"展开全部 "+list.length+" 款产品"} <span class="arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>`;
+  }else{
+    more.hidden=true;
+  }
+}
+function openProduct(id){
+  const p=productById(id); if(!p)return;
+  currentProduct=p;
+  $("#pmKicker").textContent=`${p.scene} / ${p.short} · PRODUCT ${String(p.no).padStart(2,"0")}`;
+  $("#pmTitle").textContent=p.name;
+  $("#pmLead").textContent=p.oneliner;
+  $("#pmPrice").textContent=`¥${p.price}`;
+  $("#pmImage").src=`assets/products/${p.id}.jpg`; $("#pmImage").alt=p.name;
+  $("#pmTags").innerHTML=p.tags.map(t=>`<span>${esc(t)}</span>`).join("");
+  $("#pmPain").textContent=p.pain;
+  $("#pmDiff").textContent=p.diff;
+  openModal("productModal");
+}
+function renderShop(){
+  $("#shopGrid").innerHTML=PRODUCTS.map(p=>`<button class="shop-card" data-product="${p.id}"><img src="assets/products/${p.id}.jpg" alt="${esc(p.name)}" loading="lazy"><span class="shop-copy"><span class="k">${esc(p.scene)} / ${esc(p.tier)}</span><b>${esc(p.name)}</b><small>¥${esc(p.price)} · ${esc(p.short)}</small></span></button>`).join("");
+}
+function openSolution(key){
+  const s=SOLUTIONS[key]; if(!s)return;
+  $("#smKicker").textContent=s.kicker; $("#smTitle").textContent=s.title; $("#smLead").textContent=s.lead;
+  $("#smImage").src=s.image; $("#smImage").alt=s.title; $("#smCopy").textContent=s.copy;
+  $("#smRecs").innerHTML=s.recs.map(id=>{const p=productById(id);return `<button class="rec" data-product="${id}"><img src="assets/products/${id}.jpg" alt="${esc(p.name)}"><span><b>${esc(p.name)}</b><small>${esc(p.oneliner)}</small></span></button>`}).join("");
+  openModal("solutionModal");
+}
+function openModal(id){
+  const m=$("#"+id); if(!m)return;
+  /* 同一时间只保留一个弹层，避免商城目录盖住后续打开的产品详情 */
+  $$(".modal.open").forEach(other=>{if(other!==m){other.classList.remove("open");other.setAttribute("aria-hidden","true");}});
+  m.classList.add("open"); m.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; setTimeout(()=>{const f=m.querySelector(".modal-close");f&&f.focus()},80);
+}
+function closeModal(){
+  $$(".modal.open").forEach(m=>{m.classList.remove("open");m.setAttribute("aria-hidden","true")});
+  document.body.style.overflow="";
+}
+/* 浴室演示视频：点击封面播放 */
+const bathDemoVideo=$("#bathDemoVideo"),bathDemoPlay=$("#bathDemoPlay");
+if(bathDemoVideo&&bathDemoPlay){
+  bathDemoPlay.addEventListener("click",()=>{
+    bathDemoVideo.controls=true;
+    const playing=bathDemoVideo.play();
+    if(playing&&playing.catch)playing.catch(()=>{});
+  });
+  bathDemoVideo.addEventListener("play",()=>bathDemoPlay.classList.add("is-hidden"));
+  bathDemoVideo.addEventListener("ended",()=>bathDemoPlay.classList.remove("is-hidden"));
+}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800);}
+function scrollToBooking(){closeModal();$("#booking").scrollIntoView({behavior:"smooth",block:"start"});setTimeout(()=>$("#contactInput").focus({preventScroll:true}),700);}
+
+/* 事件委托 */
+document.addEventListener("click",e=>{
+  const pcard=e.target.closest("[data-product]"); if(pcard){openProduct(pcard.dataset.product);return;}
+  const sol=e.target.closest("[data-solution]"); if(sol){openSolution(sol.dataset.solution);return;}
+  const fam=e.target.closest("[data-family]"); if(fam){e.preventDefault();activeScene=fam.dataset.family;showAllProducts=false;renderFilters();renderProducts();$("#products").scrollIntoView({behavior:"smooth",block:"start"});return;}
+  if(e.target.closest("[data-open-shop]")){e.preventDefault();renderShop();openModal("shopModal");return;}
+  if(e.target.closest("[data-book]")){scrollToBooking();return;}
+  if(e.target.closest("[data-close-modal]")||e.target.classList.contains("modal")){closeModal();return;}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){closeModal();closeMobile();}
+  if((e.key==="Enter"||e.key===" ")&&document.activeElement?.dataset?.product){e.preventDefault();openProduct(document.activeElement.dataset.product);}
+  if((e.key==="Enter"||e.key===" ")&&document.activeElement?.dataset?.solution){e.preventDefault();openSolution(document.activeElement.dataset.solution);}
+});
+
+/* 产品网格展开 */
+$("#gridMore").addEventListener("click",()=>{showAllProducts=!showAllProducts;renderProducts();});
+
+/* 导航与滚动 */
+const head=$("#siteHead");
+function onScroll(){head.classList.toggle("is-scrolled",window.scrollY>40);}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+const navLinks=$$(".nav a");
+const sectionIds=["home","products","solutions","capabilities","story","mobile","support"];
+const activeFor=id=>{const el=$("#"+id);if(!el)return;const top=el.getBoundingClientRect().top;if(top<=120&&el.getBoundingClientRect().bottom>120){navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+id));}};
+window.addEventListener("scroll",()=>{sectionIds.forEach(activeFor);},{passive:true});
+
+/* 移动菜单 */
+const panel=$("#mobilePanel"),mToggle=$("#menuToggle");
+function closeMobile(){panel.classList.remove("open");mToggle.setAttribute("aria-expanded","false");}
+mToggle.addEventListener("click",()=>{const open=panel.classList.toggle("open");mToggle.setAttribute("aria-expanded",String(open));});
+$$("#mobilePanel a").forEach(a=>a.addEventListener("click",closeMobile));
+
+/* 预约表单 */
+$("#bookingForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const input=$("#contactInput"),v=input.value.trim(),status=$("#formStatus");
+  const okMail=/^\S+@\S+\.\S+$/.test(v), okPhone=/^1[3-9]\d{9}$/.test(v.replace(/\s/g,""));
+  if(!okMail&&!okPhone){status.style.color="#FFB2A6";status.textContent="请输入有效的手机号或邮箱。";input.focus();return;}
+  status.style.color="var(--mint)";status.textContent="预约已记录，产品顾问会尽快联系您。";
+  toast("预约成功，我们会尽快联系您");
+  input.value="";
+});
+
+/* 入场 */
+const io=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}}),{threshold:.12});
+$$("[data-reveal]").forEach(el=>io.observe(el));
+
+/* 初始化 */
+renderFilters();renderProducts();renderShop();
+</script>
+</body>
+</html>

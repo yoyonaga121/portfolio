@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F8FF">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230B1D3D'/%3E%3Cpath d='M32 14 46 22 46 40 32 48 18 40 18 22Z' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+<title>OVEM 光谷效应 · 小程序网页演示</title>
+<meta name="description" content="OVEM 光谷效应小程序网页演示版，可在手机浏览器中浏览全部 8 个页面。">
+<style>
+:root{
+  --ink:#16243D; --ink-2:#3E4C64; --muted:#7C879A; --muted-2:#8A95A8;
+  --blue:#1F4BD8; --navy:#0B1D3D; --paper:#F4F8FF; --line:#E4EBF4; --white:#fff;
+  --sky:#2AA9D6; --green:#0E9F6E; --warn:#B76B09;
+  --shadow:0 8px 26px rgba(22,36,61,.055);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  margin:0;overflow:hidden;background:#06152D;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{display:block}
+.asset-preload{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:0}
+.asset-preload img{width:1px;height:1px}
+
+/* ---------- desktop stage ---------- */
+.stage{
+  height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:13px;padding:22px;position:relative;isolation:isolate;
+}
+.stage::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(31,75,216,.24), transparent 34%),
+    radial-gradient(circle at 82% 88%, rgba(42,169,214,.14), transparent 32%),
+    linear-gradient(140deg,#07162f,#0a1e3c 50%,#06152d);
+}
+.stage::after{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.13;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.28) 1px,transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(circle at 50% 46%,#000 0%,transparent 72%);
+}
+.stage-head{width:min(430px,100%);display:flex;align-items:flex-end;justify-content:space-between;color:#fff}
+.stage-brand{display:flex;align-items:center;gap:8px}
+.stage-brand__mark{width:26px;height:26px;border:1px solid rgba(255,255,255,.26);border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08)}
+.stage-brand__mark img{width:16px;height:16px;object-fit:contain}
+.stage-brand__copy strong{display:block;font-size:13px;letter-spacing:.4px}
+.stage-brand__copy em{display:block;font-style:normal;font-size:7px;letter-spacing:1.8px;color:rgba(255,255,255,.48);margin-top:2px}
+.stage-note{font-size:9px;letter-spacing:1.2px;color:rgba(255,255,255,.55);text-transform:uppercase}
+.stage-foot{width:min(430px,100%);display:flex;justify-content:space-between;color:rgba(255,255,255,.42);font-size:9px;letter-spacing:.6px}
+.phone{
+  position:relative;width:min(430px,100%);height:min(880px,calc(100vh - 126px));height:min(880px,calc(100dvh - 126px));
+  overflow:hidden;border-radius:34px;background:var(--paper);
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 42px 90px rgba(0,0,0,.46),0 0 0 8px rgba(255,255,255,.035),inset 0 0 0 1px rgba(255,255,255,.25);
+}
+@media (max-width:520px){
+  body{background:var(--paper)}
+  .stage{padding:0;gap:0;display:block}
+  .stage::before,.stage::after,.stage-head,.stage-foot{display:none}
+  .phone{width:100%;height:100vh;height:100dvh;max-height:none;border:0;border-radius:0;box-shadow:none}
+}
+
+/* ---------- app shell ---------- */
+.app{height:100%;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);background:radial-gradient(circle at 8% -8%,rgba(31,75,216,.09),transparent 34%),var(--paper)}
+.page{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+.scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:9px 0 calc(92px + env(safe-area-inset-bottom));scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.page-pad{padding:0 20px}
+
+/* ---------- common ---------- */
+.eyebrow{display:block;font-size:9px;line-height:1.3;font-weight:600;letter-spacing:2.35px;color:var(--muted);text-transform:uppercase}
+.page-title{margin:3px 0 0;font-size:30px;line-height:1.06;font-weight:700;letter-spacing:-1.3px}
+.section-title{margin:3px 0 0;font-size:19px;line-height:1.15;font-weight:700;letter-spacing:-.5px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.dark-card{position:relative;overflow:hidden;border-radius:22px;background:var(--navy);color:#fff}
+.soft-grid{position:absolute;inset:0;opacity:.16;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);background-size:22px 22px}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:999px;background:#EEF4FF;color:#5F6B7E;font-size:9px;font-weight:600;line-height:1.3}
+.pill--dark{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.74)}
+.pill--success{background:rgba(14,159,110,.1);color:var(--green)}
+.dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+.muted{color:var(--muted)}
+.btn{height:44px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:14px;font-size:13.5px;font-weight:600;border:0}
+.btn--primary{background:var(--blue);color:#fff}
+.btn--outline{background:#fff;border:1px solid #DCE5F2;color:var(--ink)}
+.btn--ghost{background:#EEF4FF;color:var(--blue)}
+.btn img{width:16px;height:16px;object-fit:contain}
+.link{display:inline-flex;align-items:center;gap:2px;border:0;background:none;padding:0;font-size:11px;color:var(--muted)}
+.link img{width:12px;height:12px;object-fit:contain}
+.chevron{width:13px;height:13px;object-fit:contain;flex:none}
+
+/* ---------- headers ---------- */
+.head{display:flex;align-items:center;justify-content:space-between;padding:7px 20px 5px}
+.brand{display:flex;align-items:center;gap:8px;min-width:0}
+.brand-mark{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.brand-mark img{width:24px;height:24px;object-fit:contain}
+.brand-name strong{display:block;font-size:18px;line-height:1.05;letter-spacing:-.5px}
+.brand-name em{display:block;margin-top:3px;font-style:normal;font-family:"SFMono-Regular",Consolas,monospace;font-size:7px;letter-spacing:1.9px;color:var(--muted)}
+.icon-btn{position:relative;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.icon-btn img{width:19px;height:19px;object-fit:contain}
+.icon-btn--blue{background:var(--blue);border-color:var(--blue)}
+.icon-btn--blue img{width:17px;height:17px;filter:brightness(0) invert(1)}
+.head-badge{position:absolute;right:5px;top:5px;width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px #fff}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;padding:9px 20px 13px;gap:10px}
+.page-head__side{width:38px;flex:none;display:flex;align-items:center}
+.page-head__side--right{justify-content:flex-end}
+.catalog-total{font-size:10px;color:var(--muted);letter-spacing:1px}
+.catalog-heading{text-align:center;flex:1}
+.catalog-heading .page-title{font-size:26px}
+
+/* ---------- bottom nav ---------- */
+.bottom-nav{
+  position:absolute;left:0;right:0;bottom:0;z-index:30;
+  height:calc(64px + env(safe-area-inset-bottom));
+  padding:5px 7px env(safe-area-inset-bottom);
+  display:flex;align-items:stretch;
+  background:rgba(255,255,255,.94);border-top:1px solid #E7EDF6;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:#8390A4;font-size:9.5px;position:relative;border-radius:10px}
+.nav-item.active{color:var(--ink);font-weight:600}
+.nav-item.active::after{content:"";position:absolute;bottom:2px;width:4px;height:2px;border-radius:2px;background:var(--blue);opacity:.9}
+.nav-icon{width:24px;height:24px;object-fit:contain}
+.nav-badge{position:absolute;top:2px;left:calc(50% + 6px);min-width:13px;height:13px;padding:0 3px;border-radius:999px;background:var(--blue);color:#fff;font-size:7.5px;line-height:13px;text-align:center;font-weight:700}
+
+/* ---------- onboarding ---------- */
+.ob{height:100%;display:flex;flex-direction:column;background:radial-gradient(circle at 9% -8%,rgba(31,75,216,.1),transparent 34%),var(--paper)}
+.ob-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 8px}
+.ob-skip{font-size:11px;color:var(--muted);padding:5px 0}
+.ob-body{flex:1;min-height:0;overflow-y:auto;padding:0 16px 10px;scrollbar-width:none;display:flex;flex-direction:column}
+.ob-body::-webkit-scrollbar{display:none}
+.ob-hero{position:relative;flex:1;height:auto;min-height:455px;overflow:hidden;border-radius:26px;background:#0B1D3D;color:#fff}
+.ob-hero img.ob-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ob-hero-mask{position:absolute;inset:0;background:linear-gradient(165deg,rgba(7,20,43,.26) 0%,rgba(7,20,43,.55) 44%,rgba(7,20,43,.95) 100%)}
+.ob-hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:20px 18px 22px}
+.ob-brand{display:flex;align-items:center;gap:10px}
+.ob-logo-white{width:46px;height:46px;object-fit:contain}
+.ob-brand-cn{display:block;font-size:19px;line-height:1.05;font-weight:700}
+.ob-brand-en{display:block;margin-top:4px;font-family:"SFMono-Regular",Consolas,monospace;font-size:7px;letter-spacing:2px;color:rgba(255,255,255,.54)}
+.ob-index{display:block;font-family:"SFMono-Regular",Consolas,monospace;font-size:8px;letter-spacing:2.2px;color:rgba(255,255,255,.5)}
+.ob-hero-title{margin-top:8px;font-size:35px;line-height:1.12;font-weight:700;letter-spacing:-1.4px}
+.ob-line{display:block}
+.ob-hero-desc{display:block;margin-top:11px;max-width:290px;font-size:11px;line-height:1.7;color:rgba(255,255,255,.69)}
+.ob-rule{display:flex;align-items:center;gap:8px;margin-top:18px;font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.3px;color:rgba(255,255,255,.5)}
+.ob-rule-line{width:26px;height:1px;background:rgba(255,255,255,.32)}
+.ob-card{flex:none;background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow);margin-top:auto;margin-bottom:auto}
+.ob-brand--dark{color:var(--ink)}
+.ob-logo-dark{width:44px;height:44px;object-fit:contain}
+.ob-brand--dark .ob-brand-en{color:var(--muted)}
+.ob-index--dark{margin-top:15px;color:var(--muted)}
+.ob-card-title{margin-top:5px;font-size:29px;line-height:1.12;font-weight:700;letter-spacing:-1.2px}
+.ob-card-desc{display:block;margin-top:10px;font-size:11px;line-height:1.68;color:var(--muted)}
+.ob-steps,.ob-scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}
+.ob-step,.ob-scene{background:#F4F8FF;border:1px solid #EDF2FA;border-radius:14px;padding:10px 7px 9px;text-align:center;min-width:0}
+.ob-step-icon,.ob-scene-icon{width:32px;height:32px;margin:0 auto 7px;border-radius:50%;background:#fff;border:1px solid #E4EBF4;display:grid;place-items:center;font-size:16px;color:var(--blue);font-weight:700}
+.ob-step-title,.ob-scene-title{display:block;font-size:10.5px;font-weight:700;line-height:1.3}
+.ob-step-desc,.ob-scene-desc{display:block;margin-top:3px;font-size:8.5px;line-height:1.55;color:var(--muted)}
+.ob-ready{margin-top:16px;padding:12px 13px;border:1px solid #DDE8FA;border-radius:14px;background:linear-gradient(135deg,#F8FBFF,#EEF4FF)}
+.ob-ready-title{display:block;font-size:11px;font-weight:700;color:var(--blue);line-height:1.4}
+.ob-ready-desc{display:block;margin-top:4px;font-size:9.5px;line-height:1.55;color:#60708A}
+.ob-ready--line{margin-top:14px;padding:0;border:0;background:none}
+.ob-ready--line .ob-ready-title{color:var(--green);font-weight:600;font-size:10px}
+.ob-footer{flex:none;padding:10px 17px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(244,248,255,0),#F4F8FF 24%)}
+.ob-dots{display:flex;justify-content:center;gap:5px;margin-bottom:10px}
+.ob-dot{width:5px;height:5px;border-radius:50%;background:#C8D3E2;transition:.2s}
+.ob-dot--active{width:17px;border-radius:999px;background:var(--blue)}
+.ob-action{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.ob-action--single .ob-button{max-width:none;width:100%}
+.ob-secondary{font-size:10.5px;color:var(--muted);white-space:nowrap;padding:8px 0}
+.ob-button{height:46px;flex:1;max-width:230px;border-radius:15px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;box-shadow:0 8px 22px rgba(31,75,216,.24)}
+.ob-arrow{font-size:17px;line-height:1}
+
+/* ---------- home ---------- */
+.home-tabs{display:flex;gap:22px;overflow-x:auto;padding:0 20px;border-bottom:1px solid #E7EDF6;scrollbar-width:none}
+.home-tabs::-webkit-scrollbar{display:none}
+.home-tab{position:relative;flex:none;padding:10px 0 12px;font-size:12.5px;color:#8390A4;white-space:nowrap}
+.home-tab--active{color:var(--ink);font-weight:600}
+.home-tab--active::after{content:"";position:absolute;left:50%;bottom:-1px;width:20px;height:2px;border-radius:2px;background:var(--blue);transform:translateX(-50%)}
+.hero{position:relative;height:232px;overflow:hidden;border-radius:22px;background:var(--blue);margin-top:12px}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(103deg,#0B1D3D 0%,#123B96 42%,rgba(31,75,216,.38) 70%,rgba(31,75,216,0) 100%)}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:16px;color:#fff}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hero-kicker{display:flex;align-items:center;gap:4px;padding:5px 9px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);font-size:8.5px;line-height:1.3}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--sky);flex:none}
+.hero-online{font-family:"SFMono-Regular",Consolas,monospace;font-size:8px;letter-spacing:.8px;color:rgba(255,255,255,.62);white-space:nowrap;padding-top:2px}
+.hero-main{display:flex;flex-direction:column;align-items:flex-start}
+.hero-title{font-size:29px;line-height:1.1;font-weight:700;letter-spacing:-1.2px;text-shadow:0 2px 14px rgba(0,0,0,.15)}
+.hero-title span{display:block}
+.hero-sub{display:block;margin-top:7px;font-size:11px;color:rgba(255,255,255,.74)}
+.hero-button{display:inline-flex;align-items:center;gap:5px;height:33px;margin-top:11px;padding:0 13px;border-radius:999px;background:#fff;color:var(--blue);font-size:10.5px;font-weight:700;border:0}
+.hero-arrow{font-size:15px;line-height:1}
+.section{margin-top:22px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:9px}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.product-card{display:block;width:100%;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 5px 17px rgba(22,36,61,.04);text-align:left;padding:0}
+.product-media{display:block;position:relative;height:116px;background:radial-gradient(circle at 50% 25%,#FBFDFF,#EEF4FF 68%)}
+.product-image{width:100%;height:100%;object-fit:contain;padding:6px}
+.product-flag{position:absolute;left:7px;top:7px;display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--muted);font-size:8.5px;font-weight:500;line-height:1.2}
+.product-flag--online{color:var(--green)}
+.product-flag--offline{color:var(--muted-2)}
+.product-flag__dot{width:4px;height:4px;border-radius:50%;background:currentColor}
+.product-info{display:block;padding:8px 8px 9px}
+.product-name{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:12px;line-height:1.36;font-weight:600;letter-spacing:-.2px;min-height:32px}
+.product-meta{display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;color:var(--muted)}
+.happen-list{padding:0 14px}
+.happen-item{display:flex;align-items:center;gap:9px;padding:12px 0;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid #EDF1F7}
+.happen-item:last-child{border-bottom:0}
+.happen-icon{width:38px;height:38px;border-radius:13px;background:#EEF4FF;color:var(--blue);display:grid;place-items:center;font-size:18px;flex:none}
+.happen-copy{flex:1;min-width:0}
+.happen-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.happen-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.happen-live{display:flex;align-items:center;gap:3px;font-size:8.5px;color:var(--green);white-space:nowrap}
+.happen-sub{display:block;margin-top:3px;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-story{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:18px;padding:17px;border-radius:18px;background:#0B1D3D;color:#fff;overflow:hidden;width:100%;text-align:left;border:0}
+.home-story::before{content:"";position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);background-size:24px 24px}
+.home-story__kicker{position:relative;z-index:1;display:block;font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.5px;color:rgba(255,255,255,.48)}
+.home-story__title{position:relative;z-index:1;display:block;margin-top:6px;font-size:15px;line-height:1.45;font-weight:600;letter-spacing:-.4px;max-width:270px}
+.home-story__mark{position:relative;z-index:1;font-size:29px;color:#79A8FF;line-height:1}
+.demo-stamp{margin:18px 0 2px;text-align:center;font-family:"SFMono-Regular",Consolas,monospace;font-size:7px;letter-spacing:1.6px;color:#A6B3C6}
+
+/* story tab */
+.story-hero{position:relative;height:360px;overflow:hidden;border-radius:22px;background:#0B1D3D;color:#fff;margin-top:12px}
+.story-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story-hero__mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,43,.26),rgba(7,20,43,.94))}
+.story-hero__copy{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.story-eyebrow{color:rgba(255,255,255,.54)}
+.story-title{margin-top:8px;font-size:22px;line-height:1.4;font-weight:700;letter-spacing:-.8px}
+.story-title span{display:block}
+.story-desc{display:block;margin-top:10px;font-size:10.5px;line-height:1.7;color:rgba(255,255,255,.68)}
+.story-value{display:flex;gap:12px;align-items:flex-start;padding:14px;margin-bottom:8px}
+.story-value__index{font-family:"SFMono-Regular",Consolas,monospace;font-size:20px;line-height:1;color:var(--blue);font-weight:700;letter-spacing:-1px}
+.story-value__title{display:block;font-size:13.5px;font-weight:700}
+.story-value__desc{display:block;margin-top:4px;font-size:10px;line-height:1.6;color:var(--muted)}
+.story-cta{margin-top:4px;width:100%}
+.catalog-head-copy{padding:13px 0 2px}
+.catalog-title-big{margin:5px 0 0;font-size:26px;line-height:1.1;font-weight:700;letter-spacing:-1.1px}
+.catalog-desc{display:block;margin-top:7px;font-size:10.5px;line-height:1.65;color:var(--muted)}
+.solution-card{position:relative;display:block;width:100%;height:196px;margin-top:10px;overflow:hidden;border-radius:20px;background:#0B1D3D;color:#fff;text-align:left;border:0}
+.solution-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.solution-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,43,.15),rgba(7,20,43,.9))}
+.solution-copy{position:absolute;inset:auto 0 0 0;z-index:2;padding:16px}
+.solution-title{display:block;font-size:19px;font-weight:700;letter-spacing:-.7px}
+.solution-desc{display:block;margin-top:4px;font-size:10px;line-height:1.55;color:rgba(255,255,255,.7);max-width:260px}
+.solution-link{display:block;margin-top:8px;font-size:9.5px;color:#9CC0FF}
+.solutions-note{margin-top:18px;padding:14px;border-radius:16px;background:#EEF4FF}
+.solutions-note__text{display:block;margin-top:5px;font-size:10.5px;line-height:1.65;color:#5F6B7E}
+
+/* ---------- devices ---------- */
+.family-card{position:relative;overflow:hidden;background:var(--navy);color:#fff;border-radius:22px;padding:17px;min-height:198px;display:flex;flex-direction:column;justify-content:space-between}
+.family-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.family-kicker{font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.7px;color:rgba(255,255,255,.48)}
+.family-live{display:flex;align-items:center;gap:4px;font-size:8.5px;color:#8DE0C0}
+.family-name{position:relative;z-index:1;display:block;margin-top:10px;font-size:26px;font-weight:700;letter-spacing:-1px}
+.family-online{position:relative;z-index:1;display:flex;align-items:baseline;gap:5px;margin-top:5px}
+.family-online__number{font-size:24px;font-weight:700;letter-spacing:-.8px}
+.family-online__unit{font-size:9.5px;color:rgba(255,255,255,.55)}
+.family-stats{position:relative;z-index:1;display:flex;gap:32px;margin-top:14px}
+.family-stat__number{display:block;font-size:19px;font-weight:700;line-height:1}
+.family-stat__percent{font-size:11px;font-weight:600}
+.family-stat__label{display:block;margin-top:4px;font-size:8px;color:rgba(255,255,255,.48)}
+.devices-count{font-family:"SFMono-Regular",Consolas,monospace;font-size:8px;letter-spacing:1.2px;color:var(--muted);white-space:nowrap}
+.device-list{display:flex;flex-direction:column;gap:8px}
+.device-card{display:flex;align-items:center;gap:10px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);text-align:left;width:100%}
+.device-thumb{position:relative;width:58px;height:58px;border-radius:14px;background:radial-gradient(circle at 50% 25%,#FBFDFF,#EEF4FF 70%);flex:none}
+.device-thumb__img{width:100%;height:100%;object-fit:contain;padding:4px}
+.device-state-dot{position:absolute;right:4px;top:4px;width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 2px #fff}
+.device-state-dot--on{background:var(--green)}
+.device-state-dot--off{background:#A7B2C3}
+.device-card__copy{flex:1;min-width:0}
+.device-card__top{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.device-room{font-size:9px;color:var(--muted);letter-spacing:.3px}
+.device-status{display:flex;align-items:center;gap:3px;font-size:8.5px;color:var(--green);white-space:nowrap}
+.device-status--off{color:var(--muted-2)}
+.device-name{display:block;margin-top:3px;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.device-meta{display:flex;align-items:center;gap:9px;margin-top:4px;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden}
+.device-meta__item{display:flex;align-items:center;gap:2px;overflow:hidden;text-overflow:ellipsis}
+.devices-note{margin-top:20px;padding:14px;border-radius:16px;background:#EEF4FF}
+.devices-note__title{display:block;margin-top:5px;font-size:12px;line-height:1.5;font-weight:600;color:#384861}
+
+/* ---------- scenes ---------- */
+.scene-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;border-radius:22px;padding:17px;min-height:202px}
+.scene-hero__top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.scene-hero__kicker{font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.5px;color:rgba(255,255,255,.48)}
+.scene-hero__title{position:relative;z-index:1;margin-top:16px;font-size:27px;line-height:1.12;font-weight:700;letter-spacing:-1px}
+.scene-hero__line{display:block}
+.scene-hero__desc{position:relative;z-index:1;display:block;margin-top:10px;font-size:10px;line-height:1.65;color:rgba(255,255,255,.6);max-width:300px}
+.scene-count{font-family:"SFMono-Regular",Consolas,monospace;font-size:8px;color:var(--muted);white-space:nowrap}
+.scene-card{padding:12px;margin-bottom:9px}
+.scene-top{display:flex;align-items:flex-start;gap:10px}
+.scene-thumb{position:relative;width:76px;height:86px;border-radius:14px;overflow:hidden;background:#EEF4FF;flex:none}
+.scene-thumb--plain{background:linear-gradient(145deg,#123B96,#0B1D3D)}
+.scene-thumb__img{width:100%;height:100%;object-fit:cover}
+.scene-thumb__glyph{position:absolute;inset:0;display:grid;place-items:center;font-size:25px;color:#fff}
+.scene-thumb__tag{position:absolute;left:6px;top:6px;width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.9);color:var(--blue);font-size:10px}
+.scene-copy{flex:1;min-width:0;padding-top:2px}
+.scene-name{display:block;font-size:14px;font-weight:700;letter-spacing:-.3px}
+.scene-sub{display:block;margin-top:3px;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scene-meta{display:flex;flex-wrap:wrap;gap:4px 8px;margin-top:8px}
+.scene-meta__item{font-size:8.5px;color:var(--muted-2);line-height:1.4}
+.switch{position:relative;width:38px;height:22px;border-radius:999px;background:#DDE5F2;flex:none;transition:.2s}
+.switch::after{content:"";position:absolute;left:2px;top:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);transition:.2s}
+.switch.on{background:var(--blue)}
+.switch.on::after{left:18px}
+.scene-divider{height:1px;background:#EDF1F7;margin:11px 0 10px}
+.scene-desc{display:block;font-size:9.5px;line-height:1.65;color:#5F6B7E}
+.scene-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.scene-last{font-size:8.5px;color:var(--muted)}
+.scene-run{display:inline-flex;align-items:center;gap:3px;height:26px;padding:0 8px;border-radius:999px;background:var(--blue);color:#fff;font-size:8.5px;font-weight:600;border:0}
+.scene-run img{width:9px;height:9px;object-fit:contain}
+
+/* ---------- messages ---------- */
+.mark-all{font-size:10px;color:var(--blue);font-weight:600;white-space:nowrap}
+.inbox-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;border-radius:22px;padding:17px;min-height:192px}
+.inbox-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.inbox-kicker{font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.5px;color:rgba(255,255,255,.48)}
+.inbox-number{position:relative;z-index:1;display:block;margin-top:24px;font-size:46px;line-height:.9;font-weight:700;letter-spacing:-2px}
+.inbox-desc{position:relative;z-index:1;display:block;margin-top:10px;font-size:9.5px;line-height:1.65;color:rgba(255,255,255,.56);max-width:290px}
+.filter-row{display:flex;gap:6px;overflow-x:auto;margin:14px 0 11px;padding-bottom:1px;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.filter-pill{flex:none;padding:5px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:9.5px;color:var(--muted)}
+.filter-pill--active{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600}
+.notice-list{display:flex;flex-direction:column;gap:8px}
+.notice-card{display:flex;gap:10px;padding:12px;text-align:left;width:100%}
+.notice-card--read{opacity:.7}
+.notice-icon{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;font-size:15px;flex:none}
+.notice-icon--device{background:#EEF4FF;color:var(--blue)}
+.notice-icon--scene{background:#EDF9F4;color:var(--green)}
+.notice-icon--system{background:#FFF7E6;color:var(--warn)}
+.notice-copy{flex:1;min-width:0}
+.notice-top{display:flex;align-items:center;gap:5px}
+.notice-type{font-size:8.5px;font-weight:600;color:var(--blue);letter-spacing:.4px}
+.notice-time{margin-left:auto;font-size:8px;color:var(--muted)}
+.notice-unread{width:5px;height:5px;border-radius:50%;background:var(--blue);flex:none}
+.notice-title{display:block;margin-top:4px;font-size:12px;font-weight:700;line-height:1.35}
+.notice-body{display:block;margin-top:3px;font-size:9.5px;line-height:1.55;color:var(--muted)}
+.notice-foot{display:flex;align-items:center;gap:2px;margin-top:6px;font-size:8.5px;color:var(--blue)}
+.notice-foot img{width:9px;height:9px}
+.inbox-note{display:flex;align-items:flex-start;gap:5px;margin-top:16px;padding:0 2px;font-size:8.5px;line-height:1.6;color:var(--muted)}
+.inbox-note .dot{margin-top:6px;color:var(--hint,#A7B2C3)}
+.empty-state{padding:32px 18px;text-align:center;color:var(--muted);font-size:11px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+
+/* ---------- profile ---------- */
+.profile-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;border-radius:22px;padding:17px;min-height:218px}
+.profile-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.profile-logo{width:58px;height:58px;object-fit:contain}
+.profile-hello{position:relative;z-index:1;display:block;margin-top:16px;font-size:24px;font-weight:700;letter-spacing:-1px;line-height:1.2}
+.profile-home{position:relative;z-index:1;display:block;margin-top:4px;font-size:10px;color:rgba(255,255,255,.56)}
+.profile-stats{position:relative;z-index:1;display:flex;gap:30px;margin-top:17px}
+.profile-stat__num{display:block;font-size:19px;line-height:1;font-weight:700}
+.profile-stat__label{display:block;margin-top:4px;font-size:8px;color:rgba(255,255,255,.48)}
+.shortcut-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shortcut{padding:12px;text-align:left;border-radius:16px}
+.shortcut-icon{width:32px;height:32px;border-radius:10px;background:#EEF4FF;color:var(--blue);display:grid;place-items:center;font-size:16px;margin-bottom:7px}
+.shortcut-name{display:block;font-size:12.5px;font-weight:600}
+.shortcut-desc{display:block;margin-top:3px;font-size:9px;color:var(--muted)}
+.settings{padding:0 14px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:12px 0;border-bottom:1px solid #EDF1F7;text-align:left}
+.setting-row:last-child{border-bottom:0}
+.setting-copy{flex:1;min-width:0}
+.setting-name{display:block;font-size:12px;font-weight:600}
+.setting-desc{display:block;margin-top:3px;font-size:9px;color:var(--muted);line-height:1.45}
+.profile-footer{display:flex;flex-direction:column;align-items:center;padding:24px 0 8px;text-align:center}
+.footer-logo{width:55px;height:30px;object-fit:contain;opacity:.55}
+.footer-copy{display:block;margin-top:7px;font-family:"SFMono-Regular",Consolas,monospace;font-size:7px;letter-spacing:1.2px;color:var(--muted)}
+.footer-note{display:block;margin-top:4px;font-size:8px;line-height:1.5;color:#9AA6B7}
+
+/* ---------- catalog ---------- */
+.catalog-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;border-radius:22px;padding:17px;min-height:205px}
+.catalog-kicker{position:relative;z-index:1;font-family:"SFMono-Regular",Consolas,monospace;font-size:7.5px;letter-spacing:1.5px;color:rgba(255,255,255,.46)}
+.catalog-hero-title{position:relative;z-index:1;margin-top:15px;font-size:24px;line-height:1.22;font-weight:700;letter-spacing:-.9px}
+.catalog-line{display:block}
+.catalog-hero-desc{position:relative;z-index:1;display:block;margin-top:9px;font-size:9.5px;line-height:1.65;color:rgba(255,255,255,.58);max-width:300px}
+.search-box{display:flex;align-items:center;gap:7px;height:40px;margin-top:12px;padding:0 12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.search-glyph{font-size:16px;color:var(--muted);flex:none}
+.search-input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:11px;color:var(--ink);padding:0}
+.search-input::placeholder{color:#A6B2C4}
+.search-clear{font-size:15px;color:var(--muted);display:none;padding:4px;line-height:1}
+.filter-scroll{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:1px;scrollbar-width:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.catalog-chip{flex:none;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:9.5px}
+.catalog-chip--active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.catalog-count{display:flex;justify-content:space-between;align-items:center;margin:12px 0 8px;font-size:9px;color:var(--muted)}
+.catalog-count__hint{color:#A6B2C4}
+.catalog-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.catalog-card{display:block;overflow:hidden;text-align:left;padding:0;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.catalog-media{display:block;position:relative;height:112px;background:radial-gradient(circle at 50% 25%,#FBFDFF,#EEF4FF 68%)}
+.catalog-media img{width:100%;height:100%;object-fit:contain;padding:7px}
+.tier{position:absolute;left:7px;top:7px;padding:3px 6px;border-radius:999px;font-size:8px;font-weight:600;line-height:1.2;background:#EEF4FF;color:var(--blue)}
+.tier--flagship{background:#0B1D3D;color:#fff}
+.tier--main{background:#EEF4FF;color:var(--blue)}
+.tier--entry{background:#F2F5FA;color:#7C879A}
+.product-id{position:absolute;right:7px;top:8px;font-family:"SFMono-Regular",Consolas,monospace;font-size:7px;letter-spacing:.6px;color:#A6B2C4}
+.catalog-copy{display:block;padding:8px}
+.product-scene{display:block;font-size:8px;letter-spacing:.8px;color:var(--muted)}
+.catalog-copy .product-name{margin-top:2px;min-height:33px;font-size:12px}
+.product-oneliner{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin-top:4px;font-size:9px;line-height:1.45;color:var(--muted);min-height:26px}
+.product-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px}
+.product-tag{padding:2px 4px;border-radius:4px;background:#F2F5FA;color:#7C879A;font-size:7.5px;line-height:1.35}
+.product-foot{display:flex;align-items:center;justify-content:space-between;margin-top:7px}
+.product-price{font-size:11px;font-weight:700;color:var(--ink)}
+.product-arrow{width:12px;height:12px;object-fit:contain}
+.catalog-note{margin-top:16px;padding:13px;border-radius:15px;background:#EEF4FF}
+.catalog-note__title{display:block;font-size:10.5px;font-weight:700;color:#384861}
+.catalog-note__body{display:block;margin-top:4px;font-size:9px;line-height:1.6;color:#66758D}
+
+/* ---------- device detail ---------- */
+.device-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 20px 12px}
+.device-back{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.device-back img{width:15px;height:15px;object-fit:contain}
+.device-head__title{text-align:center;flex:1;min-width:0}
+.device-head__title .eyebrow{font-size:8px}
+.device-title{display:block;margin-top:2px;font-size:19px;font-weight:700;letter-spacing:-.6px}
+.device-hero{padding:15px;border-radius:22px}
+.device-hero__top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.device-room-pill{padding:4px 9px;border-radius:999px;background:#EEF4FF;color:var(--blue);font-size:9px;font-weight:600}
+.device-live{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--green)}
+.device-live--off{color:var(--muted-2)}
+.device-hero__name{display:block;margin-top:11px;font-size:21px;line-height:1.2;font-weight:700;letter-spacing:-.8px}
+.device-hero__meta{display:flex;align-items:center;gap:12px;margin-top:6px}
+.device-meta-live{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--green)}
+.device-meta-live--off{color:var(--muted-2)}
+.device-battery-line{font-size:9px;color:var(--muted)}
+.device-visual{position:relative;height:222px;margin-top:12px;border-radius:18px;overflow:hidden;background:linear-gradient(150deg,#123B96,#0B1D3D 70%);display:grid;place-items:center}
+.device-grid{opacity:.2}
+.device-halo{position:relative;width:170px;height:170px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(90,160,255,.32),rgba(90,160,255,.04) 62%,transparent 70%);border:1px solid rgba(255,255,255,.17)}
+.device-halo::before{content:"";position:absolute;inset:16px;border-radius:50%;border:1px dashed rgba(255,255,255,.18)}
+.device-sweep{position:absolute;width:145px;height:145px;border-radius:50%;background:conic-gradient(from 0deg,rgba(93,172,255,.28),transparent 32%);animation:sweep 4s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.device-product{position:relative;z-index:2;width:138px;height:138px;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.24))}
+.device-range{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.66);font-size:8px}
+.device-charging-pill{position:absolute;right:10px;top:10px;padding:4px 8px;border-radius:999px;background:#EEF4FF;color:var(--blue);font-size:8px;font-weight:600}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.metric{display:flex;align-items:center;gap:9px;padding:10px;border-radius:15px}
+.metric-icon{width:33px;height:33px;border-radius:10px;display:grid;place-items:center;font-size:14px;font-weight:700;flex:none}
+.metric-icon--blue{background:#EEF4FF;color:var(--blue)}
+.metric-icon--sky{background:#EAF8FC;color:#1586A9}
+.metric-icon--green{background:#EDF9F4;color:var(--green)}
+.metric-icon img{width:16px;height:16px;object-fit:contain}
+.metric-label{display:block;font-size:8px;color:var(--muted);line-height:1.2}
+.metric-value{display:block;margin-top:2px;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.control-card{margin-top:10px;padding:14px}
+.control-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.control-title{display:block;margin-top:3px;font-size:17px;font-weight:700;letter-spacing:-.5px}
+.control-ready{padding:4px 8px;border-radius:999px;background:#EDF9F4;color:var(--green);font-size:8px;font-weight:600;white-space:nowrap}
+.control-ready--off{background:#F2F5FA;color:var(--muted)}
+.control-main{display:flex;align-items:center;gap:18px;margin-top:14px}
+.dpad{position:relative;width:152px;height:152px;border-radius:50%;background:radial-gradient(circle,#F7FAFF,#EEF4FF);border:1px solid #E1EAF7;flex:none}
+.dpad-ring{position:absolute;inset:25px;border-radius:50%;border:1px dashed #CBD8EA}
+.dpad-button{position:absolute;width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #E0E9F5;box-shadow:0 3px 8px rgba(22,36,61,.06);display:grid;place-items:center}
+.dpad-button img{width:14px;height:14px;object-fit:contain}
+.dpad-button--up{left:57px;top:5px}.dpad-button--down{left:57px;bottom:5px}.dpad-button--left{left:5px;top:57px}.dpad-button--right{right:5px;top:57px}
+.dpad-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:45px;height:45px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--blue)}
+.dpad-center__glyph{font-size:16px;line-height:1}
+.dpad-center__text{font-size:7px;color:var(--muted)}
+.control-actions{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.control-action{width:100%;font-size:11px;height:42px;border-radius:13px}
+.last-command{margin-top:10px;font-size:8.5px;color:var(--muted)}
+.offline-panel{display:flex;align-items:center;gap:10px;margin-top:13px;padding:12px;border-radius:14px;background:#F4F8FF;border:1px solid #E8EFF9}
+.offline-icon{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;font-size:18px;color:var(--muted);flex:none}
+.offline-copy{flex:1;min-width:0}
+.offline-title{display:block;font-size:11px;font-weight:700}
+.offline-desc{display:block;margin-top:2px;font-size:9px;color:var(--muted);line-height:1.45}
+.offline-button{height:30px;padding:0 9px;border-radius:9px;background:var(--blue);color:#fff;font-size:9px;font-weight:600;white-space:nowrap;border:0}
+.mode-card{margin-top:10px;padding:14px}
+.mode-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mode-title{font-size:14px;font-weight:700}
+.mode-count{font-size:8.5px;color:var(--muted)}
+.mode-tabs{display:flex;gap:5px;margin-top:10px}
+.mode-tab{flex:1;min-width:0;padding:8px 4px;border-radius:9px;background:#F4F8FF;border:1px solid #E8EFF9;font-size:8.5px;color:#5F6B7E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mode-tab--active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.mode-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;font-size:8px;color:var(--muted)}
+.mode-version{font-family:"SFMono-Regular",Consolas,monospace;letter-spacing:.6px}
+.battery-track{height:5px;margin-top:7px;border-radius:999px;background:#EEF2F8;overflow:hidden}
+.battery-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#1F4BD8,#4E8BFF)}
+.device-footnote{display:flex;align-items:center;gap:5px;margin-top:13px;font-size:8.5px;color:var(--muted)}
+
+/* ---------- modal / toast ---------- */
+.modal-mask{position:fixed;inset:0;z-index:85;display:flex;align-items:flex-end;justify-content:center;padding:0;background:rgba(5,15,31,.55);backdrop-filter:blur(4px);animation:fade .18s ease}
+.modal-sheet{width:min(430px,100%);max-height:82vh;overflow-y:auto;background:#fff;border-radius:24px 24px 0 0;padding:18px;animation:sheet .24s cubic-bezier(.2,.9,.3,1);scrollbar-width:none}
+.modal-sheet::-webkit-scrollbar{display:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes sheet{from{transform:translateY(20px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.modal-title{font-size:18px;font-weight:700;letter-spacing:-.6px}
+.modal-kicker{display:block;font-size:8px;letter-spacing:1.8px;color:var(--muted);text-transform:uppercase}
+.modal-close{width:30px;height:30px;border-radius:50%;background:#F2F5FA;color:var(--muted);font-size:17px;line-height:1;display:grid;place-items:center;flex:none}
+.modal-body{margin-top:12px;font-size:11px;line-height:1.7;color:#53617A}
+.modal-product{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;background:#F4F8FF}
+.modal-product img{width:88px;height:88px;object-fit:contain;flex:none}
+.modal-product__name{font-size:15px;font-weight:700;line-height:1.3}
+.modal-product__meta{display:block;margin-top:4px;font-size:9px;color:var(--muted)}
+.modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.modal-actions{display:flex;gap:8px;margin-top:15px}
+.modal-actions .btn{flex:1;height:42px;font-size:12px}
+.page-index{display:grid;gap:6px;margin-top:12px}
+.page-index__link{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-radius:10px;background:#F4F8FF;border:1px solid #E8EFF9;font-size:11px;font-weight:600}
+.page-index__link span{font-size:8.5px;font-weight:400;color:var(--muted)}
+.modal-footer{padding-bottom:calc(4px + env(safe-area-inset-bottom))}
+.toast{position:fixed;left:50%;bottom:calc(105px + env(safe-area-inset-bottom));z-index:95;transform:translate(-50%,10px);opacity:0;pointer-events:none;padding:9px 13px;border-radius:999px;background:rgba(11,29,61,.92);color:#fff;font-size:10.5px;line-height:1.3;white-space:nowrap;transition:.2s;backdrop-filter:blur(8px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="stage-head">
+    <div class="stage-brand">
+      <span class="stage-brand__mark"><img src="assets/logo-white.png" alt="OVEM"></span>
+      <span class="stage-brand__copy"><strong>光谷效应</strong><em>OPTICS VALLEY EFFECT</em></span>
+    </div>
+    <div class="stage-note">Mini Program / Web Demo</div>
+  </div>
+  <div class="phone"><div class="app" id="app"></div></div>
+  <div class="stage-foot"><span>8 PAGES · H5 DEMO</span><span>SCAN TO EXPLORE</span></div>
+</div>
+<div class="modal-root" id="modal-root"></div>
+<div class="toast" id="toast"></div>
+
+<!-- Static preloads: keep assets discoverable by the single-file publisher. -->
+<div class="asset-preload" aria-hidden="true">
+  <img src="assets/hero.jpg" alt="">
+  <img src="assets/scene-clean.jpg" alt="">
+  <img src="assets/scene-pet.jpg" alt="">
+  <img src="assets/cover.jpg" alt="">
+  <img src="assets/logo-dark.png" alt="">
+  <img src="assets/logo-white.png" alt="">
+  <img src="assets/icons/arrow-down.png" alt="">
+  <img src="assets/icons/arrow-left.png" alt="">
+  <img src="assets/icons/arrow-right.png" alt="">
+  <img src="assets/icons/arrow-up.png" alt="">
+  <img src="assets/icons/back.png" alt="">
+  <img src="assets/icons/battery.png" alt="">
+  <img src="assets/icons/bell.png" alt="">
+  <img src="assets/icons/charge.png" alt="">
+  <img src="assets/icons/chevron.png" alt="">
+  <img src="assets/icons/chevron-down.png" alt="">
+  <img src="assets/icons/pause-white.png" alt="">
+  <img src="assets/icons/play-white.png" alt="">
+  <img src="assets/icons/plus-dark.png" alt="">
+  <img src="assets/icons/plus-white.png" alt="">
+  <img src="assets/icons/plus.png" alt="">
+  <img src="assets/nav/home.png" alt="">
+  <img src="assets/nav/home-active.png" alt="">
+  <img src="assets/nav/devices.png" alt="">
+  <img src="assets/nav/devices-active.png" alt="">
+  <img src="assets/nav/scenes.png" alt="">
+  <img src="assets/nav/scenes-active.png" alt="">
+  <img src="assets/nav/messages.png" alt="">
+  <img src="assets/nav/messages-active.png" alt="">
+  <img src="assets/nav/profile.png" alt="">
+  <img src="assets/nav/profile-active.png" alt="">
+  <img src="assets/cutouts/p07.png" alt="">
+  <img src="assets/cutouts/p10.png" alt="">
+  <img src="assets/cutouts/p12.png" alt="">
+  <img src="assets/cutouts/p20.png" alt="">
+  <img src="assets/products/p01.jpg" alt="">
+  <img src="assets/products/p02.jpg" alt="">
+  <img src="assets/products/p03.jpg" alt="">
+  <img src="assets/products/p04.jpg" alt="">
+  <img src="assets/products/p05.jpg" alt="">
+  <img src="assets/products/p06.jpg" alt="">
+  <img src="assets/products/p07.jpg" alt="">
+  <img src="assets/products/p08.jpg" alt="">
+  <img src="assets/products/p09.jpg" alt="">
+  <img src="assets/products/p10.jpg" alt="">
+  <img src="assets/products/p11.jpg" alt="">
+  <img src="assets/products/p12.jpg" alt="">
+  <img src="assets/products/p13.jpg" alt="">
+  <img src="assets/products/p14.jpg" alt="">
+  <img src="assets/products/p15.jpg" alt="">
+  <img src="assets/products/p16.jpg" alt="">
+  <img src="assets/products/p17.jpg" alt="">
+  <img src="assets/products/p18.jpg" alt="">
+  <img src="assets/products/p19.jpg" alt="">
+  <img src="assets/products/p20.jpg" alt="">
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var BASE = 'assets/';
+  var STORAGE_KEY = 'ovem-h5-demo-v1';
+
+  var PRODUCTS = [
+    { id:'p01', name:'精准备料辅助机器人', short:'精准备料', scene:'厨房', tier:'旗舰', price:'4,999', oneliner:'称量、切配、分份，跟着菜谱走', tags:['菜谱联动','食材识别','低噪运行'] },
+    { id:'p02', name:'厨房台面巡航清洁机器人', short:'台面清洁', scene:'厨房', tier:'主力', price:'1,999', oneliner:'3cm 机身，钻得进调料架下', tags:['蒸汽擦','自主避障','三模切换'] },
+    { id:'p03', name:'餐具智能归位机器人', short:'餐具归位', scene:'厨房', tier:'主力', price:'2,499', oneliner:'洗碗机之后，最后一步交给它', tags:['柔性抓取','视觉识别','自定义分区'] },
+    { id:'p04', name:'冰箱食材管家机器人', short:'食材管家', scene:'厨房', tier:'引流', price:'899', oneliner:'掌心大小，在冰箱里自己盘点', tags:['库存盘点','临期提醒','菜谱推荐'] },
+    { id:'p05', name:'桌面物品归位巡检机器人', short:'桌面巡检', scene:'客厅', tier:'引流', price:'599', oneliner:'夜里巡逻，早上桌面自己归位', tags:['夜间静音','物品识别','拍照录入'] },
+    { id:'p06', name:'智能场景布置机器人', short:'场景布置', scene:'客厅', tier:'旗舰', price:'5,999', oneliner:'不是开关联动，是真的移动物体', tags:['电动云台','多场景','语音触发'] },
+    { id:'p07', name:'全屋空气治理巡航机器人', short:'空气治理', scene:'客厅', tier:'主力', price:'2,999', oneliner:'先找到污染源，再净化', tags:['多传感','静音 30dB','香氛管理'] },
+    { id:'p08', name:'睡眠环境自适应机器人', short:'睡眠自适应', scene:'卧室', tier:'主力', price:'2,699', oneliner:'监测不是目的，调环境才是', tags:['非接触监测','环境联动','起夜引导'] },
+    { id:'p09', name:'夜间陪护服务机器人', short:'夜间陪护', scene:'卧室', tier:'主力', price:'1,699', oneliner:'半夜口渴，不用起身', tags:['恒温仓','跌倒报警','语音交互'] },
+    { id:'p10', name:'衣物折叠收纳机器人', short:'衣物折叠', scene:'卧室', tier:'主力', price:'2,999', oneliner:'丢进去，第二天自己叠好入柜', tags:['自适应折叠','负离子除螨','嵌入衣柜'] },
+    { id:'p11', name:'衣柜抽屉精细化整理机器人', short:'抽屉整理', scene:'收纳', tier:'引流', price:'799', oneliner:'5cm 机身，进得去抽屉', tags:['抽屉适配','静电抓取','语音查找'] },
+    { id:'p12', name:'浴室全域清洁消毒机器人', short:'浴室清洁', scene:'卫浴个护', tier:'主力', price:'2,399', oneliner:'墙面、玻璃、地面，一趟走完', tags:['IPX8','三步清洁','紫外消毒'] },
+    { id:'p13', name:'美妆护肤品智能管理机器人', short:'美妆管理', scene:'卫浴个护', tier:'旗舰', price:'3,999', oneliner:'该冷的冷，该热的热，按顺序递到手', tags:['双温区','保质期识别','护肤流程'] },
+    { id:'p14', name:'头皮深层护理机器人', short:'头皮护理', scene:'卫浴个护', tier:'旗舰', price:'4,299', oneliner:'先检测，再决定怎么护理', tags:['显微检测','柔性触头','报告同步'] },
+    { id:'p15', name:'智能美甲定制机器人', short:'美甲定制', scene:'卫浴个护', tier:'旗舰', price:'4,599', oneliner:'0.1mm 精度，单手十分钟', tags:['图案定制','自动修形','速干烤灯'] },
+    { id:'p16', name:'衣物晾晒收纳一体化机器人', short:'晾晒收纳', scene:'阳台玄关', tier:'主力', price:'2,899', oneliner:'取衣、晾晒、收回、叠好，一条线', tags:['轨道安装','柔性夹爪','天气联动'] },
+    { id:'p17', name:'盆栽智能养护巡航机器人', short:'盆栽养护', scene:'阳台玄关', tier:'引流', price:'699', oneliner:'多盆巡检，还会搬着花盆追光', tags:['多盆管理','追光移动','品种识别'] },
+    { id:'p18', name:'鞋履全能护理机器人', short:'鞋履护理', scene:'阳台玄关', tier:'引流', price:'899', oneliner:'先认材质，再决定怎么护理', tags:['材质识别','六步护理','自主归位'] },
+    { id:'p19', name:'出行物品智能筹备机器人', short:'出行筹备', scene:'出行宠物', tier:'引流', price:'599', oneliner:'看日程、看天气，提前把包装好', tags:['日程联动','物品核查','人脸确认'] },
+    { id:'p20', name:'宠物全托管陪护机器人', short:'宠物陪护', scene:'出行宠物', tier:'旗舰', price:'3,999', oneliner:'陪玩、喂食、清理，加班晚归也放心', tags:['自主跟随','定时喂食','猫砂清理'] },
+  ].map(function(p){
+    p.image = BASE + 'products/' + p.id + '.jpg';
+    p.cutout = ['p07','p10','p12','p20'].indexOf(p.id) > -1 ? BASE + 'cutouts/' + p.id + '.png' : '';
+    return p;
+  });
+
+  var PROFILES = {
+    p07:{ workAction:'启动巡航', pauseAction:'暂停净化', modeLabel:'净化模式', modes:['静音巡航','标准净化','深度净化'], idleLabel:'待机中', workingLabel:'巡航中', chargeLabel:'回充' },
+    p12:{ workAction:'启动清洁', pauseAction:'暂停清洁', modeLabel:'清洁模式', modes:['标准清洁','深度清洁','快速清洁'], idleLabel:'已充满', workingLabel:'清洁中', chargeLabel:'回充' },
+    p10:{ workAction:'启动折叠', pauseAction:'暂停折叠', modeLabel:'折叠模式', modes:['标准折叠','轻柔折叠','快速折叠'], idleLabel:'待机中', workingLabel:'折叠中', chargeLabel:'回充' },
+    p20:{ workAction:'开始陪护', pauseAction:'暂停陪护', modeLabel:'陪护模式', modes:['陪玩模式','看护模式','喂食模式'], idleLabel:'待机中', workingLabel:'陪伴中', chargeLabel:'回充' },
+    default:{ workAction:'启动任务', pauseAction:'暂停任务', modeLabel:'工作模式', modes:['标准模式','静音模式','深度模式'], idleLabel:'待机中', workingLabel:'运行中', chargeLabel:'回充' }
+  };
+
+  var INITIAL_DEVICES = [
+    { id:'dev-p07', productId:'p07', room:'客厅', online:true, battery:86, mode:'静音巡航', status:'idle', progress:0, lastActive:'2 分钟前' },
+    { id:'dev-p12', productId:'p12', room:'浴室', online:true, battery:100, mode:'深度清洁', status:'idle', progress:100, lastActive:'今天 14:20' },
+    { id:'dev-p20', productId:'p20', room:'客厅', online:true, battery:76, mode:'陪玩模式', status:'working', progress:68, lastActive:'正在陪护' },
+    { id:'dev-p10', productId:'p10', room:'卧室', online:false, battery:42, mode:'标准折叠', status:'offline', progress:0, lastActive:'昨天 21:10' },
+  ];
+
+  var INITIAL_SCENES = [
+    { id:'scene-arrive', name:'回家模式', subtitle:'推门，空气先一步到家', description:'空气巡航自动启动，客厅灯带调至暖光，宠物陪护转入看护。', icon:'⌂', enabled:true, deviceIds:['dev-p07','dev-p20'], schedule:'每天 18:00 — 22:00', lastRun:'今天 18:06', image:BASE+'hero.jpg' },
+    { id:'scene-clean', name:'离家清洁', subtitle:'门关上，清洁才开始', description:'浴室与厨房进入深度清洁，空气巡航同步处理异味。', icon:'✦', enabled:true, deviceIds:['dev-p12','dev-p07'], schedule:'工作日 09:30', lastRun:'今天 09:32', image:BASE+'scene-clean.jpg' },
+    { id:'scene-night', name:'夜间静音', subtitle:'只留下 30 分贝的风', description:'空气治理切换静音巡航，衣物折叠延后到清晨执行。', icon:'☾', enabled:false, deviceIds:['dev-p07','dev-p10'], schedule:'每天 23:00 — 07:00', lastRun:'昨天 23:02', image:'' },
+    { id:'scene-pet', name:'宠物看护', subtitle:'加班晚归，也有回应', description:'陪玩、喂食与猫砂清理按顺序执行，异常情况推送到消息中心。', icon:'◌', enabled:true, deviceIds:['dev-p20'], schedule:'全天候', lastRun:'今天 16:40', image:BASE+'scene-pet.jpg' },
+  ];
+
+  var INITIAL_NOTIFICATIONS = [
+    { id:'notice-1', title:'客厅空气已恢复清新', body:'全屋空气治理巡航完成，PM2.5 从 46 降至 12，巡航用时 18 分钟。', time:'10:32', read:false, type:'device', deviceId:'dev-p07' },
+    { id:'notice-2', title:'浴室深度清洁完成', body:'墙面、玻璃与地面已完成三步清洁，紫外消毒运行 12 分钟。', time:'09:58', read:false, type:'device', deviceId:'dev-p12' },
+    { id:'notice-3', title:'宠物看护已切换至看护模式', body:'拿铁正在休息，陪护机器人保持 1.5 米距离，环境音正常。', time:'09:14', read:true, type:'scene', deviceId:'dev-p20' },
+    { id:'notice-4', title:'滤芯寿命剩余 18%', body:'预计还可运行 11 天，建议在下一次巡航结束后更换滤芯。', time:'昨天 20:40', read:true, type:'system', deviceId:'dev-p07' },
+  ];
+
+  var FEATURED_IDS = ['p07','p12','p10','p20'];
+  var SOLUTIONS = [
+    { id:'kitchen', title:'餐厨料理', desc:'备料、台面清洁与餐具归位，串成一条动线。', image:BASE+'scene-clean.jpg', scene:'厨房' },
+    { id:'pet', title:'宠物起居', desc:'陪玩、喂食与猫砂清理，晚归也有回应。', image:BASE+'scene-pet.jpg', scene:'出行宠物' },
+    { id:'storage', title:'收纳整理', desc:'衣物、鞋履与出行物品，各自回到该在的位置。', image:BASE+'hero.jpg', scene:'收纳' },
+  ];
+  var STORY_VALUES = [
+    { title:'不是更像人', desc:'把动作做完整，而不是只做一个会说话的屏幕。' },
+    { title:'不是更多开关', desc:'让设备按顺序协同，把一段家务真正交出去。' },
+    { title:'不是更复杂', desc:'一个家庭、一个入口、一次认领，剩下交给场景。' },
+  ];
+  var CATALOG_FILTERS = [
+    { key:'all', label:'全部' }, { key:'厨房', label:'厨房' }, { key:'客厅', label:'客厅' }, { key:'卧室', label:'卧室' },
+    { key:'收纳', label:'收纳' }, { key:'卫浴个护', label:'卫浴' }, { key:'阳台玄关', label:'阳台玄关' }, { key:'出行宠物', label:'出行宠物' }
+  ];
+  var MESSAGE_FILTERS = [
+    { key:'all', label:'全部' }, { key:'device', label:'设备' }, { key:'scene', label:'场景' }, { key:'system', label:'系统' }
+  ];
+
+  var ui = { homeTab:'home', onboardingStep:0, messagesFilter:'all', catalogFilter:'all', catalogKeyword:'' };
+  var lastKey = '';
+  var modalOpen = false;
+
+  function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
+  function createInitialState(){
+    return {
+      onboardingSeen:false,
+      family:{ name:'云杉里 12A', member:'林一', role:'家庭管理员' },
+      notificationsEnabled:true,
+      devices:clone(INITIAL_DEVICES),
+      scenes:clone(INITIAL_SCENES),
+      notifications:clone(INITIAL_NOTIFICATIONS),
+    };
+  }
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      var data = JSON.parse(raw);
+      if(data && data.devices && data.scenes && data.notifications) return data;
+    }catch(e){}
+    return null;
+  }
+  function saveState(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  var state = loadState() || createInitialState();
+
+  function getProduct(id){ return PRODUCTS.filter(function(p){ return p.id === id; })[0] || PRODUCTS[0]; }
+  function getProfile(productId){ return PROFILES[productId] || PROFILES['default']; }
+  function getDevice(id){ return state.devices.filter(function(d){ return d.id === id; })[0]; }
+  function getDeviceByProduct(id){ return state.devices.filter(function(d){ return d.productId === id; })[0]; }
+  function getUnread(){ return state.notifications.filter(function(n){ return !n.read; }).length; }
+  function statusText(device){
+    if(!device.online) return '离线';
+    var profile = getProfile(device.productId);
+    if(device.status === 'working') return profile.workingLabel;
+    if(device.status === 'charging') return '回充中';
+    return profile.idleLabel;
+  }
+  function esc(value){
+    return String(value == null ? '' : value).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function encodeQuery(value){ return encodeURIComponent(value).replace(/%20/g,'+'); }
+
+  function toast(message){
+    var node = document.getElementById('toast');
+    node.textContent = message;
+    node.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function(){ node.classList.remove('show'); }, 2200);
+  }
+
+  function parseHash(){
+    var raw = (location.hash || '').replace(/^#\/?/, '');
+    if(!raw) return { page:'', id:'', query:new URLSearchParams('') };
+    var pieces = raw.split('?');
+    var pathParts = pieces[0].split('/').filter(Boolean);
+    return { page:pathParts[0] || '', id:pathParts[1] || '', query:new URLSearchParams(pieces[1] || '') };
+  }
+
+  function navigate(path){
+    var next = '#/' + path;
+    if(location.hash === next){ render(true); return; }
+    location.hash = next;
+  }
+
+  /* ---------- shared bits ---------- */
+  function brandHead(unread){
+    return '<div class="head">' +
+      '<div class="brand"><span class="brand-mark"><img src="' + BASE + 'logo-dark.png" alt="OVEM"></span>' +
+      '<span class="brand-name"><strong>光谷效应</strong><em>OPTICS VALLEY EFFECT</em></span></div>' +
+      '<button class="icon-btn" data-action="messages" aria-label="消息">' +
+      '<img src="' + BASE + 'icons/bell.png" alt="">' + (unread > 0 ? '<span class="head-badge"></span>' : '') +
+      '</button></div>';
+  }
+
+  function pageHead(eyebrow, title, right, tone){
+    return '<div class="page-head"><div><span class="eyebrow">' + esc(eyebrow) + '</span><h1 class="page-title">' + esc(title) + '</h1></div>' + (right || '') + '</div>';
+  }
+
+  function bottomNav(active){
+    var unread = getUnread();
+    var items = [
+      { id:'home', label:'首页', icon:'home' },
+      { id:'devices', label:'设备', icon:'devices' },
+      { id:'scenes', label:'场景', icon:'scenes' },
+      { id:'messages', label:'消息', icon:'messages' },
+      { id:'profile', label:'我的', icon:'profile' },
+    ];
+    return '<nav class="bottom-nav" aria-label="底部导航">' + items.map(function(item){
+      var isActive = active === item.id;
+      return '<a class="nav-item' + (isActive ? ' active' : '') + '" href="#/' + item.id + '"' + (isActive ? ' aria-current="page"' : '') + '>' +
+        '<span class="nav-icon-wrap" style="position:relative">' +
+        '<img class="nav-icon" src="' + BASE + 'nav/' + item.icon + (isActive ? '-active' : '') + '.png" alt="">' +
+        (item.id === 'messages' && unread > 0 ? '<span class="nav-badge">' + unread + '</span>' : '') +
+        '</span><span>' + item.label + '</span></a>';
+    }).join('') + '</nav>';
+  }
+
+  function productFlag(product){
+    var device = getDeviceByProduct(product.id);
+    if(device){
+      return '<span class="product-flag ' + (device.online ? 'product-flag--online' : 'product-flag--offline') + '"><span class="product-flag__dot"></span>' + (device.online ? '在线' : '离线') + '</span>';
+    }
+    return '<span class="product-flag"><span class="product-flag__dot"></span>' + esc(product.tier) + '</span>';
+  }
+  function productCard(product, compact){
+    var device = getDeviceByProduct(product.id);
+    var meta = device ? (device.room + ' · ' + device.mode) : (product.short + ' · ¥' + product.price);
+    return '<button class="product-card" data-action="product-open" data-id="' + product.id + '">' +
+      '<span class="product-media"><img class="product-image" src="' + product.image + '" alt="' + esc(product.name) + '">' + productFlag(product) + '</span>' +
+      '<span class="product-info"><span class="product-name">' + esc(product.name) + '</span><span class="product-meta">' + esc(meta) + '</span></span></button>';
+  }
+  function catalogCard(product){
+    var tierClass = product.tier === '旗舰' ? 'tier--flagship' : product.tier === '引流' ? 'tier--entry' : 'tier--main';
+    return '<button class="catalog-card" data-action="catalog-product" data-id="' + product.id + '">' +
+      '<span class="catalog-media"><img src="' + product.image + '" alt="' + esc(product.name) + '"><span class="tier ' + tierClass + '">' + esc(product.tier) + '</span><span class="product-id">' + product.id.toUpperCase() + '</span></span>' +
+      '<span class="catalog-copy"><span class="product-scene">' + esc(product.scene) + '</span><span class="product-name">' + esc(product.name) + '</span><span class="product-oneliner">' + esc(product.oneliner) + '</span>' +
+      '<span class="product-tags">' + product.tags.map(function(tag){ return '<span class="product-tag">' + esc(tag) + '</span>'; }).join('') + '</span>' +
+      '<span class="product-foot"><span class="product-price">¥' + esc(product.price) + '</span><img class="product-arrow" src="' + BASE + 'icons/arrow-right.png" alt=""></span></span></button>';
+  }
+
+  /* ---------- onboarding ---------- */
+  function renderOnboarding(){
+    var step = ui.onboardingStep;
+    var body = '';
+    if(step === 0){
+      body = '<div class="ob-hero">' +
+        '<img class="ob-hero-img" src="' + BASE + 'hero.jpg" alt="OVEM 未来智能家居">' +
+        '<div class="ob-hero-mask"></div><div class="soft-grid"></div>' +
+        '<div class="ob-hero-content"><div class="ob-brand"><img class="ob-logo-white" src="' + BASE + 'logo-white.png" alt="OVEM">' +
+        '<div><span class="ob-brand-cn">光谷效应</span><span class="ob-brand-en">OPTICS VALLEY EFFECT</span></div></div>' +
+        '<div class="ob-hero-copy"><span class="ob-index">OVEM / 01</span><div class="ob-hero-title"><span class="ob-line">未来智能生活</span><span class="ob-line">引导者</span></div>' +
+        '<span class="ob-hero-desc">不是把机器人做得更像人，而是把生活里重复的四十分钟，交还给生活。</span>' +
+        '<div class="ob-rule"><span class="ob-rule-line"></span><span>20 ROBOTS / ONE QUIET HOME</span></div></div></div></div>';
+    } else if(step === 1){
+      body = '<div class="ob-card"><div class="ob-brand ob-brand--dark"><img class="ob-logo-dark" src="' + BASE + 'logo-dark.png" alt="OVEM">' +
+        '<div><span class="ob-brand-cn">光谷效应</span><span class="ob-brand-en">OPTICS VALLEY EFFECT</span></div></div>' +
+        '<span class="ob-index ob-index--dark">OVEM / 02</span><div class="ob-card-title"><span class="ob-line">先让一台机器人</span><span class="ob-line">认识你的家</span></div>' +
+        '<span class="ob-card-desc">接入设备，选择房间。OVEM 会记住每一台机器人的位置、状态与工作方式。</span>' +
+        '<div class="ob-steps">' +
+          '<div class="ob-step"><div class="ob-step-icon">⌂</div><span class="ob-step-title">认领房间</span><span class="ob-step-desc">客厅、浴室、卧室，各就各位</span></div>' +
+          '<div class="ob-step"><div class="ob-step-icon">◈</div><span class="ob-step-title">接入设备</span><span class="ob-step-desc">4 台演示设备已接入</span></div>' +
+          '<div class="ob-step"><div class="ob-step-icon">✦</div><span class="ob-step-title">开始协同</span><span class="ob-step-desc">一次设置，日常自动发生</span></div>' +
+        '</div><div class="ob-ready"><span class="ob-ready-title">✦ 你的家已经准备好了</span><span class="ob-ready-desc">当前演示家庭已有 4 台设备，可直接体验设备控制与场景联动。</span></div></div>';
+    } else {
+      body = '<div class="ob-card"><div class="ob-brand ob-brand--dark"><img class="ob-logo-dark" src="' + BASE + 'logo-dark.png" alt="OVEM">' +
+        '<div><span class="ob-brand-cn">光谷效应</span><span class="ob-brand-en">OPTICS VALLEY EFFECT</span></div></div>' +
+        '<span class="ob-index ob-index--dark">OVEM / 03</span><div class="ob-card-title"><span class="ob-line">然后，把琐事</span><span class="ob-line">交给场景</span></div>' +
+        '<span class="ob-card-desc">场景不是一个开关，而是一串真正会发生的动作。回家时空气先到，离家后清洁才开始。</span>' +
+        '<div class="ob-scenes">' +
+          '<div class="ob-scene"><div class="ob-scene-icon">⌂</div><span class="ob-scene-title">回家模式</span><span class="ob-scene-desc">空气先一步到家</span></div>' +
+          '<div class="ob-scene"><div class="ob-scene-icon">✦</div><span class="ob-scene-title">离家清洁</span><span class="ob-scene-desc">门关上，清洁才开始</span></div>' +
+          '<div class="ob-scene"><div class="ob-scene-icon">◌</div><span class="ob-scene-title">宠物看护</span><span class="ob-scene-desc">晚归也有回应</span></div>' +
+        '</div><div class="ob-ready ob-ready--line"><span class="ob-ready-title">✓ 场景执行后，设备状态与消息中心会同步更新</span></div></div>';
+    }
+    var action = step === 0 ? '开始了解' : step === 1 ? '下一步' : '开启我的家';
+    return '<div class="ob">' +
+      '<div class="ob-topbar"><span class="eyebrow">OPTICS VALLEY EFFECT</span><button class="ob-skip" data-action="ob-skip">跳过</button></div>' +
+      '<div class="ob-body">' + body + '</div>' +
+      '<div class="ob-footer"><div class="ob-dots">' + [0,1,2].map(function(i){ return '<span class="ob-dot' + (i === step ? ' ob-dot--active' : '') + '"></span>'; }).join('') + '</div>' +
+      '<div class="ob-action' + (step === 1 ? '' : ' ob-action--single') + '">' + (step === 1 ? '<button class="ob-secondary" data-action="ob-skip">先看看设备</button>' : '') +
+      '<button class="ob-button" data-action="ob-next"><span>' + action + '</span><span class="ob-arrow">→</span></button></div></div></div>';
+  }
+
+  /* ---------- home ---------- */
+  function renderHome(){
+    var unread = getUnread();
+    var online = state.devices.filter(function(d){ return d.online; }).length;
+    var tabs = [
+      { key:'home', label:'首页' }, { key:'story', label:'品牌故事' }, { key:'products', label:'明星产品' }, { key:'solutions', label:'解决方案' }
+    ];
+    var tab = ui.homeTab;
+    var content = '';
+    if(tab === 'home'){
+      var featured = FEATURED_IDS.map(function(id){ return getProduct(id); });
+      var happening = state.scenes.filter(function(s){ return s.enabled; }).slice(0,2);
+      content = '<div class="hero"><img class="hero-img" src="' + BASE + 'hero.jpg" alt="OVEM 全屋智能">' +
+        '<span class="hero-shade"></span><span class="soft-grid"></span>' +
+        '<div class="hero-content"><div class="hero-top"><span class="hero-kicker"><span class="hero-dot"></span>2026 全屋智能解决方案</span><span class="hero-online">' + online + '/' + state.devices.length + ' ONLINE</span></div>' +
+        '<div class="hero-main"><div class="hero-title"><span>未来智能家居</span><span>解决方案</span></div><span class="hero-sub">探索全屋智能新体验</span>' +
+        '<button class="hero-button" data-action="catalog"><span>了解更多</span><span class="hero-arrow">→</span></button></div></div></div>' +
+        '<div class="section"><div class="section-head"><div><span class="eyebrow">AT HOME NOW</span><span class="section-title">明星产品</span></div>' +
+        '<button class="link" data-action="catalog">查看全部<img src="' + BASE + 'icons/chevron.png" alt=""></button></div>' +
+        '<div class="product-grid">' + featured.map(function(p){ return productCard(p); }).join('') + '</div></div>' +
+        '<div class="section"><div class="section-head"><div><span class="eyebrow">HAPPENING NOW</span><span class="section-title">正在发生</span></div>' +
+        '<button class="link" data-action="scenes">管理场景<img src="' + BASE + 'icons/chevron.png" alt=""></button></div>' +
+        '<div class="card happen-list">' + happening.map(function(scene){
+          return '<button class="happen-item" data-action="scenes"><span class="happen-icon">' + scene.icon + '</span>' +
+            '<span class="happen-copy"><span class="happen-top"><span class="happen-name">' + esc(scene.name) + '</span><span class="happen-live"><span class="dot"></span>' + esc(scene.lastRun) + '</span></span>' +
+            '<span class="happen-sub">' + esc(scene.subtitle) + ' · ' + scene.deviceIds.length + ' 台设备</span></span>' +
+            '<img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>';
+        }).join('') + '</div></div>' +
+        '<button class="home-story" data-action="home-tab" data-tab="story"><span><span class="home-story__kicker">OPTICS VALLEY EFFECT</span><span class="home-story__title">把重复的四十分钟，交还给生活。</span></span><span class="home-story__mark">✦</span></button>' +
+        '<div class="demo-stamp">H5 DEMO · 8 PAGES</div>';
+    } else if(tab === 'story'){
+      content = '<div class="story-hero"><img class="story-hero__img" src="' + BASE + 'hero.jpg" alt="OVEM 品牌故事"><span class="story-hero__mask"></span>' +
+        '<div class="story-hero__copy"><span class="eyebrow story-eyebrow">OUR POINT OF VIEW</span>' +
+        '<div class="story-title"><span>不是把机器人做得更像人，</span><span>而是把生活里重复的四十分钟，</span><span>交还给生活。</span></div>' +
+        '<span class="story-desc">OVEM 光谷效应，面向 C 端家庭的生活机器人品牌。20 款机器人，不是 20 个遥控器，而是一套会协同的生活基础设施。</span></div></div>' +
+        '<div class="section">' + STORY_VALUES.map(function(value, index){
+          return '<div class="story-value card"><span class="story-value__index">0' + (index + 1) + '</span><span class="story-value__copy"><span class="story-value__title">' + esc(value.title) + '</span><span class="story-value__desc">' + esc(value.desc) + '</span></span></div>';
+        }).join('') + '</div>' +
+        '<button class="btn btn--primary story-cta" data-action="home-tab" data-tab="products">看看 20 款机器人 <span style="font-size:16px;line-height:1">→</span></button>';
+    } else if(tab === 'products'){
+      var all = PRODUCTS.map(function(p){
+        var device = getDeviceByProduct(p.id);
+        return { product:p, paired:Boolean(device), online:device ? device.online : false, room:device ? device.room : '', deviceMode:device ? device.mode : '' };
+      });
+      content = '<div class="catalog-head-copy"><span class="eyebrow">20 ROBOTS / ONE QUIET HOME</span><div class="catalog-title-big">明星产品</div>' +
+        '<span class="catalog-desc">按空间与任务拆分的机器人矩阵。接入后，它们会被同一套场景编排。</span></div>' +
+        '<div class="product-grid" style="margin-top:12px">' + PRODUCTS.map(function(p){ return productCard(p); }).join('') + '</div>';
+    } else {
+      content = '<div class="catalog-head-copy"><span class="eyebrow">SOLUTIONS</span><div class="catalog-title-big">不是单品，是动线</div>' +
+        '<span class="catalog-desc">把一个空间里的重复动作拆开，再交给几台机器人按顺序完成。</span></div>' +
+        SOLUTIONS.map(function(solution){
+          return '<button class="solution-card" data-action="solution" data-scene="' + esc(solution.scene) + '"><img class="solution-img" src="' + solution.image + '" alt="' + esc(solution.title) + '"><span class="solution-mask"></span>' +
+            '<span class="solution-copy"><span class="solution-title">' + esc(solution.title) + '</span><span class="solution-desc">' + esc(solution.desc) + '</span><span class="solution-link">查看适配设备 →</span></span></button>';
+        }).join('') +
+        '<div class="solutions-note"><span class="eyebrow">DESIGNED FOR A REAL HOME</span><span class="solutions-note__text">先有动线，再有设备。OVEM 的产品顺序，是按家务发生的顺序排的。</span></div>';
+    }
+    return brandHead(unread) +
+      '<div class="home-tabs">' + tabs.map(function(item){
+        return '<button class="home-tab' + (tab === item.key ? ' home-tab--active' : '') + '" data-action="home-tab" data-tab="' + item.key + '">' + item.label + '</button>';
+      }).join('') + '</div>' +
+      '<div class="page-pad">' + content + '</div>';
+  }
+
+  /* ---------- devices ---------- */
+  function renderDevices(){
+    var online = state.devices.filter(function(d){ return d.online; }).length;
+    var activeScenes = state.scenes.filter(function(s){ return s.enabled; }).length;
+    var avgBattery = Math.round(state.devices.reduce(function(sum, d){ return sum + d.battery; }, 0) / state.devices.length);
+    return '<div class="head"><div><span class="eyebrow">MY HOME</span><h1 class="page-title">设备</h1></div>' +
+      '<button class="icon-btn icon-btn--blue" data-action="catalog" aria-label="添加设备"><img src="' + BASE + 'icons/plus-white.png" alt=""></button></div>' +
+      '<div class="page-pad"><div class="family-card"><span class="soft-grid"></span>' +
+      '<div class="family-top"><span class="family-kicker">LIVING SPACE</span><span class="family-live"><span class="dot"></span>家庭在线</span></div>' +
+      '<div><span class="family-name">' + esc(state.family.name) + '</span><span class="family-online"><span class="family-online__number">' + online + '</span><span class="family-online__unit">/ ' + state.devices.length + ' 台在线</span></span></div>' +
+      '<div class="family-stats"><div><span class="family-stat__number">' + activeScenes + '</span><span class="family-stat__label">运行中的场景</span></div>' +
+      '<div><span class="family-stat__number">' + avgBattery + '<span class="family-stat__percent">%</span></span><span class="family-stat__label">平均电量</span></div></div></div>' +
+      '<div class="section"><div class="section-head"><div><span class="eyebrow">YOUR ROBOTS</span><span class="section-title">全部设备</span></div><span class="devices-count">' + state.devices.length + ' DEVICES</span></div>' +
+      '<div class="device-list">' + state.devices.map(function(device){
+        var product = getProduct(device.productId);
+        return '<button class="device-card" data-action="open-device" data-id="' + device.id + '"><span class="device-thumb"><img class="device-thumb__img" src="' + product.image + '" alt="' + esc(product.name) + '">' +
+          '<span class="device-state-dot ' + (device.online ? 'device-state-dot--on' : 'device-state-dot--off') + '"></span></span>' +
+          '<span class="device-card__copy"><span class="device-card__top"><span class="device-room">' + esc(device.room) + '</span><span class="device-status ' + (device.online ? '' : 'device-status--off') + '"><span class="dot"></span>' + esc(statusText(device)) + '</span></span>' +
+          '<span class="device-name">' + esc(product.name) + '</span><span class="device-meta"><span class="device-meta__item">▭ ' + device.battery + '%</span><span class="device-meta__item">' + esc(device.mode) + '</span></span></span>' +
+          '<img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>';
+      }).join('') + '</div></div>' +
+      '<div class="devices-note"><span class="eyebrow">DEVICE PHILOSOPHY</span><span class="devices-note__title">每一台只做一件事，但每件事都做完整。</span></div></div>';
+  }
+
+  /* ---------- scenes ---------- */
+  function renderScenes(){
+    var enabledCount = state.scenes.filter(function(s){ return s.enabled; }).length;
+    return pageHead('AUTOMATIONS', '场景', '<button class="icon-btn" data-action="messages" aria-label="消息"><img src="' + BASE + 'icons/bell.png" alt="">' + (getUnread() > 0 ? '<span class="head-badge"></span>' : '') + '</button>') +
+      '<div class="page-pad"><div class="scene-hero"><span class="soft-grid"></span><div class="scene-hero__top"><span class="scene-hero__kicker">SET ONCE / LIVE DAILY</span><span class="pill pill--dark">' + enabledCount + ' 个运行中</span></div>' +
+      '<div class="scene-hero__title"><span class="scene-hero__line">让家自己</span><span class="scene-hero__line">进入状态</span></div>' +
+      '<span class="scene-hero__desc">不是把几个开关放进一个按钮，而是让机器人按顺序完成一串真实动作。</span></div>' +
+      '<div class="section"><div class="section-head"><div><span class="eyebrow">YOUR ROUTINES</span><span class="section-title">全部场景</span></div><span class="scene-count">' + state.scenes.length + ' ROUTINES</span></div>' +
+      state.scenes.map(function(scene){
+        return '<div class="scene-card card"><div class="scene-top"><span class="scene-thumb ' + (scene.image ? '' : 'scene-thumb--plain') + '">' +
+          (scene.image ? '<img class="scene-thumb__img" src="' + scene.image + '" alt="' + esc(scene.name) + '">' : '<span class="scene-thumb__glyph">' + scene.icon + '</span>') +
+          '<span class="scene-thumb__tag">' + scene.icon + '</span></span>' +
+          '<span class="scene-copy"><span class="scene-name">' + esc(scene.name) + '</span><span class="scene-sub">' + esc(scene.subtitle) + '</span>' +
+          '<span class="scene-meta"><span class="scene-meta__item">◷ ' + esc(scene.schedule) + '</span><span class="scene-meta__item">' + scene.deviceIds.length + ' 台设备</span></span></span>' +
+          '<button class="switch ' + (scene.enabled ? 'on' : '') + '" data-action="toggle-scene" data-id="' + scene.id + '" aria-label="启用' + esc(scene.name) + '" aria-pressed="' + scene.enabled + '"></button></div>' +
+          '<div class="scene-divider"></div><span class="scene-desc">' + esc(scene.description) + '</span>' +
+          '<div class="scene-foot"><span class="scene-last">上次执行 · ' + esc(scene.lastRun) + '</span><button class="scene-run" data-action="run-scene" data-id="' + scene.id + '"><img src="' + BASE + 'icons/play-white.png" alt="">立即执行</button></div></div>';
+      }).join('') + '</div></div>';
+  }
+
+  /* ---------- messages ---------- */
+  function noticeType(type){
+    if(type === 'device') return { icon:'◈', label:'设备动态', cls:'device' };
+    if(type === 'scene') return { icon:'⌂', label:'场景动态', cls:'scene' };
+    return { icon:'◌', label:'系统提醒', cls:'system' };
+  }
+  function renderMessages(){
+    var unread = getUnread();
+    var filter = ui.messagesFilter;
+    var notices = state.notifications.filter(function(n){ return filter === 'all' || n.type === filter; });
+    return pageHead('NOTIFICATIONS', '消息', '<button class="mark-all" data-action="mark-all">全部已读</button>') +
+      '<div class="page-pad"><div class="inbox-hero"><span class="soft-grid"></span><div class="inbox-top"><span class="inbox-kicker">INBOX / HOME PULSE</span><span class="pill pill--dark">' + unread + ' 条未读</span></div>' +
+      '<span class="inbox-number">' + state.notifications.length + '</span><span class="inbox-desc">所有设备、场景与系统的动态，都会先落在这里，再等你决定是否处理。</span></div>' +
+      '<div class="filter-row">' + MESSAGE_FILTERS.map(function(item){ return '<button class="filter-pill' + (filter === item.key ? ' filter-pill--active' : '') + '" data-action="message-filter" data-key="' + item.key + '">' + item.label + '</button>'; }).join('') + '</div>' +
+      (notices.length === 0 ? '<div class="empty-state"><div style="font-size:26px;margin-bottom:6px">◌</div><div style="font-weight:600;color:#16243D">这里暂时没有消息</div><div style="margin-top:4px">切换筛选，或回到设备控制触发一次动作。</div></div>' :
+      '<div class="notice-list">' + notices.map(function(notice){
+        var type = noticeType(notice.type);
+        return '<button class="notice-card card ' + (notice.read ? 'notice-card--read' : '') + '" data-action="open-notice" data-id="' + notice.id + '"><span class="notice-icon notice-icon--' + type.cls + '">' + type.icon + '</span>' +
+          '<span class="notice-copy"><span class="notice-top"><span class="notice-type">' + type.label + '</span><span class="notice-time">' + esc(notice.time) + '</span>' + (notice.read ? '' : '<span class="notice-unread"></span>') + '</span>' +
+          '<span class="notice-title">' + esc(notice.title) + '</span><span class="notice-body">' + esc(notice.body) + '</span>' +
+          '<span class="notice-foot">' + (notice.deviceId ? '查看关联设备' : '查看详情') + '<img src="' + BASE + 'icons/chevron.png" alt=""></span></span></button>';
+      }).join('') + '</div>') +
+      '<div class="inbox-note"><span class="dot"></span><span>消息每 15 分钟同步一次，设备动作完成会即时推送。</span></div></div>';
+  }
+
+  /* ---------- profile ---------- */
+  function renderProfile(){
+    var stats = {
+      devices:state.devices.length,
+      online:state.devices.filter(function(d){ return d.online; }).length,
+      scenes:state.scenes.filter(function(s){ return s.enabled; }).length,
+      unread:getUnread()
+    };
+    return pageHead('MY OVEM', '我的', '<button class="icon-btn" data-action="messages" aria-label="消息"><img src="' + BASE + 'icons/bell.png" alt="">' + (stats.unread > 0 ? '<span class="head-badge"></span>' : '') + '</button>') +
+      '<div class="page-pad"><div class="profile-hero"><span class="soft-grid"></span><div class="profile-top"><img class="profile-logo" src="' + BASE + 'logo-white.png" alt="OVEM"><span class="pill pill--dark">' + esc(state.family.role) + '</span></div>' +
+      '<span class="profile-hello">' + esc(state.family.member) + '，晚上好</span><span class="profile-home">' + esc(state.family.name) + '</span>' +
+      '<div class="profile-stats"><div><span class="profile-stat__num">' + stats.devices + '</span><span class="profile-stat__label">全部设备</span></div>' +
+      '<div><span class="profile-stat__num">' + stats.online + '</span><span class="profile-stat__label">在线</span></div>' +
+      '<div><span class="profile-stat__num">' + stats.scenes + '</span><span class="profile-stat__label">运行场景</span></div></div></div>' +
+      '<div class="section"><div class="section-head"><div><span class="eyebrow">SHORTCUTS</span><span class="section-title">常用入口</span></div></div>' +
+      '<div class="shortcut-grid">' +
+        '<button class="shortcut card" data-action="devices"><span class="shortcut-icon">◈</span><span class="shortcut-name">设备管理</span><span class="shortcut-desc">' + stats.online + ' 台在线</span></button>' +
+        '<button class="shortcut card" data-action="scenes"><span class="shortcut-icon">⌂</span><span class="shortcut-name">场景自动化</span><span class="shortcut-desc">' + stats.scenes + ' 个运行中</span></button>' +
+        '<button class="shortcut card" data-action="messages"><span class="shortcut-icon">◌</span><span class="shortcut-name">消息中心</span><span class="shortcut-desc">' + stats.unread + ' 条未读</span></button>' +
+        '<button class="shortcut card" data-action="catalog"><span class="shortcut-icon">✦</span><span class="shortcut-name">产品目录</span><span class="shortcut-desc">20 款机器人</span></button>' +
+      '</div></div>' +
+      '<div class="section"><div class="section-head"><div><span class="eyebrow">PREFERENCES</span><span class="section-title">账户与偏好</span></div></div>' +
+      '<div class="settings card">' +
+        '<div class="setting-row"><span class="setting-copy"><span class="setting-name">消息通知</span><span class="setting-desc">设备完成、异常与场景执行提醒</span></span><button class="switch ' + (state.notificationsEnabled ? 'on' : '') + '" data-action="toggle-notifications" aria-label="消息通知" aria-pressed="' + state.notificationsEnabled + '"></button></div>' +
+        '<button class="setting-row" data-action="page-index"><span class="setting-copy"><span class="setting-name">演示页面目录</span><span class="setting-desc">8 个页面 · 一键跳转</span></span><img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>' +
+        '<button class="setting-row" data-action="restart-onboarding"><span class="setting-copy"><span class="setting-name">重新查看新手引导</span><span class="setting-desc">再看一次 OVEM 的三步开场</span></span><img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>' +
+        '<button class="setting-row" data-action="about"><span class="setting-copy"><span class="setting-name">关于 OVEM</span><span class="setting-desc">Web Demo v1.0 · 8 pages</span></span><img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>' +
+        '<button class="setting-row" data-action="reset-demo"><span class="setting-copy"><span class="setting-name">恢复演示数据</span><span class="setting-desc">清空本机改动，重新体验完整流程</span></span><img class="chevron" src="' + BASE + 'icons/chevron.png" alt=""></button>' +
+      '</div></div>' +
+      '<div class="profile-footer"><img class="footer-logo" src="' + BASE + 'logo-dark.png" alt="OVEM"><span class="footer-copy">OPTICS VALLEY EFFECT · WEB DEMO</span><span class="footer-note">本工程为交互演示版本，所有设备与数据均为虚构。</span></div></div>';
+  }
+
+  /* ---------- catalog ---------- */
+  function filterProducts(){
+    var keyword = ui.catalogKeyword.trim().toLowerCase();
+    return PRODUCTS.filter(function(product){
+      var categoryMatch = ui.catalogFilter === 'all' || product.scene === ui.catalogFilter;
+      if(!categoryMatch) return false;
+      if(!keyword) return true;
+      return [product.name, product.short, product.oneliner, product.scene].concat(product.tags).join(' ').toLowerCase().indexOf(keyword) > -1;
+    });
+  }
+  function catalogGridHtml(){
+    var products = filterProducts();
+    if(products.length === 0){
+      return '<div class="empty-state" style="grid-column:1/-1"><div style="font-size:26px;margin-bottom:6px">◌</div><div style="font-weight:600;color:#16243D">没有匹配的产品</div><div style="margin-top:4px">换一个关键词，或切回“全部”。</div></div>';
+    }
+    return products.map(catalogCard).join('');
+  }
+  function renderCatalog(){
+    var products = filterProducts();
+    return '<div class="page-head"><span class="page-head__side"><button class="device-back" data-action="catalog-back" aria-label="返回"><img src="' + BASE + 'icons/back.png" alt=""></button></span>' +
+      '<span class="catalog-heading"><span class="eyebrow">PRODUCT CATALOG</span><span class="page-title">全部产品</span></span>' +
+      '<span class="page-head__side page-head__side--right"><span class="catalog-total">' + PRODUCTS.length + '</span></span></div>' +
+      '<div class="page-pad"><div class="catalog-hero"><span class="soft-grid"></span><span class="catalog-kicker">20 ROBOTS / ONE QUIET HOME</span>' +
+      '<div class="catalog-hero-title"><span class="catalog-line">不是一台万能机器人</span><span class="catalog-line">而是 20 个专职角色</span></div>' +
+      '<span class="catalog-hero-desc">从备料、清洁、折叠到宠物陪护，每一件琐事都有一个更小、更专注的机器人接手。</span></div>' +
+      '<div class="search-box"><span class="search-glyph">⌕</span><input id="catalog-search" class="search-input" value="' + esc(ui.catalogKeyword) + '" placeholder="搜索产品、场景或能力" aria-label="搜索产品"><button class="search-clear" id="search-clear" data-action="clear-search" aria-label="清空搜索" style="display:' + (ui.catalogKeyword ? 'block' : 'none') + '">×</button></div>' +
+      '<div class="filter-scroll">' + CATALOG_FILTERS.map(function(filter){ return '<button class="catalog-chip' + (ui.catalogFilter === filter.key ? ' catalog-chip--active' : '') + '" data-action="catalog-filter" data-key="' + filter.key + '">' + filter.label + '</button>'; }).join('') + '</div>' +
+      '<div class="catalog-count"><span id="catalog-count">共 ' + products.length + ' 款</span><span class="catalog-count__hint">点击查看产品卡</span></div>' +
+      '<div class="catalog-grid" id="catalog-grid">' + catalogGridHtml() + '</div>' +
+      '<div class="catalog-note"><span class="catalog-note__title">概念产品说明</span><span class="catalog-note__body">本页 20 款机器人为 OVEM 品牌概念设定，价格与参数仅用于视觉与交互演示，不构成实际销售信息。</span></div></div>';
+  }
+  function updateCatalogGrid(){
+    var grid = document.getElementById('catalog-grid');
+    if(!grid) return;
+    var products = filterProducts();
+    grid.innerHTML = catalogGridHtml();
+    var count = document.getElementById('catalog-count');
+    if(count) count.textContent = '共 ' + products.length + ' 款';
+    var clear = document.getElementById('search-clear');
+    if(clear) clear.style.display = ui.catalogKeyword ? 'block' : 'none';
+  }
+
+  /* ---------- device detail ---------- */
+  function renderDevice(id){
+    var device = getDevice(id) || state.devices[0];
+    if(!device) return '<div class="page-pad"><div class="empty-state">正在读取设备…</div></div>';
+    var product = getProduct(device.productId);
+    var profile = getProfile(device.productId);
+    var modes = profile.modes;
+    var isWorking = device.status === 'working';
+    var isCharging = device.status === 'charging';
+    var chargeStatus = isCharging ? '回充中' : (device.battery >= 95 ? '已充满' : (device.battery >= 60 ? '电量充足' : '电量偏低'));
+    var status = statusText(device);
+    var image = product.cutout || product.image;
+    var modeInitial = (device.mode || ' ').slice(0,1);
+    return '<div class="device-head"><button class="device-back" data-action="devices" aria-label="返回设备列表"><img src="' + BASE + 'icons/back.png" alt=""></button>' +
+      '<div class="device-head__title"><span class="eyebrow">' + esc(product.short) + '</span><span class="device-title">设备控制</span></div>' +
+      '<button class="icon-btn" data-action="catalog" aria-label="产品目录"><img src="' + BASE + 'icons/plus-dark.png" alt=""></button></div>' +
+      '<div class="page-pad"><div class="device-hero card"><div class="device-hero__top"><span class="device-room-pill">' + esc(device.room) + ' · ' + esc(product.short) + '</span><span class="device-live ' + (device.online ? '' : 'device-live--off') + '"><span class="dot"></span>' + (device.online ? '实时' : '离线') + '</span></div>' +
+      '<span class="device-hero__name">' + esc(product.name) + '</span><div class="device-hero__meta"><span class="device-meta-live ' + (device.online ? '' : 'device-meta-live--off') + '"><span class="dot"></span>' + (device.online ? '在线' : '离线') + '</span><span class="device-battery-line">▭ ' + device.battery + '%</span></div>' +
+      '<div class="device-visual"><span class="soft-grid device-grid"></span><div class="device-halo"><span class="device-sweep"></span><img class="device-product" src="' + image + '" alt="' + esc(product.name) + '"></div>' +
+      '<span class="device-range">◌ ' + esc(device.room) + ' · 自动巡航范围</span>' + (isCharging ? '<span class="device-charging-pill">回充中</span>' : '') + '</div></div>' +
+      '<div class="metrics">' +
+        '<div class="metric card"><span class="metric-icon metric-icon--blue"><img src="' + BASE + 'icons/charge.png" alt=""></span><span><span class="metric-label">充电状态</span><span class="metric-value">' + chargeStatus + '</span></span></div>' +
+        '<div class="metric card"><span class="metric-icon metric-icon--sky">' + esc(modeInitial) + '</span><span><span class="metric-label">' + esc(profile.modeLabel) + '</span><span class="metric-value">' + esc(device.mode) + '</span></span></div>' +
+        '<div class="metric card"><span class="metric-icon metric-icon--green">⌁</span><span><span class="metric-label">工作状态</span><span class="metric-value">' + esc(status) + '</span></span></div>' +
+        '<div class="metric card"><span class="metric-icon metric-icon--green"><img src="' + BASE + 'icons/battery.png" alt=""></span><span><span class="metric-label">电量</span><span class="metric-value">' + device.battery + '%</span></span></div>' +
+      '</div>' +
+      '<div class="control-card card"><div class="control-head"><div><span class="eyebrow">CONTROL CENTER</span><span class="control-title">控制中心</span></div><span class="control-ready ' + (device.online ? '' : 'control-ready--off') + '">' + (device.online ? '手动控制已就绪' : '设备离线') + '</span></div>' +
+      (!device.online ?
+        '<div class="offline-panel"><span class="offline-icon">↻</span><span class="offline-copy"><span class="offline-title">控制中心暂不可用</span><span class="offline-desc">设备离线，先唤醒连接后再发送动作。</span></span><button class="offline-button" data-action="device-toggle" data-id="' + device.id + '">重新连接</button></div>' :
+        '<div class="control-main"><div class="dpad"><span class="dpad-ring"></span>' +
+          '<button class="dpad-button dpad-button--up" data-action="move" data-dir="向前" aria-label="向前"><img src="' + BASE + 'icons/arrow-up.png" alt=""></button>' +
+          '<button class="dpad-button dpad-button--down" data-action="move" data-dir="向后" aria-label="向后"><img src="' + BASE + 'icons/arrow-down.png" alt=""></button>' +
+          '<button class="dpad-button dpad-button--left" data-action="move" data-dir="向左" aria-label="向左"><img src="' + BASE + 'icons/arrow-left.png" alt=""></button>' +
+          '<button class="dpad-button dpad-button--right" data-action="move" data-dir="向右" aria-label="向右"><img src="' + BASE + 'icons/arrow-right.png" alt=""></button>' +
+          '<span class="dpad-center"><span class="dpad-center__glyph">◈</span><span class="dpad-center__text">定位</span></span></div>' +
+          '<div class="control-actions"><button class="btn btn--primary control-action" data-action="device-toggle" data-id="' + device.id + '"><img src="' + BASE + 'icons/' + (isWorking ? 'pause-white' : 'play-white') + '.png" alt="">' + (isWorking ? esc(profile.pauseAction) : esc(profile.workAction)) + '</button>' +
+          '<button class="btn btn--outline control-action" data-action="device-charge" data-id="' + device.id + '"><img src="' + BASE + 'icons/charge.png" alt="">' + esc(profile.chargeLabel) + '</button></div></div>' +
+        '<div class="last-command">◷ ' + (device.lastActive || '刚刚') + ' · 指令已同步</div>') +
+      '</div>' +
+      '<div class="mode-card card"><div class="mode-head"><span class="mode-title">' + esc(profile.modeLabel) + '</span><span class="mode-count">共 ' + modes.length + ' 种</span></div>' +
+      '<div class="mode-tabs">' + modes.map(function(mode){ return '<button class="mode-tab' + (device.mode === mode ? ' mode-tab--active' : '') + '" data-action="device-mode" data-id="' + device.id + '" data-mode="' + esc(mode) + '">' + esc(mode) + '</button>'; }).join('') + '</div>' +
+      '<div class="mode-foot"><span>⚡ 电量 ' + device.battery + '% · ' + esc(device.lastActive) + '</span><span class="mode-version">V 2.3.0</span></div>' +
+      '<div class="battery-track"><div class="battery-fill" style="width:' + device.battery + '%"></div></div></div>' +
+      '<div class="device-footnote"><span class="dot"></span><span>设备数据更新于 ' + esc(device.lastActive) + '</span></div></div>';
+  }
+
+  /* ---------- modal ---------- */
+  function closeModal(){ modalOpen = false; document.getElementById('modal-root').innerHTML = ''; }
+  function openModal(html){
+    modalOpen = true;
+    document.getElementById('modal-root').innerHTML = '<div class="modal-mask" data-action="modal-mask"><div class="modal-sheet" role="dialog" aria-modal="true">' + html + '</div></div>';
+  }
+  function productModal(product){
+    var device = getDeviceByProduct(product.id);
+    openModal('<div class="modal-head"><div><span class="modal-kicker">PRODUCT / ' + product.id.toUpperCase() + '</span><div class="modal-title">' + esc(product.name) + '</div></div><button class="modal-close" data-action="close-modal" aria-label="关闭">×</button></div>' +
+      '<div class="modal-body"><div class="modal-product"><img src="' + product.image + '" alt="' + esc(product.name) + '"><div><div class="modal-product__name">' + esc(product.oneliner) + '</div><span class="modal-product__meta">' + esc(product.scene) + ' · ' + esc(product.tier) + ' · 参考价 ¥' + esc(product.price) + '</span></div></div>' +
+      '<p style="margin:14px 0 0">' + esc(product.name) + '，是 OVEM 按空间与任务拆分的 20 个专职角色之一。它不做所有事，只把一件事做完整，然后交给场景编排。</p>' +
+      '<div class="modal-tags">' + product.tags.map(function(tag){ return '<span class="product-tag" style="font-size:9px;padding:4px 7px">' + esc(tag) + '</span>'; }).join('') + '</div></div>' +
+      '<div class="modal-actions modal-footer">' + (device ? '<button class="btn btn--primary" data-action="modal-device" data-id="' + device.id + '">打开设备控制</button>' : '<button class="btn btn--primary" data-action="modal-catalog" data-id="' + product.id + '">在目录中查看</button>') +
+      '<button class="btn btn--outline" data-action="close-modal">知道了</button></div>');
+  }
+  function pageIndexModal(){
+    var pages = [
+      { path:'onboarding', label:'01 / 新手引导', desc:'三步开场' },
+      { path:'home', label:'02 / 首页', desc:'品牌与产品总览' },
+      { path:'devices', label:'03 / 设备', desc:'家庭与设备列表' },
+      { path:'device/dev-p07', label:'04 / 设备控制', desc:'空气治理机器人' },
+      { path:'scenes', label:'05 / 场景', desc:'自动化编排' },
+      { path:'messages', label:'06 / 消息', desc:'动态与提醒' },
+      { path:'profile', label:'07 / 我的', desc:'账户与偏好' },
+      { path:'catalog', label:'08 / 全部产品', desc:'20 款机器人目录' },
+    ];
+    openModal('<div class="modal-head"><div><span class="modal-kicker">DEMO INDEX</span><div class="modal-title">小程序 8 个页面</div></div><button class="modal-close" data-action="close-modal" aria-label="关闭">×</button></div>' +
+      '<div class="modal-body">这是网页演示版的页面目录。扫码后可像小程序一样逐页浏览，也可以从这里直接跳转。</div>' +
+      '<div class="page-index">' + pages.map(function(page){ return '<button class="page-index__link" data-action="modal-nav" data-nav="' + page.path + '">' + page.label + '<span>' + page.desc + '</span></button>'; }).join('') + '</div>' +
+      '<div class="modal-actions modal-footer"><button class="btn btn--primary" data-action="close-modal">继续浏览</button></div>');
+  }
+  function aboutModal(){
+    openModal('<div class="modal-head"><div><span class="modal-kicker">ABOUT</span><div class="modal-title">OVEM 光谷效应</div></div><button class="modal-close" data-action="close-modal" aria-label="关闭">×</button></div>' +
+      '<div class="modal-body"><p style="margin:0">这是一个面向 C 端家庭的生活机器人品牌概念工程。20 款机器人按空间与任务拆分，通过场景编排协同工作。</p>' +
+      '<p style="margin:10px 0 0">当前页面是小程序的网页演示版，用于在没有正式 AppID 的情况下，让评审者可以在手机浏览器中浏览全部 8 个页面。所有设备、数据与价格均为虚构，仅用于视觉与交互演示。</p>' +
+      '<p style="margin:10px 0 0;font-family:monospace;font-size:9px;color:#8A95A8">WEB DEMO v1.0 · 8 PAGES</p></div>' +
+      '<div class="modal-actions modal-footer"><button class="btn btn--primary" data-action="close-modal">知道了</button></div>');
+  }
+  function resetModal(){
+    openModal('<div class="modal-head"><div><span class="modal-kicker">RESET DEMO</span><div class="modal-title">恢复演示数据？</div></div><button class="modal-close" data-action="close-modal" aria-label="关闭">×</button></div>' +
+      '<div class="modal-body">这会清空本机上的设备状态、场景开关与消息已读记录，并回到新手引导。不会影响任何线上内容。</div>' +
+      '<div class="modal-actions modal-footer"><button class="btn btn--outline" data-action="close-modal">取消</button><button class="btn btn--primary" data-action="confirm-reset">确认恢复</button></div>');
+  }
+
+  /* ---------- render ---------- */
+  function render(force){
+    var route = parseHash();
+    var page = route.page || 'home';
+    var key = page + '/' + (route.id || '') + '?' + route.query.toString();
+    var same = key === lastKey && !force;
+    var oldScroll = 0;
+    if(same){
+      var scroller = document.querySelector('.scroll');
+      if(scroller) oldScroll = scroller.scrollTop;
+    }
+    if(page === 'onboarding'){
+      document.getElementById('app').innerHTML = renderOnboarding();
+    } else {
+      var content = '';
+      var active = 'home';
+      if(page === 'home'){
+        var tabParam = route.query.get('tab');
+        var allowedTabs = ['home','story','products','solutions'];
+        ui.homeTab = allowedTabs.indexOf(tabParam) > -1 ? tabParam : 'home';
+        content = renderHome(); active = 'home';
+      } else if(page === 'devices'){
+        content = renderDevices(); active = 'devices';
+      } else if(page === 'device'){
+        content = renderDevice(route.id); active = 'devices';
+      } else if(page === 'scenes'){
+        content = renderScenes(); active = 'scenes';
+      } else if(page === 'messages'){
+        content = renderMessages(); active = 'messages';
+      } else if(page === 'profile'){
+        content = renderProfile(); active = 'profile';
+      } else if(page === 'catalog'){
+        if(route.query.get('scene')) ui.catalogFilter = route.query.get('scene');
+        if(route.query.get('focus')){
+          var focused = getProduct(route.query.get('focus'));
+          ui.catalogFilter = 'all';
+          ui.catalogKeyword = focused.name;
+        }
+        content = renderCatalog(); active = 'home';
+      } else {
+        content = renderHome(); active = 'home';
+      }
+      document.getElementById('app').innerHTML = '<div class="page"><div class="scroll">' + content + '</div>' + bottomNav(active) + '</div>';
+      if(same && oldScroll){
+        requestAnimationFrame(function(){ var s = document.querySelector('.scroll'); if(s) s.scrollTop = oldScroll; });
+      } else {
+        requestAnimationFrame(function(){ var s = document.querySelector('.scroll'); if(s) s.scrollTop = 0; });
+      }
+    }
+    lastKey = key;
+    if(modalOpen) closeModal();
+  }
+
+  /* ---------- actions ---------- */
+  function goHome(tab){
+    if(tab) ui.homeTab = tab;
+    navigate('home' + (tab ? '?tab=' + tab : ''));
+  }
+  function finishOnboarding(){
+    state.onboardingSeen = true;
+    saveState();
+    ui.onboardingStep = 0;
+    navigate('home');
+  }
+
+  document.addEventListener('click', function(event){
+    var target = event.target.closest('[data-action]');
+    if(!target){
+      var nav = event.target.closest('a[href^="#/"]');
+      if(nav && modalOpen) closeModal();
+      return;
+    }
+    var action = target.getAttribute('data-action');
+    var id = target.getAttribute('data-id');
+    if(action === 'modal-mask'){
+      if(event.target === target) closeModal();
+      return;
+    }
+    if(action === 'ob-next'){
+      if(ui.onboardingStep < 2){ ui.onboardingStep += 1; render(true); }
+      else finishOnboarding();
+      return;
+    }
+    if(action === 'ob-skip'){ finishOnboarding(); return; }
+    if(action === 'messages'){ navigate('messages'); return; }
+    if(action === 'devices'){ navigate('devices'); return; }
+    if(action === 'scenes'){ navigate('scenes'); return; }
+    if(action === 'catalog'){ ui.catalogFilter = 'all'; ui.catalogKeyword = ''; navigate('catalog'); return; }
+    if(action === 'product-open'){
+      var device = getDeviceByProduct(id);
+      if(device) navigate('device/' + device.id);
+      else navigate('catalog?focus=' + encodeQuery(id));
+      return;
+    }
+    if(action === 'home-tab'){
+      var tab = target.getAttribute('data-tab');
+      ui.homeTab = tab;
+      if(location.hash.indexOf('#/home') === 0){
+        location.hash = '#/home?tab=' + tab;
+      } else {
+        navigate('home?tab=' + tab);
+      }
+      return;
+    }
+    if(action === 'solution'){
+      navigate('catalog?scene=' + encodeQuery(target.getAttribute('data-scene')));
+      return;
+    }
+    if(action === 'open-device'){ navigate('device/' + id); return; }
+    if(action === 'device-toggle'){
+      var d = getDevice(id);
+      if(d){
+        if(!d.online){ d.online = true; d.status = 'idle'; toast('设备已重新连接'); }
+        else if(d.status === 'working'){ d.status = 'idle'; d.progress = 0; toast('任务已暂停'); }
+        else { d.status = 'working'; d.progress = 36; toast('任务已启动'); }
+        d.lastActive = '刚刚';
+        saveState(); render(true);
+      }
+      return;
+    }
+    if(action === 'device-charge'){
+      var dc = getDevice(id);
+      if(dc){ dc.status = 'charging'; dc.lastActive = '刚刚'; saveState(); render(true); toast('已发送回充指令'); }
+      return;
+    }
+    if(action === 'device-mode'){
+      var dm = getDevice(id);
+      if(dm){ dm.mode = target.getAttribute('data-mode'); dm.lastActive = '刚刚'; saveState(); render(true); toast('已切换至 ' + dm.mode); }
+      return;
+    }
+    if(action === 'move'){ toast('已向' + target.getAttribute('data-dir') + '移动 30cm'); return; }
+    if(action === 'toggle-scene'){
+      var scene = state.scenes.filter(function(s){ return s.id === id; })[0];
+      if(scene){ scene.enabled = !scene.enabled; saveState(); render(true); toast(scene.enabled ? '场景已启用' : '场景已暂停'); }
+      return;
+    }
+    if(action === 'run-scene'){
+      var runScene = state.scenes.filter(function(s){ return s.id === id; })[0];
+      if(runScene){
+        runScene.lastRun = '刚刚';
+        state.notifications.unshift({ id:'notice-' + Date.now(), title:runScene.name + '已执行', body:runScene.description, time:'刚刚', read:false, type:'scene', deviceId:runScene.deviceIds[0] || '' });
+        saveState(); render(true); toast(runScene.name + ' 已开始执行');
+      }
+      return;
+    }
+    if(action === 'mark-all'){
+      state.notifications.forEach(function(n){ n.read = true; });
+      saveState(); render(true); toast('已全部标记为已读');
+      return;
+    }
+    if(action === 'message-filter'){ ui.messagesFilter = target.getAttribute('data-key'); render(true); return; }
+    if(action === 'open-notice'){
+      var notice = state.notifications.filter(function(n){ return n.id === id; })[0];
+      if(notice){
+        notice.read = true; saveState();
+        if(notice.deviceId) navigate('device/' + notice.deviceId);
+        else { render(true); toast('消息已读'); }
+      }
+      return;
+    }
+    if(action === 'toggle-notifications'){ state.notificationsEnabled = !state.notificationsEnabled; saveState(); render(true); return; }
+    if(action === 'restart-onboarding'){
+      state.onboardingSeen = false; saveState(); ui.onboardingStep = 0; navigate('onboarding'); return;
+    }
+    if(action === 'about'){ aboutModal(); return; }
+    if(action === 'reset-demo'){ resetModal(); return; }
+    if(action === 'confirm-reset'){
+      state = createInitialState();
+      ui.homeTab = 'home'; ui.onboardingStep = 0; ui.catalogFilter = 'all'; ui.catalogKeyword = ''; ui.messagesFilter = 'all';
+      saveState(); closeModal(); navigate('onboarding'); toast('演示数据已恢复');
+      return;
+    }
+    if(action === 'page-index'){ pageIndexModal(); return; }
+    if(action === 'modal-nav'){ closeModal(); navigate(target.getAttribute('data-nav')); return; }
+    if(action === 'catalog-product'){ var p = getProduct(id); if(p) productModal(p); return; }
+    if(action === 'close-modal'){ closeModal(); return; }
+    if(action === 'modal-device'){ closeModal(); navigate('device/' + id); return; }
+    if(action === 'modal-catalog'){ closeModal(); navigate('catalog?focus=' + encodeQuery(id)); return; }
+    if(action === 'catalog-back'){ navigate('home'); return; }
+    if(action === 'catalog-filter'){
+      ui.catalogFilter = target.getAttribute('data-key');
+      var chips = document.querySelectorAll('[data-action="catalog-filter"]');
+      chips.forEach(function(chip){ chip.classList.toggle('catalog-chip--active', chip.getAttribute('data-key') === ui.catalogFilter); });
+      updateCatalogGrid();
+      return;
+    }
+    if(action === 'clear-search'){
+      ui.catalogKeyword = '';
+      var input = document.getElementById('catalog-search');
+      if(input){ input.value = ''; input.focus(); }
+      updateCatalogGrid();
+      return;
+    }
+  });
+
+  document.addEventListener('input', function(event){
+    if(event.target && event.target.id === 'catalog-search'){
+      ui.catalogKeyword = event.target.value;
+      updateCatalogGrid();
+    }
+  });
+
+  window.addEventListener('hashchange', function(){ render(false); });
+  window.addEventListener('popstate', function(){ render(false); });
+
+  // initial route
+  if(!location.hash){
+    location.hash = state.onboardingSeen ? '#/home' : '#/onboarding';
+    render(true);
+  } else {
+    render(true);
+  }
+})();
+</script>
+</body>
+</html>
