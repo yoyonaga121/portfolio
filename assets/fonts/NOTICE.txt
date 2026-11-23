@@ -1,0 +1,6 @@
+Noto Serif SC / Noto Sans SC
+Source: Google Fonts (https://fonts.google.com/noto)
+License: SIL Open Font License 1.1 (https://openfontlicense.org)
+These files are page-specific variable WOFF2 subsets generated from the
+Google Fonts CSS API using the text= parameter; they contain only glyphs
+used by channel-marketing-editorial.html plus a small reserve set.

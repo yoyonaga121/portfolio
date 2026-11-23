@@ -1,1176 +1,1624 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>渠道营销 · 全域渠道运营 | 张晓曦作品集</title>
-<meta name="description" content="光谷效应数字端全渠道视觉系统：社媒内容矩阵、私域运营、电商直播与投放互动的渠道营销案例。">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="preconnect" href="https://miaoda.feishu.cn">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap">
-<script>document.documentElement.classList.add('js');</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>渠道营销 · 光谷效应 | 杂志编辑风作品集</title>
+<meta name="description" content="光谷效应渠道营销物料作品集：效果广告、社交媒体、电商直播、私域运营与双风格素材库，共 72 件物料。">
+<meta name="theme-color" content="#F3EDE2">
+<link rel="canonical" href="https://yoyonaga121.github.io/portfolio/channel-marketing.html">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="光谷效应 OVEM">
+<meta property="og:title" content="渠道营销 · 让智能走进每一个生活场景 | 光谷效应">
+<meta property="og:description" content="72 件渠道营销物料：效果广告、社交矩阵、电商直播、私域运营与双风格素材库。">
+<meta property="og:url" content="https://yoyonaga121.github.io/portfolio/channel-marketing.html">
+<meta property="og:image" content="https://yoyonaga121.github.io/portfolio/assets/channel-marketing/editorial/og-channel-marketing.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="渠道营销作品集：智能生活，走进每一个生活场景">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="渠道营销 · 让智能走进每一个生活场景 | 光谷效应">
+<meta name="twitter:description" content="72 件渠道营销物料：效果广告、社交矩阵、电商直播、私域运营与双风格素材库。">
+<meta name="twitter:image" content="https://yoyonaga121.github.io/portfolio/assets/channel-marketing/editorial/og-channel-marketing.jpg">
+<meta name="twitter:image:alt" content="渠道营销作品集：智能生活，走进每一个生活场景">
+<link rel="icon" href="favicon.png">
+<link rel="preload" href="assets/fonts/NotoSerifSC-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/NotoSansSC-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* ===== Tokens ===== */
-:root{
-  --ink:#050a14;
-  --ink-2:#07101d;
-  --ink-3:#0a1628;
-  --panel:#0b182a;
-  --panel-2:#101f35;
-  --line:rgba(157,186,224,.15);
-  --line-strong:rgba(201,169,110,.34);
-  --text:#eef4fa;
-  --text-soft:#d3dde9;
-  --muted:#8b9db3;
-  --muted-2:#6f8299;
-  --gold:#c9a96e;
-  --gold-soft:#ead7b2;
-  --teal:#00b2a9;
-  --blue:#2f6fed;
-  --coral:#e08a56;
-  --white:#f5f7fa;
-  --nav-h:76px;
-  --max:1240px;
-  --serif:'Noto Serif SC', 'Songti SC', 'SimSun', serif;
-  --sans:'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
-  --ease:cubic-bezier(.22,.61,.36,1);
+/* =========================================================
+   渠道营销 · 杂志编辑风 v2
+   ========================================================= */
+/* P1: self-hosted variable subsets, no Google Fonts request */
+@font-face{
+  font-family:"Noto Serif SC";
+  font-style:normal;
+  font-weight:200 900;
+  font-display:swap;
+  src:url("assets/fonts/NotoSerifSC-var.woff2") format("woff2");
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+@font-face{
+  font-family:"Noto Sans SC";
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap;
+  src:url("assets/fonts/NotoSansSC-var.woff2") format("woff2");
+}
+:root{
+  --paper:#F3EDE2;
+  --paper-light:#FAF6EE;
+  --paper-deep:#E8DFCF;
+  --ink:#0B2342;
+  --ink-soft:#203959;
+  --muted:#6D685E;
+  --line:#C9BFAE;
+  --line-strong:#9D927E;
+  --accent:#D45A35;
+  --blue:#CEE3F1;
+  --blue-deep:#173D5B;
+  --white:#FFFDF8;
+  --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --content:1240px;
+  --gap:10px;
+}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink-soft);
   font-family:var(--sans);
-  background:var(--ink);
-  color:var(--text);
-  line-height:1.7;
-  overflow-x:hidden;
-  padding-top:var(--nav-h);
+  font-weight:400;
+  line-height:1.75;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
-body.locked{overflow:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-::selection{background:rgba(201,169,110,.35);color:#fff}
-:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(118,158,208,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(118,158,208,.035) 1px, transparent 1px);
-  background-size:88px 88px;
-  -webkit-mask-image:radial-gradient(ellipse at 50% 12%, #000 0%, rgba(0,0,0,.55) 42%, transparent 84%);
-  mask-image:radial-gradient(ellipse at 50% 12%, #000 0%, rgba(0,0,0,.55) 42%, transparent 84%);
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(circle at 13% 8%, rgba(47,111,237,.13), transparent 33%),
-    radial-gradient(circle at 87% 38%, rgba(0,178,169,.075), transparent 31%),
-    radial-gradient(circle at 60% 100%, rgba(201,169,110,.055), transparent 38%);
-}
-.site-head, .scroll-progress, main, .site-footer, .to-top, .lightbox{position:relative;z-index:1}
-.container{width:min(var(--max), calc(100% - 56px));margin-inline:auto}
-.skip-link{
-  position:fixed;top:-100px;left:24px;z-index:3000;
-  background:var(--gold);color:#08111f;padding:10px 16px;border-radius:0 0 8px 8px;
-  font-size:12px;font-weight:600;transition:top .2s ease;
-}
-.skip-link:focus{top:0}
-
-/* ===== Header ===== */
-.site-head{
-  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:0 34px;
-  border-bottom:1px solid transparent;
-  transition:background .35s ease, border-color .35s ease, backdrop-filter .35s ease;
-}
-.site-head.is-scrolled{
-  background:rgba(5,10,20,.82);
-  border-bottom-color:var(--line);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-.head-brand{display:flex;align-items:baseline;gap:10px;flex:0 0 auto}
-.head-brand-name{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:.08em;color:#fff}
-.head-brand-sub{font-size:8px;letter-spacing:.24em;color:var(--muted);white-space:nowrap}
-.head-nav{display:flex;align-items:center;justify-content:center;gap:28px;flex:1 1 auto}
-.head-nav a{
-  position:relative;font-size:11px;letter-spacing:.14em;color:rgba(238,244,250,.66);
-  padding:8px 0;transition:color .25s ease;
-}
-.head-nav a::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);
-  transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
-}
-.head-nav a:hover,.head-nav a.active{color:#fff}
-.head-nav a.active::after,.head-nav a:hover::after{transform:scaleX(1)}
-.head-tools{display:flex;align-items:center;gap:16px;flex:0 0 auto}
-.head-case{font-size:8px;letter-spacing:.18em;color:var(--gold);border:1px solid rgba(201,169,110,.3);padding:4px 7px;border-radius:3px}
-.back-link{
-  display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.08em;
-  color:rgba(238,244,250,.78);border-bottom:1px solid rgba(238,244,250,.22);
-  padding-bottom:3px;transition:color .2s ease,border-color .2s ease;
-}
-.back-link:hover{color:var(--gold);border-color:var(--gold)}
-.back-link svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
-.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:1200;background:transparent;pointer-events:none}
-.scroll-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--gold),var(--teal));transition:width .08s linear}
-
-/* ===== Hero ===== */
-.hero{
-  position:relative;min-height:calc(100vh - var(--nav-h));
-  display:flex;align-items:center;overflow:hidden;
-  padding:clamp(44px,5.5vw,84px) 0 72px;
-}
-.hero::before{
-  content:"CHANNEL";position:absolute;right:-.08em;bottom:-.16em;
-  font-family:var(--serif);font-weight:900;font-size:clamp(100px,17.5vw,268px);
-  letter-spacing:.04em;line-height:.8;color:transparent;
-  -webkit-text-stroke:1px rgba(201,169,110,.12);
-  pointer-events:none;user-select:none;
-}
-.hero-inner{
-  position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;
-  align-items:center;gap:clamp(36px,5.6vw,82px);
-}
-.hero-copy{min-width:0}
-.hero-brandline{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-.hero-brandline img{width:34px;height:auto;filter:drop-shadow(0 0 12px rgba(0,178,169,.28))}
-.hero-brand-text{display:flex;flex-direction:column;line-height:1.25}
-.hero-brand-text strong{font-size:13px;letter-spacing:.18em;color:#fff;font-weight:500}
-.hero-brand-text em{font-style:normal;font-size:8px;letter-spacing:.18em;color:var(--muted)}
-.hero-brandline .hero-line{width:34px;height:1px;background:rgba(201,169,110,.55);margin-left:3px}
-.hero-brandline .hero-system{font-size:9px;letter-spacing:.16em;color:var(--muted);white-space:nowrap}
-.hero-eyebrow{margin-top:clamp(30px,4vw,48px);font-size:9px;letter-spacing:.27em;color:var(--gold)}
-.hero-title{margin:18px 0 24px;font-weight:600;line-height:1}
-.hero-title-cn{
-  display:block;font-family:var(--serif);font-size:clamp(56px,6.7vw,96px);
-  letter-spacing:.08em;line-height:1.04;color:#fff;
-  text-shadow:0 16px 60px rgba(0,0,0,.55);
-}
-.hero-title-en{
-  display:block;margin-top:12px;font-size:10px;font-weight:400;
-  letter-spacing:.38em;color:var(--gold-soft);text-transform:uppercase;
-}
-.hero-lead{
-  font-family:var(--serif);font-size:clamp(20px,2.1vw,27px);font-weight:400;
-  line-height:1.58;letter-spacing:.04em;color:var(--text-soft);max-width:590px;
-}
-.hero-sub{max-width:600px;margin-top:17px;font-size:13px;line-height:1.9;color:var(--muted)}
-.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:30px 0 38px}
-.btn-primary,.btn-ghost{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  min-height:46px;padding:0 22px;border-radius:999px;
-  font-size:11px;letter-spacing:.12em;transition:transform .25s var(--ease),background .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease;
-}
-.btn-primary{background:var(--gold);color:#07101d;font-weight:600;box-shadow:0 14px 34px rgba(201,169,110,.17)}
-.btn-primary:hover{transform:translateY(-2px);background:var(--gold-soft);box-shadow:0 18px 40px rgba(201,169,110,.24)}
-.btn-ghost{border:1px solid rgba(238,244,250,.24);color:rgba(238,244,250,.88)}
-.btn-ghost:hover{transform:translateY(-2px);border-color:var(--gold);color:var(--gold)}
-.btn-primary svg,.btn-ghost svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid var(--line);padding-top:18px;max-width:620px}
-.stat strong{display:block;font-family:var(--serif);font-size:20px;line-height:1.2;color:#fff;letter-spacing:.03em}
-.stat span{display:block;margin-top:4px;font-size:9px;letter-spacing:.14em;color:var(--muted-2)}
-.hero-map{
-  position:relative;min-height:518px;padding:18px 18px 14px;
-  border:1px solid rgba(157,186,224,.17);border-radius:24px;
-  background:linear-gradient(145deg,rgba(15,32,55,.88),rgba(5,11,21,.72));
-  box-shadow:0 38px 90px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.04);
-  overflow:hidden;
-}
-.hero-map::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(circle at 50% 45%,rgba(0,178,169,.12),transparent 39%),
-    linear-gradient(120deg,rgba(47,111,237,.08),transparent 45%);
-}
-.hero-map::after{
-  content:"";position:absolute;right:16px;top:18px;width:42px;height:42px;
-  border-top:1px solid rgba(201,169,110,.4);border-right:1px solid rgba(201,169,110,.4);
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
   pointer-events:none;
+  opacity:.15;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
-.map-meta{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.map-meta span{font-size:8px;letter-spacing:.2em;color:var(--muted)}
-.map-meta span:last-child{color:rgba(201,169,110,.7)}
-.network{position:relative;height:405px;margin-top:8px}
-.network svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.58}
-.network svg path{fill:none;stroke:rgba(201,169,110,.45);stroke-width:1;stroke-dasharray:5 13}
-.network svg path:nth-child(2n){stroke:rgba(0,178,169,.42)}
-.net-core{
-  position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:132px;height:132px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;border:1px solid rgba(201,169,110,.55);
-  background:radial-gradient(circle,rgba(201,169,110,.16),rgba(7,16,29,.92) 68%);
-  box-shadow:0 0 0 13px rgba(201,169,110,.035),0 0 60px rgba(201,169,110,.13);
+main{position:relative;z-index:1}
+img{display:block}
+figure{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--ink);color:var(--paper)}
+.skip{
+  position:absolute;
+  left:16px;top:-60px;z-index:80;
+  padding:10px 16px;background:var(--ink);color:var(--white);
+  font-size:12px;border-radius:2px;transition:top .2s;
 }
-.net-core::before,.net-core::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(201,169,110,.18);pointer-events:none}
-.net-core::before{inset:-24px}
-.net-core::after{inset:-48px;border-color:rgba(0,178,169,.12)}
-.net-core small{font-size:8px;letter-spacing:.18em;color:var(--muted)}
-.net-core strong{display:block;margin-top:5px;font-family:var(--serif);font-size:19px;letter-spacing:.08em;color:#fff}
-.net-node{
-  position:absolute;z-index:3;width:174px;min-height:82px;padding:12px 14px;
-  border:1px solid rgba(157,186,224,.18);border-radius:12px;
-  background:rgba(6,15,29,.86);backdrop-filter:blur(12px);
-  box-shadow:0 14px 28px rgba(0,0,0,.22);
-  transition:border-color .25s ease,transform .25s ease,background .25s ease;
-}
-.net-node:hover{border-color:rgba(201,169,110,.5);transform:translateY(-3px);background:rgba(12,25,44,.94)}
-.net-node .node-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.net-node em{font-style:normal;font-size:9px;letter-spacing:.16em;color:var(--gold)}
-.net-node i{width:6px;height:6px;border-radius:50%;background:var(--node-color,var(--teal));box-shadow:0 0 10px var(--node-color,var(--teal))}
-.net-node strong{display:block;margin-top:6px;font-family:var(--serif);font-size:16px;font-weight:600;color:#fff;letter-spacing:.04em}
-.net-node small{display:block;margin-top:3px;font-size:9px;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
-.net-node.n1{left:0;top:6px;--node-color:var(--teal)}
-.net-node.n2{right:0;top:6px;--node-color:var(--blue)}
-.net-node.n3{left:0;bottom:6px;--node-color:var(--gold)}
-.net-node.n4{right:0;bottom:6px;--node-color:var(--coral)}
-.map-foot{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 4px;font-size:8px;letter-spacing:.16em;color:var(--muted-2)}
-.map-foot span{display:inline-flex;align-items:center;gap:6px}
-.map-foot span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.7}
-.hero-scroll{
-  position:absolute;left:50%;bottom:25px;transform:translateX(-50%);
-  display:flex;align-items:center;gap:12px;font-size:8px;letter-spacing:.22em;color:var(--muted-2);
-}
-.hero-scroll i{display:block;width:58px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
-
-/* ===== Sections ===== */
-.section{position:relative;padding:clamp(82px,9vw,128px) 0;scroll-margin-top:calc(var(--nav-h) + 18px)}
-.section + .section{border-top:1px solid var(--line)}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:9px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
-.eyebrow::before{content:"";display:block;width:22px;height:1px;background:var(--gold);opacity:.8}
-.section-heading{display:grid;grid-template-columns:1fr .62fr;gap:40px;align-items:end;margin-bottom:52px}
-.section-heading h2,.chapter-title h2,.loop h2{
-  margin-top:12px;font-family:var(--serif);font-weight:600;font-size:clamp(34px,4.2vw,56px);
-  line-height:1.24;letter-spacing:.03em;color:#fff;
-}
-.section-heading p,.chapter-title p{color:var(--muted);font-size:13px;line-height:1.95;max-width:460px}
-.section-heading p{justify-self:end}
-
-/* ===== Overview ===== */
-.overview{background:linear-gradient(180deg,rgba(6,13,24,.16),rgba(6,13,24,.48))}
-.stage-flow{display:flex;align-items:center;gap:12px;margin:-26px 0 26px;font-size:9px;letter-spacing:.16em;color:var(--muted-2)}
-.stage-flow span{display:inline-flex;align-items:center;gap:8px}
-.stage-flow span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.7}
-.stage-flow i{color:rgba(201,169,110,.55);font-style:normal}
-.stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.stage-card{
-  position:relative;display:flex;flex-direction:column;min-height:380px;padding:24px 21px 20px;
-  border:1px solid var(--line);border-top:2px solid var(--accent);
-  border-radius:15px;background:linear-gradient(180deg,rgba(15,30,50,.76),rgba(7,14,26,.86));
-  overflow:hidden;transition:transform .3s var(--ease),border-color .3s ease,box-shadow .3s ease;
-}
-.stage-card::after{
-  content:"";position:absolute;right:-38px;top:-42px;width:126px;height:126px;border-radius:50%;
-  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 18%,transparent),transparent 68%);pointer-events:none;
-}
-.stage-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.38);box-shadow:0 26px 60px rgba(0,0,0,.28)}
-.stage-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.stage-num{font-family:var(--serif);font-size:22px;line-height:1;color:var(--accent);letter-spacing:.04em}
-.stage-kicker{font-size:8px;letter-spacing:.16em;color:var(--muted-2)}
-.stage-card h3{margin-top:22px;font-family:var(--serif);font-size:30px;line-height:1.25;font-weight:600;letter-spacing:.08em;color:#fff}
-.stage-card > p{margin-top:5px;font-size:12px;color:var(--muted);line-height:1.8}
-.stage-channels{display:flex;flex-wrap:wrap;gap:5px;margin-top:18px}
-.stage-channels span,.channel-chips span,.platform-chips span{
-  display:inline-flex;align-items:center;min-height:24px;padding:0 8px;border:1px solid rgba(157,186,224,.18);
-  border-radius:999px;font-size:9px;letter-spacing:.04em;color:rgba(238,244,250,.75);background:rgba(255,255,255,.025);
-}
-.stage-card dl{margin-top:auto;padding-top:18px}
-.stage-card dl div{padding:9px 0;border-top:1px solid rgba(157,186,224,.1)}
-.stage-card dt{font-size:8px;letter-spacing:.14em;color:var(--muted-2)}
-.stage-card dd{margin-top:2px;font-size:11px;line-height:1.6;color:var(--text-soft)}
-.stage-card:nth-child(1){--accent:var(--teal)}
-.stage-card:nth-child(2){--accent:var(--blue)}
-.stage-card:nth-child(3){--accent:var(--gold)}
-.stage-card:nth-child(4){--accent:var(--coral)}
-
-/* ===== Chapter ===== */
-.chapter{position:relative}
-.chapter-head{display:grid;grid-template-columns:88px 1fr auto;gap:30px;align-items:start;margin-bottom:48px}
-.chapter-num{
-  font-family:var(--serif);font-size:62px;font-weight:600;line-height:1;letter-spacing:.02em;
-  color:transparent;-webkit-text-stroke:1px rgba(201,169,110,.6);opacity:.75;
-}
-.chapter-title{min-width:0}
-.chapter-title h2{margin-top:11px}
-.chapter-title p{margin-top:16px}
-.btn-board{
-  display:inline-flex;align-items:center;gap:9px;white-space:nowrap;min-height:38px;padding:0 14px;
-  border:1px solid rgba(201,169,110,.34);border-radius:999px;color:var(--gold);
-  font-size:10px;letter-spacing:.1em;transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
-}
-.btn-board:hover{background:rgba(201,169,110,.1);border-color:var(--gold);transform:translateY(-2px)}
-.btn-board svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.7}
-
-/* ===== Media / asset cards ===== */
-.asset-card{display:flex;flex-direction:column;min-width:0}
-.media-button{
-  position:relative;display:block;width:100%;padding:0;overflow:hidden;
-  border:1px solid rgba(157,186,224,.3);border-radius:14px;background:#fff;
-  box-shadow:0 22px 46px rgba(0,0,0,.3);
-  cursor:zoom-in;
-}
-.media-button img{width:100%;height:auto;transition:transform .65s var(--ease);background:#fff}
-.media-button:hover img{transform:scale(1.024)}
-.media-button::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);border-radius:inherit;
-}
-.zoom-hint{
-  position:absolute;right:9px;bottom:9px;z-index:2;display:inline-flex;align-items:center;gap:5px;
-  padding:4px 7px;border-radius:999px;background:rgba(4,10,20,.78);color:#fff;
-  font-size:8px;letter-spacing:.08em;opacity:0;transform:translateY(5px);
-  transition:opacity .25s ease,transform .25s ease;pointer-events:none;
-}
-.media-button:hover .zoom-hint,.media-button:focus-visible .zoom-hint{opacity:1;transform:none}
-.asset-card figcaption{padding:15px 2px 0}
-.asset-tag{display:block;font-size:8px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
-.asset-card h3{margin-top:7px;font-family:var(--serif);font-size:clamp(20px,2vw,26px);line-height:1.35;font-weight:600;letter-spacing:.04em;color:#fff}
-.asset-card figcaption p{margin-top:6px;font-size:11px;line-height:1.8;color:var(--muted)}
-.asset-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.asset-meta span{font-size:8px;letter-spacing:.05em;color:var(--muted-2);border-left:1px solid rgba(157,186,224,.2);padding-left:7px}
-.asset-meta span:first-child{border-left:0;padding-left:0}
-
-/* ===== Social ===== */
-.social-feature{display:grid;grid-template-columns:1.35fr .65fr;gap:36px;align-items:center;margin-bottom:34px}
-.social-foundation .media-button{border-radius:12px}
-.social-feature-copy h3{margin-top:10px;font-family:var(--serif);font-size:clamp(26px,3vw,38px);line-height:1.35;font-weight:600;letter-spacing:.04em}
-.social-feature-copy p{margin-top:15px;color:var(--muted);font-size:12px;line-height:1.95;max-width:360px}
-.channel-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
-.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
-.social-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:44px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(157,186,224,.06)}
-.social-note{padding:22px 22px 20px;background:rgba(6,13,25,.72)}
-.social-note span{font-size:8px;letter-spacing:.15em;color:var(--gold)}
-.social-note h4{margin-top:9px;font-family:var(--serif);font-size:18px;font-weight:600;line-height:1.4}
-.social-note p{margin-top:6px;font-size:10px;color:var(--muted);line-height:1.8}
-
-/* ===== Private ===== */
-.journey{
-  display:flex;align-items:center;flex-wrap:wrap;gap:9px 10px;width:fit-content;max-width:100%;
-  margin-bottom:28px;padding:10px 15px;border:1px solid var(--line);border-radius:999px;
-  background:rgba(15,30,50,.58);font-size:10px;letter-spacing:.04em;color:var(--muted);
-}
-.journey b{font-weight:500;color:rgba(238,244,250,.86)}
-.journey i{font-style:normal;color:var(--gold);opacity:.8}
-.private-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
-.private-grid .asset-card figcaption p{max-width:330px}
-.conversion-band{margin-top:42px;padding:22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(15,30,50,.68),rgba(7,14,26,.82))}
-.band-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:17px}
-.band-head h3{margin-top:8px;font-family:var(--serif);font-size:26px;line-height:1.35;font-weight:600}
-.band-head p{max-width:360px;color:var(--muted);font-size:11px;line-height:1.8;text-align:right}
-.band-media .media-button{border-radius:10px}
-.band-media .media-button img{width:100%}
-
-/* ===== Live ===== */
-.live-top{display:grid;grid-template-columns:1.06fr .94fr;gap:42px;align-items:start;margin-bottom:36px}
-.live-room-wrap{position:relative}
-.live-badge{
-  position:absolute;left:13px;top:13px;z-index:3;display:inline-flex;align-items:center;gap:6px;
-  padding:5px 9px;border-radius:999px;background:rgba(6,14,26,.85);border:1px solid rgba(0,178,169,.35);
-  font-size:8px;letter-spacing:.14em;color:#bff5ef;backdrop-filter:blur(8px);
-}
-.live-badge i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:livePulse 2s ease-in-out infinite}
-@keyframes livePulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
-.live-copy{padding-top:14px}
-.live-copy .eyebrow{color:var(--teal)}
-.live-copy .eyebrow::before{background:var(--teal)}
-.live-copy h3{margin-top:12px;font-family:var(--serif);font-size:clamp(30px,3.6vw,46px);line-height:1.35;font-weight:600;letter-spacing:.04em}
-.live-copy h3 span{color:var(--gold)}
-.live-copy > p{margin-top:15px;max-width:430px;color:var(--muted);font-size:12px;line-height:1.95}
-.live-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px;margin-top:23px;border-top:1px solid var(--line)}
-.live-list div{padding:13px 0;border-bottom:1px solid var(--line)}
-.live-list span{display:block;font-size:8px;letter-spacing:.14em;color:var(--gold)}
-.live-list strong{display:block;margin-top:3px;font-size:12px;font-weight:500;color:var(--text-soft)}
-.platform-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:22px}
-.live-strips{display:grid;gap:24px}
-.wide-asset{display:flex;flex-direction:column;gap:11px}
-.wide-asset .media-button{border-radius:12px}
-.wide-asset .wide-caption{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:0 2px}
-.wide-caption h3{margin:0;font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.04em}
-.wide-caption span{font-size:9px;letter-spacing:.1em;color:var(--muted)}
-
-/* ===== Paid ===== */
-.paid-top{display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:center;margin-bottom:32px}
-.paid-copy h3{margin-top:12px;font-family:var(--serif);font-size:clamp(30px,3.5vw,44px);line-height:1.35;font-weight:600;letter-spacing:.04em}
-.paid-copy > p{margin-top:15px;max-width:500px;color:var(--muted);font-size:12px;line-height:1.95}
-.funnel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:24px}
-.funnel-item{padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(15,30,50,.5)}
-.funnel-item span{display:block;font-size:8px;letter-spacing:.13em;color:var(--muted-2)}
-.funnel-item strong{display:block;margin-top:4px;font-size:12px;font-weight:500;color:var(--text-soft)}
-.paid-interactive{margin-bottom:24px}
-.paid-duo{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:start}
-
-/* ===== Loop ===== */
-.loop{position:relative;padding-bottom:clamp(80px,9vw,120px)}
-.loop-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:46px;border-top:1px solid rgba(201,169,110,.26)}
-.loop-step{position:relative;padding:24px 17px 8px;border-right:1px solid var(--line)}
-.loop-step:last-child{border-right:0}
-.loop-step .loop-num{font-family:var(--serif);font-size:42px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(201,169,110,.55);letter-spacing:.02em}
-.loop-step h3{margin-top:15px;font-family:var(--serif);font-size:20px;line-height:1.4;font-weight:600}
-.loop-step p{margin-top:8px;font-size:10px;line-height:1.8;color:var(--muted)}
-.loop-quote{display:grid;grid-template-columns:1fr auto;align-items:end;gap:30px;margin-top:76px;padding:38px 0 34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.loop-quote h2{font-family:var(--serif);font-size:clamp(34px,5.3vw,70px);line-height:1.28;font-weight:600;letter-spacing:.04em}
-.loop-quote h2 span{color:var(--gold)}
-.loop-quote p{max-width:280px;color:var(--muted);font-size:11px;line-height:1.9;text-align:right}
-.loop-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-
-/* ===== Footer ===== */
-.site-footer{padding:26px 0 34px;border-top:1px solid var(--line);background:rgba(4,9,17,.55)}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.footer-brand{font-family:var(--serif);font-size:13px;letter-spacing:.08em;color:rgba(238,244,250,.78)}
-.footer-meta{font-size:9px;letter-spacing:.12em;color:var(--muted-2)}
-.footer-links{display:flex;align-items:center;gap:16px;font-size:10px;color:var(--muted)}
-.footer-links a{border-bottom:1px solid rgba(238,244,250,.18);padding-bottom:2px;transition:color .2s ease,border-color .2s ease}
-.footer-links a:hover{color:var(--gold);border-color:var(--gold)}
-
-/* ===== To top ===== */
-.to-top{
-  position:fixed;right:22px;bottom:22px;z-index:1500;width:42px;height:42px;border-radius:50%;
-  display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,110,.35);
-  background:rgba(7,14,26,.82);color:var(--gold);backdrop-filter:blur(12px);
-  opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,visibility .25s ease,transform .25s ease,background .25s ease;
-}
-.to-top.show{opacity:1;visibility:visible;transform:none}
-.to-top:hover{background:rgba(201,169,110,.12)}
-.to-top svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7}
-
-/* ===== Lightbox ===== */
-.lightbox{
-  position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:30px;
-  background:rgba(2,6,12,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  opacity:0;visibility:hidden;transition:opacity .28s ease,visibility 0s .28s;
-}
-.lightbox.open{opacity:1;visibility:visible;transition:opacity .28s ease,visibility 0s}
-.lightbox-panel{position:relative;width:min(1240px,94vw);max-height:92vh;display:flex;flex-direction:column;gap:12px}
-.lightbox-img-wrap{display:flex;align-items:center;justify-content:center;max-height:82vh;padding:9px;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.lightbox-img-wrap img{max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain}
-.lightbox-close{
-  position:absolute;right:-4px;top:-48px;z-index:2;width:38px;height:38px;border-radius:50%;
-  display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(238,244,250,.28);
-  background:rgba(7,14,26,.86);color:#fff;font-size:20px;line-height:1;transition:border-color .2s ease,color .2s ease;
-}
-.lightbox-close:hover{border-color:var(--gold);color:var(--gold)}
-.lightbox-caption{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 2px;font-size:10px;letter-spacing:.08em;color:var(--muted)}
-.lightbox-caption strong{font-weight:400;color:rgba(238,244,250,.86)}
-
-/* ===== Reveal ===== */
-.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .85s var(--ease),transform .85s var(--ease);transition-delay:var(--delay,0s)}
-.js .reveal.in{opacity:1;transform:none}
-
-/* ===== Responsive ===== */
-@media (max-width:1120px){
-  .head-nav{gap:18px}
-  .hero-inner{grid-template-columns:1fr .88fr;gap:34px}
-  .net-node{width:160px}
-  .stage-grid{grid-template-columns:repeat(2,1fr)}
-  .stage-card{min-height:330px}
-}
-@media (max-width:900px){
-  .hero{min-height:auto;padding-top:48px}
-  .hero-inner{grid-template-columns:1fr;gap:44px}
-  .hero-copy{max-width:720px}
-  .hero-map{width:min(620px,100%);min-height:500px;margin-inline:auto}
-  .hero::before{font-size:150px;bottom:auto;top:42%}
-  .section-heading{grid-template-columns:1fr;gap:14px}
-  .section-heading p{justify-self:start}
-  .chapter-head{grid-template-columns:66px 1fr;gap:22px 20px}
-  .chapter-num{font-size:48px}
-  .btn-board{grid-column:2;justify-self:start;margin-top:-2px}
-  .social-feature{grid-template-columns:1fr;gap:24px}
-  .social-feature-copy p{max-width:620px}
-  .private-grid{grid-template-columns:1fr 1fr}
-  .private-grid .asset-card:last-child{grid-column:1 / -1}
-  .private-grid .asset-card:last-child .media-button{max-width:520px}
-  .live-top{grid-template-columns:1fr;gap:28px}
-  .paid-top{grid-template-columns:1fr;gap:26px}
-  .paid-top .media-button{max-width:520px}
-  .paid-duo{grid-template-columns:1fr}
-  .loop-grid{grid-template-columns:repeat(2,1fr);border-top:0}
-  .loop-step{border-top:1px solid rgba(201,169,110,.26);border-right:1px solid var(--line)}
-  .loop-step:nth-child(2n){border-right:0}
-  .loop-step:last-child{grid-column:1 / -1}
-  .loop-quote{grid-template-columns:1fr;gap:18px}
-  .loop-quote p{text-align:left;max-width:620px}
-}
-@media (max-width:720px){
-  :root{--nav-h:68px}
-  .container{width:min(var(--max), calc(100% - 36px))}
-  .site-head{padding:0 18px;gap:12px}
-  .head-nav,.head-case{display:none}
-  .head-brand-name{font-size:17px}
-  .head-brand-sub{display:none}
-  .back-link{font-size:10px}
-  .hero{padding-bottom:74px}
-  .hero-title-cn{font-size:clamp(50px,13vw,68px)}
-  .hero-title-en{font-size:9px;letter-spacing:.28em}
-  .hero-lead{font-size:19px;line-height:1.65}
-  .hero-sub{font-size:12px}
-  .hero-actions{gap:9px}
-  .btn-primary,.btn-ghost{min-height:42px;padding:0 17px;font-size:10px}
-  .hero-stats{grid-template-columns:repeat(2,1fr);gap:14px 18px}
-  .hero-map{min-height:450px;padding:14px}
-  .network{height:350px}
-  .net-node{width:43.5%;min-height:74px;padding:10px 11px}
-  .net-node strong{font-size:14px}
-  .net-node small{font-size:8px;white-space:normal;line-height:1.4}
-  .net-core{width:104px;height:104px}
-  .net-core strong{font-size:16px}
-  .net-core small{font-size:7px}
-  .map-foot{font-size:7px;letter-spacing:.08em}
-  .stage-flow{flex-wrap:wrap;line-height:1.8}
-  .stage-grid{grid-template-columns:1fr;gap:12px}
-  .stage-card{min-height:auto;padding:22px 18px 18px}
-  .stage-card dl{margin-top:16px}
-  .chapter-head{gap:16px 14px}
-  .chapter-num{font-size:40px}
-  .chapter-title h2{font-size:clamp(32px,8vw,44px)}
-  .chapter-title p{font-size:12px}
-  .social-grid{grid-template-columns:1fr;gap:28px}
-  .social-notes{grid-template-columns:1fr;gap:1px}
-  .social-note{padding:18px}
-  .journey{border-radius:14px;font-size:9px;line-height:1.9;width:100%}
-  .private-grid{grid-template-columns:1fr;gap:26px}
-  .private-grid .asset-card:last-child{grid-column:auto}
-  .private-grid .asset-card:last-child .media-button{max-width:none}
-  .conversion-band{padding:14px}
-  .band-head{display:block}
-  .band-head p{margin-top:8px;text-align:left}
-  .live-list{grid-template-columns:1fr}
-  .live-list div{padding:11px 0}
-  .funnel-grid{grid-template-columns:repeat(2,1fr)}
-  .loop-grid{grid-template-columns:1fr}
-  .loop-step,.loop-step:nth-child(2n){border-right:0}
-  .loop-step:last-child{grid-column:auto}
-  .loop-quote{margin-top:52px;padding:28px 0}
-  .loop-quote h2{font-size:clamp(32px,9vw,44px)}
-  .footer-inner{align-items:flex-start;flex-direction:column;gap:12px}
-}
-@media (max-width:430px){
-  .hero-brandline .hero-line,.hero-brandline .hero-system{display:none}
-  .hero-eyebrow{font-size:8px;letter-spacing:.18em}
-  .hero-map{min-height:420px}
-  .network{height:330px}
-  .net-node{width:44.5%}
-  .net-node small{display:none}
-  .net-core{width:92px;height:92px}
-  .net-core strong{font-size:14px}
-  .map-foot{display:none}
-  .social-feature-copy h3,.live-copy h3,.paid-copy h3{font-size:28px}
-  .band-head h3{font-size:22px}
-  .loop-quote h2{font-size:30px}
-}
-
+.skip:focus{top:12px}
+.wrap{width:min(var(--content),calc(100% - clamp(36px,8vw,104px)));margin-inline:auto}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-  .js .reveal{opacity:1;transform:none}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* ---------- nav ---------- */
+.site-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(243,237,226,.93);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.nav-inner{
+  width:min(1380px,calc(100% - 56px));
+  height:78px;margin-inline:auto;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:26px;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-seal{
+  width:38px;height:38px;border-radius:50%;
+  overflow:hidden;flex:0 0 auto;
+  background:var(--ink);
+  box-shadow:0 0 0 1px rgba(11,35,66,.18);
+}
+.brand-seal img{width:100%;height:100%;object-fit:cover}
+.brand-words{display:flex;flex-direction:column;line-height:1.1}
+.brand-words b{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.06em;color:var(--ink)}
+.brand-words small{font-size:7.5px;letter-spacing:.17em;color:var(--muted);margin-top:4px}
+.nav-links{display:flex;align-items:center;gap:30px;justify-self:center}
+.nav-links a{
+  position:relative;font-size:12.5px;letter-spacing:.08em;color:var(--ink-soft);
+  padding:8px 0;transition:color .2s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--ink);font-weight:500}
+.nav-actions{display:flex;align-items:center;gap:18px;justify-self:end}
+.nav-status{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.15em;color:var(--muted)}
+.nav-status i{width:5px;height:5px;border-radius:50%;background:var(--accent);display:block}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--ink);color:var(--paper);
+  padding:10px 16px;border-radius:999px;
+  font-size:11.5px;letter-spacing:.08em;white-space:nowrap;
+  transition:background .2s,transform .2s;
+}
+.nav-cta span{font-size:14px;line-height:1}
+.nav-cta:hover{background:var(--ink-soft);transform:translateY(-1px)}
+@media(max-width:900px){
+  .nav-inner{width:calc(100% - 36px);height:68px;grid-template-columns:1fr auto;gap:12px}
+  .nav-links{display:none}
+  .nav-status{display:none}
+  .brand-seal{width:32px;height:32px}
+  .brand-words b{font-size:15px}
+  .nav-cta{padding:9px 13px;font-size:10.5px}
+}
+@media(max-width:420px){
+  .brand-words small{display:none}
+  .brand-words b{font-size:14px}
+  .nav-cta span{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  min-height:clamp(570px,47vw,690px);
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.hero-media{
+  position:absolute;z-index:1;right:10px;top:0;width:60%;height:100%;overflow:hidden;
+  pointer-events:none;
+}
+.hero-media img{
+  width:100%;height:100%;object-fit:cover;object-position:88% 50%;
+  filter:saturate(.9) contrast(1.02);
+}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,var(--paper) 0%,rgba(243,237,226,.97) 6%,rgba(243,237,226,.86) 15%,rgba(243,237,226,0) 36%),
+    linear-gradient(0deg,var(--paper) 0%,var(--paper) 29%,rgba(243,237,226,.72) 36%,rgba(243,237,226,0) 48%),
+    linear-gradient(180deg,rgba(243,237,226,.35) 0%,rgba(243,237,226,0) 24%);
+}
+.hero-wrap{position:relative;z-index:4;min-height:inherit;display:flex;align-items:center}
+.hero-copy{width:62%;padding-top:64px;padding-bottom:28px}
+.hero-kicker{
+  display:flex;align-items:center;gap:12px;
+  font-size:9.5px;letter-spacing:.22em;color:var(--muted);
+  text-transform:uppercase;margin:0 0 20px;
+}
+.hero-kicker .rule{width:42px;height:1px;background:var(--line-strong);display:block}
+.hero-copy h1{
+  font-family:var(--serif);font-weight:700;color:var(--ink);
+  font-size:clamp(76px,9.8vw,142px);line-height:.94;letter-spacing:-.04em;
+  margin:0 0 16px;max-width:760px;
+}
+.hero-sub{
+  font-family:var(--serif);font-weight:500;color:var(--ink);
+  font-size:clamp(20px,2.2vw,29px);letter-spacing:.03em;line-height:1.5;
+  margin:0 0 8px;
+}
+.hero-en{
+  font-size:9.5px;letter-spacing:.23em;color:var(--muted);
+  text-transform:uppercase;margin:0;
+}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;max-width:620px;margin:42px 0 0;padding:19px 0 0;
+  border-top:1px solid rgba(11,35,66,.24);list-style:none;
+}
+.hero-stats li{display:flex;gap:10px;align-items:flex-start;padding:0 15px;border-left:1px solid rgba(11,35,66,.18)}
+.hero-stats li:first-child{padding-left:0;border-left:0}
+.hero-stat-icon{width:22px;height:22px;flex:0 0 auto;color:var(--ink);margin-top:2px}
+.hero-stats b{display:block;font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--ink);line-height:1.3}
+.hero-stats small{display:block;font-size:9.5px;letter-spacing:.11em;color:var(--muted);margin-top:3px}
+.hero-note{
+  position:absolute;right:3.4%;top:78px;z-index:5;
+  font-family:"Adobe Kaiti Std","KaiTi","STKaiti",var(--serif);
+  font-size:clamp(17px,1.8vw,25px);line-height:1.35;color:var(--ink);
+  transform:rotate(-5deg);text-align:left;
+}
+.hero-note span{display:block;font-size:.78em;opacity:.9}
+.hero-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  margin-top:36px;padding-top:14px;border-top:1px solid rgba(11,35,66,.24);
+  max-width:760px;
+}
+.hero-foot span{font-size:9.5px;letter-spacing:.15em;color:var(--ink);text-transform:uppercase}
+.hero-foot .scroll{display:inline-flex;align-items:center;gap:8px;color:var(--muted)}
+.hero-foot .scroll::after{content:"";width:34px;height:1px;background:var(--line-strong);display:block}
+@media(max-width:1000px){
+  .hero-copy{width:67%}
+  .hero-media{width:58%}
+  .hero-note{right:2%;top:54px}
+}
+@media(max-width:760px){
+  .hero{min-height:0}
+  .hero-media{
+    position:relative;right:auto;top:auto;width:100%;height:auto;
+    aspect-ratio:16/9;opacity:1;margin-top:6px;
+  }
+  .hero-media img{object-position:88% 46%}
+  .hero-media::after{
+    display:block;background:linear-gradient(0deg,var(--paper) 0%,var(--paper) 24%,rgba(243,237,226,.62) 32%,rgba(243,237,226,0) 42%);
+  }
+  .hero-copy{width:100%;padding-top:38px;padding-bottom:0}
+  .hero-copy h1{font-size:clamp(64px,15.5vw,82px);max-width:100%}
+  .hero-sub{font-size:20px}
+  .hero-stats{margin-top:28px;grid-template-columns:1fr;max-width:340px;border-top:0;padding-top:0}
+  .hero-stats li{padding:9px 0;border-left:0;border-top:1px solid rgba(11,35,66,.16)}
+  .hero-stats li:first-child{border-top:0}
+  .hero-stats b{font-size:11.5px}
+  .hero-note{display:none}
+  .hero-foot{margin-top:22px;max-width:100%;padding-bottom:20px}
+  .hero-foot .scroll{display:none}
+}
+@media(max-width:420px){
+  .hero{min-height:0}
+  .hero-kicker{font-size:8.5px;letter-spacing:.14em;margin-bottom:14px}
+  .hero-copy h1{font-size:64px}
+  .hero-sub{font-size:18px}
+}
+
+/* ---------- shared section furniture ---------- */
+.sec{padding:clamp(58px,7vw,104px) 0 0;position:relative}
+.sec-head{
+  display:grid;grid-template-columns:132px minmax(0,1fr) 300px;
+  gap:26px;align-items:start;
+  border-top:1px solid var(--line-strong);
+  padding-top:18px;margin-bottom:36px;
+}
+.sec-kicker{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding-top:4px}
+.sec-num{
+  font-family:var(--serif);font-weight:600;color:var(--ink);
+  font-size:clamp(54px,6vw,82px);line-height:.82;letter-spacing:-.05em;
+}
+.sec-eng{
+  display:block;font-size:8.5px;line-height:1.5;letter-spacing:.17em;
+  color:var(--muted);text-transform:uppercase;padding-top:0;max-width:96px;
+}
+.sec-titles h2{
+  font-family:var(--serif);font-weight:700;color:var(--ink);
+  font-size:clamp(42px,5.7vw,72px);line-height:1.04;letter-spacing:-.025em;
+  margin:0 0 8px;
+}
+.sec-titles p{font-size:15px;color:var(--muted);margin:0;letter-spacing:.02em}
+.sec-note{
+  justify-self:end;text-align:right;font-size:11.5px;line-height:1.8;color:var(--muted);
+  margin:0;padding-top:4px;max-width:280px;
+}
+.sec-note b{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.sec-note::before{content:"";display:block;width:48px;height:1px;background:var(--line);margin:0 0 10px auto}
+@media(max-width:900px){
+  .sec-head{grid-template-columns:82px minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .sec-num{font-size:54px}
+  .sec-titles h2{font-size:clamp(36px,7vw,52px)}
+  .sec-eng{display:none}
+  .sec-note{grid-column:1/-1;justify-self:start;text-align:left;max-width:100%;padding-top:0;margin-top:8px}
+  .sec-note::before{margin-left:0;width:32px}
+}
+@media(max-width:520px){
+  .sec-head{grid-template-columns:54px minmax(0,1fr);gap:12px;padding-top:14px}
+  .sec-num{font-size:44px}
+  .sec-titles h2{font-size:36px}
+  .sec-titles p{font-size:13px;line-height:1.7}
+}
+
+/* ---------- editorial intro & channels ---------- */
+.sec-intro{
+  display:grid;grid-template-columns:minmax(210px,.75fr) minmax(320px,1.45fr) minmax(210px,.72fr);
+  gap:28px;align-items:stretch;margin-bottom:32px;
+}
+.intro-copy{padding-top:4px}
+.lede{
+  font-family:var(--serif);font-weight:500;color:var(--ink);
+  font-size:clamp(20px,2vw,26px);line-height:1.55;letter-spacing:.01em;
+  margin:0 0 16px;
+}
+.intro-copy p{font-size:13px;line-height:1.95;color:var(--muted);margin:0 0 16px;max-width:330px}
+.text-link{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:.1em;color:var(--ink);
+  border-bottom:1px solid var(--line-strong);padding-bottom:4px;
+  transition:gap .2s,border-color .2s;
+}
+.text-link:hover{gap:16px;border-color:var(--ink)}
+.text-link::after{content:"↗";font-size:13px;line-height:1}
+.feature-figure{
+  position:relative;overflow:hidden;border-radius:4px;background:var(--paper-deep);
+  aspect-ratio:4/3;cursor:zoom-in;
+}
+.feature-figure img{width:100%;height:100%;object-fit:cover;transition:filter .3s}
+.feature-figure:hover img{filter:brightness(.97)}
+.feature-figure figcaption{
+  position:absolute;left:16px;bottom:16px;background:rgba(250,246,238,.95);
+  padding:11px 14px;max-width:74%;border-left:3px solid var(--accent);
+}
+.feature-figure figcaption span{display:block;font-size:8px;letter-spacing:.18em;color:var(--muted);margin-bottom:3px}
+.feature-figure figcaption b{display:block;font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.35;color:var(--ink)}
+.channel-list{border-top:1px solid var(--ink);padding-top:8px}
+.channel-list-head{font-size:9px;letter-spacing:.18em;color:var(--muted);margin:0 0 5px}
+.channel-item{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.channel-item-icon{width:27px;height:27px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;color:var(--ink)}
+.channel-item-icon svg{width:14px;height:14px}
+.channel-item b{display:block;font-size:12px;font-weight:500;color:var(--ink);line-height:1.3}
+.channel-item small{display:block;font-size:9.5px;color:var(--muted);letter-spacing:.06em;margin-top:2px}
+@media(max-width:1000px){
+  .sec-intro{grid-template-columns:1fr 1.35fr;gap:22px}
+  .channel-list{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .channel-list-head{display:none}
+  .channel-item{padding:10px 10px;border-bottom:0;border-right:1px solid var(--line);grid-template-columns:26px 1fr;gap:8px}
+  .channel-item:last-child{border-right:0}
+}
+@media(max-width:760px){
+  .sec-intro{grid-template-columns:1fr;gap:18px}
+  .intro-copy{order:1}
+  .feature-figure{order:2;aspect-ratio:4/3}
+  .channel-list{order:3;grid-template-columns:1fr 1fr}
+  .channel-item{border-bottom:1px solid var(--line)}
+  .channel-item:nth-child(odd){border-right:1px solid var(--line)}
+  .channel-item:nth-child(even){border-right:0}
+  .lede{font-size:19px}
+  .feature-figure figcaption{left:10px;bottom:10px;padding:9px 11px;max-width:82%}
+  .feature-figure figcaption b{font-size:15px}
+}
+
+/* ---------- galleries ---------- */
+.gallery{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:var(--gap);align-items:start;
+}
+.gallery .tile{aspect-ratio:var(--ar);width:100%}
+.gallery.is-rows{display:block}
+.gal-row{display:flex;gap:var(--gap);align-items:flex-start;margin-bottom:var(--gap)}
+.gal-row:last-child{margin-bottom:0}
+.gallery.is-rows .tile{aspect-ratio:auto;width:auto;height:auto;flex:0 0 auto}
+.tile{
+  position:relative;overflow:hidden;background:var(--paper-deep);
+  border-radius:3px;cursor:zoom-in;
+  box-shadow:inset 0 0 0 1px rgba(11,35,66,.1);
+  transition:box-shadow .25s,transform .25s;
+}
+.tile:hover{box-shadow:inset 0 0 0 1px rgba(11,35,66,.2),0 10px 28px -16px rgba(11,35,66,.35)}
+.tile:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.timg{position:absolute;inset:0;overflow:hidden;background-image:var(--ph,linear-gradient(135deg,#eee7db,#e3dacb));background-position:center;background-size:cover;background-repeat:no-repeat}
+.timg img{width:100%;height:100%;object-fit:cover;transition:filter .3s}
+.tile:hover .timg img{filter:brightness(.97) contrast(1.01)}
+.cap{
+  position:absolute;left:8px;bottom:8px;z-index:2;
+  max-width:calc(100% - 16px);
+  padding:3px 7px 3px 8px;
+  background:rgba(255,253,248,.93);
+  border-left:2px solid var(--accent);
+  color:var(--ink);font-size:9px;line-height:1.45;letter-spacing:.02em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  pointer-events:none;
+}
+.gallery.is-rows .tile .cap{font-size:9px}
+@media(max-width:520px){
+  .cap{left:5px;bottom:5px;padding:2px 5px;font-size:8px;max-width:calc(100% - 10px)}
+}
+
+/* 02 social captions: larger, centered along the bottom edge */
+#s2-gallery .tile .cap{
+  left:50%;bottom:10px;transform:translateX(-50%);
+  max-width:calc(100% - 20px);
+  padding:5px 11px 4px;
+  font-size:12px;font-weight:500;letter-spacing:.06em;
+  text-align:center;
+  border-left:0;border-bottom:2px solid var(--accent);
+}
+@media(max-width:600px){
+  #s2-gallery .tile .cap{
+    bottom:8px;
+    max-width:calc(100% - 14px);
+    padding:4px 9px 3px;
+    font-size:11px;
+  }
+}
+
+/* ---------- live commerce section ---------- */
+.live-lead{
+  display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.55fr);
+  gap:28px;align-items:stretch;margin-bottom:30px;
+}
+.live-copy{padding-top:2px}
+.live-copy .lede{font-size:clamp(20px,1.9vw,25px)}
+.live-copy p{font-size:13px;color:var(--muted);line-height:1.95;margin:0 0 14px;max-width:320px}
+.live-facts{display:flex;gap:22px;margin-top:24px}
+.live-facts div b{display:block;font-family:var(--serif);font-size:24px;line-height:1;color:var(--ink)}
+.live-facts div span{display:block;font-size:9px;letter-spacing:.1em;color:var(--muted);margin-top:6px}
+.live-panel{
+  position:relative;overflow:hidden;background:var(--ink);color:var(--white);
+  padding:14px;border-radius:4px;min-height:390px;
+}
+.live-panel::before{
+  content:"";position:absolute;inset:-20% -10% auto auto;width:70%;height:80%;
+  background:radial-gradient(circle,rgba(66,150,214,.35),transparent 62%);
+  pointer-events:none;
+}
+.live-panel::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:38px 38px;
+}
+.live-panel-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 2px 10px;border-bottom:1px solid rgba(255,255,255,.16)}
+.live-panel-head span{font-size:8.5px;letter-spacing:.17em;color:rgba(255,253,248,.7)}
+.live-panel-head b{font-size:10px;font-weight:400;letter-spacing:.12em;color:var(--white)}
+.live-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.live-card{position:relative;aspect-ratio:9/16;overflow:hidden;background:#132e49;border-radius:2px;cursor:zoom-in;box-shadow:0 10px 26px -18px rgba(0,0,0,.7)}
+.live-card img{width:100%;height:100%;object-fit:cover}
+.live-card figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:20px 7px 7px;
+  background:linear-gradient(transparent,rgba(5,19,34,.9));
+  color:rgba(255,253,248,.92);font-size:8.5px;line-height:1.4;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.live-panel-foot{position:relative;z-index:2;display:flex;justify-content:space-between;gap:10px;padding:11px 2px 0;color:rgba(255,253,248,.65);font-size:8.5px;letter-spacing:.08em}
+@media(max-width:980px){
+  .live-lead{grid-template-columns:1fr;gap:20px}
+  .live-copy p{max-width:560px}
+  .live-facts{margin:16px 0 0}
+  .live-panel{min-height:0}
+}
+@media(max-width:620px){
+  .live-strip{grid-template-columns:1fr 1fr}
+  .live-card{aspect-ratio:9/16}
+  .live-panel-foot{display:none}
+}
+
+/* ---------- live analysis ---------- */
+.live-analysis{
+  position:relative;padding:clamp(54px,6.2vw,82px) 0 clamp(50px,6vw,78px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at 78% 42%,rgba(206,227,241,.55),transparent 38%),
+    var(--paper);
+}
+.live-analysis .wrap{position:relative}
+.analysis-grid{display:grid;grid-template-columns:minmax(250px,.78fr) minmax(0,1.9fr);gap:34px;align-items:start}
+.analysis-copy{padding-top:8px}
+.analysis-kicker{font-size:8.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin:0 0 16px}
+.analysis-copy h2{
+  font-family:var(--serif);font-weight:700;color:var(--ink);
+  font-size:clamp(46px,5.4vw,68px);line-height:1.05;letter-spacing:-.03em;margin:0 0 14px;
+}
+.analysis-copy .lede{font-size:20px;margin-bottom:12px}
+.analysis-copy p{font-size:13px;color:var(--muted);line-height:1.95;margin:0;max-width:300px}
+.analysis-quote{
+  margin:26px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  font-family:var(--serif);font-size:16px;line-height:1.6;color:var(--ink);
+}
+.analysis-stage{position:relative;min-height:520px}
+.stage-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:clamp(290px,34vw,390px);height:clamp(290px,34vw,390px);
+  border-radius:8px;overflow:hidden;background:#D9E8F2;
+  box-shadow:0 26px 60px -34px rgba(11,35,66,.55),0 0 0 12px rgba(250,246,238,.6);
+  z-index:2;cursor:zoom-in;
+}
+.stage-center img{width:100%;height:100%;object-fit:cover;transform:scale(1.8);transform-origin:50% 53%}
+.stage-center::before{
+  content:"";position:absolute;left:50%;top:50%;width:122%;height:122%;
+  transform:translate(-50%,-50%);border:1px solid rgba(11,35,66,.22);border-radius:50%;
+  pointer-events:none;z-index:-1;
+}
+.stage-center figcaption{
+  position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+  background:rgba(250,246,238,.92);color:var(--ink);
+  padding:5px 10px;font-size:8px;letter-spacing:.13em;white-space:nowrap;
+}
+.loupe{position:absolute;z-index:3;width:168px}
+.loupe-circle{
+  display:block;width:104px;height:104px;border-radius:50%;overflow:hidden;
+  border:7px solid rgba(250,246,238,.94);
+  box-shadow:0 10px 28px -12px rgba(11,35,66,.45),0 0 0 1px rgba(11,35,66,.16);
+  background:#DCEAF3;cursor:zoom-in;
+}
+.loupe-circle img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transform:scale(var(--zoom,1.7))}
+.loupe-copy{margin-top:8px;max-width:168px}
+.loupe-copy b{display:block;font-family:var(--serif);font-size:14px;font-weight:600;line-height:1.4;color:var(--ink)}
+.loupe-copy small{display:block;font-size:9px;line-height:1.55;color:var(--muted);margin-top:2px;letter-spacing:.04em}
+.loupe::after{content:"";position:absolute;top:52px;width:46px;height:1px;background:rgba(11,35,66,.32)}
+.loupe.l1{left:0;top:1%}
+.loupe.l2{left:0;bottom:1%}
+.loupe.l3{right:0;top:1%}
+.loupe.l4{right:0;bottom:1%}
+.loupe.l1::after,.loupe.l2::after{left:104px}
+.loupe.l3::after,.loupe.l4::after{right:104px}
+.loupe.l3 .loupe-copy,.loupe.l4 .loupe-copy{text-align:left}
+@media(max-width:1100px){
+  .analysis-grid{grid-template-columns:minmax(220px,.7fr) minmax(0,2fr);gap:24px}
+  .analysis-stage{min-height:520px}
+  .stage-center{width:330px;height:330px}
+  .loupe{width:150px}
+  .loupe-circle{width:94px;height:94px}
+  .loupe::after{top:47px;width:34px}
+  .loupe.l1::after,.loupe.l2::after{left:94px}
+  .loupe.l3::after,.loupe.l4::after{right:94px}
+}
+@media(max-width:900px){
+  .analysis-grid{grid-template-columns:1fr;gap:26px}
+  .analysis-copy p{max-width:100%}
+  .analysis-stage{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 18px;padding-top:10px}
+  .stage-center{position:relative;left:auto;top:auto;transform:none;grid-column:1/-1;justify-self:center;width:min(100%,390px);height:auto;aspect-ratio:1;margin-bottom:10px}
+  .stage-center::before{display:none}
+  .loupe{position:static;width:auto;display:grid;grid-template-columns:82px minmax(0,1fr);gap:12px;align-items:center}
+  .loupe-circle{width:82px;height:82px;border-width:5px}
+  .loupe-copy{margin:0;max-width:none}
+  .loupe::after{display:none}
+}
+@media(max-width:520px){
+  .analysis-stage{grid-template-columns:1fr;gap:16px}
+  .stage-center{width:100%;max-width:330px}
+  .loupe{grid-template-columns:70px minmax(0,1fr)}
+  .loupe-circle{width:70px;height:70px}
+  .analysis-copy h2{font-size:40px}
+}
+
+/* ---------- social section ---------- */
+.social-lead{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:end;margin-bottom:26px}
+.social-quote{
+  font-family:var(--serif);font-weight:500;color:var(--ink);
+  font-size:clamp(26px,3vw,38px);line-height:1.35;letter-spacing:-.01em;margin:0;max-width:580px;
+}
+.social-quote span{color:var(--ink);border-bottom:1px solid rgba(11,35,66,.25);padding-bottom:2px}
+.platform-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end}
+.platform-chips span{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 10px;border:1px solid var(--line);
+  border-radius:999px;font-size:9.5px;letter-spacing:.08em;color:var(--ink-soft);
+  background:rgba(250,246,238,.5);
+}
+.platform-chips i{width:5px;height:5px;border-radius:50%;background:var(--accent);display:block}
+@media(max-width:760px){
+  .social-lead{grid-template-columns:1fr;gap:16px}
+  .platform-chips{justify-content:flex-start}
+  .social-quote{font-size:26px}
+}
+
+/* ---------- dual style ---------- */
+.duel-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:end;margin-bottom:28px}
+.duel-intro .lede{font-size:clamp(20px,2.1vw,27px);margin:0;max-width:600px}
+.style-key{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.style-key div{display:flex;align-items:center;gap:9px;font-size:9.5px;letter-spacing:.1em;color:var(--muted)}
+.style-key b{font-family:var(--serif);font-size:15px;color:var(--ink)}
+.style-key i{width:26px;height:1px;background:var(--line-strong);display:block}
+.duel{display:grid;grid-template-columns:minmax(0,1fr);gap:30px;align-items:start}
+/* Keep a 10px breathing gap between the dual-style module and the footer. */
+#s5{margin-bottom:10px}
+.duel-divider{position:relative;height:1px;background:var(--line)}
+.duel-divider span{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:var(--paper);padding:0 14px;white-space:nowrap;
+  font-size:8px;letter-spacing:.24em;color:var(--muted);
+}
+.duel-head{display:flex;align-items:center;gap:10px;padding-bottom:9px;margin-bottom:12px;border-bottom:1px solid var(--line-strong)}
+.duel-head .duel-letter{
+  width:25px;height:25px;border-radius:50%;display:grid;place-items:center;
+  background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:12px;
+}
+.duel-head b{font-family:var(--serif);font-size:15px;color:var(--ink);letter-spacing:.03em}
+.duel-head small{font-size:9px;letter-spacing:.09em;color:var(--muted);margin-left:auto;text-align:right}
+.duel-col .gallery{--gap:8px}
+.duel-col{min-width:0}
+.duel-col .gallery .tile{border-radius:2px}
+@media(max-width:860px){
+  .duel-intro{grid-template-columns:1fr;gap:14px}
+  .style-key{align-items:flex-start}
+  .duel{grid-template-columns:1fr;gap:24px}
+}
+
+/* ---------- private / lookbook ---------- */
+.private-band{
+  position:relative;margin-top:clamp(60px,8vw,104px);
+  padding:clamp(58px,7vw,92px) 0 clamp(54px,6vw,80px);
+  background:
+    radial-gradient(circle at 12% 18%,rgba(255,255,255,.4),transparent 32%),
+    linear-gradient(135deg,var(--blue),#C6DFEF 58%,#D5E8F4);
+  border-bottom:1px solid rgba(11,35,66,.2);
+  overflow:hidden;
+}
+.private-band::before{
+  content:"";position:absolute;left:0;right:0;top:-12px;height:24px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='24' viewBox='0 0 140 24'%3E%3Cpath d='M0 14 C12 6 24 20 36 13 C48 6 60 20 72 13 C84 6 96 20 108 13 C120 6 132 20 140 13 L140 24 L0 24Z' fill='%23CEE3F1'/%3E%3C/svg%3E");
+  background-size:140px 24px;background-repeat:repeat-x;
+  pointer-events:none;
+}
+.private-band .sec-head{border-top-color:rgba(11,35,66,.55);margin-bottom:30px}
+.private-band .sec-note{color:#39516A}
+.private-band .sec-note b{color:var(--ink)}
+.private-grid{display:grid;grid-template-columns:minmax(210px,.75fr) minmax(0,2.05fr);gap:34px;align-items:start;margin-bottom:28px}
+.private-copy .lede{font-size:clamp(23px,2.4vw,31px);margin-bottom:14px}
+.private-copy p{font-size:13px;line-height:1.95;color:#2C465E;max-width:310px;margin:0 0 18px}
+.private-copy .text-link{color:var(--ink);border-color:rgba(11,35,66,.5)}
+.private-copy .private-small{font-size:10px;line-height:1.7;color:#4C6278;margin-top:22px;padding-top:12px;border-top:1px solid rgba(11,35,66,.2)}
+.lookbook{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start}
+.look-card{
+  background:var(--white);border-radius:4px;overflow:hidden;cursor:zoom-in;
+  box-shadow:0 14px 26px -22px rgba(11,35,66,.55);
+  transition:transform .25s,box-shadow .25s;
+}
+.look-card:hover{transform:translateY(-3px);box-shadow:0 20px 34px -22px rgba(11,35,66,.6)}
+.look-media{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;background:#DCE9F1}
+.look-media img{width:100%;height:100%;object-fit:cover}
+.look-copy{padding:11px 12px 13px;background:var(--white)}
+.look-copy b{display:block;font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);line-height:1.35}
+.look-copy span{display:block;font-size:9.5px;line-height:1.55;color:var(--muted);margin-top:3px}
+.look-copy i{display:block;width:18px;height:1px;background:var(--accent);margin-top:7px}
+.private-band .gallery .tile{box-shadow:inset 0 0 0 1px rgba(11,35,66,.12)}
+.private-band .cap{background:rgba(255,253,248,.96)}
+@media(max-width:1000px){
+  .private-grid{grid-template-columns:1fr;gap:22px}
+  .private-copy p{max-width:640px}
+  .private-copy .private-small{margin-top:16px}
+}
+@media(max-width:720px){
+  .lookbook{grid-template-columns:1fr 1fr}
+  .private-copy .lede{font-size:24px}
+}
+@media(max-width:480px){
+  .lookbook{gap:8px}
+  .look-copy{padding:8px 9px 10px}
+  .look-copy b{font-size:13px}
+  .look-copy span{font-size:8.5px}
+}
+
+/* ---------- footer ---------- */
+.footer{
+  position:relative;z-index:2;background:var(--ink);color:var(--paper);
+  padding:48px 0 24px;
+}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr auto;gap:32px;align-items:start;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.16)}
+.foot-brand{display:flex;align-items:flex-start;gap:13px}
+.foot-seal{width:42px;height:42px;border-radius:50%;overflow:hidden;background:var(--paper);flex:0 0 auto}
+.foot-seal img{width:100%;height:100%;object-fit:cover;filter:invert(1)}
+.foot-brand b{display:block;font-family:var(--serif);font-size:25px;font-weight:600;letter-spacing:.04em;line-height:1.2;color:var(--white);white-space:nowrap}
+.foot-brand small{display:block;font-size:8px;letter-spacing:.18em;color:rgba(243,237,226,.6);margin-top:5px}
+.foot-slogan{font-family:var(--serif);font-size:15px;color:rgba(243,237,226,.8);margin:15px 0 0;letter-spacing:.08em;white-space:nowrap}
+.foot-nav{display:flex;flex-direction:column;gap:9px;padding-top:4px}
+.foot-nav span{font-size:8px;letter-spacing:.18em;color:rgba(243,237,226,.5);margin-bottom:4px}
+.foot-nav a{font-size:11.5px;letter-spacing:.05em;color:rgba(243,237,226,.86);transition:color .2s}
+.foot-nav a:hover{color:var(--white)}
+.foot-social{display:flex;flex-direction:column;gap:9px;align-items:flex-end;padding-top:4px}
+.foot-social span{font-size:8px;letter-spacing:.18em;color:rgba(243,237,226,.5);margin-bottom:4px}
+.foot-social div{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.foot-social i{font-style:normal;font-size:9.5px;letter-spacing:.06em;color:rgba(243,237,226,.72);border:1px solid rgba(243,237,226,.24);padding:4px 8px;border-radius:999px}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:18px;font-size:9px;letter-spacing:.07em;color:rgba(243,237,226,.55)}
+.foot-bottom .en{font-size:8px;letter-spacing:.16em;text-align:right}
+@media(max-width:760px){
+  .foot-top{grid-template-columns:1fr 1fr;gap:24px}
+  .foot-social{grid-column:1/-1;align-items:flex-start}
+  .foot-social div{justify-content:flex-start}
+  .foot-bottom{flex-direction:column;gap:6px}
+  .foot-bottom .en{text-align:left}
+}
+@media(max-width:520px){
+  .foot-brand{gap:10px}
+  .foot-brand b{font-size:21px}
+  .foot-brand .foot-seal{width:36px;height:36px}
+  .foot-slogan{font-size:11.5px;letter-spacing:.04em;margin-top:9px}
+}
+
+/* ---------- lightbox ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:100;
+  display:grid;place-items:center;
+  padding:clamp(18px,4vw,52px);
+  background:rgba(7,21,38,.94);
+  backdrop-filter:blur(6px);
+}
+.lightbox[hidden]{display:none}
+.lb-img{max-width:min(92vw,1180px);max-height:82vh;width:auto;height:auto;object-fit:contain;box-shadow:0 28px 80px rgba(0,0,0,.55);border-radius:2px}
+.lb-name{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:rgba(255,253,248,.8);font-size:10px;letter-spacing:.12em;text-align:center}
+.lb-close{
+  position:absolute;right:clamp(16px,3vw,34px);top:clamp(14px,3vw,30px);
+  background:transparent;border:1px solid rgba(255,255,255,.45);color:var(--white);
+  padding:7px 13px;border-radius:999px;font-size:10px;letter-spacing:.1em;cursor:pointer;
+}
+.lb-close:hover{background:rgba(255,255,255,.1)}
+body.lightbox-open{overflow:hidden}
+@media(max-width:520px){
+  .lb-img{max-width:96vw;max-height:78vh}
+  .lb-close{padding:6px 10px}
+}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.08s}
+.js .rv.d2{transition-delay:.16s}
+@media(prefers-reduced-motion:reduce){
+  .js .rv{opacity:1!important;transform:none!important}
+}
+
+/* P1 · mobile: two balanced columns, full material ratios, no crop */
+@media(max-width:600px){
+  .gallery.is-rows{
+    display:block;
+    column-count:2;
+    column-gap:8px;
+    column-fill:balance;
+  }
+  .gallery.is-rows .gal-row{display:contents}
+  .gallery.is-rows .tile{
+    display:block;
+    width:100%!important;
+    height:auto!important;
+    flex:none!important;
+    aspect-ratio:var(--ar)!important;
+    margin:0 0 8px!important;
+    break-inside:avoid;
+    -webkit-column-break-inside:avoid;
+  }
+  .gallery.is-rows .tile .cap{
+    left:6px;bottom:6px;
+    max-width:calc(100% - 12px);
+    padding:2px 6px;
+    font-size:8.5px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+}
+
+/* P1 · transparent live-layer tile: show the finished composite preview */
+.live-card.is-overlay{
+  background:#17324d;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 10px 26px -18px rgba(0,0,0,.7);
+}
+.live-card.is-overlay img{
+  object-fit:cover;
+}
+
+/* 02 social: keep the curated row order on mobile */
+@media(max-width:600px){
+  #s2-gallery{column-count:auto;column-fill:auto}
+  #s2-gallery .gal-row{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px!important;
+    margin:0 0 8px!important;
+  }
+  #s2-gallery .gal-row:last-child{margin-bottom:0!important}
+  #s2-gallery .tile{
+    width:100%!important;
+    height:auto!important;
+    margin:0!important;
+    aspect-ratio:var(--ar)!important;
+  }
+  #s2-gallery .gal-row[data-group="1"]{grid-template-columns:1fr}
+  #s2-gallery .gal-row[data-group="1"] .tile:nth-child(3){grid-column:auto}
+  #s2-gallery .gal-row[data-group="2"]{grid-template-columns:1fr}
+  #s2-gallery .gal-row[data-group="3"] .tile:nth-child(3){grid-column:1/-1}
+}
+
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">跳至主要内容</a>
-<header class="site-head" id="siteHead">
-  <a class="head-brand" href="index.html" aria-label="返回张晓曦作品集">
-    <span class="head-brand-name">张晓曦</span>
-    <span class="head-brand-sub">PORTFOLIO / 2026</span>
-  </a>
-  <nav class="head-nav" aria-label="页面章节">
-    <a href="#overview" data-nav="overview" class="active">总览</a>
-    <a href="#social" data-nav="social">社媒</a>
-    <a href="#private" data-nav="private">私域</a>
-    <a href="#live" data-nav="live">电商直播</a>
-    <a href="#paid" data-nav="paid">投放</a>
-    <a href="#loop" data-nav="loop">闭环</a>
-  </nav>
-  <div class="head-tools">
-    <span class="head-case">CASE 06</span>
-    <a class="back-link" href="index.html">返回作品集
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+<a class="skip" href="#main">跳到作品主体</a>
+
+<header class="site-head">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="光谷效应作品集首页">
+      <span class="brand-seal"><img src="assets/mobile-delivery/ovem-app-icon.png" alt="" width="1024" height="1024"></span>
+      <span class="brand-words"><b>光谷效应</b><small>OPTICS VALLEY EFFECT</small></span>
     </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="index.html#marketing">营销策划</a>
+      <a class="active" href="channel-marketing.html" aria-current="page">渠道营销</a>
+      <a href="index.html#portfolio">品牌设计</a>
+      <a href="index.html#about">关于我</a>
+    </nav>
+    <div class="nav-actions">
+      <span class="nav-status"><i></i>PORTFOLIO 2026</span>
+      <a class="nav-cta" href="https://yoyonaga121.github.io/ovem-ai-marketing/" target="_blank" rel="noopener">开启智能生活 <span>↗</span></a>
+    </div>
   </div>
 </header>
-<div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
-
 <main id="main">
-  <!-- ===== Hero ===== -->
-  <section class="hero" id="top">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <div class="hero-brandline">
-          <img src="assets/mobile-delivery/logo-white.png" alt="光谷效应品牌标识" width="34" height="32">
-          <span class="hero-brand-text"><strong>光谷效应</strong><em>OPTICS VALLEY EFFECT</em></span>
-          <span class="hero-line"></span>
-          <span class="hero-system">数字端全渠道视觉系统</span>
-        </div>
-        <div class="hero-eyebrow">CASE 06 / OMNICHANNEL GROWTH</div>
-        <h1 class="hero-title"><span class="hero-title-cn">渠道营销</span><span class="hero-title-en">CHANNEL MARKETING</span></h1>
-        <p class="hero-lead">把内容、流量与成交，<br>组织成一张可持续运营的渠道网络。</p>
-        <p class="hero-sub">从公域种草到私域沉淀，从直播转化到付费放量——品牌在每一个触点，保持同一套视觉语言与运营节奏。</p>
-        <div class="hero-actions">
-          <a href="#overview" class="btn-primary">查看渠道矩阵
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#social" class="btn-ghost">从社媒开始
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-          </a>
-        </div>
-        <div class="hero-stats" aria-label="项目概览">
-          <div class="stat"><strong>6+</strong><span>内容渠道</span></div>
-          <div class="stat"><strong>4</strong><span>运营场景</span></div>
-          <div class="stat"><strong>30+</strong><span>物料模板</span></div>
-          <div class="stat"><strong>1</strong><span>视觉规范</span></div>
-        </div>
-      </div>
 
-      <div class="hero-map" aria-hidden="true">
-        <div class="map-meta"><span>CHANNEL / GROWTH MAP</span><span>4 LAYERS</span></div>
-        <div class="network">
-          <svg viewBox="0 0 640 470" preserveAspectRatio="none">
-            <path d="M320 235 C252 194,190 150,120 96"/>
-            <path d="M320 235 C388 194,450 150,520 96"/>
-            <path d="M320 235 C252 276,190 320,120 374"/>
-            <path d="M320 235 C388 276,450 320,520 374"/>
-            <path d="M320 235 C320 190,320 150,320 96"/>
-            <path d="M320 235 C320 280,320 320,320 374"/>
-          </svg>
-          <span class="net-core"><small>OPERATING CORE</small><strong>增长闭环</strong></span>
-          <span class="net-node n1"><span class="node-top"><em>01</em><i></i></span><strong>公域种草</strong><small>小红书 · 知乎 · 抖音</small></span>
-          <span class="net-node n2"><span class="node-top"><em>02</em><i></i></span><strong>私域沉淀</strong><small>企微 · 社群 · 公众号</small></span>
-          <span class="net-node n3"><span class="node-top"><em>03</em><i></i></span><strong>直播转化</strong><small>大促 · 直播间 · 货架</small></span>
-          <span class="net-node n4"><span class="node-top"><em>04</em><i></i></span><strong>投放放大</strong><small>信息流 · 搜索 · 线下屏</small></span>
-        </div>
-        <div class="map-foot"><span>内容</span><span>关系</span><span>成交</span><span>放量</span></div>
+<section class="hero" id="top">
+  <div class="wrap hero-wrap">
+    <div class="hero-copy">
+      <p class="hero-kicker"><span>PORTFOLIO / 2026</span><span class="rule"></span><span>CHANNEL MARKETING</span></p>
+      <h1>渠道营销</h1>
+      <p class="hero-sub">让智能走进每一个生活场景</p>
+      <p class="hero-en">SMART LIFE · FOR A BETTER TOMORROW</p>
+      <ul class="hero-stats">
+        <li><span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.3 5.2 3.3 8.5s-1.1 6.2-3.3 8.5M12 3.5C9.8 5.8 8.7 8.7 8.7 12s1.1 6.2 3.3 8.5"/></svg></span><span><b>多渠道覆盖</b><small>全域触达</small></span></li>
+        <li><span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M4 19.5V10M10 19.5V4.5M16 19.5v-7M22 19.5V7"/><path d="M2.5 21h19"/></svg></span><span><b>内容驱动</b><small>高效转化</small></span></li>
+        <li><span class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M12 20.2S3.8 15.5 3.8 9.1A4.3 4.3 0 0 1 12 6.9a4.3 4.3 0 0 1 8.2 2.2c0 6.4-8.2 11.1-8.2 11.1Z"/></svg></span><span><b>真实种草</b><small>口碑增长</small></span></li>
+      </ul>
+      <div class="hero-foot"><span>72 件物料 · 6 大渠道</span><span class="scroll">SCROLL TO EXPLORE</span></div>
+    </div>
+  </div>
+  <div class="hero-media" aria-hidden="true">
+    <img src="assets/channel-marketing/editorial/rSfo6B6Ysl6vx9ME.webp" alt="光谷效应全系列智能产品" width="2880" height="1632" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <p class="hero-note">智能生活<span>从这里开始！</span></p>
+</section>
+<section class="sec" id="s1">
+<div class="wrap">
+<header class="sec-head rv">
+  <div class="sec-kicker"><span class="sec-num">01</span><span class="sec-eng">ADVERTISING<br>PLACEMENT</span></div>
+  <div class="sec-titles"><h2>效果广告投放</h2><p>多平台精准投放，数据驱动增长</p></div>
+  <p class="sec-note"><b>13</b> 件物料<br>从信息流到线下屏媒，<br>完成全漏斗覆盖</p>
+</header>
+
+<div class="sec-intro rv">
+  <div class="intro-copy">
+    <p class="lede">让每一次曝光，<br>都成为一次有效的对话。</p>
+    <p>基于用户画像，布局主流内容平台与电商渠道，以创意内容 + 精准投放，持续扩大品牌曝光，高效获取潜在用户。</p>
+    <a class="text-link" href="#s1-gallery">浏览 13 件物料</a>
+  </div>
+  <figure class="feature-figure" data-name="公众号正文插图 · 场景叙事" data-full="assets/channel-marketing/editorial/xML80pRzLx6ZcWYL.webp" tabindex="0" role="button" aria-label="放大查看：公众号正文插图">
+    <img src="assets/channel-marketing/editorial/xML80pRzLx6ZcWYL.webp" alt="公众号正文插图" width="2880" height="2160" loading="eager" decoding="async">
+    <figcaption><span>LIFESTYLE / SCENE</span><b>让科技，更有温度。</b></figcaption>
+  </figure>
+  <aside class="channel-list" aria-label="投放渠道">
+  <p class="channel-list-head">CHANNEL / 04</p>
+  <div class="channel-item"><span class="channel-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="3"/><path d="m10.2 9.1 4.7 2.9-4.7 2.9V9.1Z"/></svg></span><span><b>抖音投放</b><small>短视频种草</small></span></div>
+  <div class="channel-item"><span class="channel-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><rect x="5" y="3.2" width="14" height="17.6" rx="2.2"/><path d="M8.3 8.1h7.4M8.3 12h7.4M8.3 15.9h4.6"/></svg></span><span><b>小红书投放</b><small>生活方式种草</small></span></div>
+  <div class="channel-item"><span class="channel-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M5.5 8.2h13l-1 12.2h-11L5.5 8.2Z"/><path d="M8.8 8.2a3.2 3.2 0 0 1 6.4 0"/></svg></span><span><b>天猫 / 京东</b><small>电商广告引流</small></span></div>
+  <div class="channel-item"><span class="channel-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M20 11.2a7.3 7.3 0 0 1-7.8 7.2 8.2 8.2 0 0 1-3.2-.7L4.5 19l1.2-4.1a7.2 7.2 0 0 1-1-3.7A7.3 7.3 0 0 1 12.4 4 7.3 7.3 0 0 1 20 11.2Z"/><path d="M8.4 10.8h.1M12 10.8h.1M15.6 10.8h.1"/></svg></span><span><b>微信生态</b><small>社群与朋友圈广告</small></span></div>
+</aside>
+</div>
+<div class="gallery" data-row-h="168" id="s1-gallery">
+<figure class="tile" data-ar="0.7500" data-name="信息流广告" data-full="assets/channel-marketing/editorial/ca9MhT4eG5LmZ7zl.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBQCdASoYACAAPvVoqlAqpqQit+gBUB6JbACxHt686Dm3e1ASFkXiuUOT7+7MM08toAD+Ee0Poau0TP4PT+OzvtzOjSAB1LUhQheNmFENW229QEgWXl4WTfxi2KnoSMiwaxc3a3hYxCivvE/tsm3ovrGeIAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：信息流广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/ca9MhT4eG5LmZ7zl.webp" alt="信息流广告" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">信息流广告</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="搜索广告" data-full="assets/channel-marketing/editorial/xsBVVifePzHgj9g2.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAwBACdASogABIAPwVurFArpqQisAwBcCCJZQDBzCHfiAN6KtD7BvmedaAA/u158kRqjdI/Bfo7MHMlml1tqLXTAXIM2AJ+Z/AAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：搜索广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/xsBVVifePzHgj9g2.webp" alt="搜索广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">搜索广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="APP开屏广告" data-full="assets/channel-marketing/editorial/G1FNAmVu171Fo1rR.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoSACAAPw1ws1AsJiUisBgMAYAhiUATpmMALhvP6+0/i54kmrgA/svWBRTH9p/9lMIIyM/F0j6KRnXBzmzazVwgckIHbWmk1dzh8Pnp9wJXpuwqK/1l9oOSfssbiW/+vNzjNBOGsD8QQAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：APP开屏广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/G1FNAmVu171Fo1rR.webp" alt="APP开屏广告" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">APP开屏广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="H5互动页" data-full="assets/channel-marketing/editorial/CaIk2CkV5o1xemVr.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAABQBACdASoSACAAPxFyr1CsJqQisAgBgCIJQBYj2OhgL4D1orSF0CrNhDgAAP7GrN7BO0KAlbjodvA9XoDl83velY5rC5rD4J5aZscWvdTeLrFcGaQwcAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：H5互动页">
+<div class="timg"><img src="assets/channel-marketing/editorial/CaIk2CkV5o1xemVr.webp" alt="H5互动页" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">H5互动页</figcaption>
+</figure>
+<figure class="tile" data-ar="2.3077" data-name="公众号头图" data-full="assets/channel-marketing/editorial/hToJVJPUPdGxRQ5H.webp" style="--ar:2880/1248;--ph:url('data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAwCdASogAA4APxF0sVCsJqSisAgBgCIJZACdMoAKRrONHU5MsUgAAP74+DvRzJOkD8qlzgbvqpHwP+NX2VaqSgrjiC4pd1l++5n+qGEbKLF0AAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号头图">
+<div class="timg"><img src="assets/channel-marketing/editorial/hToJVJPUPdGxRQ5H.webp" alt="公众号头图" width="2880" height="1248" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号头图</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="电子手册封面" data-full="assets/channel-marketing/editorial/EccFxRjI6H6IS0HK.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACwBQCdASoYACAAPxF0sFAsJySisAgBgCIJYgCdMzlKRrgdrirG/RSUm6eGsPgp2uZf1/jDP+AA/vrYBUQaKpkFWIgVPvovVV8+0xuTb40MWGj0nPZqirzhL6/QrHhbLAwmmi4i8SoLtUsOjW94kcJ7GlmErsOTQWAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：电子手册封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/EccFxRjI6H6IS0HK.webp" alt="电子手册封面" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">电子手册封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.6667" data-name="EDM营销邮件" data-full="assets/channel-marketing/editorial/c5ty5LP3BfISvNzt.webp" style="--ar:1920/2880;--ph:url('data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQBQCdASoVACAAPxF4slIsJySiqA1RgCIJYgCsM1XBf/ngDGF3CkWZ3GakqF6RSrYAAP7VnQZZpRVbI01E2EwazrYAWM6f0m2awZcRuwZOAK5huJ/nL6VQibrdoAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：EDM营销邮件">
+<div class="timg"><img src="assets/channel-marketing/editorial/c5ty5LP3BfISvNzt.webp" alt="EDM营销邮件" width="1920" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">EDM营销邮件</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="电梯广告" data-full="assets/channel-marketing/editorial/cl874EWdDc5bpugD.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAwBQCdASoYACAAPvFip1AppaOit+gBMB4JbACsMxL7KJikI9xYQrtwmhm51SfRHoe3AAD++zAdQH+bSUqfgvJLIiV2deq24FDJOUauBt5tWTapWlO/t+usMP3eG92Q2aiXc8b1AUNk29dA4pWssyMQ4wq5IRdIR9SrgfvTRAAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：电梯广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/cl874EWdDc5bpugD.webp" alt="电梯广告" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">电梯广告</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="商超LED大屏广告" data-full="assets/channel-marketing/editorial/azrc7RVfdM1icdN1.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBQCdASogABIAPxF0r1AsJyQisBgMAYAiCWYAnTKEgNgVPRBBuLBP/8bGLp5QjVzdEAD+PtkmSWyfBHXPXVy7rOrxRIwMahzesLQIQw3/+Ss3DZt0hjpvISAd3pj5/CYg9GpH+Iv9mIUsuFqAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：商超LED大屏广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/azrc7RVfdM1icdN1.webp" alt="商超LED大屏广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">商超LED大屏广告</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="地铁灯箱广告" data-full="assets/channel-marketing/editorial/OmEBYyu4yc3MbNIJ.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwBACdASogABIAPxF2rVEsJyQisBgMAYAiCUAX7O/wHSh1oVMNFcYsz4Rn7QSHjgAA/t6YxjXoK+hNOJMXQmeqr7wul5R66RxCOL7lcKqqNDzy+um27NsALoQJ9eAV9BpTSbNxlbqSiDWi9j/qoAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：地铁灯箱广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/OmEBYyu4yc3MbNIJ.webp" alt="地铁灯箱广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">地铁灯箱广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="通用海报-节能环保" data-full="assets/channel-marketing/editorial/KmOpylz67kAK3UU8-2x.webp" style="--ar:768/1024;--ph:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACQBQCdASoYACAAPv1oq1ArJiQit/qoAWAfiWoAtOtT3GJv55aC++krWtN9Xma3ndomtU5VAAD+7cvqkbqCpurhNw1eNaEt7m11xFaspCZQkCOpqsw/dtuF1jDZBQW05Y+xmCT430M0nLHCaJkYGuAK2YYs2egA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：通用海报-节能环保">
+<div class="timg"><img src="assets/channel-marketing/editorial/KmOpylz67kAK3UU8.webp" alt="通用海报-节能环保" width="768" height="1024" loading="lazy" decoding="async"></div>
+<figcaption class="cap">通用海报-节能环保</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="通用海报-新品首发" data-full="assets/channel-marketing/editorial/FuuYYaJuE2CqQVNr-2x.webp" style="--ar:768/1024;--ph:url('data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwBQCdASoYACAAPwForFArJiQit/qoAWAgCWoAnTLs+ygeBkYoyREBROLEUJvjmptpcHZjE5a4AAD+zMX+329R6gXxg7WjyMwDGPxYmfJ8Zha/aRAdtWKhWnIP7zYSIOQzIzrGU91Azig8WeL0VJ0lFIg8MTVEAJeAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：通用海报-新品首发">
+<div class="timg"><img src="assets/channel-marketing/editorial/FuuYYaJuE2CqQVNr.webp" alt="通用海报-新品首发" width="768" height="1024" loading="lazy" decoding="async"></div>
+<figcaption class="cap">通用海报-新品首发</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="通用海报-活动促销" data-full="assets/channel-marketing/editorial/d32Q0WbNTFIlNqPV-2x.webp" style="--ar:768/1024;--ph:url('data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABQBQCdASoYACAAPvVkp1AqpaOit+gBUB6JbACdMoMd2GI3eLWV+0A62oZ0VLvNPoBQ/gAA/FqdhNTFVAH//uhUoqopj/klSPQNy2fFqug99h2FtLLUrPHDO9lA/xyiUWALKWKWJdkn6IbRnaI8yVOyo2aCOhpKkcAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：通用海报-活动促销">
+<div class="timg"><img src="assets/channel-marketing/editorial/d32Q0WbNTFIlNqPV.webp" alt="通用海报-活动促销" width="768" height="1024" loading="lazy" decoding="async"></div>
+<figcaption class="cap">通用海报-活动促销</figcaption>
+</figure>
+</div>
+</section>
+</section>
+
+<section class="sec" id="s2">
+  <div class="wrap">
+    <header class="sec-head rv">
+  <div class="sec-kicker"><span class="sec-num">02</span><span class="sec-eng">SOCIAL<br>MATRIX</span></div>
+  <div class="sec-titles"><h2>社交媒体矩阵</h2><p>同一套品牌资产，在不同平台说不同的语言</p></div>
+  <p class="sec-note"><b>12</b> 件物料<br>一平台，一人格，<br>让内容自然生长</p>
+</header>
+    <div class="social-lead rv">
+      <p class="social-quote">一平台，一人格。<br><span>好内容，自己会走路。</span></p>
+      <div class="platform-chips" aria-label="平台">
+        <span><i></i>小红书</span><span><i></i>公众号</span><span><i></i>知乎</span>
+        <span><i></i>抖音</span><span><i></i>视频号</span><span><i></i>B站</span>
       </div>
     </div>
-    <div class="hero-scroll" aria-hidden="true"><i></i><span>SCROLL TO EXPLORE</span></div>
-  </section>
+    <div class="gallery" data-row-h="300" data-fixed-groups="1" id="s2-gallery">
+<figure class="tile" data-ar="0.7500" data-group="0" data-name="达人合作种草图" data-full="assets/channel-marketing/editorial/ahdAyB26bTBPUCuN.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwBACdASoYACAAPxGCtFQsKKSjKAqpgCIJZQCw7Ah/fmSQy4RB00a+rC+d8RYhqMAA/p6ITHcC/PO2awGDbY9MctZ3bEC8iHnjBGEvYl7TinqWMwpe7g4HNhqS5MOxxFoNhQf7twofcN/b5gAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：达人合作种草图">
+<div class="timg"><img src="assets/channel-marketing/editorial/ahdAyB26bTBPUCuN.webp" alt="达人合作种草图" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">达人合作种草图</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-group="0" data-name="达人合作测评图" data-full="assets/channel-marketing/editorial/JbVOaHRwpUGUZdk6.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADwBACdASoYACAAPxF8tFKsKCUisBgIAYAiCWUAwNwudMvyfNRvsoKRlMXQWo247sAA8ddwBUYnEt3iczbv711aZDYFqjoUuhR5ZNnvDu2AiJ5TDszqPX0ry1ymvIIIWFIH3G/wjIX9yE+5pHNMgAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：达人合作测评图">
+<div class="timg"><img src="assets/channel-marketing/editorial/JbVOaHRwpUGUZdk6.webp" alt="达人合作测评图" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">达人合作测评图</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-group="0" data-name="小红书种草封面" data-full="assets/channel-marketing/editorial/aFrpmgfC3x1GFghp.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwBACdASoYACAAPvVmqFAqpaQit+gBUB6JQAAPO2aI+kHkjXzylYkzRvDlx9SBkgAA/uc65w2jgcXeNYfP+e9TO2TvSeJ+9u2Wm0fsWpm5zeQ3qbU9n1kkyLXayuwAg4AAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：小红书种草封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/aFrpmgfC3x1GFghp.webp" alt="小红书种草封面" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">小红书种草封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-group="0" data-name="小红书种草内页" data-full="assets/channel-marketing/editorial/UAezGowCAxH4AnXt.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABQBACdASoYACAAPxFwrlAsJiQisBgMAYAiCWcAxvQW7K8B70XpLICZkToAAP7sFAkB/dglwTrqNrGtODtrmG7wKnXz3Pv2d8u0p8qhIg/X05oou00hCT4AAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：小红书种草内页">
+<div class="timg"><img src="assets/channel-marketing/editorial/UAezGowCAxH4AnXt.webp" alt="小红书种草内页" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">小红书种草内页</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-group="1" data-name="抖音视频封面" data-full="assets/channel-marketing/editorial/Fr8IQSkHoC2Np85A.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABwBACdASoSACAAPxF2rVAsJ6QisBgMAYAiCUAVgACL5oUHZ/AIv9E4dI0OQgD4CE3Tyg1ucLvQPyb5ud4ZTlX6TWLDCadnr81EHnhQ6XsGzp9G2Fi6d9Df03N2ZV0aLReOqEIzV8eBy/agd+fgAAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：抖音视频封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/Fr8IQSkHoC2Np85A.webp" alt="抖音视频封面" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">抖音视频封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-group="1" data-name="视频号封面" data-full="assets/channel-marketing/editorial/znm9ib49cn1L8ksA.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQBQCdASoYACAAPxF4t1MsJyWiqAqpgCIJQBdgAhNBzlWHO2nxf6GwKTFtwMU6qtfgAP7JkogjLumu4SROzWVeNH1w8ifQTxum6y/rtRPffuQfZFq0U0ZwgmTMjt3dCpXHaeApvZgLd+BCIDjEMKRFXwyDevAAAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：视频号封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/znm9ib49cn1L8ksA.webp" alt="视频号封面" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">视频号封面</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-group="1" data-name="B站视频封面" data-full="assets/channel-marketing/editorial/OPdMmz6Mpw2OfYY4.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwBACdASogABIAPxF2sVAsJ6SisAgBgCIJZQDA3CHccgmajYRaJqWhD3P2MJtpeqAA/qHs5M4Zs3+T0koZ6vF/Ib3eXktHOxm4nUVyU/EygAnRQkKQsXU/ARst5jIyCMjS00/QRzgAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：B站视频封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/OPdMmz6Mpw2OfYY4.webp" alt="B站视频封面" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">B站视频封面</figcaption>
+</figure>
+<figure class="tile" data-ar="2.3077" data-group="2" data-name="公众号杂志风头图" data-full="assets/channel-marketing/editorial/1ukWyGOIuKLjGwBl.webp" style="--ar:2880/1248;--ph:url('data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAwCdASogAA4ALtGIxGIkLCwsDADQSzgABdG94kU2WJDWrWlqwAD+83WD6Gd1V04OWuXMFxiGY3B1+HYsHFvMAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号杂志风头图">
+<div class="timg"><img src="assets/channel-marketing/editorial/1ukWyGOIuKLjGwBl.webp" alt="公众号杂志风头图" width="2880" height="1248" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号杂志风头图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-group="2" data-name="知乎问答头图" data-full="assets/channel-marketing/editorial/KfEtynscIzBVePTR.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAABQBACdASogABIAPwluqlArpqOisAwBcCEJZwDCgCHYRzuqMEWmxo3PvtlQAP7K9q3lU2H4o5rxcjfLQRjhjIBBNIGTNTN1SM6IDrdatWaYLNf66o5QAAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：知乎问答头图">
+<div class="timg"><img src="assets/channel-marketing/editorial/KfEtynscIzBVePTR.webp" alt="知乎问答头图" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">知乎问答头图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-group="3" data-name="全平台头像四宫格" data-full="assets/channel-marketing/editorial/lnufwgVkKKEbGdwQ.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAwBgCdASogACAAPxF+slQsKCQjKAqpgCIJZAC1AaAAMJOrv9D4vpv1pcu6a5RnmgUnaPmyjktTYR9gAP7gnxPmvCm7wtQemD0fcWls8Ept+GNjOyArt96vfSrgS9Kv1RDxm/CAX3AjAB3HMNnR595E/I/OOq7/AREMwne5/tpdJoAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：全平台头像四宫格">
+<div class="timg"><img src="assets/channel-marketing/editorial/lnufwgVkKKEbGdwQ.webp" alt="全平台头像四宫格" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">全平台头像四宫格</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-group="3" data-name="社媒产品信息规范卡" data-full="assets/channel-marketing/editorial/RtdxOqj66NH5gmMq.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQBQCdASogACAAPwV2rVArqCQit/qoAXAgiWkAAFu6X5Lcp9ogPNPRY1ZJ5D5EIRdKHl3wY3qAAP7v0fiM/Psd+nzXVCGd6reRc6tbkDwum0cGQUOv7O9d98AqbWkdXZOoRAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：社媒产品信息规范卡">
+<div class="timg"><img src="assets/channel-marketing/editorial/RtdxOqj66NH5gmMq.webp" alt="社媒产品信息规范卡" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">社媒产品信息规范卡</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-group="3" data-name="全平台品牌主视觉横幅" data-full="assets/channel-marketing/editorial/rSfo6B6Ysl6vx9ME.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAABwAwCdASogABIAPxFyrlAsJqQisAgBgCIJZ2qgWeASwOeEsgAA/u5sF/xNtpbh9Dy8gq7UFyT2kG1sBcNtvYOwk4bwx0JSAAAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：全平台品牌主视觉横幅">
+<div class="timg"><img src="assets/channel-marketing/editorial/rSfo6B6Ysl6vx9ME.webp" alt="全平台品牌主视觉横幅" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">全平台品牌主视觉横幅</figcaption>
+</figure>
+</div>
+  </div>
+</section>
 
-  <!-- ===== Overview ===== -->
-  <section class="section overview" id="overview">
-    <div class="container">
-      <div class="section-heading reveal">
-        <div>
-          <div class="eyebrow">01 / CHANNEL MAP</div>
-          <h2>先看懂渠道，再做内容</h2>
+<section class="sec" id="s3">
+  <div class="wrap">
+    <header class="sec-head rv">
+  <div class="sec-kicker"><span class="sec-num">03</span><span class="sec-eng">E-COMMERCE<br>&amp; LIVE</span></div>
+  <div class="sec-titles"><h2>电商与直播电商</h2><p>从大促首页，到一场完整的直播体验</p></div>
+  <p class="sec-note"><b>19</b> 件物料<br>大促、直播、转化组件，<br>统一一套转化语言</p>
+</header>
+    <div class="live-lead rv">
+      <div class="live-copy">
+        <p class="lede">把每一次上播，<br>做成一场品牌体验。</p>
+        <p>从大促首页、直播间背景板到弹窗与信息贴片，统一视觉语言与利益点，让用户的每一步都短、准、清晰。</p>
+        <div class="live-facts"><div><b>4</b><span>套 · 9:16 直播视觉</span></div><div><b>15</b><span>件 · 大促与转化物料</span></div></div>
+      </div>
+      <div class="live-panel">
+        <div class="live-panel-head"><span>DOUYIN / 9:16 LIVE SET</span><b>LIVE COMMERCE</b></div>
+        <div class="live-strip">
+          <figure class="live-card" data-name="抖音直播间背景板" data-full="assets/channel-marketing/editorial/hOQq0wUeVT9ruNOn.webp" tabindex="0" role="button" aria-label="放大查看：抖音直播间背景板">
+<img src="assets/channel-marketing/editorial/hOQq0wUeVT9ruNOn.webp" alt="抖音直播间背景板" width="1632" height="2880" loading="eager" decoding="async">
+<figcaption>01 / 抖音直播间背景板</figcaption>
+</figure>
+<figure class="live-card is-overlay" data-name="抖音直播间贴片层" data-full="assets/channel-marketing/editorial/Z3ICU3R5CSIHPPJW-layer.webp" tabindex="0" role="button" aria-label="放大查看：抖音直播间贴片层 · 叠加示意">
+<img src="assets/channel-marketing/editorial/Z3ICU3R5CSIHPPJW-layer.webp" alt="抖音直播间贴片层" width="1020" height="1800" loading="eager" decoding="async">
+<figcaption>02 / 抖音直播间贴片层 · 叠加示意</figcaption>
+</figure>
+<figure class="live-card" data-name="抖音直播间产品展台" data-full="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" tabindex="0" role="button" aria-label="放大查看：抖音直播间产品展台">
+<img src="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" alt="抖音直播间产品展台" width="1632" height="2880" loading="eager" decoding="async">
+<figcaption>03 / 抖音直播间产品展台</figcaption>
+</figure>
+<figure class="live-card" data-name="抖音直播预告海报" data-full="assets/channel-marketing/editorial/BY8cYAVzH85McRnZ.webp" tabindex="0" role="button" aria-label="放大查看：抖音直播预告海报">
+<img src="assets/channel-marketing/editorial/BY8cYAVzH85McRnZ.webp" alt="抖音直播预告海报" width="1632" height="2880" loading="eager" decoding="async">
+<figcaption>04 / 抖音直播预告海报</figcaption>
+</figure>
         </div>
-        <p>四个阶段不是四份素材，而是一条从认知到复购的路径。每个渠道只负责一件事，合起来才是完整的增长链路。</p>
-      </div>
-      <div class="stage-flow reveal" style="--delay:.08s" aria-hidden="true">
-        <span>公域种草</span><i>→</i><span>私域沉淀</span><i>→</i><span>直播成交</span><i>→</i><span>付费放大</span>
-      </div>
-      <div class="stage-grid">
-        <article class="stage-card reveal">
-          <div class="stage-top"><span class="stage-num">01</span><span class="stage-kicker">DEMAND</span></div>
-          <h3>种草</h3>
-          <p>先让用户看见，再让用户相信。</p>
-          <div class="stage-channels"><span>小红书</span><span>知乎</span><span>抖音</span><span>快手</span><span>B站</span><span>达人</span></div>
-          <dl>
-            <div><dt>CORE TASK</dt><dd>用场景内容建立产品认知与专业背书</dd></div>
-            <div><dt>CONTENT</dt><dd>图文、短视频、达人种草、账号栏目</dd></div>
-            <div><dt>METRIC</dt><dd>曝光 · 互动 · 收藏 · 搜索</dd></div>
-          </dl>
-        </article>
-        <article class="stage-card reveal" style="--delay:.08s">
-          <div class="stage-top"><span class="stage-num">02</span><span class="stage-kicker">RELATIONSHIP</span></div>
-          <h3>沉淀</h3>
-          <p>把一次触达，变成可反复经营的关系。</p>
-          <div class="stage-channels"><span>企业微信</span><span>社群</span><span>公众号</span><span>1V1</span></div>
-          <dl>
-            <div><dt>CORE TASK</dt><dd>承接公域流量，完成信任培育与分层</dd></div>
-            <div><dt>CONTENT</dt><dd>欢迎语、朋友圈、社群物料、菜单与自动回复</dd></div>
-            <div><dt>METRIC</dt><dd>添加率 · 留存 · 互动 · 转化</dd></div>
-          </dl>
-        </article>
-        <article class="stage-card reveal" style="--delay:.16s">
-          <div class="stage-top"><span class="stage-num">03</span><span class="stage-kicker">CONVERSION</span></div>
-          <h3>转化</h3>
-          <p>把购买理由，放进用户正在做决定的现场。</p>
-          <div class="stage-channels"><span>电商平台</span><span>大促</span><span>直播间</span><span>货架</span></div>
-          <dl>
-            <div><dt>CORE TASK</dt><dd>用活动机制与直播场景缩短决策路径</dd></div>
-            <div><dt>CONTENT</dt><dd>承接页、优惠券、直播背景、切片与福袋</dd></div>
-            <div><dt>METRIC</dt><dd>点击 · 停留 · 转化率 · GMV</dd></div>
-          </dl>
-        </article>
-        <article class="stage-card reveal" style="--delay:.24s">
-          <div class="stage-top"><span class="stage-num">04</span><span class="stage-kicker">AMPLIFY</span></div>
-          <h3>放大</h3>
-          <p>用对的素材，在对的人群里重复一次。</p>
-          <div class="stage-channels"><span>信息流</span><span>搜索</span><span>开屏</span><span>H5 / EDM</span><span>线下屏</span></div>
-          <dl>
-            <div><dt>CORE TASK</dt><dd>按漏斗阶段配置素材，扩大有效触达</dd></div>
-            <div><dt>CONTENT</dt><dd>效果广告、互动页面、电子海报、数字屏</dd></div>
-            <div><dt>METRIC</dt><dd>CTR · 线索 · ROI · 复购</dd></div>
-          </dl>
-        </article>
+        <div class="live-panel-foot"><span>背景板 · 贴片 · 展台 · 预告</span><span>一套完整的直播间视觉系统</span></div>
       </div>
     </div>
-  </section>
+    <div class="gallery" data-row-h="205" id="s3-gallery">
+<figure class="tile" data-ar="0.5667" data-name="大促活动首页" data-full="assets/channel-marketing/editorial/CpyucNgqSMEdfsh4.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACwBACdASoSACAAPxFwrlAsJiQisAgBgCIJYmZARgAU+Im2Qzcn86Fc/TXEQpNUAP7oGXnf8hOlTdowXqywckh/IhzM8Jt+wgdJ1czspMCPgapsSavemBzL6lP8g0A+P7F1JDgAAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：大促活动首页">
+<div class="timg"><img src="assets/channel-marketing/editorial/CpyucNgqSMEdfsh4.webp" alt="大促活动首页" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">大促活动首页</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="直播预告海报" data-full="assets/channel-marketing/editorial/XoK1jVpMIZHGrNTl.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABwBQCdASoYACAAPxF8sFMsJ6QiqA1RgCIJQBUk5MBX9TAy5T5DtQqoaRcsoIFBmaZP+P2AAPgY0tLQoNNdKo4rzKGL8mbb+W7y/CkwFla1WifTjI6OSc7MFVOcfbpsBtBaqYpk88EsnGCZ8/eFnAxK6VWB2flMVNFgAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播预告海报">
+<div class="timg"><img src="assets/channel-marketing/editorial/XoK1jVpMIZHGrNTl.webp" alt="直播预告海报" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播预告海报</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="直播弹窗" data-full="assets/channel-marketing/editorial/6zbHaE8h286myOUG.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAAAQBQCdASoYACAAPxF2sFCsJ6SisAgBgCIJYwCdACHanNB5LFBebD7BrWfTzpoX4zCAAP4yRXyar9f5WhdNthqzYOny5mxkf/FsF5Q3YL21aISPG7QR9FhGppmoRp0TWESrXbun/l2DvM6PbWvbQFeoAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播弹窗">
+<div class="timg"><img src="assets/channel-marketing/editorial/6zbHaE8h286myOUG.webp" alt="直播弹窗" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播弹窗</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="直通车投放横幅" data-full="assets/channel-marketing/editorial/anFcbgEDGxBToSpw.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwBACdASogABIAPxFutFA/piUisBgMA/AiCWIAnTMYCJn5XFqUj7Yw8siYiJtJtZAA/u3EIvbVbWPnDRWujXhZOcj41iXEk3nJ6svqdI9HiQypTbu+18g01oAAXN3orBy8VTttDrFL2fUYBk6GUOiIAS7EAAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直通车投放横幅">
+<div class="timg"><img src="assets/channel-marketing/editorial/anFcbgEDGxBToSpw.webp" alt="直通车投放横幅" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直通车投放横幅</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="直播间背景板" data-full="assets/channel-marketing/editorial/CHuv6KhNKsA0LRr7.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASogABIAPxF0slKsJiQisBgIAYAiCUcAAW2QFzWNF/rZEO0AAMLNefOmRjua+TEn9WWn2YGMJjpbNGLWnBm4M3oefAnyArK8pL8mesHsHRwUWAT3nZxWVw3KzovUlxjoAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播间背景板">
+<div class="timg"><img src="assets/channel-marketing/editorial/CHuv6KhNKsA0LRr7.webp" alt="直播间背景板" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播间背景板</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="抖音直播信息条贴片" data-full="assets/channel-marketing/editorial/rX04bpSX4H5FibVz.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAwCdASoSACAAPxF4s1IsJySisBgIAYAiCWUAwNw6QQ8tE18uBAD+79fI516PFVKewp+mxilBqIhTbkMxh6BqpZlJ0AAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：抖音直播信息条贴片">
+<div class="timg"><img src="assets/channel-marketing/editorial/rX04bpSX4H5FibVz.webp" alt="抖音直播信息条贴片" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">抖音直播信息条贴片</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="抖音直播讲解封面" data-full="assets/channel-marketing/editorial/EHPYfkO3zg7KEWjF.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABQBQCdASoSACAAPxFyr1AsJqQisAgBgCIJYgCdMoR/UBPNBXI5y8CLWmiVep+XU0r5MDAA/sa92vxLPrGGrb/8wl/qnCyIh1EoQ0bl0k5IINKqijnXjXPAX0yfM1RriaQEXvZIFxAQXRg4AAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：抖音直播讲解封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/EHPYfkO3zg7KEWjF.webp" alt="抖音直播讲解封面" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">抖音直播讲解封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="抖音直播弹窗" data-full="assets/channel-marketing/editorial/dJv5VJjk8OHugTH2.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAQBQCdASoSACAAPxF4s1IsJySisBgIAYAiCWMAuwA0a2ME3cPpCzBEAha+LXDVHgcAAP64t9wFEzBU1CPMZF3ecDk4Y38MzfYjuVB7q0d8mnr2K+hbP54sgnaiX75x2SEAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：抖音直播弹窗">
+<div class="timg"><img src="assets/channel-marketing/editorial/dJv5VJjk8OHugTH2.webp" alt="抖音直播弹窗" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">抖音直播弹窗</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="直播间贴片" data-full="assets/channel-marketing/editorial/O5zouxcHSEDmME9w.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACQBACdASogABIAPxF6uFMsJ6WiqAqpgCIJQBadDTR61tnoYw6b1dKo+zNwtgAA/vT9SYpZ/sfBGoozs0bYROyn+lBruV/ihoOg/9AyqHcw0Yx7CtwyXCpkYW+vUATledyA2LZScBGgAAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播间贴片">
+<div class="timg"><img src="assets/channel-marketing/editorial/O5zouxcHSEDmME9w.webp" alt="直播间贴片" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播间贴片</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="大促倒计时组件" data-full="assets/channel-marketing/editorial/VM7IJBCZY5IaLR3S.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBgCdASogACAAPwlurlArpqQit/VYAXAhCWwAnTlBOzllW0YYJkFmz6zSi58b8hsDW7ag9emfIVdZAAD+tAN5CkkW0F2Xzk/9EB0y2rcPLp4/fZtkzoAPsSDAmAIaeylbNF+Eo9ksxHswSm+E3EPApJ2LSGoYKm3WQBRC9B6L/y7rovpRswtkax1WExhpqnZvYOtX8L5eokgAAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：大促倒计时组件">
+<div class="timg"><img src="assets/channel-marketing/editorial/VM7IJBCZY5IaLR3S.webp" alt="大促倒计时组件" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">大促倒计时组件</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="大促优惠券组件" data-full="assets/channel-marketing/editorial/k588gC9VDL7SN4X6.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABQBQCdASogACAAPxFos1AsJSSisBgMAYAiCWYArDNaPQ+pgTyxlD8qGs+veRaRiJVn9cAA1NCacutbnqt5vWYXdS/GTp4e3KHRek4NE9Q0nn4XkOVY45rqqzN8BNjalTLXfTqqsqZ4rpjkvJDVcsFXUT1RS7BV/JiDs/cNn0RxbogA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：大促优惠券组件">
+<div class="timg"><img src="assets/channel-marketing/editorial/k588gC9VDL7SN4X6.webp" alt="大促优惠券组件" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">大促优惠券组件</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="直播信息条贴片" data-full="assets/channel-marketing/editorial/1IoboekHlfJr6gCg.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACQAwCdASogABIAPxF8tlOsJ6UiqAqpgCIJZwDIXBEZ3H9oPqUAAP7qcDFE0eOI8cD+3IB8fLo69ZLgAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播信息条贴片">
+<div class="timg"><img src="assets/channel-marketing/editorial/1IoboekHlfJr6gCg.webp" alt="直播信息条贴片" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播信息条贴片</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="钻展投放横幅" data-full="assets/channel-marketing/editorial/AXIMvOSq00AcjTx5.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABwBQCdASogACAAPxFqs1CsJaSisBgMAYAiCWwAnTLaSGqAA01HChVT99DYD0QMnhJ1jbMQAP65idEQzCHHjywvzxXbLa+pVTKktqv1UH+g/Qb3nFHzJJeCiNgBlJF3wNP7s6cMD7LwD/M0QsvwEgjvUHeerxhXIdnyxb4GyxkdGd3VYGIeVk2FjRpGoJQCDhwAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：钻展投放横幅">
+<div class="timg"><img src="assets/channel-marketing/editorial/AXIMvOSq00AcjTx5.webp" alt="钻展投放横幅" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">钻展投放横幅</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="朋友圈投放图" data-full="assets/channel-marketing/editorial/KCKcSfRUyXLGxEZQ.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwBACdASogACAAPvVoqlAqpiQit+gBUB6JZQCC5zJEbhgT23HxRWa4/5uQXpXFMAAA/sMKbQ959nJhfmufzzI1+JCSGBwsF7Dpjzo9Y4p6UogqpIdtvE9GeZ5tvMFwCiZfEOseKQYQAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：朋友圈投放图">
+<div class="timg"><img src="assets/channel-marketing/editorial/KCKcSfRUyXLGxEZQ.webp" alt="朋友圈投放图" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">朋友圈投放图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="直播间产品展台" data-full="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADQBACdASogACAAPwVwrlArpqSisAwBcCCJaACdMy/A0PM3+WHnIAF1YMpNLot7AAD8oXXkXewTuvwBObb5x7c7CmzpdIiCLlLIhzPe0EUlR7PR17nxzzsvnYsIBhBKmhJVdo35zuLQLTgkkroa7yKlExZ67RylY2fnr9DoRzRBkaOmLNBZFidR2aQAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：直播间产品展台">
+<div class="timg"><img src="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" alt="直播间产品展台" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">直播间产品展台</figcaption>
+</figure>
+</div>
+  </div>
+</section>
 
-  <!-- ===== Social ===== -->
-  <section class="section chapter" id="social">
-    <div class="container">
-      <div class="chapter-head reveal">
-        <div class="chapter-num">02</div>
-        <div class="chapter-title">
-          <div class="eyebrow">SOCIAL CONTENT MATRIX</div>
-          <h2>社媒内容矩阵</h2>
-          <p>先统一“看见即识别”的基础形象，再用图文、短视频和达人内容，把产品放进真实生活场景。</p>
-        </div>
-        <button class="btn-board" type="button" data-lightbox-src="assets/channel-marketing/boards/07-social-board.jpg" data-lightbox-title="社交媒体矩阵视觉规范">完整规范
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
-        </button>
+<section class="live-analysis" id="live-analysis">
+  <div class="wrap">
+    <div class="analysis-grid">
+      <div class="analysis-copy rv">
+        <p class="analysis-kicker">INTERLUDE / LIVE VISUAL ANALYSIS</p>
+        <h2>直播间<br>视效拆解</h2>
+        <p class="lede">优化每一处细节，<br>提升转化效果。</p>
+        <p>从场景布置、镜头语言到卖点呈现，拆解影响停留与点击的视觉细节，让产品优势一眼心动。</p>
+        <p class="analysis-quote">“每一个被放大的细节，<br>都是转化的理由。”</p>
       </div>
-
-      <div class="social-feature reveal">
-        <div class="social-foundation">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/social-foundation.jpg" data-lightbox-title="全平台基础形象：头像、主页封面与背景图模板" aria-label="放大查看全平台基础形象">
-            <img src="assets/channel-marketing/crops/social-foundation.jpg" alt="光谷效应全平台账号头像、主页封面与背景图模板" width="1400" height="209" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-        </div>
-        <div class="social-feature-copy">
-          <div class="eyebrow">IDENTITY FIRST</div>
-          <h3>先统一“看见即识别”的基础形象</h3>
-          <p>头像、封面、合集和账号简介，是内容进入用户视野前的第一层品牌识别。多平台适配，不等于多套风格。</p>
-          <div class="channel-chips" aria-label="社媒渠道"><span>小红书</span><span>知乎</span><span>公众号</span><span>抖音</span><span>快手</span><span>B站</span><span>达人合作</span></div>
-        </div>
-      </div>
-
-      <div class="social-grid">
-        <figure class="asset-card reveal">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/social-xhs.jpg" data-lightbox-title="小红书图文种草：不到3千全能管家，别乱买！" aria-label="放大查看小红书图文内容">
-            <img src="assets/channel-marketing/crops/social-xhs.jpg" alt="小红书图文种草笔记封面，智能清洁机器人产品与生活场景" width="570" height="670" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">GRAPHIC / 小红书</span>
-            <h3>先种草，再验货</h3>
-            <p>用真实生活场景和可感知的价格锚点，把“全能管家”翻译成用户能理解的产品理由。</p>
-            <div class="asset-meta"><span>封面 3:4</span><span>测评口吻</span><span>收藏型内容</span></div>
-          </figcaption>
+      <div class="analysis-stage rv">
+        <figure class="stage-center" data-name="直播间产品展台 · 主视觉" data-full="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" tabindex="0" role="button" aria-label="放大查看：直播间产品展台">
+          <img src="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" alt="直播间产品展台" width="2880" height="2880" loading="eager" decoding="async">
+          <figcaption>LIVE STAGE / 直播间主视觉</figcaption>
         </figure>
-        <figure class="asset-card reveal" style="--delay:.08s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/social-douyin.jpg" data-lightbox-title="抖音短视频：自动清洁，解放双手" aria-label="放大查看抖音短视频模板">
-            <img src="assets/channel-marketing/crops/social-douyin.jpg" alt="抖音竖版短视频界面，自动清洁解放双手主题" width="420" height="600" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">VIDEO / 抖音</span>
-            <h3>十五秒，讲清一个使用场景</h3>
-            <p>把产品功能拆成可被一眼看懂的动作，用竖屏节奏承接内容平台的流量分发。</p>
-            <div class="asset-meta"><span>9:16 竖版</span><span>场景演示</span><span>强钩子开头</span></div>
-          </figcaption>
-        </figure>
-        <figure class="asset-card reveal" style="--delay:.16s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/social-kol.jpg" data-lightbox-title="达人合作：视频种草与产品露出规范" aria-label="放大查看达人种草内容">
-            <img src="assets/channel-marketing/crops/social-kol.jpg" alt="达人短视频种草画面，年轻用户与智能清洁机器人" width="550" height="600" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">KOL / 达人</span>
-            <h3>把产品交给真实的人去使用</h3>
-            <p>统一 Logo 位置、产品露出角度和品牌色边界，让达人的表达方式不同，识别始终一致。</p>
-            <div class="asset-meta"><span>真实体验</span><span>产品正面 / 45° / 顶视</span><span>品牌色规范</span></div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="social-notes reveal">
-        <div class="social-note"><span>01 / CONTENT COLUMN</span><h4>内容栏目化</h4><p>产品测评、使用教程、场景应用、新品速递，用固定栏目降低持续生产的难度。</p></div>
-        <div class="social-note"><span>02 / PLATFORM FIT</span><h4>一稿多平台适配</h4><p>同一套核心信息，按小红书、知乎、抖音、快手、B站的阅读与分发逻辑重排。</p></div>
-        <div class="social-note"><span>03 / KOL STANDARD</span><h4>达人合作有边界</h4><p>不追求每条内容长得一样，但 Logo、产品主体与品牌色必须清晰可辨。</p></div>
+        <div class="loupe l1">
+  <span class="loupe-circle" data-name="细节：高清摄像头" data-full="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" tabindex="0" role="button" aria-label="放大查看：细节：高清摄像头">
+    <img src="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" alt="" width="2880" height="2880" loading="eager" decoding="async" style="--pos:50% 24%;--zoom:2.05">
+  </span>
+  <span class="loupe-copy"><b>高清摄像头</b><small>精准识别，建图更聪明</small></span>
+</div>
+        <div class="loupe l2">
+  <span class="loupe-circle" data-name="细节：激光导航" data-full="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" tabindex="0" role="button" aria-label="放大查看：细节：激光导航">
+    <img src="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" alt="" width="1632" height="2880" loading="eager" decoding="async" style="--pos:50% 27%;--zoom:1.95">
+  </span>
+  <span class="loupe-copy"><b>激光导航</b><small>路径规划，清洁更高效</small></span>
+</div>
+        <div class="loupe l3">
+  <span class="loupe-circle" data-name="细节：蓝光灯带" data-full="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" tabindex="0" role="button" aria-label="放大查看：细节：蓝光灯带">
+    <img src="assets/channel-marketing/editorial/lWoXa6ZYEQK0T44O.webp" alt="" width="2880" height="2880" loading="eager" decoding="async" style="--pos:50% 58%;--zoom:2.15">
+  </span>
+  <span class="loupe-copy"><b>蓝光灯带</b><small>状态可视，科技感十足</small></span>
+</div>
+        <div class="loupe l4">
+  <span class="loupe-circle" data-name="细节：防滑履带" data-full="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" tabindex="0" role="button" aria-label="放大查看：细节：防滑履带">
+    <img src="assets/channel-marketing/editorial/F76n7GWIUo8Qttqn.webp" alt="" width="1632" height="2880" loading="eager" decoding="async" style="--pos:50% 78%;--zoom:1.95">
+  </span>
+  <span class="loupe-copy"><b>防滑履带</b><small>稳定越障，居家更安心</small></span>
+</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Private ===== -->
-  <section class="section chapter" id="private">
-    <div class="container">
-      <div class="chapter-head reveal">
-        <div class="chapter-num">03</div>
-        <div class="chapter-title">
-          <div class="eyebrow">PRIVATE DOMAIN OPERATIONS</div>
-          <h2>私域运营体系</h2>
-          <p>公域负责遇见，私域负责记住。把用户从一次内容触达，带进可长期经营的关系场。</p>
-        </div>
-        <button class="btn-board" type="button" data-lightbox-src="assets/channel-marketing/boards/04-private-board.jpg" data-lightbox-title="私域运营视觉体系">完整规范
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
-        </button>
+<section class="private-band" id="s4">
+  <div class="wrap">
+    <header class="sec-head rv">
+  <div class="sec-kicker"><span class="sec-num">04</span><span class="sec-eng">PRIVATE<br>DOMAIN</span></div>
+  <div class="sec-titles"><h2>私域运营</h2><p>从流量到陪伴，建立长期关系</p></div>
+  <p class="sec-note"><b>15</b> 件物料<br>企微 + 社群 + 公众号 + 私聊，<br>顾问「小谷」人设贯穿</p>
+</header>
+    <div class="private-grid rv">
+      <div class="private-copy">
+        <p class="lede">从流量到陪伴，<br>建立长期关系。</p>
+        <p>通过社群、会员体系和内容运营，将用户转化为品牌的长期伙伴，持续创造复购与口碑价值。</p>
+        <a class="text-link" href="https://yoyonaga121.github.io/ovem-ai-marketing/" target="_blank" rel="noopener">加入我们，解锁更多智能生活</a>
+        <p class="private-small">顾问「小谷」· 企微 / 社群 / 公众号 / 私聊<br>15 件物料，4 个关系场景，1 套长期主义。</p>
       </div>
-
-      <div class="journey reveal" aria-label="私域运营路径">
-        <b>公域内容</b><i>→</i><b>企业微信</b><i>→</i><b>社群</b><i>→</i><b>公众号</b><i>→</i><b>1V1</b><i>→</i><b>复购</b>
-      </div>
-
-      <div class="private-grid">
-        <figure class="asset-card reveal">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/private-wecom.jpg" data-lightbox-title="企业微信物料：头像、朋友圈封面、资料页与欢迎语" aria-label="放大查看企业微信物料">
-            <img src="assets/channel-marketing/crops/private-wecom.jpg" alt="企业微信员工头像、朋友圈封面、对外资料页与客户欢迎语模板" width="610" height="520" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">WECOM / 企业微信</span>
-            <h3>让每一次添加，都有一个专业的开场</h3>
-            <p>从员工头像、朋友圈封面到欢迎语，先建立“可信赖的品牌顾问”第一印象。</p>
-            <div class="asset-meta"><span>统一头像</span><span>朋友圈封面</span><span>欢迎语模板</span></div>
-          </figcaption>
-        </figure>
-
-        <figure class="asset-card reveal" style="--delay:.08s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/private-community.jpg" data-lightbox-title="社群运营物料：公告、干货、活动预告、福利与表情包" aria-label="放大查看社群运营物料">
-            <img src="assets/channel-marketing/crops/private-community.jpg" alt="社群公告图、每日干货图、活动预告、福利海报和群内表情包" width="600" height="570" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">COMMUNITY / 社群</span>
-            <h3>社群不是通知群，是内容节奏</h3>
-            <p>公告、干货、预告、福利和表情包各司其职，让用户愿意留下，也愿意参与。</p>
-            <div class="asset-meta"><span>公告 / 干货</span><span>活动预告</span><span>福利与互动</span></div>
-          </figcaption>
-        </figure>
-
-        <figure class="asset-card reveal" style="--delay:.16s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/private-oa.jpg" data-lightbox-title="公众号生态：首封、次条、正文、菜单与自动回复" aria-label="放大查看公众号生态物料">
-            <img src="assets/channel-marketing/crops/private-oa.jpg" alt="公众号图文首封、次条小图、正文排版、菜单栏图标与自动回复素材" width="610" height="530" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <figcaption>
-            <span class="asset-tag">OFFICIAL ACCOUNT / 公众号</span>
-            <h3>内容沉淀，也是品牌资产</h3>
-            <p>首封、次条、正文、菜单和自动回复共同组成公众号的“无声客服”，持续承接搜索与回访。</p>
-            <div class="asset-meta"><span>首封模板</span><span>正文规范</span><span>菜单与自动回复</span></div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <div class="conversion-band reveal">
-        <div class="band-head">
-          <div>
-            <div class="eyebrow">1V1 CONVERSION</div>
-            <h3>把每一次对话，变成下一次复购</h3>
-          </div>
-          <p>产品介绍图、成交喜报、用户见证——用真实证据完成最后一公里的信任。</p>
-        </div>
-        <div class="band-media">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/private-conversion-wide.jpg" data-lightbox-title="一对一转化物料：产品介绍、成交喜报与用户见证" aria-label="放大查看一对一转化物料">
-            <img src="assets/channel-marketing/crops/private-conversion-wide.jpg" alt="一对一转化物料，包含产品介绍图、成交喜报与用户见证素材" width="1800" height="236" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-        </div>
+      <div class="lookbook" aria-label="私域 lookbook">
+        <figure class="look-card" data-name="企微朋友圈海报" data-full="assets/channel-marketing/editorial/4cWootsfO7FZ9jCP.webp" tabindex="0" role="button" aria-label="放大查看：企微朋友圈海报">
+  <span class="look-media"><img src="assets/channel-marketing/editorial/4cWootsfO7FZ9jCP.webp" alt="企微朋友圈海报" width="2160" height="2880" loading="eager" decoding="async"></span>
+  <figcaption class="look-copy"><b>用户社群</b><span>分享真实体验，<br>让口碑自然发生。</span><i></i></figcaption>
+</figure>
+<figure class="look-card" data-name="企微好友欢迎语卡片" data-full="assets/channel-marketing/editorial/ZETIHYM1mC48N1C7.webp" tabindex="0" role="button" aria-label="放大查看：企微好友欢迎语卡片">
+  <span class="look-media"><img src="assets/channel-marketing/editorial/ZETIHYM1mC48N1C7.webp" alt="企微好友欢迎语卡片" width="2160" height="2880" loading="eager" decoding="async"></span>
+  <figcaption class="look-copy"><b>品牌社群</b><span>有问必答，<br>让信任先发生。</span><i></i></figcaption>
+</figure>
+<figure class="look-card" data-name="社群节日专属福利海报" data-full="assets/channel-marketing/editorial/ZknlELGAAVLdfYUJ.webp" tabindex="0" role="button" aria-label="放大查看：社群节日专属福利海报">
+  <span class="look-media"><img src="assets/channel-marketing/editorial/ZknlELGAAVLdfYUJ.webp" alt="社群节日专属福利海报" width="2160" height="2880" loading="eager" decoding="async"></span>
+  <figcaption class="look-copy"><b>会员权益</b><span>解锁更多福利，<br>让每一次购买都被记住。</span><i></i></figcaption>
+</figure>
+<figure class="look-card" data-name="私聊客户关怀图" data-full="assets/channel-marketing/editorial/93NZyvjMj6IFHMp8.webp" tabindex="0" role="button" aria-label="放大查看：私聊客户关怀图">
+  <span class="look-media"><img src="assets/channel-marketing/editorial/93NZyvjMj6IFHMp8.webp" alt="私聊客户关怀图" width="2160" height="2880" loading="eager" decoding="async"></span>
+  <figcaption class="look-copy"><b>用户共创</b><span>与用户一起成长，<br>让品牌更有生命力。</span><i></i></figcaption>
+</figure>
       </div>
     </div>
-  </section>
+    <div class="gallery" data-row-h="172" id="s4-gallery">
+<figure class="tile" data-ar="1.0000" data-name="企微员工统一头像" data-full="assets/channel-marketing/editorial/rvLnl8Rv4DCavagO.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBQCdASogACAAPxGCuFasKCUjqAgBgCIJYgCdAFbROPUtFo3IkPrXCHeoBi78+wpg2AD+7VIrEjIlA1RPAXUZsa7aCG/9e0sKdQteKazxdqZ7x+g6V6Gh0H0VuzJjNi2V2cjQv/00bJy8VesZIfe4kmldnjDWeh0E33GEY2W/7egmo2R4AA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：企微员工统一头像">
+<div class="timg"><img src="assets/channel-marketing/editorial/rvLnl8Rv4DCavagO.webp" alt="企微员工统一头像" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">企微员工统一头像</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="社群公告海报" data-full="assets/channel-marketing/editorial/Sv28gPMnBf9akerS.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBQCdASoYACAAPxF8tlOsJ6UiqAqpgCIJZACdMoAFMDh8eYHsprGYBL5TQg4jIIUAAPREP4rtdRSUE8dLZ3KXYrXRR6qVFiY5DRAOneekotnq43zavCIlgECb98Sy6vpF5BBruZTeU6fDU4AAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：社群公告海报">
+<div class="timg"><img src="assets/channel-marketing/editorial/Sv28gPMnBf9akerS.webp" alt="社群公告海报" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">社群公告海报</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="社群每日电子报封面" data-full="assets/channel-marketing/editorial/JbpydiwB2Q43hcCx.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwBACdASoYACAAPxFytFOsJiSisBgIAYAiCUATpmMBSMShjiU71pET6yNdgIpbOwAA/vcOToMNa1IRQz1585nYRPaVGI+Gg7Fw2V8UzPGrhoQ3STb13Aupu09H1rFTrzIXRl+CtUsP8nGbI8T4+lWj14IGawTCVAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：社群每日电子报封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/JbpydiwB2Q43hcCx.webp" alt="社群每日电子报封面" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">社群每日电子报封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="社群互动抽奖海报" data-full="assets/channel-marketing/editorial/NPiSounPy47xmzuX.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABwBQCdASoYACAAPxF6sFGsKCSisBgIAYAiCWgAnTKEeOblgXij1u5YNEacP0wsfIoQTffwAPnhjU4gXwAufgwbskFLUotnbkBOQXqSu84sP0SVJckjhmUXBO2BGDyIvyv8U8Oq0rXcQTLJjzhM4pFu1Sc5zphaqn1lMUPC9acCJbREq6XkgwKS6YzNOhIAAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：社群互动抽奖海报">
+<div class="timg"><img src="assets/channel-marketing/editorial/NPiSounPy47xmzuX.webp" alt="社群互动抽奖海报" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">社群互动抽奖海报</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="公众号文末引导图" data-full="assets/channel-marketing/editorial/nSLLAsgNtTLfW1il.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwBACdASoYACAAPwlwrVArpqQit/VYAXAhCWUAuwBFX88hKY1SD/NuT13Cjo8AAP7yMwESEPCtivtrBvAi1wBcafV85Yxxl4nmuwDhFCg9kntmF+9NpM23VKIMJOiAAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号文末引导图">
+<div class="timg"><img src="assets/channel-marketing/editorial/nSLLAsgNtTLfW1il.webp" alt="公众号文末引导图" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号文末引导图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="企微客户档案封面" data-full="assets/channel-marketing/editorial/ja7AdMBWskEKpeK1.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwBACdASogABIAPw12r1AsJ6QisBgMAYAhiUATpmq4Na/D1VWWfGtNMaU7nWOZqyAA/uqxqZyOh0ADKgCq6QkpIOnv7yd0Ntda6uA/3YNcc/LLgIKnMHAVFx9AspzLltZEk4GVuAAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：企微客户档案封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/ja7AdMBWskEKpeK1.webp" alt="企微客户档案封面" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">企微客户档案封面</figcaption>
+</figure>
+<figure class="tile" data-ar="2.3077" data-name="公众号头图(私域)" data-full="assets/channel-marketing/editorial/BIEq0PX4NuBzGtlT.webp" style="--ar:2880/1248;--ph:url('data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABwAwCdASogAA4APxF0tFAsJyUisAgBgCIJYwCdAB6NEUHmYAAA/uBvzkzcpCfiQWZfg2OPAWJdZ9s1iprxvU/gNllNC289BvgZFNEUpbT9R0RM0V23mLaeAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号头图(私域)">
+<div class="timg"><img src="assets/channel-marketing/editorial/BIEq0PX4NuBzGtlT.webp" alt="公众号头图(私域)" width="2880" height="1248" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号头图(私域)</figcaption>
+</figure>
+<figure class="tile" data-ar="1.3333" data-name="公众号正文插图" data-full="assets/channel-marketing/editorial/xML80pRzLx6ZcWYL.webp" style="--ar:2880/2160;--ph:url('data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAAAQBQCdASogABgAPw1wsFAsJiSisBgMAYAhiWMAnTNVwL486FgRH9oRj0r1OPFWtcIAAPxdsIwtu8JqurKzT2MXyQD7Fq2NOxmKeOk5olziB0kLEeYgaNF482mwXS+tTyoeCPDzPzZfOTY7Q15JOtQwDaAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号正文插图">
+<div class="timg"><img src="assets/channel-marketing/editorial/xML80pRzLx6ZcWYL.webp" alt="公众号正文插图" width="2880" height="2160" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号正文插图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.0000" data-name="公众号菜单素材图" data-full="assets/channel-marketing/editorial/RgV0l0lh85DXcoff.webp" style="--ar:2880/2880;--ph:url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAwBQCdASogACAAPxGCu1IsKacisAgBgCIJZwDKAGlgO353xPTbYC5NL2BnyblEMC7WAAD+TSr0cF0vWy0W2hGLPAK1mLLDwfCeETf/iiu6P3EIXz0Xu7AM9G/KrxfsiZeOMMWFoP/w2AAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：公众号菜单素材图">
+<div class="timg"><img src="assets/channel-marketing/editorial/RgV0l0lh85DXcoff.webp" alt="公众号菜单素材图" width="2880" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">公众号菜单素材图</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="私聊产品介绍卡片" data-full="assets/channel-marketing/editorial/Ef1AReFsDPDxbtQL.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAACwBACdASoYACAAPxGCuVWsKKWjKAgBgCIJQBbZCtn92gjPQoAP2kpYms2bRJuAAP73M6FdQG4VW7r2b+GUjio80uREZLSNpekcpS4zmq7RbGmcMOIkjzDQTizmAAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：私聊产品介绍卡片">
+<div class="timg"><img src="assets/channel-marketing/editorial/Ef1AReFsDPDxbtQL.webp" alt="私聊产品介绍卡片" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">私聊产品介绍卡片</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="私聊成交喜报" data-full="assets/channel-marketing/editorial/umc1UhuSaGDWa4wt.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBQCdASoYACAAPxF+ulOsKCYiqAqpgCIJbACdMzQ6f47c2A068OQl3f1Hw+a8wl0AAPxSLSD+skaeJGv+cCJx/ZPObP7YYj7Gzz11/6rb0Mj1xHPQpMSMYOgB555pktkKmdLf14AsTJ9A0BuekKDOcMv21Qwg4dtxurtzpVOtASQR+5kCgAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：私聊成交喜报">
+<div class="timg"><img src="assets/channel-marketing/editorial/umc1UhuSaGDWa4wt.webp" alt="私聊成交喜报" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">私聊成交喜报</figcaption>
+</figure>
+</div>
+  </div>
+</section>
 
-  <!-- ===== Live ===== -->
-  <section class="section chapter" id="live">
-    <div class="container">
-      <div class="chapter-head reveal">
-        <div class="chapter-num">04</div>
-        <div class="chapter-title">
-          <div class="eyebrow">COMMERCE &amp; LIVE</div>
-          <h2>电商与直播</h2>
-          <p>大促、货架、直播间和直播物料，共同构成一条从预热到成交的转化现场。</p>
-        </div>
-        <button class="btn-board" type="button" data-lightbox-src="assets/channel-marketing/boards/06-live-board.jpg" data-lightbox-title="电商营销与直播视觉体系">完整规范
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
-        </button>
-      </div>
-
-      <div class="live-top reveal">
-        <div class="live-room-wrap">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/live-room.jpg" data-lightbox-title="直播间基础视觉：背景板、悬浮角标与产品展示台" aria-label="放大查看直播间基础视觉">
-            <img src="assets/channel-marketing/crops/live-room.jpg" alt="直播间背景板、产品展示台与限时直降、免息、抽奖等悬浮角标" width="920" height="530" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <span class="live-badge"><i></i>LIVE ROOM</span>
-        </div>
-        <div class="live-copy">
-          <div class="eyebrow">CONVERSION STAGE</div>
-          <h3>直播间不是背景板，<br><span>是转化现场。</span></h3>
-          <p>背景、角标、产品台和信息贴片各自承担一层信息：品牌是谁、现在买有什么理由、下一步该做什么。</p>
-          <div class="live-list">
-            <div><span>01 / BACKGROUND</span><strong>统一空间与品牌识别</strong></div>
-            <div><span>02 / FLOATING TAG</span><strong>价格、免息、抽奖即时可见</strong></div>
-            <div><span>03 / PRODUCT STAGE</span><strong>让产品成为画面主角</strong></div>
-            <div><span>04 / INFO CARD</span><strong>功能亮点与直播福利并列</strong></div>
-          </div>
-          <div class="platform-chips" aria-label="电商平台投放物料"><span>直通车</span><span>钻展</span><span>秒杀</span><span>百亿补贴</span></div>
-        </div>
-      </div>
-
-      <div class="live-strips">
-        <article class="wide-asset reveal">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/live-campaign.jpg" data-lightbox-title="大促活动模板：618、双11、品牌日、优惠券与预售海报" aria-label="放大查看大促活动模板">
-            <img src="assets/channel-marketing/crops/live-campaign.jpg" alt="618、双11、品牌日大促承接页、优惠券、预售海报与促销标签" width="1600" height="361" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <div class="wide-caption"><h3>大促活动，一套视觉语言贯到底</h3><span>618 · 双11 · 品牌日</span></div>
-        </article>
-        <article class="wide-asset reveal" style="--delay:.08s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/live-assets.jpg" data-lightbox-title="直播前中后物料：预告、商品主图、切片封面与福袋弹窗" aria-label="放大查看直播物料">
-            <img src="assets/channel-marketing/crops/live-assets.jpg" alt="直播预告海报、商品链接主图、直播切片封面与福袋秒杀弹窗" width="1600" height="501" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <div class="wide-caption"><h3>直播前中后，每个环节都有物料</h3><span>预告 → 开播 → 切片 → 复盘</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Paid ===== -->
-  <section class="section chapter" id="paid">
-    <div class="container">
-      <div class="chapter-head reveal">
-        <div class="chapter-num">05</div>
-        <div class="chapter-title">
-          <div class="eyebrow">PAID &amp; INTERACTIVE</div>
-          <h2>投放与互动增长</h2>
-          <p>把预算变成有效触达：按人群阶段配置素材，让信息流、搜索、互动页面和线下屏说同一件事。</p>
-        </div>
-        <button class="btn-board" type="button" data-lightbox-src="assets/channel-marketing/boards/08-paid-board.jpg" data-lightbox-title="数字营销与投放视觉体系">完整规范
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
-        </button>
-      </div>
-
-      <div class="paid-top reveal">
-        <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/paid-feed.jpg" data-lightbox-title="信息流广告素材：未来智能家居解决方案" aria-label="放大查看信息流广告">
-          <img src="assets/channel-marketing/crops/paid-feed.jpg" alt="信息流广告素材，未来智能家居解决方案与立即了解行动按钮" width="780" height="560" loading="lazy" decoding="async">
-          <span class="zoom-hint">查看大图</span>
-        </button>
-        <div class="paid-copy">
-          <div class="eyebrow">FUNNEL × CREATIVE</div>
-          <h3>不是把预算撒出去，<br>是按阶段把理由说对。</h3>
-          <p>认知阶段讲场景，兴趣阶段讲功能，转化阶段讲机制，复购阶段讲信任。素材的尺寸不同，任务也不该相同。</p>
-          <div class="funnel-grid">
-            <div class="funnel-item"><span>AWARENESS</span><strong>场景触达</strong></div>
-            <div class="funnel-item"><span>INTEREST</span><strong>功能解释</strong></div>
-            <div class="funnel-item"><span>ACTION</span><strong>权益转化</strong></div>
-            <div class="funnel-item"><span>RETENTION</span><strong>口碑复购</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <article class="wide-asset paid-interactive reveal">
-        <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/paid-interactive.jpg" data-lightbox-title="互动营销物料：H5、通用组件、电子邀请函与 EDM" aria-label="放大查看互动营销物料">
-          <img src="assets/channel-marketing/crops/paid-interactive.jpg" alt="H5活动页面、通用交互组件、电子邀请函与EDM营销邮件" width="1600" height="465" loading="lazy" decoding="async">
-          <span class="zoom-hint">查看大图</span>
-        </button>
-        <div class="wide-caption"><h3>互动物料，让用户从“看见”走到“参与”</h3><span>H5 · 组件 · 邀请函 · EDM</span></div>
-      </article>
-
-      <div class="paid-duo">
-        <article class="wide-asset reveal">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/paid-ooh.jpg" data-lightbox-title="线下数字屏：商圈 LED、电梯屏与地铁数字屏" aria-label="放大查看线下数字屏物料">
-            <img src="assets/channel-marketing/crops/paid-ooh.jpg" alt="商圈LED大屏、电梯广告屏与地铁数字屏广告画面" width="1600" height="516" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <div class="wide-caption"><h3>线下数字屏</h3><span>16:9 · 9:16 · 21:9</span></div>
-        </article>
-        <article class="wide-asset reveal" style="--delay:.08s">
-          <button class="media-button" type="button" data-lightbox-src="assets/channel-marketing/crops/paid-poster.jpg" data-lightbox-title="通用电子海报：节日、新品与活动" aria-label="放大查看通用电子海报">
-            <img src="assets/channel-marketing/crops/paid-poster.jpg" alt="中秋节日海报、新品上市海报与周年庆活动海报" width="1600" height="533" loading="lazy" decoding="async">
-            <span class="zoom-hint">查看大图</span>
-          </button>
-          <div class="wide-caption"><h3>通用电子海报</h3><span>节日 · 新品 · 活动</span></div>
-        </article>
+<section class="sec" id="s5">
+  <div class="wrap">
+    <header class="sec-head rv">
+  <div class="sec-kicker"><span class="sec-num">05</span><span class="sec-eng">DUAL-STYLE<br>LIBRARY</span></div>
+  <div class="sec-titles"><h2>双风格素材库</h2><p>同一产品，两种叙事方式</p></div>
+  <p class="sec-note"><b>19</b> 件图像<br>科技蓝 6 · 生活感 13<br>A-B 双风格对照</p>
+</header>
+    <div class="duel-intro rv">
+      <p class="lede">专业感与亲近感，<br>从来不是二选一。</p>
+      <div class="style-key">
+        <div><b>STYLE A</b><i></i>科技蓝 · 3D 等距 · 理性建立信任</div>
+        <div><b>STYLE B</b><i></i>生活感 · 温暖实拍 · 情绪建立共鸣</div>
       </div>
     </div>
-  </section>
-
-  <!-- ===== Loop ===== -->
-  <section class="section loop" id="loop">
-    <div class="container">
-      <div class="section-heading reveal">
-        <div>
-          <div class="eyebrow">06 / OPERATING LOOP</div>
-          <h2>渠道营销的终点，<br>不是素材交付。</h2>
-        </div>
-        <p>一次内容是否有效，不只看它好不好看，还要看它能否被复用、被追踪、被下一次运营继续使用。</p>
+    <div class="duel">
+      <div class="duel-col">
+        <div class="duel-head"><span class="duel-letter">A</span><b>科技蓝 · 3D 等距</b><small>选自区块 01</small></div>
+        <div class="gallery" data-row-h="175" id="s5a-gallery">
+<figure class="tile" data-ar="0.7500" data-name="信息流广告（对照）" data-full="assets/channel-marketing/editorial/ca9MhT4eG5LmZ7zl.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBQCdASoYACAAPvVoqlAqpqQit+gBUB6JbACxHt686Dm3e1ASFkXiuUOT7+7MM08toAD+Ee0Poau0TP4PT+OzvtzOjSAB1LUhQheNmFENW229QEgWXl4WTfxi2KnoSMiwaxc3a3hYxCivvE/tsm3ovrGeIAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：信息流广告（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/ca9MhT4eG5LmZ7zl.webp" alt="信息流广告（对照）" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">信息流广告（对照）</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="搜索广告（对照）" data-full="assets/channel-marketing/editorial/xsBVVifePzHgj9g2.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAwBACdASogABIAPwVurFArpqQisAwBcCCJZQDBzCHfiAN6KtD7BvmedaAA/u158kRqjdI/Bfo7MHMlml1tqLXTAXIM2AJ+Z/AAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：搜索广告（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/xsBVVifePzHgj9g2.webp" alt="搜索广告（对照）" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">搜索广告（对照）</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="APP开屏广告（对照）" data-full="assets/channel-marketing/editorial/G1FNAmVu171Fo1rR.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAwBACdASoSACAAPw1ws1AsJiUisBgMAYAhiUATpmMALhvP6+0/i54kmrgA/svWBRTH9p/9lMIIyM/F0j6KRnXBzmzazVwgckIHbWmk1dzh8Pnp9wJXpuwqK/1l9oOSfssbiW/+vNzjNBOGsD8QQAAA')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：APP开屏广告（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/G1FNAmVu171Fo1rR.webp" alt="APP开屏广告（对照）" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">APP开屏广告（对照）</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="商超LED大屏广告（对照）" data-full="assets/channel-marketing/editorial/azrc7RVfdM1icdN1.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBQCdASogABIAPxF0r1AsJyQisBgMAYAiCWYAnTKEgNgVPRBBuLBP/8bGLp5QjVzdEAD+PtkmSWyfBHXPXVy7rOrxRIwMahzesLQIQw3/+Ss3DZt0hjpvISAd3pj5/CYg9GpH+Iv9mIUsuFqAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：商超LED大屏广告（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/azrc7RVfdM1icdN1.webp" alt="商超LED大屏广告（对照）" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">商超LED大屏广告（对照）</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="电梯广告（对照）" data-full="assets/channel-marketing/editorial/cl874EWdDc5bpugD.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAwBQCdASoYACAAPvFip1AppaOit+gBMB4JbACsMxL7KJikI9xYQrtwmhm51SfRHoe3AAD++zAdQH+bSUqfgvJLIiV2deq24FDJOUauBt5tWTapWlO/t+usMP3eG92Q2aiXc8b1AUNk29dA4pWssyMQ4wq5IRdIR9SrgfvTRAAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：电梯广告（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/cl874EWdDc5bpugD.webp" alt="电梯广告（对照）" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">电梯广告（对照）</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="通用海报-新品首发（对照）" data-full="assets/channel-marketing/editorial/FuuYYaJuE2CqQVNr-2x.webp" style="--ar:768/1024;--ph:url('data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwBQCdASoYACAAPwForFArJiQit/qoAWAgCWoAnTLs+ygeBkYoyREBROLEUJvjmptpcHZjE5a4AAD+zMX+329R6gXxg7WjyMwDGPxYmfJ8Zha/aRAdtWKhWnIP7zYSIOQzIzrGU91Azig8WeL0VJ0lFIg8MTVEAJeAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：通用海报-新品首发（对照）">
+<div class="timg"><img src="assets/channel-marketing/editorial/FuuYYaJuE2CqQVNr.webp" alt="通用海报-新品首发（对照）" width="768" height="1024" loading="lazy" decoding="async"></div>
+<figcaption class="cap">通用海报-新品首发（对照）</figcaption>
+</figure>
+</div>
       </div>
-      <div class="loop-grid">
-        <div class="loop-step reveal"><div class="loop-num">01</div><h3>策略</h3><p>先定人群、渠道与节奏，再决定做什么内容。</p></div>
-        <div class="loop-step reveal" style="--delay:.06s"><div class="loop-num">02</div><h3>生产</h3><p>一套核心视觉，延展成不同平台、尺寸与场景。</p></div>
-        <div class="loop-step reveal" style="--delay:.12s"><div class="loop-num">03</div><h3>分发</h3><p>公域、私域、电商、投放，按各自任务协同。</p></div>
-        <div class="loop-step reveal" style="--delay:.18s"><div class="loop-num">04</div><h3>复盘</h3><p>看曝光，也看加微、停留、转化与复购。</p></div>
-        <div class="loop-step reveal" style="--delay:.24s"><div class="loop-num">05</div><h3>迭代</h3><p>把有效素材沉淀成模板，把有效动作变成机制。</p></div>
-      </div>
-
-      <div class="loop-quote reveal">
-        <h2>渠道不是列表，<br><span>是一张增长网络。</span></h2>
-        <p>从内容到关系，从关系到成交，再从成交回到新的内容与口碑——每个触点都在为下一次增长提供输入。</p>
-      </div>
-
-      <div class="loop-cta reveal">
-        <a class="btn-primary" href="index.html">返回作品集
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-        </a>
-        <a class="btn-ghost" href="https://yoyonaga121.github.io/ovem-ai-marketing/" target="_blank" rel="noopener">查看 AI 营销平台
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
-        </a>
+      <div class="duel-divider" aria-hidden="true"><span>A / B 风格对照</span></div>
+      <div class="duel-col">
+        <div class="duel-head"><span class="duel-letter">B</span><b>生活感 · 温暖实拍</b><small>13 件完整套装</small></div>
+        <div class="gallery" data-row-h="260" data-rows="3" id="s5b-gallery">
+<figure class="tile" data-ar="2.3077" data-name="生活感公众号头图" data-full="assets/channel-marketing/editorial/k6c1jiOZdaEfZSOs.webp" style="--ar:2880/1248;--ph:url('data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASogAA4APxF2sVCsJySisAgBgCIJQBWAAx50WQVE8bDJrAAA/nB3d/5trjXmU9dDReqKr9ypsZSwhF4CP5Fq0yqvw9hsFJB6ysIIAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感公众号头图">
+<div class="timg"><img src="assets/channel-marketing/editorial/k6c1jiOZdaEfZSOs.webp" alt="生活感公众号头图" width="2880" height="1248" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感公众号头图</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="生活感搜索广告" data-full="assets/channel-marketing/editorial/WTpMOz2yWI2FJvvd.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASogABIAPwVsr1ArpiSisAwBcCCJQBdmcdgBpGfgTXcL86gAAP6lFkj8xEL22Xq2kAGFCzeNbV/Gt7bi0MaJ2CTt6XonOtEPFoT948ppWxbcWdzd/bmCwz7YAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感搜索广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/WTpMOz2yWI2FJvvd.webp" alt="生活感搜索广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感搜索广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="生活感APP开屏广告" data-full="assets/channel-marketing/editorial/ZPf4kDcGR3ZtroP8.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBQCdASoSACAAPxF0sVCsJqSisAgBgCIJYgCw7B5AA8wBKRrzALeC6BlTDcStqD24AAD+jTynTI984xXeuhaCvv+yfNLzhrS8GEyMU0Y0pyK7vW2ktZcfb8DgNW3XVECVFKxUoyW2qFz/pOAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感APP开屏广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/ZPf4kDcGR3ZtroP8.webp" alt="生活感APP开屏广告" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感APP开屏广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感电梯广告" data-full="assets/channel-marketing/editorial/uuFuafcygHLIefiL.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACQBQCdASoYACAAPwVsrFArpiQisAwBcCCJZACuVY28AAue71q27zX88Nt9qb7G1bXZOMQccAD+ca9BbP2pdg4nH4kBnsut+mSSvBAmPG/aKyPZtTKTYc02eCl2g7q7U1KRuzio3F+3KMPTGsKXj1C7nOhyCK+tAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感电梯广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/uuFuafcygHLIefiL.webp" alt="生活感电梯广告" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感电梯广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.5667" data-name="生活感H5互动页" data-full="assets/channel-marketing/editorial/HKQtc7u4NC4WFMzL.webp" style="--ar:1632/2880;--ph:url('data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwBACdASoSACAAPxFurlAsJiQisAgBgCIJYwCo9B6VDqJ2E4tKO1R55tNREWmAAP7nQI5r6yMaIZmyD5oaDILTyLGREzz/DSTWEP7SwGfmsiSwgLeUhZLmmAsdXYnBcAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感H5互动页">
+<div class="timg"><img src="assets/channel-marketing/editorial/HKQtc7u4NC4WFMzL.webp" alt="生活感H5互动页" width="1632" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感H5互动页</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感信息流广告" data-full="assets/channel-marketing/editorial/SHI9OgY5e4abB0OO.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACQBACdASoYACAAPvloqVAqpiQit+gBUB8JYwCnFDIoWtBNAatcCjggV0U5IigA/uceqOEd98v8iPDB9q7zyCbqyXofpBkbqnrN0XeeN2XcRXSjhlsGapRQZKWg/zyUi/iR80QgAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感信息流广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/SHI9OgY5e4abB0OO.webp" alt="生活感信息流广告" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感信息流广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感电子手册封面" data-full="assets/channel-marketing/editorial/ROgEu9HJmu6OgGGO.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwBQCdASoYACAAPwFsq1ArJiQit/qoAWAgCWVjPlToE5k+CcScX4bNcb4cTT7qcsGfAAD+7PQd1QPR6oadmL8iNbS8xuczqU6bfdiupRYt+fpGaOsOZ1twQcKF26dcMAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感电子手册封面">
+<div class="timg"><img src="assets/channel-marketing/editorial/ROgEu9HJmu6OgGGO.webp" alt="生活感电子手册封面" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感电子手册封面</figcaption>
+</figure>
+<figure class="tile" data-ar="0.6667" data-name="生活感EDM营销邮件" data-full="assets/channel-marketing/editorial/x0IxjTxyUT3bZuMC.webp" style="--ar:1920/2880;--ph:url('data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQBACdASoVACAAPxFur1EsJiQisBgMAYAiCWMAtOgQ4lPuM4afjCBN5KOpWv0dwAD+1CgB0+fMA9d6Fiq3b36Cd6ccB8rFi9kmgZI0exwlw6b6JQUz69yq/PhLfpWqAAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感EDM营销邮件">
+<div class="timg"><img src="assets/channel-marketing/editorial/x0IxjTxyUT3bZuMC.webp" alt="生活感EDM营销邮件" width="1920" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感EDM营销邮件</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="生活感商超LED大屏广告" data-full="assets/channel-marketing/editorial/xsiaoBWDyVAhgQGJ.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACQBACdASogABIAPwFssFArJiUisAwBYCAJQBadAwAjIW7pfeiVE3pt5IDWFRAA/oDiqifpZuZ3BGFlXN4Ye02x+fT7UzI8A59v9gAhtV1MiafaemepZchmzSM3CMoMQK6fbab0AAA=')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感商超LED大屏广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/xsiaoBWDyVAhgQGJ.webp" alt="生活感商超LED大屏广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感商超LED大屏广告</figcaption>
+</figure>
+<figure class="tile" data-ar="1.7647" data-name="生活感地铁灯箱广告" data-full="assets/channel-marketing/editorial/JkbIjXxWqz1RcHeq.webp" style="--ar:2880/1632;--ph:url('data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwBACdASogABIAPwFssVArJiUisAwBYCAJZQDLLCHEoawk2i80iEjJyYI5hPq2LDgA/uEgIfMUhURWGqXPXH+uDiKoL4B5rXwlLibB5au7xBqH0AAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感地铁灯箱广告">
+<div class="timg"><img src="assets/channel-marketing/editorial/JkbIjXxWqz1RcHeq.webp" alt="生活感地铁灯箱广告" width="2880" height="1632" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感地铁灯箱广告</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感海报-节能环保" data-full="assets/channel-marketing/editorial/b6MBVH4chrJyeaPI.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABwBQCdASoYACAAPv1mq1ArJaQit/qoAWAfiWQAsQ0EgvTl8JJkvWUGm1goDdMOY3E2lRAAAP7qdGZgW9c+b6tg7DTtSNxJBtV+IvKqD1YAUsI4yPfsnys9au5oe3dGJndugQk5Ykvi3Lkp5/2UgQRgsoPVU/FSmKssIIHwoE4AAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感海报-节能环保">
+<div class="timg"><img src="assets/channel-marketing/editorial/b6MBVH4chrJyeaPI.webp" alt="生活感海报-节能环保" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感海报-节能环保</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感海报-新品首发" data-full="assets/channel-marketing/editorial/AOylpPPj3aJnrmDl.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAACwBQCdASoYACAAPwVor1ArpaSit/qoAXAgiWIAtOgeg3/IrzKq3mxq84HUIToWA4AKS6M3I3AA4RPCmup8cQNsXDG+9kOImo4jfs8OfQah5wjb8Wwi6FR4JDYVq+EGmp47FcpAlEtW1AEfgGAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感海报-新品首发">
+<div class="timg"><img src="assets/channel-marketing/editorial/AOylpPPj3aJnrmDl.webp" alt="生活感海报-新品首发" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感海报-新品首发</figcaption>
+</figure>
+<figure class="tile" data-ar="0.7500" data-name="生活感海报-活动促销" data-full="assets/channel-marketing/editorial/pzIeNSVEhUgYjs6J.webp" style="--ar:2160/2880;--ph:url('data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAACQBQCdASoYACAAPxFqslCsJaSisBgMAYAiCWIAsR9VwahKB0saUDKhIdvRfty8KEuXyskgAAD+nmqoSLwLtibdg6RGBOrYF/MhImYosuxPeUITykweolGKvJjL879HjksKn10SX9Nhk55IU1NeeWrr4mtg2ZDxJFz9JoeLQyWYLp7ITQAAAA==')" tabindex="0" role="button" aria-haspopup="dialog" aria-label="放大查看：生活感海报-活动促销">
+<div class="timg"><img src="assets/channel-marketing/editorial/pzIeNSVEhUgYjs6J.webp" alt="生活感海报-活动促销" width="2160" height="2880" loading="lazy" decoding="async"></div>
+<figcaption class="cap">生活感海报-活动促销</figcaption>
+</figure>
+</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">光谷效应 · 数字端全渠道视觉系统</div>
-    <div class="footer-meta">CHANNEL MARKETING / CASE 06 / 2026</div>
-    <div class="footer-links">
-      <a href="index.html">作品集</a>
-      <a href="mobile-delivery.html">移动端交付</a>
-      <a href="#top">回到顶部</a>
+<footer class="footer" id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="foot-seal"><img src="assets/mobile-delivery/ovem-app-icon.png" alt="" width="1024" height="1024"></span>
+        <div><b>光谷效应</b><small>OPTICS VALLEY EFFECT</small><p class="foot-slogan">智享生活 · 解放双手</p></div>
+      </div>
+      <nav class="foot-nav" aria-label="页脚导航">
+        <span>EXPLORE</span>
+        <a href="index.html">作品集首页</a>
+        <a href="#s1">渠道营销物料</a>
+        <a href="https://yoyonaga121.github.io/ovem-ai-marketing/" target="_blank" rel="noopener">OVEM AI 营销平台 ↗</a>
+        <a href="#top">返回顶部 ↑</a>
+      </nav>
+      <div class="foot-social">
+        <span>FIND US</span>
+        <div><i>微信</i><i>小红书</i><i>抖音</i><i>视频号</i></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 光谷效应 Optics Valley Effect. All Rights Reserved.</span>
+      <span class="en">SMART LIFE · FOR A BETTER TOMORROW</span>
     </div>
   </div>
 </footer>
 
-<button class="to-top" id="toTop" type="button" aria-label="回到顶部">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
-</button>
-
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="查看大图" aria-hidden="true">
-  <div class="lightbox-panel">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭大图">&times;</button>
-    <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
-    <div class="lightbox-caption"><strong id="lightboxTitle">渠道营销视觉规范</strong><span>点击遮罩或按 ESC 关闭</span></div>
-  </div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="物料放大查看">
+  <button class="lb-close" type="button">关闭 ✕</button>
+  <img class="lb-img" alt="">
+  <p class="lb-name"></p>
 </div>
-
 <script>
-(function () {
-  'use strict';
+(function(){
+  "use strict";
 
-  const body = document.body;
-  const header = document.getElementById('siteHead');
-  const progressBar = document.getElementById('progressBar');
-  const toTop = document.getElementById('toTop');
-  const navLinks = Array.from(document.querySelectorAll('.head-nav a'));
-  const sections = Array.from(document.querySelectorAll('main section[id]'));
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------------------------------------------------------
+     Justified rows: every image keeps its natural ratio.
+     Rows share one height and fill the content width.
+     --------------------------------------------------------- */
+  var galleries = Array.prototype.slice.call(document.querySelectorAll(".gallery"));
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function onScroll() {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = max > 0 ? Math.min(1, Math.max(0, scrollTop / max)) : 0;
-    if (progressBar) progressBar.style.width = (ratio * 100).toFixed(2) + '%';
-    if (header) header.classList.toggle('is-scrolled', scrollTop > 8);
-    if (toTop) toTop.classList.toggle('show', scrollTop > 600);
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  if (toTop) {
-    toTop.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  function collectItems(gallery){
+    return Array.prototype.slice.call(gallery.querySelectorAll("figure.tile")).map(function(fig){
+      var ar = parseFloat(fig.getAttribute("data-ar"));
+      if (!isFinite(ar) || ar <= 0){
+        var img = fig.querySelector("img");
+        ar = img && img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
+      }
+      return {el: fig, ar: ar, group: fig.hasAttribute("data-group") ? parseInt(fig.getAttribute("data-group"), 10) : null};
     });
   }
 
-  // Reveal on scroll
-  const revealEls = Array.from(document.querySelectorAll('.reveal'));
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    revealEls.forEach(function (el) { revealObserver.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('in'); });
-  }
-
-  // Section-aware navigation
-  function setActiveNav(id) {
-    navLinks.forEach(function (link) {
-      link.classList.toggle('active', link.dataset.nav === id);
+  function flatten(gallery){
+    var figs = Array.prototype.slice.call(gallery.querySelectorAll("figure.tile"));
+    figs.forEach(function(fig){ gallery.appendChild(fig); });
+    Array.prototype.forEach.call(gallery.querySelectorAll(".gal-row"), function(row){
+      if (row.parentNode) row.parentNode.removeChild(row);
     });
-  }
-  if ('IntersectionObserver' in window) {
-    const navObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) setActiveNav(entry.target.id);
-      });
-    }, { rootMargin: '-28% 0px -62% 0px', threshold: 0 });
-    sections.forEach(function (section) { navObserver.observe(section); });
-  }
-  // Make sure the first nav state is sensible before observers settle.
-  setActiveNav('overview');
-
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxTitle = document.getElementById('lightboxTitle');
-  const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxTriggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
-  let lastFocus = null;
-
-  function openLightbox(trigger) {
-    if (!lightbox || !lightboxImg) return;
-    lastFocus = trigger;
-    lightboxImg.src = trigger.getAttribute('data-lightbox-src');
-    lightboxImg.alt = trigger.getAttribute('data-lightbox-title') || trigger.getAttribute('aria-label') || '渠道营销视觉素材';
-    if (lightboxTitle) lightboxTitle.textContent = trigger.getAttribute('data-lightbox-title') || trigger.getAttribute('aria-label') || '渠道营销视觉素材';
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    body.classList.add('locked');
-    window.setTimeout(function () { lightboxClose.focus(); }, 30);
-  }
-
-  function closeLightbox() {
-    if (!lightbox) return;
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    body.classList.remove('locked');
-    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-    window.setTimeout(function () { lightboxImg.src = ''; }, 250);
-  }
-
-  lightboxTriggers.forEach(function (trigger) {
-    trigger.addEventListener('click', function (event) {
-      event.preventDefault();
-      openLightbox(trigger);
+    figs.forEach(function(fig){
+      fig.style.width = "";
+      fig.style.height = "";
+      fig.style.flex = "";
     });
-  });
-  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener('click', function (event) {
-      if (event.target === lightbox) closeLightbox();
-    });
+    return figs;
   }
-  document.addEventListener('keydown', function (event) {
-    if (!lightbox || !lightbox.classList.contains('open')) return;
-    if (event.key === 'Escape') {
-      closeLightbox();
-      return;
+
+  function partition(items, rows, minSize){
+    var n = items.length;
+    if (rows <= 1 || n <= 1) return [items];
+    var prefix = [0];
+    for (var i=0;i<n;i++) prefix.push(prefix[i] + items[i].ar);
+    var avg = prefix[n] / rows;
+    var INF = 1e18;
+    var dp = [];
+    var back = [];
+    for (var k=0;k<=rows;k++){
+      dp[k] = new Array(n+1).fill(INF);
+      back[k] = new Array(n+1).fill(-1);
     }
-    if (event.key === 'Tab') {
-      const focusables = Array.from(lightbox.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])'))
-        .filter(function (el) { return !el.hasAttribute('disabled'); });
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+    dp[0][0] = 0;
+    for (var r=1;r<=rows;r++){
+      for (var end=1;end<=n;end++){
+        var minStart = (r-1) * minSize;
+        var maxStart = end - minSize;
+        for (var start=minStart;start<=maxStart;start++){
+          if (dp[r-1][start] >= INF) continue;
+          if (n - end < (rows-r) * minSize) continue;
+          var size = end - start;
+          if (size > 9) continue;
+          var groupAR = prefix[end] - prefix[start];
+          var cost = (groupAR - avg) * (groupAR - avg) + Math.abs(size - n / rows) * .012;
+          var total = dp[r-1][start] + cost;
+          if (total < dp[r][end]){ dp[r][end] = total; back[r][end] = start; }
+        }
       }
     }
+    if (dp[rows][n] >= INF) return null;
+    var result = [];
+    var idx = n;
+    for (var rr=rows;rr>0;rr--){
+      var st = back[rr][idx];
+      result.push(items.slice(st, idx));
+      idx = st;
+    }
+    return result.reverse();
+  }
+
+  function layoutGallery(gallery){
+    var items = collectItems(gallery);
+    var n = items.length;
+    if (!n) return;
+    var figs = flatten(gallery);
+    var width = gallery.clientWidth;
+    if (!width) return;
+    var gap = parseFloat(getComputedStyle(gallery).getPropertyValue("--gap")) || 10;
+    var base = parseFloat(gallery.getAttribute("data-row-h")) || 170;
+    var forcedRows = parseInt(gallery.getAttribute("data-rows"), 10);
+    var target = width < 560
+      ? Math.max(112, Math.min(base, 156))
+      : Math.max(120, Math.min(base, width / 3.1));
+    var totalAR = 0;
+    items.forEach(function(item){ totalAR += item.ar; });
+    var desired = Math.round((totalAR * target + gap * (n - 1)) / (width + gap));
+    var minSize = n >= 4 ? 2 : 1;
+    var minRows = Math.max(1, Math.ceil(n / 9));
+    if (n >= 4) minRows = Math.max(1, Math.ceil(n / 8));
+    var maxRows = n >= 4 ? Math.floor(n / minSize) : 1;
+    var rowsCount = Math.max(minRows, Math.min(maxRows, desired));
+    if (isFinite(forcedRows) && forcedRows > 0) rowsCount = Math.min(n, forcedRows);
+    var grouped;
+    if (gallery.getAttribute("data-fixed-groups") === "1"){
+      var buckets = [];
+      items.forEach(function(item){
+        var g = isFinite(item.group) ? item.group : 0;
+        if (!buckets[g]) buckets[g] = [];
+        buckets[g].push(item);
+      });
+      grouped = buckets.filter(function(group){ return group && group.length; });
+      if (!grouped.length) grouped = [items];
+    } else {
+      grouped = partition(items, rowsCount, minSize) || [items];
+    }
+
+    gallery.classList.add("is-rows");
+    grouped.forEach(function(group, rowIndex){
+      var row = document.createElement("div");
+      row.className = "gal-row";
+      row.style.gap = gap + "px";
+      if (group[0] && group[0].group !== null && isFinite(group[0].group)) row.setAttribute("data-group", group[0].group);
+      var sumAR = 0;
+      group.forEach(function(item){ sumAR += item.ar; });
+      var height = (width - gap * (group.length - 1)) / sumAR;
+      var isLast = rowIndex === grouped.length - 1;
+      if (!forcedRows) {
+        if (group.length === 1) height = Math.min(height, target * 1.3);
+        if (isLast && group.length <= 2) height = Math.min(height, target * 1.35);
+        height = Math.max(56, Math.min(height, target * 2.2));
+      } else {
+        // Explicit row counts must fill the content width exactly.
+        height = Math.max(56, height);
+      }
+      group.forEach(function(item){
+        var w = Math.max(48, item.ar * height);
+        item.el.style.width = w.toFixed(2) + "px";
+        item.el.style.height = height.toFixed(2) + "px";
+        item.el.style.flex = "0 0 " + w.toFixed(2) + "px";
+        row.appendChild(item.el);
+      });
+      gallery.appendChild(row);
+    });
+    // figs is used only to keep the DOM reference list alive during relayout
+    void figs;
+  }
+
+  var layoutTimer = 0;
+  function layoutAll(){
+    galleries.forEach(layoutGallery);
+  }
+  function scheduleLayout(){
+    if (layoutTimer) return;
+    layoutTimer = setTimeout(function(){
+      layoutTimer = 0;
+      layoutAll();
+    }, 60);
+  }
+
+  if ("ResizeObserver" in window){
+    var ro = new ResizeObserver(function(){ scheduleLayout(); });
+    galleries.forEach(function(g){ ro.observe(g); });
+  }
+  window.addEventListener("resize", scheduleLayout, {passive:true});
+  window.addEventListener("load", scheduleLayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleLayout);
+  scheduleLayout();
+  setTimeout(scheduleLayout, 600);
+
+  /* ---------------------------------------------------------
+     Lightbox
+     --------------------------------------------------------- */
+  var lb = document.getElementById("lightbox");
+  var lbImg = lb ? lb.querySelector(".lb-img") : null;
+  var lbName = lb ? lb.querySelector(".lb-name") : null;
+  var lbClose = lb ? lb.querySelector(".lb-close") : null;
+  var lastFocus = null;
+
+  // Every zoom trigger announces that it opens a dialog.
+  Array.prototype.forEach.call(document.querySelectorAll("[data-full]"), function(el){
+    el.setAttribute("aria-haspopup", "dialog");
+    el.setAttribute("aria-controls", "lightbox");
   });
 
-  // Close mobile nav if a nav link is used (desktop nav is hidden on mobile).
-  navLinks.forEach(function (link) {
-    link.addEventListener('click', function () {
-      setActiveNav(link.dataset.nav);
-    });
+  function openLightbox(full, name, trigger){
+    if (!lb || !lbImg) return;
+    lastFocus = trigger || document.activeElement;
+    lbImg.src = full;
+    lbImg.alt = name || "物料放大图";
+    if (lbName) lbName.textContent = name || "";
+    lb.hidden = false;
+    document.body.classList.add("lightbox-open");
+    if (lbClose) lbClose.focus();
+  }
+  function closeLightbox(){
+    if (!lb) return;
+    lb.hidden = true;
+    document.body.classList.remove("lightbox-open");
+    lbImg.removeAttribute("src");
+    var target = lastFocus;
+    if (target && target.focus) {
+      target.focus();
+      // Chromium moves focus to <body> slightly after a hidden dialog loses
+      // its focused child; restore after that microtask/task has settled.
+      window.setTimeout(function(){
+        if (target.isConnected) target.focus();
+      }, 120);
+    }
+  }
+
+  document.addEventListener("click", function(e){
+    var trigger = e.target.closest ? e.target.closest("[data-full]") : null;
+    if (trigger){
+      openLightbox(trigger.getAttribute("data-full"), trigger.getAttribute("data-name") || "", trigger);
+      return;
+    }
+    if (lb && !lb.hidden && e.target === lb) closeLightbox();
   });
+  if (lbClose) lbClose.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", function(e){
+    if (lb && !lb.hidden && e.key === "Tab"){
+      e.preventDefault();
+      if (lbClose) lbClose.focus();
+      return;
+    }
+    if (lb && !lb.hidden && e.key === "Escape"){
+      e.preventDefault(); closeLightbox(); return;
+    }
+    if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.matches("[data-full]")){
+      e.preventDefault();
+      openLightbox(document.activeElement.getAttribute("data-full"), document.activeElement.getAttribute("data-name") || "", document.activeElement);
+    }
+  });
+
+  // Keep keyboard focus inside the open dialog, even if focus escapes by
+  // click or programmatic focus. The close button is the only focusable
+  // control in this single-image lightbox.
+  document.addEventListener("focusin", function(e){
+    if (!lb || lb.hidden) return;
+    if (!lb.contains(e.target) && lbClose) lbClose.focus();
+  });
+
+  /* ---------------------------------------------------------
+     Section reveal
+     --------------------------------------------------------- */
+  var rvs = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  function showAll(){ rvs.forEach(function(el){ el.classList.add("in"); }); }
+  if (reduceMotion || !("IntersectionObserver" in window)) showAll();
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:.06, rootMargin:"0px 0px -30px 0px"});
+    rvs.forEach(function(el){ io.observe(el); });
+    setTimeout(showAll, 1600);
+  }
 })();
+
 </script>
 </body>
 </html>
